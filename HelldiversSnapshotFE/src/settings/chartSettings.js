@@ -2,12 +2,12 @@
 //saveAs(missionItem, `image${i}.png`);
 
 export const options = {
-    indexAxis: 'x',
+    indexAxis: 'y',
     maintainAspectRatio: false,
     layout: {
-      padding: {
-        bottom: 80
-      }
+      // padding: {
+      //   bottom: 80
+      // }
   },
     elements: {
       bar: {
@@ -18,29 +18,29 @@ export const options = {
     scales: {
       x: {
         ticks: {
-          display: false,
+          display: true,
+          stepSize: 10,
         },
         grid: {
-          drawBorder: true,
+          drawBorder: false,
           color: '#aaa', // for the grid lines
           drawTicks: true, // true is default 
-          drawOnChartArea: false // true is default 
+          drawOnChartArea: true // true is default 
         },
       },    
       y: {
         ticks: {
-          display: true,
-          stepSize: 10,
+          display: false,
           font: {
             size:15
           },
           color: 'white'
         },
         grid: {
-          drawBorder: true,
+          drawBorder: false,
           color: '#aaa', // for the grid lines
           drawTicks: false, // true is default 
-          drawOnChartArea: true // true is default 
+          drawOnChartArea: false // true is default 
         },
 
         beginAtZero: true,
