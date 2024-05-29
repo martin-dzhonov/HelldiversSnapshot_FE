@@ -1,51 +1,13 @@
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.app-bg {
-  background-color: black;
-}
-
-.header-logo {
-  color: white;
-  font-size: 20px;
-  cursor: "pointer";
-  margin: 0px 20px 0px 35px;
-  padding: 0px 10px 0px 10px;
-  background-color: red;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  border-radius: 5px;
-  font-weight: 600;
-}
-
-.app-header-container {
-  background-color: #3f3f3f;
-  height: 75px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  border-bottom: 1px solid white;
-}
-
 * {
   box-sizing: border-box;
 }
 
-@import url(https://fonts.googleapis.com/css?family=PT+Sans);
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/FS Sinclair Medium.otf');
+  font-display: swap;
+}
+
 
 html, body {
   margin: 0;
@@ -53,7 +15,6 @@ html, body {
 }
 
 body {
-  font-family: 'PT Sans', Arial, Verdana;
   background-color: #eee;
 }
 
@@ -65,13 +26,242 @@ h1 {
   color: #222;
 }
 
+
+.app-bg {
+  background-color: black;
+}
+
+.custom-font{
+  font-family: 'CustomFont';
+
+}
+
+.content-wrapper {
+  background-color: black;
+  padding: 10px 150px 100px 150px;
+  height: 2200px;
+}
+
+.nav-container{
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+  width: 100%;
+  background-color: #2c3e50;
+  padding-right: 100px;
+}
+
+
+.filters-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 35px 140px 25px 140px;
+}
+
+.dropdown-button .dropdown-toggle{
+ background-color: #2c3e50 !important;
+ padding: 10px 30px 10px 30px;
+ font-family: 'CustomFont';
+}
+
+.dropdown-menu button {
+  padding: 10px 70px 10px 30px;
+
+}
+.filter-results-container{
+
+}
+
+.filter-results-text{
+  text-align: center;
+  color: white;
+  font-family: 'CustomFont';
+  padding: 20px;
+  text-align: left;
+  padding-left: 100px;
+}
+
+.bar-container{
+  padding: 0px 0px 100px 0px;
+  height: 670px;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  
+}
+
+
+.groups-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.groups-title-wrapper{
+  width: 700px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.groups-title-text-wrapper{
+  color: white;
+  margin-left: 20px;
+  font-size: 21px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  width: 200px;
+  border-bottom: 1px solid white;
+  font-family: 'CustomFont';
+}
+
+.group-container{
+  display: flex;
+  direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  gap: 8px;
+}
+
+.armory-item-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+.armory-item-name{
+  color: white;
+  text-align: center;
+  width: 130px;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-family: 'CustomFont';
+}
+
+.armory-img-wrapper{
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+
+.item-details-img-wrapper {
+  width: 120px;
+  height: 120px;
+}
+
+.item-details-title-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 5px;
+  border-bottom: 1px solid white;
+  padding-top: 30px;
+  padding-bottom: 5px;
+  width: 80%;
+  
+}
+
+
+.strategem-rankings-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 1000px;
+}
+
+.strategem-rankings-item{
+  color: white;
+  width: 400px;
+  height: 120px;
+  padding-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  font-size: 30px;
+}
+
+.strategem-rankings-number{
+  font-family: 'CustomFont';
+  font-size: 70px;
+}
+
+.strategem-rankings-number-small{
+  font-family: 'CustomFont';
+  font-size: 45px;
+}
+
+.strategem-rankings-text-wrapper{
+  padding-top: 22px;
+  padding-left: 3px;
+}
+
+.strategem-rankings-text-small{
+  font-family: 'CustomFont', sans-serif;
+  font-size: 19px;
+  padding-left: 10px;
+  padding-bottom: 0px;
+}
+
+.strategem-rankings-text{
+  font-family: 'CustomFont', sans-serif;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-size: 32px;
+  
+  transform-origin: 0 0;
+  margin-bottom: -50%;
+  font-size: 26px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+
+}
+
+.strategem-graph-wrapper{
+  margin-top: -40px;
+}
+
+.strategem-rankings-graph-wrapper{
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0px 0px 20px;
+  width: 600px;
+  height: 350px;
+}
+
+.strategem-graph-title{
+  margin-top: 60px;
+  color: white;
+  font-size: 24px;
+  width: 1250px;
+  border-top: 1px solid white;
+  padding: 20px;
+  font-family: 'CustomFont';
+}
+
+.item-details-title-text {
+  color: white;
+  font-size: 30px;
+  padding: 15px;
+  font-family: 'CustomFont';
+}
+
 .menu {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   width: 500px;
-  height: 60px;
+  height: 56px;
   position: relative;
   background-color: #2c3e50;
   z-index: 7;
@@ -93,7 +283,7 @@ h1 {
     color: #fff;
     text-decoration: none;
     position: relative;
-    font-size: 18px;
+    font-size: 20px;
     z-index: 9;
   }
 }

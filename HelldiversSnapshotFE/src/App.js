@@ -2,6 +2,8 @@ import FactionPage from './factionPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './layout';
 import ArmoryPage from './armoryPage';
+import StrategemPage from './strategemPage';
+
 
 function App() {
   document.title = "Helldivers Meta Snapshot"
@@ -18,7 +20,13 @@ function App() {
           <Layout>
             <ArmoryPage />
           </Layout>
-        } />
+        }>
+        </Route>
+        <Route path="/armory/:itemId" element={
+          <Layout>
+            <StrategemPage />
+          </Layout>
+        }/>
       </Routes>
     </BrowserRouter>
   );

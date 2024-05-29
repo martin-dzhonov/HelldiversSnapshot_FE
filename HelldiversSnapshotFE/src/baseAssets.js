@@ -201,7 +201,149 @@ const baseLabelsFull = [
   'Tesla Tower',
   'Shield Generator Relay',
   'Anti-Personnel Minefield',
-  'Incendiary Mines',]
+  'Incendiary Mines'
+];
+
+const baseLabelsFull2 = [
+  'Eagle Airstrike',
+  'Eagle 500KG Bomb',
+  'Eagle Strafing Run',
+  'Eagle Cluster Bomb',
+  'Eagle Napalm Airstrike',
+  'Eagle 110MM Rocket Pods',
+  'Orbital 380MM HE Barrage',
+  'Orbital 120MM HE Barrage',
+  'Orbital Walking Barrage',
+  'Orbital Gatling Barrage',
+  'Orbital Laser',
+  'Orbital Railcannon Strike',
+  'Orbital Airburst Strike',
+  'Orbital Precision Strike',
+  'Orbital Gas Strike',
+  'Orbital EMS Strike',
+  'M-105 Stalwart',
+  'MG-43 Machine Gun',
+  'MG-206 Heavy Machine Gun',
+  'APW-1 Anti-Materiel Rifle',
+  'LAS-98 Laser Cannon',
+  'RS-422 Railgun',
+  'AC-8 Autocannon',
+  'GL-21 Grenade Launcher',
+  'EAT-17 Expendable Anti-Tank',
+  'LAS-99 Quasar Cannon',
+  'GR-8 Recoilless Rifle',
+  'FAF-14 Spear',
+  'FLAM-40 Flamethrower',
+  'ARC-3 Arc Thrower',
+  'RL-77 Airburst Rocket Launcher',
+  'AX/LAS-5 Guard Dog Rover',
+  'AD-334 Guard Dog',
+  'SH-20 Ballistic Shield Backpack',
+  'SH-20 Shield Generator Pack',
+  'B-1 Supply Pack',
+  'LIFT-850 Jump Pack',
+  'EXO-45 Patriot Exosuit',
+  'EXO-49 Emancipator Exosuit',
+  'E/MG-101 HMG Emplacement',
+  'A/G-16 Gatling Sentry',
+  'A/AC-8 Autocannon Sentry',
+  'A/MLS-4X Rocket Sentry',
+  'A/M-12 Mortar Sentry',
+  'A/M-23 EMS Mortar Sentry',
+  'A/ARC-3 Tesla Tower',
+  'FX-12 Shield Generator Relay',
+  'MD-6 Anti-Personnel Minefield',
+  'MD-I4 Incendiary Mines'
+];
 
 
-export { baseIconsSvg, baseLabels, baseLabelsFull};
+  const missionNames = [
+    "LAUNCH ICBM",
+    "ENABLE E-710 EXTRACTION",
+    "RETRIEVE VALUABLE DATA",
+    "SPREAD DEMOCRACY",
+    "PURGE HATCHERIES",
+    "EMERGENCY EVACUATION",
+    "CONDUCT GEOLOGICAL SURVEY",
+    "ERADICATE TERMINID SWARM",
+    "BLITZ: SEARCH AND DESTROY",
+    "EVACUATE HIGH-VALUE ASSETS",
+    "RETRIEVE ESSENTIAL PERSONNEL"
+];
+
+const graphNames = [
+    "All",
+    "Eagle/Orbital",
+    "Support",
+    "Defensive"
+  ];
+
+const graphColors = [
+    "white",
+    "#E55A50",
+    "#49adc9",
+    "#679552"
+  ];
+
+
+const itemIdsType =  {
+  'eagle_airstrike': 'Eagle/Orbital',
+  'eagle_500kg': 'Eagle/Orbital',
+  'eagle_strafe': 'Eagle/Orbital',
+  'eagle_cluster': 'Eagle/Orbital',
+  'eagle_napalm': 'Eagle/Orbital',
+  'eagle_110': 'Eagle/Orbital',
+  'barrage_380': 'Eagle/Orbital',
+  'barrage_120': 'Eagle/Orbital',
+  'walking_barrage': 'Eagle/Orbital',
+  'gatling_barrage': 'Eagle/Orbital',
+  'orbital_laser': 'Eagle/Orbital',
+  'orbital_railcannon': 'Eagle/Orbital',
+  'orbital_airburst': 'Eagle/Orbital',
+  'orbital_precision': 'Eagle/Orbital',
+  'orbital_gas': 'Eagle/Orbital',
+  'orbital_ems': 'Eagle/Orbital',
+  'stalwart': "Support",
+  'mg': "Support",
+  'hmg': "Support",
+  'amr': "Support",
+  'laser_cannon': "Support",
+  'railgun': "Support",
+  'autocannon': "Support",
+  'grenade_launcher': "Support",
+  'eat': "Support",
+  'quasar_cannon': "Support",
+  'recoilless_rifle': "Support",
+  'spear': "Support",
+  'flamethrower': "Support",
+  'arc_thrower': "Support",
+  'airburst_launcher': "Support",
+  'guard_dog_rover': "Support",
+  'guard_dog': "Support",
+  'ballistic_shield': "Support",
+  'shield_backpack': "Support",
+  'supply_backpack': "Support",
+  'jump_pack': "Support",
+  'patriot': "Support",
+  'emancipator': "Support",
+  'hmg_encampment': "Defensive",
+  'gatling_sentry': "Defensive",
+  'autocannon_sentry': "Defensive",
+  'rocket_sentry': "Defensive",
+  'mortar_sentry': "Defensive",
+  'ems_sentry': "Defensive",
+  'arc_sentry': "Defensive",
+  'shield_relay': "Defensive",
+  'mines_infantry': "Defensive",
+  'mines_incendiary': "Defensive"
+};
+
+
+const itemTypesIndexes = [
+    [0, 49],
+    [0, 16],
+    [16, 39],
+    [39, 50]];
+
+
+export { baseIconsSvg, baseLabels, baseLabelsFull, missionNames, graphNames, graphColors, itemTypesIndexes, itemIdsType, baseLabelsFull2};

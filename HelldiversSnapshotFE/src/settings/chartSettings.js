@@ -2,60 +2,60 @@
 //saveAs(missionItem, `image${i}.png`);
 
 export const options = {
-    indexAxis: 'y',
-    maintainAspectRatio: false,
-    layout: {
-      // padding: {
-      //   bottom: 80
-      // }
+  indexAxis: 'y',
+  maintainAspectRatio: false,
+  layout: {
+    // padding: {
+    //   bottom: 80
+    // }
   },
-    elements: {
-      bar: {
-        borderWidth: 2,
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  scales: {
+    x: {
+      ticks: {
+        display: true,
+        stepSize: 10,
+      },
+      grid: {
+        drawBorder: false,
+        color: '#aaa', // for the grid lines
+        drawTicks: false, // true is default 
+        drawOnChartArea: true // true is default 
       },
     },
-    responsive: true,
-    scales: {
-      x: {
-        ticks: {
-          display: true,
-          stepSize: 10,
-        },
-        grid: {
-          drawBorder: false,
-          color: '#aaa', // for the grid lines
-          drawTicks: true, // true is default 
-          drawOnChartArea: true // true is default 
-        },
-      },    
-      y: {
-        ticks: {
-          display: false,
-          font: {
-            size:15
-          },
-          color: 'white'
-        },
-        grid: {
-          drawBorder: false,
-          color: '#aaa', // for the grid lines
-          drawTicks: false, // true is default 
-          drawOnChartArea: false // true is default 
-        },
-
-        beginAtZero: true,
-    },
-    },
-    plugins: {
-      title: {
+    y: {
+      ticks: {
         display: false,
+        font: {
+          size: 15
+        },
+        color: 'white'
       },
-      legend: {
-        display: false,
+      grid: {
+        drawBorder: false,
+        color: '#aaa', // for the grid lines
+        drawTicks: false, // true is default 
+        drawOnChartArea: false // true is default 
       },
-      customCanvasBackgroundColor: {
-        color: 'lightGreen',
-      },
-    },
 
-  };
+      beginAtZero: true,
+    },
+  },
+  plugins: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false,
+    },
+    customCanvasBackgroundColor: {
+      color: 'lightGreen',
+    },
+  },
+
+};
