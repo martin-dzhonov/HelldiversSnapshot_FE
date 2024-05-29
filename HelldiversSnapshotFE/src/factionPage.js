@@ -138,7 +138,7 @@ function FactionPage() {
                 const dataLength = labels.length;
                 const sectionSize = 40;
                 const containerHeight = (dataLength* sectionSize)-28;
-                const imgDimensions = 30;
+                const imgDimensions = 36;
 
                 const ctx = ref1.current.getContext('2d', { willReadFrequently: true });
                 ctx.clearRect(0, 0, 75, containerHeight);
@@ -214,7 +214,7 @@ function FactionPage() {
                 </Dropdown.Item>
                 <Dropdown.Item as="button" disabled Tooltip='tets'
                     onClick={() => { setFilters({ ...filters, faction: "Terminid", }) }}>
-                    Automaton
+                    Automaton (Soon)
                 </Dropdown.Item>
             </DropdownButton>
       
@@ -271,7 +271,8 @@ function FactionPage() {
            
             </div>
             <div className='filter-results-container'>
-                <div className='filter-results-text'>Matches: {chartData.matchCount} Loadouts: {chartData.loadoutCount}</div>
+                <div className='filter-results-text'>Matches: {chartData.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {chartData.loadoutCount} </div>
+                <div className='filter-results-text'> Time Period: 27/05/2024 - 29/05/2024</div>
             </div>
             {graphData &&
                 <div className='bar-container'>

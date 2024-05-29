@@ -31,11 +31,16 @@ function StrategemPage() {
     const fullName = baseLabelsFull2[itemIndex];
 
     const [graphData, setGraphData] = useState(null);
+    const [graphData1, setGraphData1] = useState(null);
 
     const [percentMatch, setPercentMatch] = useState(null);
     const [percentLoadout, setPercentLoadout] = useState(null);
     const [rankingAll, setRankingAll] = useState(null);
     const [rankingCategory, setRankingCategory] = useState(null);
+
+    const categoryColor = graphColors[graphNames.indexOf(itemIdsType[itemId])];
+
+    console.log(categoryColor);
 
     const sortDictArray = (a, b) => { return b[1] - a[1] };
 
@@ -55,6 +60,10 @@ function StrategemPage() {
             "Short": 0,
             "Long": 0
         }
+        let missionDictObjAll = {
+            "Short": 0,
+            "Long": 0
+        }
 
         let matchCount = 0;
         let loadoutCount = 0;
@@ -68,12 +77,17 @@ function StrategemPage() {
         if (terminidData && itemId) {
             terminidData.forEach((match) => {
                 const players = match.players;
+                const missionType = missionNames.slice(7, 11).includes(match.type) ? "Short" : "Long";
+
+             
+
                 matchCount++;
                 let itemFound = false;
 
 
                 players.forEach((playerItems) => {
                     let hasItems = false;
+
                     playerItems.forEach((itemName) => {
                         if (itemName !== "") {
                             hasItems = true;
@@ -84,15 +98,13 @@ function StrategemPage() {
                             } else {
                                 itemDictObj[match.difficulty] = 1;
                             }
-
-                            const missionType = missionNames.slice(7, 11).includes(match.type) ? "Short" : "Long";
-
-                            if(missionType === "Long"){
+                            if (missionType === "Long") {
                                 missionDictObj["Long"]++;
                             } else {
                                 missionDictObj["Short"]++;
                             }
                         }
+
                         if (metaDictObj[itemName]) {
                             metaDictObj[itemName] += 1;
                         } else {
@@ -103,6 +115,7 @@ function StrategemPage() {
                             itemFound = true;
                         }
                     })
+
                     if (hasItems) {
                         loadoutCount++;
                         if (matchDictDiffObj[match.difficulty]) {
@@ -110,8 +123,13 @@ function StrategemPage() {
                         } else {
                             matchDictDiffObj[match.difficulty] = 1;
                         }
-                    }
 
+                        if (missionDictObjAll[missionType]) {
+                            missionDictObjAll[missionType] += 1;
+                        } else {
+                            missionDictObjAll[missionType] = 1;
+                        }
+                    }
                 })
                 if (itemFound) { itemMatchCount++; }
             })
@@ -148,11 +166,10 @@ function StrategemPage() {
 
         const entriesMatchDiff = Object.entries(matchDictDiffObj);
 
-        const asd = Object.entries(itemDictObj).map((item, index) => {
-            const perc = Math.round((item[1] / entriesMatchDiff[index][1]) * 100);
-            return perc;
+        console.log('----')
+        console.log(missionDictObj)
 
-        });
+        console.log(missionDictObjAll)
 
 
         let dataParse = {
@@ -168,7 +185,21 @@ function StrategemPage() {
                 barThickness: 16,
             }],
         };
+
+
+        let dataParse1 = {
+            labels: ["Short", "Long"],
+            datasets: [{
+                data: [
+                    Math.round((missionDictObj["Short"] / missionDictObjAll["Short"]) * 100),
+                    Math.round((missionDictObj["Long"] / missionDictObjAll["Long"]) * 100)],
+                backgroundColor: graphColors[graphNames.indexOf(itemIdsType[itemId])],
+                barThickness: 16,
+            }],
+        };
         setGraphData(dataParse);
+        setGraphData1(dataParse1);
+
 
     }, [itemId, terminidData]);
 
@@ -189,7 +220,7 @@ function StrategemPage() {
         y: {
             ticks: {
                 display: true,
-                stepSize: 20,
+                stepSize: 5,
                 font: {
                     size: 12
                 },
@@ -215,8 +246,8 @@ function StrategemPage() {
                 <div className='item-details-title-text'>{fullName}</div>
             </div>
             <div className='strategem-rankings-container'>
-            <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{color: "rgb(255,182,0)"}}>{rankingAll}
+                <div className='strategem-rankings-item'>
+                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{rankingAll}
                         <span className='strategem-rankings-number-small'>{getCountingSuffix(rankingAll)}</span>
                     </div>
                     <div className='strategem-rankings-text-wrapper'>
@@ -225,7 +256,7 @@ function StrategemPage() {
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{color: "rgb(255,182,0)"}}>{rankingCategory}
+                    <div className='strategem-rankings-number' style={{color: categoryColor}}>{rankingCategory}
                         <span className='strategem-rankings-number-small'>{getCountingSuffix(rankingCategory)}</span>
                     </div>
                     <div className='strategem-rankings-text-wrapper'>
@@ -234,36 +265,49 @@ function StrategemPage() {
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{color: "rgb(231, 76, 60)"}}>{percentMatch}</div>
+                    <div className='strategem-rankings-number' style={{ color: "rgb(231, 76, 60)" }}>{percentMatch}</div>
                     <div className='strategem-rankings-text-wrapper'>
                         <div className='strategem-rankings-text-small'>percent</div>
                         <div className='strategem-rankings-text-small'>of matches</div>
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{color: "rgb(231, 76, 60)"}}>{percentLoadout}</div>
+                    <div className='strategem-rankings-number' style={{color: categoryColor}}>{percentLoadout}</div>
                     <div className='strategem-rankings-text-wrapper'>
                         <div className='strategem-rankings-text-small'>percent</div>
                         <div className='strategem-rankings-text-small'>of loadouts</div>
                     </div>
                 </div>
-               
-            </div>
-            <div>
-                <div className='strategem-graph-wrapper'>
-                    <div className='strategem-graph-title'>In Percent of loadouts by difficulty</div>
-                    {graphData &&
-                        <div className='strategem-rankings-graph-wrapper'>
-                            <Bar style={{
-                                backgroundColor: 'black',
 
-                            }}
-                                options={{ ...settings.options, indexAxis: 'x', scales: scales }}
-                                width="100%"
-                                data={graphData}
-                                redraw={true}
-                            /></div>
-                    }</div>
+            </div>
+            <div className='strategem-divier'></div>
+            <div className='strategem-graphs-title'>In percent of loadouts by</div>
+            <div className='strategem-graphs-wrapper'>
+                {graphData &&
+                    <div className='strategem-graph-wrapper'>
+                        <div className='strategem-graph-title'>Difficulty</div>
+                        <Bar style={{
+                            backgroundColor: 'black',
+
+                        }}
+                            options={{ ...settings.options, indexAxis: 'x', scales: scales }}
+                            width="100%"
+                            data={graphData}
+                            redraw={true}
+                        /></div>
+                }
+                {graphData1 &&
+                    <div className='strategem-graph-wrapper'>
+                        <div className='strategem-graph-title'>Mission Lenght</div>
+                        <Bar style={{
+                            backgroundColor: 'black',
+                        }}
+                            options={{ ...settings.options, indexAxis: 'x', scales: scales }}
+                            width="100%"
+                            data={graphData1}
+                            redraw={true}
+                        /></div>
+                }
             </div>
         </div>
     );

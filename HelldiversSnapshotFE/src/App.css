@@ -57,7 +57,7 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 35px 140px 25px 140px;
+  padding: 30px 100px 25px 140px;
 }
 
 .dropdown-button .dropdown-toggle{
@@ -71,16 +71,15 @@ h1 {
 
 }
 .filter-results-container{
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 20px 20px 100px;
 }
 
 .filter-results-text{
-  text-align: center;
   color: white;
   font-family: 'CustomFont';
-  padding: 20px;
-  text-align: left;
-  padding-left: 100px;
 }
 
 .bar-container{
@@ -225,26 +224,45 @@ h1 {
 
 }
 
-.strategem-graph-wrapper{
-  margin-top: -40px;
+.strategem-graphs-wrapper{
+  margin-top: 20px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
 }
 
-.strategem-rankings-graph-wrapper{
+.strategem-graph-wrapper{
   border: 1px solid white;
   border-radius: 15px;
-  padding: 20px;
-  margin: 20px 0px 0px 20px;
+  padding-top: 50px !important;
+  padding-bottom: 35px !important;
+  padding: 5px;
   width: 600px;
-  height: 350px;
+  height: 380px;
 }
 
-.strategem-graph-title{
-  margin-top: 60px;
-  color: white;
-  font-size: 24px;
-  width: 1250px;
+.strategem-divier{
+  height: 20px;
   border-top: 1px solid white;
-  padding: 20px;
+  width: 1250px;
+}
+
+.strategem-graphs-title{
+  padding-left: 5px;
+  color: white;
+  font-size: 22px;
+  font-family: 'CustomFont';
+}
+
+
+.strategem-graph-title{
+  color: white;
+  font-size: 22px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin-top: -30px;
   font-family: 'CustomFont';
 }
 
