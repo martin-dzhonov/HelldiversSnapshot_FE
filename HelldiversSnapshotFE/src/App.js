@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './layout';
 import ArmoryPage from './armoryPage';
 import StrategemPage from './strategemPage';
+import AboutPage from './aboutPage';
 
 
 function App() {
-  document.title = "Helldivers Meta Snapshot"
+  document.title = "Helldive.Live"
 
   return (
     <BrowserRouter>
@@ -25,6 +26,11 @@ function App() {
         <Route path="/armory/:itemId" element={
           <Layout>
             <StrategemPage />
+          </Layout>
+        }/>
+        <Route path="/about" element={
+          <Layout>
+            <AboutPage />
           </Layout>
         }/>
       </Routes>

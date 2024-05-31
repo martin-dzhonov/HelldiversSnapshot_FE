@@ -12,7 +12,7 @@ function ArmoryPage() {
         <div className='content-wrapper'>
             <div className='groups-wrapper'>
                 {groupNames.map((groupName, groupIndex) =>
-                    <div className='groups-title-wrapper' style={{ order: groupIndex === 1 ? "0" : groupIndex + 1 }}>
+                    <div className='groups-title-wrapper' style={{ order: groupIndex === 1 ? "0" : groupIndex + 1, width: groupIndex == 2 ? '60%' : '750px' }}>
                         <div className='groups-title-text-wrapper'>{groupName}</div>
                         <div className='group-container' >
                             {baseIconsSvg.slice(groupIndexes[groupIndex][0], groupIndexes[groupIndex][1]).map((icon, index) =>

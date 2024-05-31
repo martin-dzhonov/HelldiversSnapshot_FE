@@ -59,3 +59,75 @@ export const options = {
   },
 
 };
+
+export const optionsStrategem = {
+  indexAxis: 'x',
+  maintainAspectRatio: false,
+  layout: {
+    // padding: {
+    //   bottom: 80
+    // }
+  },
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  scales: {
+    x: {
+      ticks: {
+        display: true,
+        stepSize: 20,
+        font: {
+          size: 13
+        },
+        color: 'white'
+      },
+      grid: {
+        drawBorder: false,
+        color: '#aaa', // for the grid lines
+        drawTicks: true, // true is default 
+        drawOnChartArea: false // true is default 
+      },
+    },
+    y: {
+      ticks: {
+        display: true,
+        stepSize: 5,
+        font: {
+          size: 12
+        },
+        color: 'white'
+      },
+      grid: {
+        drawBorder: false,
+        color: '#aaa', // for the grid lines
+        drawTicks: false, // true is default 
+        drawOnChartArea: true // true is default 
+      },
+
+      beginAtZero: true,
+    },
+
+  },
+  plugins: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false,
+    },
+    customCanvasBackgroundColor: {
+      color: 'lightGreen',
+    },
+    tooltip: {
+      displayColors: false,
+      callbacks: {
+        label: (item) => { console.log(item); return `${item.raw}%` }
+
+      },
+    },
+  },
+
+};

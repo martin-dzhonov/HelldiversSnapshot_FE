@@ -40,8 +40,6 @@ function StrategemPage() {
 
     const categoryColor = graphColors[graphNames.indexOf(itemIdsType[itemId])];
 
-    console.log(categoryColor);
-
     const sortDictArray = (a, b) => { return b[1] - a[1] };
 
     function getCountingSuffix(number) {
@@ -50,6 +48,18 @@ function StrategemPage() {
 
         return (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
     }
+    
+    const [width, setWidth] = useState(window.innerWidth);
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
 
     useEffect(() => {
 
@@ -163,26 +173,19 @@ function StrategemPage() {
         setRankingAll(allRanking + 1);
         setRankingCategory(categoryRanking + 1);
 
-
         const entriesMatchDiff = Object.entries(matchDictDiffObj);
 
-        console.log('----')
-        console.log(missionDictObj)
-
-        console.log(missionDictObjAll)
-
-
         let dataParse = {
-            labels: ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive"],
+            labels: width > 1200 ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive"] : ["7", "8", "9"],
             datasets: [{
                 data: Object.entries(itemDictObj).map((item, index) => {
-                    const perc = Math.round((item[1] / entriesMatchDiff[index][1]) * 100);
-                    return perc;
+                    const perc = (item[1] / entriesMatchDiff[index][1]) * 100;
+                    return perc.toFixed(1);
 
                 }
                 ),
                 backgroundColor: graphColors[graphNames.indexOf(itemIdsType[itemId])],
-                barThickness: 16,
+                barThickness: 24,
             }],
         };
 
@@ -191,10 +194,11 @@ function StrategemPage() {
             labels: ["Short", "Long"],
             datasets: [{
                 data: [
-                    Math.round((missionDictObj["Short"] / missionDictObjAll["Short"]) * 100),
-                    Math.round((missionDictObj["Long"] / missionDictObjAll["Long"]) * 100)],
+                    ((missionDictObj["Short"] / missionDictObjAll["Short"]) * 100).toFixed(1),
+                    ((missionDictObj["Long"] / missionDictObjAll["Long"]) * 100).toFixed(1)
+                ],
                 backgroundColor: graphColors[graphNames.indexOf(itemIdsType[itemId])],
-                barThickness: 16,
+                barThickness: 22,
             }],
         };
         setGraphData(dataParse);
@@ -203,47 +207,20 @@ function StrategemPage() {
 
     }, [itemId, terminidData]);
 
-
-    const scales = {
-        x: {
-            ticks: {
-                display: true,
-                stepSize: 20,
-            },
-            grid: {
-                drawBorder: false,
-                color: '#aaa', // for the grid lines
-                drawTicks: true, // true is default 
-                drawOnChartArea: false // true is default 
-            },
-        },
-        y: {
-            ticks: {
-                display: true,
-                stepSize: 5,
-                font: {
-                    size: 12
-                },
-                color: 'white'
-            },
-            grid: {
-                drawBorder: false,
-                color: '#aaa', // for the grid lines
-                drawTicks: false, // true is default 
-                drawOnChartArea: true // true is default 
-            },
-
-            beginAtZero: true,
-        },
-    }
+  
 
     return (
         <div className='content-wrapper'>
             <div className='item-details-title-wrapper'>
-                <div className='item-details-img-wrapper'>
-                    <img src={baseIconsSvg[itemIndex]}></img>
-                </div>
+                <div className='flex-row'>
+                <div className='item-details-img-wrapper'><img src={baseIconsSvg[itemIndex]}></img></div>
                 <div className='item-details-title-text'>{fullName}</div>
+                </div>
+                {width > 1200 &&
+                <div className='flex-row' style={{marginRight: "120px"}}>
+                <div className='item-details-tab-active'>Terminid</div>
+                <div className='item-details-tab'>Automaton</div>
+                </div>  }
             </div>
             <div className='strategem-rankings-container'>
                 <div className='strategem-rankings-item'>
@@ -252,7 +229,7 @@ function StrategemPage() {
                     </div>
                     <div className='strategem-rankings-text-wrapper'>
                         <div className='strategem-rankings-text-small'>in</div>
-                        <div className='strategem-rankings-text-small'>All strategem</div>
+                        <div className='strategem-rankings-text-small'>All Strategem</div>
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
@@ -265,7 +242,7 @@ function StrategemPage() {
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: "rgb(231, 76, 60)" }}>{percentMatch}</div>
+                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{percentMatch}</div>
                     <div className='strategem-rankings-text-wrapper'>
                         <div className='strategem-rankings-text-small'>percent</div>
                         <div className='strategem-rankings-text-small'>of matches</div>
@@ -290,7 +267,7 @@ function StrategemPage() {
                             backgroundColor: 'black',
 
                         }}
-                            options={{ ...settings.options, indexAxis: 'x', scales: scales }}
+                            options={{...settings.optionsStrategem, indexAxis: width < 1200 ? 'y' : 'x'}}
                             width="100%"
                             data={graphData}
                             redraw={true}
@@ -302,7 +279,7 @@ function StrategemPage() {
                         <Bar style={{
                             backgroundColor: 'black',
                         }}
-                            options={{ ...settings.options, indexAxis: 'x', scales: scales }}
+                        options={{...settings.optionsStrategem, indexAxis: width < 1200 ? 'y' : 'x'}}
                             width="100%"
                             data={graphData1}
                             redraw={true}

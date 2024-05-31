@@ -265,6 +265,7 @@ const baseLabelsFull2 = [
     "PURGE HATCHERIES",
     "EMERGENCY EVACUATION",
     "CONDUCT GEOLOGICAL SURVEY",
+    "DEPLOY DARK FLUID",
     "ERADICATE TERMINID SWARM",
     "BLITZ: SEARCH AND DESTROY",
     "EVACUATE HIGH-VALUE ASSETS",
@@ -280,11 +281,17 @@ const graphNames = [
 
 const graphColors = [
     "white",
-    "#E55A50",
+    "#de7b6c",
     "#49adc9",
     "#679552"
   ];
 
+const difficultiesNames = [
+    "All",
+    "7 - Suicide Mission",
+    "8 - Impossible",
+    "9 - Helldive"
+  ];
 
 const itemIdsType =  {
   'eagle_airstrike': 'Eagle/Orbital',
@@ -346,4 +353,4 @@ const itemTypesIndexes = [
     [39, 50]];
 
 
-export { baseIconsSvg, baseLabels, baseLabelsFull, missionNames, graphNames, graphColors, itemTypesIndexes, itemIdsType, baseLabelsFull2};
+export { baseIconsSvg, baseLabels, baseLabelsFull, missionNames, graphNames, graphColors, itemTypesIndexes, itemIdsType, baseLabelsFull2, difficultiesNames};
