@@ -168,8 +168,12 @@ function StrategemPage() {
             }
         });
 
-        setPercentMatch(Math.round((itemMatchCount / matchCount) * 100));
-        setPercentLoadout(Math.round((itemLoadoutCount / loadoutCount) * 100));
+        const matchPercFull = (itemMatchCount / matchCount) * 100;
+        const loadoutPercFull = (itemLoadoutCount / loadoutCount) * 100;
+
+
+        setPercentMatch(matchPercFull > 1 ? Math.round(matchPercFull) : matchPercFull.toFixed(1));
+        setPercentLoadout(loadoutPercFull > 1 ? Math.round(loadoutPercFull) : loadoutPercFull.toFixed(1));
         setRankingAll(allRanking + 1);
         setRankingCategory(categoryRanking + 1);
 

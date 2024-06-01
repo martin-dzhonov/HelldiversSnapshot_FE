@@ -19,13 +19,13 @@ export const options = {
     x: {
       ticks: {
         display: true,
-        stepSize: 10,
+        stepSize: 20,
       },
       grid: {
         drawBorder: false,
         color: '#aaa', // for the grid lines
         drawTicks: false, // true is default 
-        drawOnChartArea: true // true is default 
+        drawOnChartArea: false // true is default 
       },
     },
     y: {

@@ -121,6 +121,7 @@ function FactionPage() {
                     barThickness: 17,
                 }],
             };
+
             setGraphData(dataParse);
         }
     }, [filters, dataFiltered]);
@@ -141,6 +142,7 @@ function FactionPage() {
                 const imageIndex = baseLabelsFull.indexOf(element);
                 let labelImage = new Image();
                 labelImage.setAttribute('crossorigin', 'anonymous');
+                
                 labelImage.src = baseIconsSvg[imageIndex];
 
                 let offsetMagic = j;
@@ -149,7 +151,7 @@ function FactionPage() {
                     offsetMagic = j * 3;
                 }
                 if (dataLength > 10) {
-                    offsetMagic = j * 1.8;
+                    offsetMagic = j * 2.8;
                 }
                 if (dataLength > 15) {
                     offsetMagic = j * 1.15;
@@ -191,7 +193,7 @@ function FactionPage() {
 
     const getItemColor = (item) => {
         const index = baseLabels.indexOf(item);
-        return index < 16 ? '#E55A50' : index < 39 ? '#49adc9' : '#679552'
+        return index < 18 ? '#E55A50' : index < 41 ? '#49adc9' : '#679552'
     };
 
     return (
@@ -273,7 +275,7 @@ function FactionPage() {
                         <tbody>
                             {dataFiltered && dataFiltered.map((game, index) =>
                                 <tr>
-                                    <td className='filter-results-text' >{index + 1}</td>
+                                    <td className='filter-results-text' >{index}</td>
                                     <td className='filter-results-text'>
                                         <div class='table-loadout-row-wrapper'>
                                             {game.players.map((loadout) =>
@@ -303,10 +305,11 @@ function FactionPage() {
                 <div className='bar-container'>
                     <div style={{
                         height: `${graphData.labels.length * 40}px`,
+                        width: "300px",
                         position: "relative"
                     }}>
                         <Bar class="bar-factions" style={{
-                            backgroundColor: 'black',
+                            backgroundColor: '#242424                            ',
                             padding: "0px 0px 0px 60px",
                         }}
                             ref={chartRef}

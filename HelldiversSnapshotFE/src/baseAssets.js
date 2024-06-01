@@ -4,6 +4,7 @@ import eagle_strafe_svg from './assets/svgs/Eagle Strafing Run.svg'
 import eagle_cluster_svg from './assets/svgs/Eagle Cluster Bomb.svg'
 import eagle_napalm_svg from './assets/svgs/Eagle Napalm Airstrike.svg'
 import eagle_110_svg from './assets/svgs/Eagle 110MM Rocket Pods.svg'
+import eagle_smoke_svg from './assets/svgs/Eagle Smoke Strike.svg'
 import barrage_380_svg from './assets/svgs/Orbital 380MM HE Barrage.svg'
 import barrage_120_svg from './assets/svgs/Orbital 120MM HE Barrage.svg'
 import walking_barrage_svg from './assets/svgs/Orbital Walking Barrage.svg'
@@ -14,6 +15,7 @@ import orbital_airburst_svg from './assets/svgs/Orbital Airburst Strike.svg'
 import orbital_precision_svg from './assets/svgs/Orbital Precision Strike.svg'
 import orbital_gas_svg from './assets/svgs/Orbital Gas Strike.svg'
 import orbital_ems_svg from './assets/svgs/Orbital EMS Strike.svg'
+import orbital_smoke_svg from './assets/svgs/Orbital Smoke Strike.svg'
 import stalwart_svg from './assets/svgs/Stalwart.svg'
 import mg_svg from './assets/svgs/Machine Gun.svg'
 import hmg_svg from './assets/svgs/Heavy Machine Gun.svg'
@@ -39,6 +41,7 @@ import patriot_svg from './assets/svgs/Patriot Exosuit.svg'
 import emancipator_svg from './assets/svgs/Emancipator Exosuit.svg'
 import hmg_encampment_svg from './assets/svgs/HMG Emplacement.svg'
 import gatling_sentry_svg from './assets/svgs/Gatling Sentry.svg'
+import mg_sentry_svg from './assets/svgs/Machine Gun Sentry.svg'
 import autocannon_sentry_svg from './assets/svgs/Autocannon Sentry.svg'
 import rocket_sentry_svg from './assets/svgs/Rocket Sentry.svg'
 import mortar_sentry_svg from './assets/svgs/Mortar Sentry.svg'
@@ -55,6 +58,7 @@ const baseIconsSvg = [
   eagle_cluster_svg,
   eagle_napalm_svg,
   eagle_110_svg,
+  eagle_smoke_svg,
   barrage_380_svg,
   barrage_120_svg,
   walking_barrage_svg,
@@ -65,6 +69,7 @@ const baseIconsSvg = [
   orbital_precision_svg,
   orbital_gas_svg,
   orbital_ems_svg,
+  orbital_smoke_svg,
   stalwart_svg,
   mg_svg,
   hmg_svg,
@@ -90,6 +95,7 @@ const baseIconsSvg = [
   emancipator_svg,
   hmg_encampment_svg,
   gatling_sentry_svg,
+  mg_sentry_svg,
   autocannon_sentry_svg,
   rocket_sentry_svg,
   mortar_sentry_svg,
@@ -107,6 +113,7 @@ const baseLabels = [
   'eagle_cluster',
   'eagle_napalm',
   'eagle_110',
+  'eagle_smoke',
   'barrage_380',
   'barrage_120',
   'walking_barrage',
@@ -117,6 +124,7 @@ const baseLabels = [
   'orbital_precision',
   'orbital_gas',
   'orbital_ems',
+  'orbital_smoke',
   'stalwart',
   'mg',
   'hmg',
@@ -142,6 +150,7 @@ const baseLabels = [
   'emancipator',
   'hmg_encampment',
   'gatling_sentry',
+  'mg_sentry',
   'autocannon_sentry',
   'rocket_sentry',
   'mortar_sentry',
@@ -159,6 +168,7 @@ const baseLabelsFull = [
   'Eagle Cluster Bomb',
   'Eagle Napalm Airstrike',
   'Eagle 110MM Rocket Pods',
+  'Eagle Smoke Strike',
   'Orbital 380MM HE Barrage',
   'Orbital 120MM HE Barrage',
   'Orbital Walking Barrage',
@@ -169,6 +179,7 @@ const baseLabelsFull = [
   'Orbital Precision Strike',
   'Orbital Gas Strike',
   'Orbital EMS Strike',
+  'Orbital Smoke Strike',
   'Stalwart',
   'Machine Gun',
   'Heavy Machine Gun',
@@ -194,6 +205,7 @@ const baseLabelsFull = [
   'Emancipator Exosuit',
   'HMG Emplacement',
   'Gatling Sentry',
+  'Machine Gun Sentry',
   'Autocannon Sentry',
   'Rocket Sentry',
   'Mortar Sentry',
@@ -211,6 +223,7 @@ const baseLabelsFull2 = [
   'Eagle Cluster Bomb',
   'Eagle Napalm Airstrike',
   'Eagle 110MM Rocket Pods',
+  'Eagle Smoke Strike',
   'Orbital 380MM HE Barrage',
   'Orbital 120MM HE Barrage',
   'Orbital Walking Barrage',
@@ -221,6 +234,7 @@ const baseLabelsFull2 = [
   'Orbital Precision Strike',
   'Orbital Gas Strike',
   'Orbital EMS Strike',
+  'Orbital Smoke Strike',
   'M-105 Stalwart',
   'MG-43 Machine Gun',
   'MG-206 Heavy Machine Gun',
@@ -246,6 +260,7 @@ const baseLabelsFull2 = [
   'EXO-49 Emancipator Exosuit',
   'E/MG-101 HMG Emplacement',
   'A/G-16 Gatling Sentry',
+  'A/MG-43 Machine Gun Sentry',
   'A/AC-8 Autocannon Sentry',
   'A/MLS-4X Rocket Sentry',
   'A/M-12 Mortar Sentry',
@@ -300,6 +315,7 @@ const itemIdsType =  {
   'eagle_cluster': 'Eagle/Orbital',
   'eagle_napalm': 'Eagle/Orbital',
   'eagle_110': 'Eagle/Orbital',
+  'eagle_smoke' : 'Eagle/Orbital',
   'barrage_380': 'Eagle/Orbital',
   'barrage_120': 'Eagle/Orbital',
   'walking_barrage': 'Eagle/Orbital',
@@ -310,6 +326,7 @@ const itemIdsType =  {
   'orbital_precision': 'Eagle/Orbital',
   'orbital_gas': 'Eagle/Orbital',
   'orbital_ems': 'Eagle/Orbital',
+  'orbital_smoke': 'Eagle/Orbital',
   'stalwart': "Support",
   'mg': "Support",
   'hmg': "Support",
@@ -335,6 +352,7 @@ const itemIdsType =  {
   'emancipator': "Support",
   'hmg_encampment': "Defensive",
   'gatling_sentry': "Defensive",
+  'mg_sentry': "Defensive",
   'autocannon_sentry': "Defensive",
   'rocket_sentry': "Defensive",
   'mortar_sentry': "Defensive",
@@ -347,10 +365,10 @@ const itemIdsType =  {
 
 
 const itemTypesIndexes = [
-    [0, 49],
-    [0, 16],
-    [16, 39],
-    [39, 50]];
+    [0, 52],
+    [0, 18],
+    [18, 41],
+    [41, 52]];
 
 
 export { baseIconsSvg, baseLabels, baseLabelsFull, missionNames, graphNames, graphColors, itemTypesIndexes, itemIdsType, baseLabelsFull2, difficultiesNames};

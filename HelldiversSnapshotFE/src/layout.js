@@ -34,14 +34,14 @@ const Layout = ({ children }) => {
                         <Dropdown.Item as="button" onClick={() => navigate('/armory')}>
                             Strategems
                         </Dropdown.Item>
-                        <Dropdown.Item as="button" onClick={() => navigate('/armory')}>
+                        <Dropdown.Item as="button" onClick={() => navigate('/about')}>
                             The Project
                         </Dropdown.Item>
                     </DropdownButton>}
                 <div className="logos-wrapper">
                     <div className="app-logo"
                         onClick={() => navigate('/')}>HELLDIVE.LIVE</div>
-                    <div className="hd-logo"><img height={44} src={hdlogo}></img></div>
+                    <div className="hd-logo" onClick={() => navigate('/')} ><img src={hdlogo}></img></div>
                 </div>
 
                 {width > 900 &&
