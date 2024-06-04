@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState, useMemo } from 'react'
 import { baseLabels, baseIconsSvg, missionNames } from './constants';
-import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength, getCountingSuffix, getItemCategory } from './utils';
+import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength, getCountingSuffix, getItemCategory,getPercentage } from './utils';
 
 import { useParams } from 'react-router-dom';
 import { terminidData } from './data/terminid';
@@ -251,7 +251,7 @@ function StrategemPage() {
                     </div>
                 </div>
                 <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{percentMatch}</div>
+                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{getPercentage(strategemGames.length, terminidData.length)}</div>
                     <div className='strategem-rankings-text-wrapper'>
                         <div className='strategem-rankings-text-small'>percent</div>
                         <div className='strategem-rankings-text-small'>of matches</div>

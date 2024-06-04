@@ -43,11 +43,23 @@ const getCountingSuffix = (number) => {
     return (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
 }
 
+const getPercentage = (number1, number2, decimals) => {
+    
+    const percantageRaw = (number1 / number2) * 100;
+    console.log(percantageRaw);
+    if(percantageRaw < 0){
+        return percantageRaw.toFixed(1);
+    } else {
+        return Math.round(percantageRaw);
+    }
+}
+
 export {
     getMissionsByLength,
     getItemName,
     getItemColor,
     getItemCategory,
     getItemsByCategory,
-    getCountingSuffix
+    getCountingSuffix,
+    getPercentage
 };
