@@ -1,9 +1,9 @@
-import FactionPage from './factionPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './layout';
-import ArmoryPage from './armoryPage';
-import StrategemPage from './strategemPage';
-import AboutPage from './aboutPage';
+import ArmoryPage from './ArmoryPage';
+import FactionPage from './FactionPage';
+import StrategemPage from './StrategemPage';
+import AboutPage from './AboutPage';
 
 
 function App() {

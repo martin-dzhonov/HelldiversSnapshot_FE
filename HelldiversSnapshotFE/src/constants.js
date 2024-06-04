@@ -161,7 +161,7 @@ const baseLabels = [
   'mines_incendiary'
 ];
 
-const baseLabelsFull = [
+const itemNames = [
   'Eagle Airstrike',
   'Eagle 500KG Bomb',
   'Eagle Strafing Run',
@@ -216,7 +216,7 @@ const baseLabelsFull = [
   'Incendiary Mines'
 ];
 
-const baseLabelsFull2 = [
+const itemNamesFull = [
   'Eagle Airstrike',
   'Eagle 500KG Bomb',
   'Eagle Strafing Run',
@@ -271,104 +271,57 @@ const baseLabelsFull2 = [
   'MD-I4 Incendiary Mines'
 ];
 
-
-  const missionNames = [
-    "LAUNCH ICBM",
-    "ENABLE E-710 EXTRACTION",
-    "RETRIEVE VALUABLE DATA",
-    "SPREAD DEMOCRACY",
-    "PURGE HATCHERIES",
-    "EMERGENCY EVACUATION",
-    "CONDUCT GEOLOGICAL SURVEY",
-    "DEPLOY DARK FLUID",
-    "ERADICATE TERMINID SWARM",
-    "BLITZ: SEARCH AND DESTROY",
-    "EVACUATE HIGH-VALUE ASSETS",
-    "RETRIEVE ESSENTIAL PERSONNEL"
+const missionNames = [
+  "LAUNCH ICBM",
+  "ENABLE E-710 EXTRACTION",
+  "RETRIEVE VALUABLE DATA",
+  "SPREAD DEMOCRACY",
+  "PURGE HATCHERIES",
+  "EMERGENCY EVACUATION",
+  "CONDUCT GEOLOGICAL SURVEY",
+  "DEPLOY DARK FLUID",
+  "ERADICATE TERMINID SWARM",
+  "BLITZ: SEARCH AND DESTROY",
+  "EVACUATE HIGH-VALUE ASSETS",
+  "RETRIEVE ESSENTIAL PERSONNEL"
 ];
 
-const graphNames = [
-    "All",
-    "Eagle/Orbital",
-    "Support",
-    "Defensive"
-  ];
+const itemCategories = [
+  "All",
+  "Eagle/Orbital",
+  "Support",
+  "Defensive"
+];
 
-const graphColors = [
-    "white",
-    "#de7b6c",
-    "#49adc9",
-    "#679552"
-  ];
+const itemCategoryColors = [
+  "white",
+  "#de7b6c",
+  "#49adc9",
+  "#679552"
+];
+
+const itemCategoryIndexes = [
+  [0, 52],
+  [0, 18],
+  [18, 41],
+  [41, 52]
+];
 
 const difficultiesNames = [
-    "All",
-    "7 - Suicide Mission",
-    "8 - Impossible",
-    "9 - Helldive"
-  ];
+  "All",
+  "7 - Suicide Mission",
+  "8 - Impossible",
+  "9 - Helldive"
+];
 
-const itemIdsType =  {
-  'eagle_airstrike': 'Eagle/Orbital',
-  'eagle_500kg': 'Eagle/Orbital',
-  'eagle_strafe': 'Eagle/Orbital',
-  'eagle_cluster': 'Eagle/Orbital',
-  'eagle_napalm': 'Eagle/Orbital',
-  'eagle_110': 'Eagle/Orbital',
-  'eagle_smoke' : 'Eagle/Orbital',
-  'barrage_380': 'Eagle/Orbital',
-  'barrage_120': 'Eagle/Orbital',
-  'walking_barrage': 'Eagle/Orbital',
-  'gatling_barrage': 'Eagle/Orbital',
-  'orbital_laser': 'Eagle/Orbital',
-  'orbital_railcannon': 'Eagle/Orbital',
-  'orbital_airburst': 'Eagle/Orbital',
-  'orbital_precision': 'Eagle/Orbital',
-  'orbital_gas': 'Eagle/Orbital',
-  'orbital_ems': 'Eagle/Orbital',
-  'orbital_smoke': 'Eagle/Orbital',
-  'stalwart': "Support",
-  'mg': "Support",
-  'hmg': "Support",
-  'amr': "Support",
-  'laser_cannon': "Support",
-  'railgun': "Support",
-  'autocannon': "Support",
-  'grenade_launcher': "Support",
-  'eat': "Support",
-  'quasar_cannon': "Support",
-  'recoilless_rifle': "Support",
-  'spear': "Support",
-  'flamethrower': "Support",
-  'arc_thrower': "Support",
-  'airburst_launcher': "Support",
-  'guard_dog_rover': "Support",
-  'guard_dog': "Support",
-  'ballistic_shield': "Support",
-  'shield_backpack': "Support",
-  'supply_backpack': "Support",
-  'jump_pack': "Support",
-  'patriot': "Support",
-  'emancipator': "Support",
-  'hmg_encampment': "Defensive",
-  'gatling_sentry': "Defensive",
-  'mg_sentry': "Defensive",
-  'autocannon_sentry': "Defensive",
-  'rocket_sentry': "Defensive",
-  'mortar_sentry': "Defensive",
-  'ems_sentry': "Defensive",
-  'arc_sentry': "Defensive",
-  'shield_relay': "Defensive",
-  'mines_infantry': "Defensive",
-  'mines_incendiary': "Defensive"
+export { 
+  baseIconsSvg, 
+  baseLabels, 
+  itemNames, 
+  itemNamesFull,
+  missionNames, 
+  itemCategories, 
+  itemCategoryColors, 
+  itemCategoryIndexes, 
+  difficultiesNames 
 };
-
-
-const itemTypesIndexes = [
-    [0, 52],
-    [0, 18],
-    [18, 41],
-    [41, 52]];
-
-
-export { baseIconsSvg, baseLabels, baseLabelsFull, missionNames, graphNames, graphColors, itemTypesIndexes, itemIdsType, baseLabelsFull2, difficultiesNames};

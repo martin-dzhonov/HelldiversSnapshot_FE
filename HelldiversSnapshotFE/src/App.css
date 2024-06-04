@@ -34,7 +34,7 @@ h1 {
 }
 
 .content-wrapper {
-  background-color: #242424;
+  background-color: #181818;
   padding: 10px 8% 50px 8%;
   
 }
@@ -280,7 +280,7 @@ h1 {
 .bar-container {
   padding: 0px 0px 50px 0px;
   height: 670px;
-  overflow: scroll;
+  overflow: scroll; 
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -548,7 +548,7 @@ h1 {
   height: 50px;
   margin-bottom: -6px;
   padding: 0px 20px 0px 20px;
-  background-color: black;
+  background-color: #181818;
   border-bottom: none;
   color: rgb(255, 182, 0);
   font-family: 'CustomFont';
@@ -566,7 +566,7 @@ h1 {
   margin-left: 4px;
   margin-bottom: -6px;
   padding: 0px 20px 0px 20px;
-  background-color: black;
+  background-color: #181818;
   border: 1px solid white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;

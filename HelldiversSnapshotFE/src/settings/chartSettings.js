@@ -25,7 +25,7 @@ export const options = {
         drawBorder: false,
         color: '#aaa', // for the grid lines
         drawTicks: false, // true is default 
-        drawOnChartArea: false // true is default 
+        drawOnChartArea: true // true is default 
       },
     },
     y: {
@@ -124,7 +124,7 @@ export const optionsStrategem = {
     tooltip: {
       displayColors: false,
       callbacks: {
-        label: (item) => { console.log(item); return `${item.raw}%` }
+        label: (item) => { return `${item.raw}%` }
 
       },
     },

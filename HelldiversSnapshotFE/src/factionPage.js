@@ -1,20 +1,17 @@
-import './App.css';
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import * as settings from "./settings/chartSettings";
-import { baseLabels, baseIconsSvg, baseLabelsFull, missionNames, graphNames, itemTypesIndexes, difficultiesNames } from './baseAssets';
+import { baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames } from './constants';
+import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength } from './utils';
 import { terminidData } from './data/terminid';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Table from 'react-bootstrap/Table';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-import logoAutomaton from "./assets/logos/automatonlogo.png"
-import logoTerminid from "./assets/logos/termlogo4.png"
-import { useNavigate } from "react-router-dom";
-
+import GamesTable from './GamesTable';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -27,7 +24,9 @@ import {
 import {
     Bar, getElementAtEvent,
 } from 'react-chartjs-2';
-import ScreenshotToggle from './screenshotToggle';
+
+import logoAutomaton from "./assets/logos/automatonlogo.png"
+import logoTerminid from "./assets/logos/termlogo4.png"
 
 ChartJS.register(
     CategoryScale,
@@ -38,25 +37,17 @@ ChartJS.register(
     Legend
 );
 
-// const fetchData = async () => {
-//     const response = await fetch("http://localhost:3001/test");
-//     const data = await response.json();
-//     setFactionData(data);
-// }
-
 function FactionPage() {
     const navigate = useNavigate();
-
     const ref1 = useRef(null);
     const chartRef = useRef(null);
 
-    const [factionData, setFactionData] = useState(null);
     const [showGames, setShowGames] = useState(false);
     const [graphData, setGraphData] = useState(null);
     const [filters, setFilters] = useState({
         faction: "Terminid",
-        type: graphNames[0],
-        typeIndexes: itemTypesIndexes[0],
+        type: itemCategories[0],
+        typeIndexes: itemCategoryIndexes[0],
         difficulty: 0,
         missionType: "All"
     });
@@ -65,35 +56,23 @@ function FactionPage() {
         loadoutCount: 0,
     });
 
-    const stepSize = 10;
-    const [page, setPage] = useState(1);
-
-
     const sortDictArray = (a, b) => { return b[1] - a[1] };
-
-    useEffect(() => {
-        // fetchData();
-        setFactionData(terminidData)
-    }, []);
 
     const dataFiltered = useMemo(() => {
         if (filters) {
-            let validMissions =
-                filters.missionType === "All" ? missionNames :
-                    filters.missionType === "Short" ? missionNames.slice(8, missionNames.length) : missionNames.slice(0, 8);
-
+            let validMissions = getMissionsByLength(filters.missionType);
             const filtered = terminidData
                 .filter((game) => filters.difficulty === 0 ? true : game.difficulty === filters.difficulty)
                 .filter((game) => validMissions.includes(game.type));
             return filtered;
         }
-
     }, [filters, terminidData]);
 
     useEffect(() => {
         if (dataFiltered) {
             let metaDictObj = {};
             let loadoutCount = 0;
+
             dataFiltered.forEach((match) => {
                 const players = match.players;
                 players.forEach((playerItems) => {
@@ -110,15 +89,15 @@ function FactionPage() {
             setChartFilterData({ matchCount: dataFiltered.length, loadoutCount });
 
             let dataSorted = Object.entries(metaDictObj)
-                .filter((item) => baseLabels.slice(filters.typeIndexes[0], filters.typeIndexes[1]).includes(item[0]))
+                .filter((item) => getItemsByCategory(filters.type).includes(item[0]))
                 .sort(sortDictArray);
 
             let dataParse = {
-                labels: dataSorted.map((item) => baseLabelsFull[baseLabels.indexOf(item[0])]),
+                labels: dataSorted.map((item) => getItemName(item[0], "short")),
                 datasets: [{
                     data: dataSorted.map((item) => item[1]),
                     backgroundColor: dataSorted.map((item) => getItemColor(item[0])),
-                    barThickness: 17,
+                    barThickness: 18,
                 }],
             };
 
@@ -139,7 +118,7 @@ function FactionPage() {
             ctx.clearRect(0, 0, 75, containerHeight);
 
             labels.forEach((element, j) => {
-                const imageIndex = baseLabelsFull.indexOf(element);
+                const imageIndex = itemNames.indexOf(element);
                 let labelImage = new Image();
                 labelImage.setAttribute('crossorigin', 'anonymous');
                 
@@ -180,7 +159,7 @@ function FactionPage() {
         if (!chart) { return; }
         const elementAtEvent = getDatasetElement(getElementAtEvent(chart, event));
         if (elementAtEvent) {
-            const elIndex = baseLabelsFull.indexOf(elementAtEvent);
+            const elIndex = itemNames.indexOf(elementAtEvent);
             navigate(`/armory/${baseLabels[elIndex]}`)
         }
     };
@@ -189,11 +168,6 @@ function FactionPage() {
         if (!element.length) return;
         const { datasetIndex, index } = element[0];
         return graphData.labels[index];
-    };
-
-    const getItemColor = (item) => {
-        const index = baseLabels.indexOf(item);
-        return index < 18 ? '#E55A50' : index < 41 ? '#49adc9' : '#679552'
     };
 
     return (
@@ -206,8 +180,8 @@ function FactionPage() {
                         onClick={() => { setFilters({ ...filters, faction: "Terminid", }) }}>
                         Terminid
                     </Dropdown.Item>
-                    <Dropdown.Item as="button" disabled Tooltip='tets'
-                        onClick={() => { setFilters({ ...filters, faction: "Terminid", }) }}>
+                    <Dropdown.Item as="button" disabled 
+                        onClick={() => { setFilters({ ...filters, faction: "Automaton", }) }}>
                         Automaton (Soon)
                     </Dropdown.Item>
                 </DropdownButton>
@@ -215,16 +189,10 @@ function FactionPage() {
                 <DropdownButton
                     className='dropdown-button'
                     title={"Strategems: " + filters.type}>
-                    {graphNames.map((graph, index) =>
+                    {itemCategories.map((category, index) =>
                         <Dropdown.Item as="button"
-                            onClick={() => {
-                                setFilters({
-                                    ...filters,
-                                    typeIndexes: itemTypesIndexes[index],
-                                    type: graphNames[index]
-                                })
-                            }}>
-                            {graph}
+                            onClick={() => { setFilters({...filters, type: category })}}>
+                            {category}
                         </Dropdown.Item>
                     )}
                 </DropdownButton>
@@ -263,53 +231,17 @@ function FactionPage() {
             </div>
             {showGames &&
                 <div className='show-games-table-wrapper'>
-                    <Table striped bordered hover size="sm" variant="dark">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Loadouts</th>
-                                <th>Difficulty</th>
-                                <th>Mission</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataFiltered && dataFiltered.map((game, index) =>
-                                <tr>
-                                    <td className='filter-results-text' >{index}</td>
-                                    <td className='filter-results-text'>
-                                        <div class='table-loadout-row-wrapper'>
-                                            {game.players.map((loadout) =>
-                                                <div class='table-loadout-wrapper'>
-                                                    {loadout.map((item) => {
-                                                        const itemSvgIndex = baseLabels.indexOf(item);
-                                                        return baseLabels[itemSvgIndex] ?
-                                                            <img className='armory-img-wrapper' src={baseIconsSvg[itemSvgIndex]} width={40}></img>
-                                                            : <div className='armory-img-wrapper'></div>;
-                                                    })}
-                                                </div>)}
-                                        </div>
-                                        <td>
-                                            <ScreenshotToggle id={game.id} />
-                                        </td>
-                                    </td>
-                                    <td className='filter-results-text'>{game.difficulty}</td>
-                                    <td className='filter-results-text'>{game.type}</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </Table>
+                  <GamesTable data={dataFiltered} />
                 </div>
             }
-
             {graphData &&
                 <div className='bar-container'>
                     <div style={{
                         height: `${graphData.labels.length * 40}px`,
-                        width: "300px",
                         position: "relative"
                     }}>
                         <Bar class="bar-factions" style={{
-                            backgroundColor: '#242424                            ',
+                            backgroundColor: '#181818',
                             padding: "0px 0px 0px 60px",
                         }}
                             ref={chartRef}

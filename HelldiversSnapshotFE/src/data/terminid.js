@@ -2,6 +2,8 @@ const terminidData = [
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10125).png",
+    "created": "2024-05-30T10:07:55.871Z",
     "players": [
       [
         "barrage_380",
@@ -21,12 +23,13 @@ const terminidData = [
         "walking_barrage",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (10125).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (10149).png",
+    "created": "2024-05-30T10:15:54.355Z",
     "players": [
       [
         "jump_pack",
@@ -46,12 +49,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10149).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (10157).png",
+    "created": "2024-05-30T10:18:36.240Z",
     "players": [
       [
         "eagle_airstrike",
@@ -71,12 +75,13 @@ const terminidData = [
         "patriot",
         "eagle_cluster"
       ]
-    ],
-    "id": "Screenshot (10157).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10181).png",
+    "created": "2024-05-30T10:26:37.711Z",
     "players": [
       [
         "supply_backpack",
@@ -96,12 +101,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10181).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (10189).png",
+    "created": "2024-05-30T10:29:16.088Z",
     "players": [
       [
         "orbital_laser",
@@ -121,12 +127,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10189).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (10237).png",
+    "created": "2024-05-31T14:40:25.111Z",
     "players": [
       [
         "eagle_500kg",
@@ -146,12 +153,13 @@ const terminidData = [
         "eat",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (10237).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (10245).png",
+    "created": "2024-05-30T10:47:55.680Z",
     "players": [
       [
         "orbital_airburst",
@@ -171,12 +179,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10245).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (10253).png",
+    "created": "2024-05-30T10:50:35.474Z",
     "players": [
       [
         "eagle_500kg",
@@ -196,12 +205,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10253).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (10261).png",
+    "created": "2024-05-30T10:53:15.214Z",
     "players": [
       [
         "eagle_500kg",
@@ -221,12 +231,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10261).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (10269).png",
+    "created": "2024-05-30T10:55:53.896Z",
     "players": [
       [
         "eagle_500kg",
@@ -246,12 +257,13 @@ const terminidData = [
         "shield_backpack",
         "arc_thrower"
       ]
-    ],
-    "id": "Screenshot (10269).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (10277).png",
+    "created": "2024-05-30T10:58:33.922Z",
     "players": [
       [
         "flamethrower",
@@ -271,12 +283,13 @@ const terminidData = [
         "emancipator",
         "guard_dog"
       ]
-    ],
-    "id": "Screenshot (10277).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (10293).png",
+    "created": "2024-05-30T11:03:53.434Z",
     "players": [
       [
         "orbital_precision",
@@ -296,12 +309,13 @@ const terminidData = [
         "eagle_500kg",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (10293).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (10301).png",
+    "created": "2024-05-30T11:06:34.990Z",
     "players": [
       [
         "orbital_railcannon",
@@ -321,12 +335,13 @@ const terminidData = [
         "eagle_500kg",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (10301).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (10309).png",
+    "created": "2024-05-30T11:09:15.167Z",
     "players": [
       [
         "spear",
@@ -346,12 +361,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10309).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10317).png",
+    "created": "2024-05-30T11:11:56.759Z",
     "players": [
       [
         "eagle_airstrike",
@@ -371,12 +387,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10317).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10325).png",
+    "created": "2024-05-30T11:14:36.858Z",
     "players": [
       [
         "eagle_airstrike",
@@ -396,12 +413,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10325).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (10333).png",
+    "created": "2024-05-30T11:17:16.765Z",
     "players": [
       [
         "spear",
@@ -421,12 +439,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10333).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10341).png",
+    "created": "2024-05-30T11:19:55.581Z",
     "players": [
       [
         "eagle_airstrike",
@@ -446,12 +465,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10341).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (10349).png",
+    "created": "2024-05-30T11:22:33.810Z",
     "players": [
       [
         "orbital_gas",
@@ -471,12 +491,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10349).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (10357).png",
+    "created": "2024-05-30T11:25:12.386Z",
     "players": [
       [
         "quasar_cannon",
@@ -496,12 +517,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10357).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10365).png",
+    "created": "2024-05-30T11:30:15.756Z",
     "players": [
       [
         "orbital_railcannon",
@@ -521,12 +543,13 @@ const terminidData = [
         "recoilless_rifle",
         "mines_infantry"
       ]
-    ],
-    "id": "Screenshot (10365).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (10389).png",
+    "created": "2024-05-30T11:35:50.673Z",
     "players": [
       [
         "orbital_railcannon",
@@ -546,12 +569,13 @@ const terminidData = [
         "orbital_laser",
         "spear"
       ]
-    ],
-    "id": "Screenshot (10389).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (10421).png",
+    "created": "2024-05-30T11:46:32.603Z",
     "players": [
       [
         "gatling_sentry",
@@ -571,12 +595,13 @@ const terminidData = [
         "supply_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (10421).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10429).png",
+    "created": "2024-05-30T11:49:14.320Z",
     "players": [
       [
         "orbital_railcannon",
@@ -596,12 +621,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10429).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10445).png",
+    "created": "2024-05-30T11:54:34.778Z",
     "players": [
       [
         "eagle_500kg",
@@ -621,12 +647,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10445).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (10453).png",
+    "created": "2024-05-30T11:57:14.723Z",
     "players": [
       [
         "eagle_cluster",
@@ -646,12 +673,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10453).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (10493).png",
+    "created": "2024-05-30T12:10:27.587Z",
     "players": [
       [
         "recoilless_rifle",
@@ -671,12 +699,13 @@ const terminidData = [
         "orbital_gas",
         "spear"
       ]
-    ],
-    "id": "Screenshot (10493).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (10501).png",
+    "created": "2024-05-31T15:38:06.501Z",
     "players": [
       [
         "orbital_railcannon",
@@ -696,12 +725,13 @@ const terminidData = [
         "quasar_cannon",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (10501).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (10557).png",
+    "created": "2024-05-31T16:15:54.714Z",
     "players": [
       [
         "airburst_launcher",
@@ -721,12 +751,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10557).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (10573).png",
+    "created": "2024-05-30T12:37:11.353Z",
     "players": [
       [
         "orbital_laser",
@@ -746,12 +777,13 @@ const terminidData = [
         "orbital_laser",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (10573).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (10581).png",
+    "created": "2024-05-31T15:34:11.704Z",
     "players": [
       [
         "mines_infantry",
@@ -771,12 +803,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10581).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (10589).png",
+    "created": "2024-05-30T12:42:31.087Z",
     "players": [
       [
         "mines_infantry",
@@ -796,12 +829,13 @@ const terminidData = [
         "autocannon",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (10589).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (10629).png",
+    "created": "2024-05-30T12:55:44.195Z",
     "players": [
       [
         "eagle_napalm",
@@ -821,12 +855,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10629).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (10637).png",
+    "created": "2024-05-30T12:58:22.718Z",
     "players": [
       [
         "quasar_cannon",
@@ -846,12 +881,13 @@ const terminidData = [
         "shield_backpack",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (10637).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (10645).png",
+    "created": "2024-05-30T13:01:03.154Z",
     "players": [
       [
         "orbital_railcannon",
@@ -871,12 +907,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10645).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 8,
+    "id": "Screenshot (10653).png",
+    "created": "2024-05-30T13:03:42.890Z",
     "players": [
       [
         "",
@@ -896,12 +933,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10653).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (10677).png",
+    "created": "2024-05-31T15:38:55.671Z",
     "players": [
       [
         "eagle_airstrike",
@@ -921,12 +959,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10677).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (10685).png",
+    "created": "2024-05-30T13:14:23.748Z",
     "players": [
       [
         "eagle_napalm",
@@ -946,12 +985,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10685).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (10693).png",
+    "created": "2024-05-30T13:17:02.104Z",
     "players": [
       [
         "orbital_laser",
@@ -971,12 +1011,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10693).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (10701).png",
+    "created": "2024-05-30T13:19:40.334Z",
     "players": [
       [
         "quasar_cannon",
@@ -996,12 +1037,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10701).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (10717).png",
+    "created": "2024-05-30T13:25:03.375Z",
     "players": [
       [
         "mines_infantry",
@@ -1021,12 +1063,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10717).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10725).png",
+    "created": "2024-05-30T13:27:44.604Z",
     "players": [
       [
         "autocannon",
@@ -1046,12 +1089,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (10725).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 7,
+    "id": "Screenshot (10733).png",
+    "created": "2024-05-30T13:30:25.996Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1071,12 +1115,13 @@ const terminidData = [
         "barrage_380",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (10733).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10741).png",
+    "created": "2024-05-30T13:33:06.153Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1096,12 +1141,13 @@ const terminidData = [
         "barrage_380",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (10741).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10749).png",
+    "created": "2024-05-30T13:35:47.570Z",
     "players": [
       [
         "eagle_napalm",
@@ -1121,12 +1167,13 @@ const terminidData = [
         "eagle_500kg",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (10749).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (10757).png",
+    "created": "2024-05-30T13:38:25.893Z",
     "players": [
       [
         "eagle_110",
@@ -1146,12 +1193,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10757).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (10765).png",
+    "created": "2024-05-30T13:41:07.524Z",
     "players": [
       [
         "eagle_500kg",
@@ -1171,12 +1219,13 @@ const terminidData = [
         "patriot",
         "spear"
       ]
-    ],
-    "id": "Screenshot (10765).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (10773).png",
+    "created": "2024-05-30T13:43:47.903Z",
     "players": [
       [
         "orbital_laser",
@@ -1196,12 +1245,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10773).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (10781).png",
+    "created": "2024-05-30T13:46:29.215Z",
     "players": [
       [
         "eat",
@@ -1221,12 +1271,13 @@ const terminidData = [
         "orbital_railcannon",
         "eat"
       ]
-    ],
-    "id": "Screenshot (10781).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (10808).png",
+    "created": "2024-05-31T02:01:45.433Z",
     "players": [
       [
         "orbital_railcannon",
@@ -1246,12 +1297,13 @@ const terminidData = [
         "arc_thrower",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (10808).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (10816).png",
+    "created": "2024-05-31T02:04:25.421Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1271,12 +1323,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10816).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (10824).png",
+    "created": "2024-05-31T02:07:04.154Z",
     "players": [
       [
         "orbital_gas",
@@ -1296,12 +1349,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10824).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (10832).png",
+    "created": "2024-05-31T02:09:45.487Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1321,12 +1375,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10832).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (10840).png",
+    "created": "2024-05-31T02:12:24.044Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1346,12 +1401,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10840).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (10848).png",
+    "created": "2024-05-31T02:15:05.594Z",
     "players": [
       [
         "patriot",
@@ -1371,12 +1427,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10848).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (10856).png",
+    "created": "2024-05-31T02:17:45.577Z",
     "players": [
       [
         "orbital_railcannon",
@@ -1396,12 +1453,13 @@ const terminidData = [
         "eagle_cluster",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (10856).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (10864).png",
+    "created": "2024-05-31T02:20:25.490Z",
     "players": [
       [
         "eagle_500kg",
@@ -1421,12 +1479,13 @@ const terminidData = [
         "laser_cannon",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (10864).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10872).png",
+    "created": "2024-05-31T02:23:05.449Z",
     "players": [
       [
         "gatling_sentry",
@@ -1446,12 +1505,13 @@ const terminidData = [
         "gatling_sentry",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (10872).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (10880).png",
+    "created": "2024-05-31T02:25:45.442Z",
     "players": [
       [
         "mines_infantry",
@@ -1471,12 +1531,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10880).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (10888).png",
+    "created": "2024-05-31T02:28:23.981Z",
     "players": [
       [
         "eagle_500kg",
@@ -1496,12 +1557,13 @@ const terminidData = [
         "flamethrower",
         "patriot"
       ]
-    ],
-    "id": "Screenshot (10888).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (10896).png",
+    "created": "2024-05-31T02:31:03.923Z",
     "players": [
       [
         "rocket_sentry",
@@ -1521,12 +1583,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10896).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (10904).png",
+    "created": "2024-05-31T02:33:45.642Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1546,12 +1609,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10904).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (10912).png",
+    "created": "2024-05-31T02:36:27.136Z",
     "players": [
       [
         "orbital_railcannon",
@@ -1571,12 +1635,13 @@ const terminidData = [
         "eat",
         "hmg_encampment"
       ]
-    ],
-    "id": "Screenshot (10912).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (10920).png",
+    "created": "2024-05-31T02:39:05.490Z",
     "players": [
       [
         "spear",
@@ -1596,12 +1661,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10920).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (10928).png",
+    "created": "2024-05-31T02:41:45.276Z",
     "players": [
       [
         "arc_sentry",
@@ -1621,12 +1687,13 @@ const terminidData = [
         "patriot",
         "eat"
       ]
-    ],
-    "id": "Screenshot (10928).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (10936).png",
+    "created": "2024-05-31T02:44:26.721Z",
     "players": [
       [
         "eat",
@@ -1646,12 +1713,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (10936).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (10944).png",
+    "created": "2024-05-31T02:47:05.325Z",
     "players": [
       [
         "eagle_500kg",
@@ -1671,12 +1739,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10944).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (10952).png",
+    "created": "2024-05-31T02:49:46.754Z",
     "players": [
       [
         "eagle_110",
@@ -1696,12 +1765,13 @@ const terminidData = [
         "autocannon_sentry",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (10952).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (10960).png",
+    "created": "2024-05-31T02:52:25.373Z",
     "players": [
       [
         "spear",
@@ -1721,12 +1791,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (10960).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (10984).png",
+    "created": "2024-05-31T03:00:25.588Z",
     "players": [
       [
         "eagle_500kg",
@@ -1746,12 +1817,13 @@ const terminidData = [
         "quasar_cannon",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (10984).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (10992).png",
+    "created": "2024-05-31T03:03:07.359Z",
     "players": [
       [
         "orbital_laser",
@@ -1771,12 +1843,13 @@ const terminidData = [
         "orbital_precision",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (10992).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11000).png",
+    "created": "2024-05-31T03:05:46.043Z",
     "players": [
       [
         "eat",
@@ -1796,12 +1869,13 @@ const terminidData = [
         "eat",
         "supply_backpack"
       ]
-    ],
-    "id": "Screenshot (11000).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11016).png",
+    "created": "2024-05-31T16:14:36.615Z",
     "players": [
       [
         "eagle_500kg",
@@ -1821,12 +1895,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (11016).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11024).png",
+    "created": "2024-05-31T03:13:47.812Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1846,12 +1921,13 @@ const terminidData = [
         "ems_sentry",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (11024).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11032).png",
+    "created": "2024-05-31T03:16:26.096Z",
     "players": [
       [
         "orbital_gas",
@@ -1871,12 +1947,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11032).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11040).png",
+    "created": "2024-05-31T03:19:06.133Z",
     "players": [
       [
         "gatling_sentry",
@@ -1896,12 +1973,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11040).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11048).png",
+    "created": "2024-05-31T03:21:44.546Z",
     "players": [
       [
         "autocannon_sentry",
@@ -1921,12 +1999,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11048).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11064).png",
+    "created": "2024-05-31T03:27:03.501Z",
     "players": [
       [
         "emancipator",
@@ -1946,12 +2025,13 @@ const terminidData = [
         "eagle_500kg",
         "mines_infantry"
       ]
-    ],
-    "id": "Screenshot (11064).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11072).png",
+    "created": "2024-05-31T03:29:43.996Z",
     "players": [
       [
         "orbital_laser",
@@ -1971,12 +2051,13 @@ const terminidData = [
         "recoilless_rifle",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (11072).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11080).png",
+    "created": "2024-05-31T03:32:25.485Z",
     "players": [
       [
         "eagle_airstrike",
@@ -1996,12 +2077,13 @@ const terminidData = [
         "airburst_launcher",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (11080).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11088).png",
+    "created": "2024-05-31T03:35:05.849Z",
     "players": [
       [
         "eagle_airstrike",
@@ -2021,12 +2103,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11088).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (11096).png",
+    "created": "2024-05-31T03:37:44.263Z",
     "players": [
       [
         "emancipator",
@@ -2046,12 +2129,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11096).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11104).png",
+    "created": "2024-05-31T03:40:25.920Z",
     "players": [
       [
         "",
@@ -2071,12 +2155,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11104).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (11120).png",
+    "created": "2024-05-31T03:45:47.930Z",
     "players": [
       [
         "autocannon",
@@ -2096,12 +2181,13 @@ const terminidData = [
         "quasar_cannon",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (11120).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11128).png",
+    "created": "2024-05-31T03:48:26.333Z",
     "players": [
       [
         "barrage_380",
@@ -2121,12 +2207,13 @@ const terminidData = [
         "spear",
         "eat"
       ]
-    ],
-    "id": "Screenshot (11128).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11136).png",
+    "created": "2024-05-31T03:51:07.862Z",
     "players": [
       [
         "mines_infantry",
@@ -2146,12 +2233,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_cluster"
       ]
-    ],
-    "id": "Screenshot (11136).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11144).png",
+    "created": "2024-05-31T03:53:46.563Z",
     "players": [
       [
         "emancipator",
@@ -2171,12 +2259,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11144).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (11152).png",
+    "created": "2024-05-31T03:56:26.613Z",
     "players": [
       [
         "emancipator",
@@ -2196,12 +2285,13 @@ const terminidData = [
         "eat",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (11152).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11160).png",
+    "created": "2024-05-31T03:59:08.400Z",
     "players": [
       [
         "emancipator",
@@ -2221,12 +2311,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11160).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11168).png",
+    "created": "2024-05-31T04:01:49.581Z",
     "players": [
       [
         "orbital_railcannon",
@@ -2246,12 +2337,13 @@ const terminidData = [
         "eagle_airstrike",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (11168).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11176).png",
+    "created": "2024-05-31T04:04:29.634Z",
     "players": [
       [
         "orbital_gas",
@@ -2271,12 +2363,13 @@ const terminidData = [
         "patriot",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (11176).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11184).png",
+    "created": "2024-05-31T04:07:10.940Z",
     "players": [
       [
         "quasar_cannon",
@@ -2296,12 +2389,13 @@ const terminidData = [
         "eagle_110",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (11184).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (11192).png",
+    "created": "2024-05-31T04:09:49.301Z",
     "players": [
       [
         "orbital_gas",
@@ -2321,12 +2415,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11192).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (11200).png",
+    "created": "2024-05-31T04:12:30.775Z",
     "players": [
       [
         "flamethrower",
@@ -2346,12 +2441,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11200).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11208).png",
+    "created": "2024-05-31T04:15:12.213Z",
     "players": [
       [
         "eagle_airstrike",
@@ -2371,12 +2467,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11208).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11216).png",
+    "created": "2024-05-31T04:17:52.419Z",
     "players": [
       [
         "eagle_110",
@@ -2396,12 +2493,13 @@ const terminidData = [
         "orbital_railcannon",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (11216).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11248).png",
+    "created": "2024-05-31T04:28:36.323Z",
     "players": [
       [
         "",
@@ -2421,12 +2519,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11248).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11256).png",
+    "created": "2024-05-31T04:31:16.396Z",
     "players": [
       [
         "emancipator",
@@ -2446,12 +2545,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11256).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11264).png",
+    "created": "2024-05-31T04:33:54.593Z",
     "players": [
       [
         "eagle_500kg",
@@ -2471,12 +2571,13 @@ const terminidData = [
         "stalwart",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (11264).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11272).png",
+    "created": "2024-05-31T04:36:34.630Z",
     "players": [
       [
         "eagle_500kg",
@@ -2496,12 +2597,13 @@ const terminidData = [
         "eagle_napalm",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (11272).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11280).png",
+    "created": "2024-05-31T04:39:12.919Z",
     "players": [
       [
         "eagle_napalm",
@@ -2521,12 +2623,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11280).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (11288).png",
+    "created": "2024-05-31T04:41:54.945Z",
     "players": [
       [
         "jump_pack",
@@ -2546,12 +2649,13 @@ const terminidData = [
         "mines_incendiary",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (11288).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11296).png",
+    "created": "2024-05-31T04:44:34.692Z",
     "players": [
       [
         "orbital_railcannon",
@@ -2571,12 +2675,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (11296).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (11304).png",
+    "created": "2024-05-31T04:47:16.303Z",
     "players": [
       [
         "emancipator",
@@ -2596,12 +2701,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11304).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (11312).png",
+    "created": "2024-05-31T04:49:57.997Z",
     "players": [
       [
         "orbital_laser",
@@ -2621,12 +2727,13 @@ const terminidData = [
         "stalwart",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (11312).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11320).png",
+    "created": "2024-05-31T04:52:37.840Z",
     "players": [
       [
         "eagle_500kg",
@@ -2646,12 +2753,13 @@ const terminidData = [
         "autocannon_sentry",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (11320).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11328).png",
+    "created": "2024-05-31T04:55:16.005Z",
     "players": [
       [
         "eagle_500kg",
@@ -2671,12 +2779,13 @@ const terminidData = [
         "quasar_cannon",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (11328).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11336).png",
+    "created": "2024-05-31T04:57:55.970Z",
     "players": [
       [
         "eagle_500kg",
@@ -2696,12 +2805,13 @@ const terminidData = [
         "eat",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (11336).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (11360).png",
+    "created": "2024-05-31T05:05:54.269Z",
     "players": [
       [
         "eagle_napalm",
@@ -2721,12 +2831,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11360).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11368).png",
+    "created": "2024-05-31T05:08:34.383Z",
     "players": [
       [
         "ems_sentry",
@@ -2746,12 +2857,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11368).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (11376).png",
+    "created": "2024-05-31T05:11:12.922Z",
     "players": [
       [
         "eat",
@@ -2771,12 +2883,13 @@ const terminidData = [
         "mines_infantry",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (11376).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11384).png",
+    "created": "2024-05-31T05:13:51.459Z",
     "players": [
       [
         "eagle_500kg",
@@ -2796,12 +2909,13 @@ const terminidData = [
         "jump_pack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (11384).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11392).png",
+    "created": "2024-05-31T15:34:35.956Z",
     "players": [
       [
         "stalwart",
@@ -2821,12 +2935,13 @@ const terminidData = [
         "quasar_cannon",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (11392).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11400).png",
+    "created": "2024-05-31T05:19:14.117Z",
     "players": [
       [
         "eagle_napalm",
@@ -2846,12 +2961,13 @@ const terminidData = [
         "autocannon_sentry",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (11400).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11408).png",
+    "created": "2024-05-31T05:21:52.667Z",
     "players": [
       [
         "flamethrower",
@@ -2871,12 +2987,13 @@ const terminidData = [
         "eagle_500kg",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (11408).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11416).png",
+    "created": "2024-05-31T05:24:33.012Z",
     "players": [
       [
         "eagle_airstrike",
@@ -2896,12 +3013,13 @@ const terminidData = [
         "recoilless_rifle",
         ""
       ]
-    ],
-    "id": "Screenshot (11416).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11424).png",
+    "created": "2024-05-31T05:27:11.671Z",
     "players": [
       [
         "eat",
@@ -2921,12 +3039,13 @@ const terminidData = [
         "flamethrower",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (11424).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (11432).png",
+    "created": "2024-05-31T05:29:53.562Z",
     "players": [
       [
         "orbital_railcannon",
@@ -2946,12 +3065,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11432).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (11448).png",
+    "created": "2024-05-31T05:35:12.475Z",
     "players": [
       [
         "emancipator",
@@ -2971,12 +3091,13 @@ const terminidData = [
         "supply_backpack",
         "hmg"
       ]
-    ],
-    "id": "Screenshot (11448).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11456).png",
+    "created": "2024-05-31T05:37:52.857Z",
     "players": [
       [
         "",
@@ -2996,12 +3117,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11456).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11464).png",
+    "created": "2024-05-31T05:40:34.360Z",
     "players": [
       [
         "shield_backpack",
@@ -3021,12 +3143,13 @@ const terminidData = [
         "orbital_ems",
         ""
       ]
-    ],
-    "id": "Screenshot (11464).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11472).png",
+    "created": "2024-05-31T05:43:12.858Z",
     "players": [
       [
         "orbital_ems",
@@ -3046,12 +3169,13 @@ const terminidData = [
         "eagle_500kg",
         "arc_sentry"
       ]
-    ],
-    "id": "Screenshot (11472).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11480).png",
+    "created": "2024-05-31T05:45:51.095Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3071,12 +3195,13 @@ const terminidData = [
         "supply_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (11480).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11488).png",
+    "created": "2024-05-31T05:48:31.210Z",
     "players": [
       [
         "eagle_500kg",
@@ -3096,12 +3221,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (11488).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11496).png",
+    "created": "2024-05-31T05:51:12.872Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3121,12 +3247,13 @@ const terminidData = [
         "orbital_ems",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (11496).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11504).png",
+    "created": "2024-05-31T05:53:53.253Z",
     "players": [
       [
         "walking_barrage",
@@ -3146,12 +3273,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11504).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11512).png",
+    "created": "2024-05-31T05:56:31.360Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3171,12 +3299,13 @@ const terminidData = [
         "mg",
         ""
       ]
-    ],
-    "id": "Screenshot (11512).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11528).png",
+    "created": "2024-05-31T06:01:52.570Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3196,12 +3325,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11528).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11544).png",
+    "created": "2024-05-31T06:07:15.609Z",
     "players": [
       [
         "shield_relay",
@@ -3221,12 +3351,13 @@ const terminidData = [
         "hmg",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (11544).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (11552).png",
+    "created": "2024-05-31T06:09:57.492Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3246,12 +3377,13 @@ const terminidData = [
         "autocannon_sentry",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (11552).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11568).png",
+    "created": "2024-05-31T06:15:19.449Z",
     "players": [
       [
         "eagle_500kg",
@@ -3271,12 +3403,13 @@ const terminidData = [
         "eagle_cluster",
         "eagle_110"
       ]
-    ],
-    "id": "Screenshot (11568).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11576).png",
+    "created": "2024-05-31T16:11:56.010Z",
     "players": [
       [
         "eagle_cluster",
@@ -3296,12 +3429,13 @@ const terminidData = [
         "quasar_cannon",
         "mines_infantry"
       ]
-    ],
-    "id": "Screenshot (11576).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11584).png",
+    "created": "2024-05-31T06:20:41.629Z",
     "players": [
       [
         "eagle_napalm",
@@ -3321,12 +3455,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11584).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (11592).png",
+    "created": "2024-05-31T06:23:21.929Z",
     "players": [
       [
         "supply_backpack",
@@ -3346,12 +3481,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11592).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (11600).png",
+    "created": "2024-05-31T06:26:00.519Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3371,12 +3507,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (11600).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11608).png",
+    "created": "2024-05-31T06:28:41.888Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3396,12 +3533,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11608).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11616).png",
+    "created": "2024-05-31T06:31:23.545Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3421,12 +3559,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11616).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11624).png",
+    "created": "2024-05-31T06:34:03.701Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3446,12 +3585,13 @@ const terminidData = [
         "eat",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (11624).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11632).png",
+    "created": "2024-05-31T06:36:45.188Z",
     "players": [
       [
         "eat",
@@ -3471,12 +3611,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11632).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11640).png",
+    "created": "2024-05-31T06:39:23.637Z",
     "players": [
       [
         "orbital_gas",
@@ -3496,12 +3637,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11640).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11648).png",
+    "created": "2024-05-31T14:47:28.935Z",
     "players": [
       [
         "flamethrower",
@@ -3521,12 +3663,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11648).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (11656).png",
+    "created": "2024-05-31T06:44:43.903Z",
     "players": [
       [
         "autocannon",
@@ -3546,12 +3689,13 @@ const terminidData = [
         "autocannon",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (11656).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11664).png",
+    "created": "2024-05-31T06:47:25.816Z",
     "players": [
       [
         "flamethrower",
@@ -3571,12 +3715,13 @@ const terminidData = [
         "recoilless_rifle",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (11664).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (11712).png",
+    "created": "2024-05-31T14:48:05.515Z",
     "players": [
       [
         "guard_dog_rover",
@@ -3596,12 +3741,13 @@ const terminidData = [
         "emancipator",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (11712).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11722).png",
+    "created": "2024-05-31T07:00:54.995Z",
     "players": [
       [
         "orbital_gas",
@@ -3621,12 +3767,13 @@ const terminidData = [
         "autocannon",
         "mines_infantry"
       ]
-    ],
-    "id": "Screenshot (11722).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11760).png",
+    "created": "2024-05-31T07:19:36.463Z",
     "players": [
       [
         "flamethrower",
@@ -3646,12 +3793,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11760).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11768).png",
+    "created": "2024-05-31T07:22:14.959Z",
     "players": [
       [
         "flamethrower",
@@ -3671,12 +3819,13 @@ const terminidData = [
         "orbital_laser",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (11768).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (11776).png",
+    "created": "2024-05-31T07:24:54.850Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3696,12 +3845,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11776).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11784).png",
+    "created": "2024-05-31T07:27:33.621Z",
     "players": [
       [
         "recoilless_rifle",
@@ -3721,12 +3871,13 @@ const terminidData = [
         "orbital_gas",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (11784).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (11792).png",
+    "created": "2024-05-31T07:30:11.935Z",
     "players": [
       [
         "eagle_500kg",
@@ -3746,12 +3897,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11792).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11800).png",
+    "created": "2024-05-31T07:32:52.172Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3771,12 +3923,13 @@ const terminidData = [
         "gatling_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (11800).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11816).png",
+    "created": "2024-05-31T07:38:10.358Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3796,12 +3949,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11816).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11824).png",
+    "created": "2024-05-31T14:48:43.552Z",
     "players": [
       [
         "orbital_railcannon",
@@ -3821,12 +3975,13 @@ const terminidData = [
         "eat",
         "mines_infantry"
       ]
-    ],
-    "id": "Screenshot (11824).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (11832).png",
+    "created": "2024-05-31T07:43:29.314Z",
     "players": [
       [
         "orbital_laser",
@@ -3846,12 +4001,13 @@ const terminidData = [
         "orbital_laser",
         "eat"
       ]
-    ],
-    "id": "Screenshot (11832).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11848).png",
+    "created": "2024-05-31T14:49:48.690Z",
     "players": [
       [
         "quasar_cannon",
@@ -3871,12 +4027,13 @@ const terminidData = [
         "guard_dog_rover",
         "shield_relay"
       ]
-    ],
-    "id": "Screenshot (11848).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11856).png",
+    "created": "2024-06-01T13:04:37.867Z",
     "players": [
       [
         "eagle_110",
@@ -3896,12 +4053,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11856).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (11864).png",
+    "created": "2024-05-31T07:54:08.047Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3921,12 +4079,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11864).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11872).png",
+    "created": "2024-05-31T07:56:46.991Z",
     "players": [
       [
         "eagle_napalm",
@@ -3946,12 +4105,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11872).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11880).png",
+    "created": "2024-05-31T07:59:27.070Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3971,12 +4131,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11880).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (11888).png",
+    "created": "2024-05-31T08:02:05.492Z",
     "players": [
       [
         "eagle_airstrike",
@@ -3996,12 +4157,13 @@ const terminidData = [
         "barrage_380",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (11888).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11896).png",
+    "created": "2024-05-31T08:04:47.366Z",
     "players": [
       [
         "guard_dog_rover",
@@ -4021,12 +4183,13 @@ const terminidData = [
         "spear",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (11896).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11904).png",
+    "created": "2024-05-31T08:07:27.448Z",
     "players": [
       [
         "eagle_napalm",
@@ -4046,12 +4209,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11904).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (11912).png",
+    "created": "2024-05-31T08:10:05.578Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4071,12 +4235,13 @@ const terminidData = [
         "shield_backpack",
         "amr"
       ]
-    ],
-    "id": "Screenshot (11912).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (11920).png",
+    "created": "2024-05-31T08:12:45.571Z",
     "players": [
       [
         "eagle_500kg",
@@ -4096,12 +4261,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (11920).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (11928).png",
+    "created": "2024-05-31T08:15:27.651Z",
     "players": [
       [
         "spear",
@@ -4121,12 +4287,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (11928).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12326).png",
+    "created": "2024-05-31T20:10:03.743Z",
     "players": [
       [
         "autocannon",
@@ -4146,12 +4313,13 @@ const terminidData = [
         "flamethrower",
         "eat"
       ]
-    ],
-    "id": "Screenshot (12326).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (12334).png",
+    "created": "2024-05-31T20:16:23.700Z",
     "players": [
       [
         "eagle_500kg",
@@ -4171,12 +4339,13 @@ const terminidData = [
         "eagle_500kg",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (12334).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (12362).png",
+    "created": "2024-05-31T20:36:13.313Z",
     "players": [
       [
         "grenade_launcher",
@@ -4196,12 +4365,13 @@ const terminidData = [
         "grenade_launcher",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (12362).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (12370).png",
+    "created": "2024-05-31T20:40:48.542Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4221,12 +4391,13 @@ const terminidData = [
         "eagle_airstrike",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12370).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (12388).png",
+    "created": "2024-05-31T20:46:37.655Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4246,12 +4417,13 @@ const terminidData = [
         "emancipator",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (12388).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12394).png",
+    "created": "2024-05-31T20:50:28.026Z",
     "players": [
       [
         "eagle_500kg",
@@ -4271,12 +4443,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12394).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (12407).png",
+    "created": "2024-05-31T20:55:13.357Z",
     "players": [
       [
         "amr",
@@ -4296,12 +4469,13 @@ const terminidData = [
         "emancipator",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (12407).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12425).png",
+    "created": "2024-05-31T20:59:33.661Z",
     "players": [
       [
         "orbital_gas",
@@ -4321,12 +4495,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12425).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12430).png",
+    "created": "2024-05-31T21:04:47.533Z",
     "players": [
       [
         "eagle_500kg",
@@ -4346,12 +4521,13 @@ const terminidData = [
         "supply_backpack",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (12430).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (12433).png",
+    "created": "2024-05-31T21:06:02.332Z",
     "players": [
       [
         "guard_dog_rover",
@@ -4371,12 +4547,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12433).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12436).png",
+    "created": "2024-05-31T21:07:02.670Z",
     "players": [
       [
         "orbital_laser",
@@ -4396,12 +4573,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12436).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (12466).png",
+    "created": "2024-05-31T21:21:14.408Z",
     "players": [
       [
         "eagle_500kg",
@@ -4421,12 +4599,13 @@ const terminidData = [
         "flamethrower",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (12466).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (12468).png",
+    "created": "2024-05-31T21:26:54.112Z",
     "players": [
       [
         "orbital_railcannon",
@@ -4446,12 +4625,13 @@ const terminidData = [
         "gatling_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12468).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12473).png",
+    "created": "2024-05-31T21:28:34.822Z",
     "players": [
       [
         "eagle_500kg",
@@ -4471,12 +4651,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (12473).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12477).png",
+    "created": "2024-05-31T21:30:04.262Z",
     "players": [
       [
         "arc_thrower",
@@ -4496,12 +4677,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12477).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12480).png",
+    "created": "2024-05-31T21:31:18.310Z",
     "players": [
       [
         "gatling_sentry",
@@ -4521,12 +4703,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (12480).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12484).png",
+    "created": "2024-05-31T21:33:04.411Z",
     "players": [
       [
         "autocannon",
@@ -4546,12 +4729,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12484).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12486).png",
+    "created": "2024-05-31T21:35:10.038Z",
     "players": [
       [
         "eagle_500kg",
@@ -4571,12 +4755,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12486).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12489).png",
+    "created": "2024-05-31T21:36:35.260Z",
     "players": [
       [
         "orbital_railcannon",
@@ -4596,12 +4781,13 @@ const terminidData = [
         "jump_pack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (12489).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (12492).png",
+    "created": "2024-05-31T21:37:48.822Z",
     "players": [
       [
         "barrage_380",
@@ -4621,12 +4807,13 @@ const terminidData = [
         "ems_sentry",
         "eagle_110"
       ]
-    ],
-    "id": "Screenshot (12492).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12496).png",
+    "created": "2024-05-31T21:39:06.055Z",
     "players": [
       [
         "orbital_railcannon",
@@ -4646,12 +4833,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12496).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12500).png",
+    "created": "2024-05-31T21:40:27.154Z",
     "players": [
       [
         "patriot",
@@ -4671,12 +4859,13 @@ const terminidData = [
         "flamethrower",
         "mines_incendiary"
       ]
-    ],
-    "id": "Screenshot (12500).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (12504).png",
+    "created": "2024-05-31T21:44:21.701Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4696,12 +4885,13 @@ const terminidData = [
         "eagle_110",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (12504).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12510).png",
+    "created": "2024-05-31T21:47:17.138Z",
     "players": [
       [
         "orbital_laser",
@@ -4721,12 +4911,13 @@ const terminidData = [
         "orbital_laser",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (12510).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12516).png",
+    "created": "2024-05-31T21:51:54.430Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4746,12 +4937,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12516).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12521).png",
+    "created": "2024-05-31T21:53:29.815Z",
     "players": [
       [
         "eagle_500kg",
@@ -4771,12 +4963,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12521).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (12525).png",
+    "created": "2024-05-31T21:54:59.221Z",
     "players": [
       [
         "gatling_sentry",
@@ -4796,12 +4989,13 @@ const terminidData = [
         "flamethrower",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12525).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (12529).png",
+    "created": "2024-06-01T13:03:07.404Z",
     "players": [
       [
         "eagle_airstrike",
@@ -4821,12 +5015,13 @@ const terminidData = [
         "jump_pack",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (12529).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12548).png",
+    "created": "2024-05-31T22:04:38.921Z",
     "players": [
       [
         "eagle_500kg",
@@ -4846,12 +5041,13 @@ const terminidData = [
         "mines_infantry",
         "hmg"
       ]
-    ],
-    "id": "Screenshot (12548).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12554).png",
+    "created": "2024-05-31T22:07:13.281Z",
     "players": [
       [
         "orbital_ems",
@@ -4871,12 +5067,13 @@ const terminidData = [
         "rocket_sentry",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (12554).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (12557).png",
+    "created": "2024-05-31T22:08:32.491Z",
     "players": [
       [
         "eagle_500kg",
@@ -4896,12 +5093,13 @@ const terminidData = [
         "shield_backpack",
         "eat"
       ]
-    ],
-    "id": "Screenshot (12557).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12562).png",
+    "created": "2024-05-31T22:09:45.370Z",
     "players": [
       [
         "arc_sentry",
@@ -4921,12 +5119,13 @@ const terminidData = [
         "eagle_110",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (12562).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12568).png",
+    "created": "2024-05-31T22:12:20.560Z",
     "players": [
       [
         "eagle_smoke",
@@ -4946,12 +5145,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12568).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (12572).png",
+    "created": "2024-05-31T22:13:37.782Z",
     "players": [
       [
         "eagle_500kg",
@@ -4971,12 +5171,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12572).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12576).png",
+    "created": "2024-05-31T22:14:52.441Z",
     "players": [
       [
         "orbital_railcannon",
@@ -4996,12 +5197,13 @@ const terminidData = [
         "quasar_cannon",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (12576).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (12584).png",
+    "created": "2024-05-31T22:23:48.560Z",
     "players": [
       [
         "",
@@ -5021,12 +5223,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12584).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12586).png",
+    "created": "2024-05-31T22:26:03.511Z",
     "players": [
       [
         "shield_backpack",
@@ -5046,12 +5249,13 @@ const terminidData = [
         "shield_backpack",
         "railgun"
       ]
-    ],
-    "id": "Screenshot (12586).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12588).png",
+    "created": "2024-06-01T00:45:04.087Z",
     "players": [
       [
         "eagle_500kg",
@@ -5071,12 +5275,13 @@ const terminidData = [
         "grenade_launcher",
         "supply_backpack"
       ]
-    ],
-    "id": "Screenshot (12588).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (12599).png",
+    "created": "2024-06-01T01:23:44.234Z",
     "players": [
       [
         "",
@@ -5096,12 +5301,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (12599).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (12607).png",
+    "created": "2024-06-01T01:26:22.886Z",
     "players": [
       [
         "quasar_cannon",
@@ -5121,12 +5327,13 @@ const terminidData = [
         "eat",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (12607).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12623).png",
+    "created": "2024-06-01T01:31:43.101Z",
     "players": [
       [
         "",
@@ -5146,12 +5353,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12623).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (12631).png",
+    "created": "2024-06-01T01:34:24.940Z",
     "players": [
       [
         "arc_thrower",
@@ -5171,12 +5379,13 @@ const terminidData = [
         "shield_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (12631).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12639).png",
+    "created": "2024-06-01T01:37:05.061Z",
     "players": [
       [
         "eagle_500kg",
@@ -5196,12 +5405,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12639).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12647).png",
+    "created": "2024-06-01T01:39:43.364Z",
     "players": [
       [
         "ems_sentry",
@@ -5221,12 +5431,13 @@ const terminidData = [
         "spear",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (12647).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (12655).png",
+    "created": "2024-06-01T01:42:22.329Z",
     "players": [
       [
         "eagle_110",
@@ -5246,12 +5457,13 @@ const terminidData = [
         "orbital_gas",
         "eat"
       ]
-    ],
-    "id": "Screenshot (12655).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12663).png",
+    "created": "2024-06-01T01:45:01.019Z",
     "players": [
       [
         "eagle_napalm",
@@ -5271,12 +5483,13 @@ const terminidData = [
         "autocannon_sentry",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (12663).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12679).png",
+    "created": "2024-06-01T01:50:22.976Z",
     "players": [
       [
         "patriot",
@@ -5296,12 +5509,13 @@ const terminidData = [
         "eagle_500kg",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (12679).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (12687).png",
+    "created": "2024-06-01T01:53:04.901Z",
     "players": [
       [
         "spear",
@@ -5321,12 +5535,13 @@ const terminidData = [
         "orbital_airburst",
         "orbital_precision"
       ]
-    ],
-    "id": "Screenshot (12687).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12695).png",
+    "created": "2024-06-01T01:55:46.533Z",
     "players": [
       [
         "eagle_500kg",
@@ -5346,12 +5561,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12695).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (12711).png",
+    "created": "2024-06-01T02:01:05.565Z",
     "players": [
       [
         "eat",
@@ -5371,12 +5587,13 @@ const terminidData = [
         "shield_backpack",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (12711).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12719).png",
+    "created": "2024-06-01T02:03:44.039Z",
     "players": [
       [
         "ems_sentry",
@@ -5396,12 +5613,13 @@ const terminidData = [
         "eagle_napalm",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (12719).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (12727).png",
+    "created": "2024-06-01T02:06:22.119Z",
     "players": [
       [
         "orbital_railcannon",
@@ -5421,12 +5639,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12727).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12735).png",
+    "created": "2024-06-01T02:09:00.725Z",
     "players": [
       [
         "eagle_airstrike",
@@ -5446,12 +5665,13 @@ const terminidData = [
         "hmg",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (12735).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12743).png",
+    "created": "2024-06-01T02:11:39.570Z",
     "players": [
       [
         "orbital_railcannon",
@@ -5471,12 +5691,13 @@ const terminidData = [
         "orbital_railcannon",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (12743).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12751).png",
+    "created": "2024-06-01T02:14:18.389Z",
     "players": [
       [
         "eagle_airstrike",
@@ -5496,12 +5717,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12751).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (12775).png",
+    "created": "2024-06-01T02:22:17.736Z",
     "players": [
       [
         "autocannon",
@@ -5521,12 +5743,13 @@ const terminidData = [
         "recoilless_rifle",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12775).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12783).png",
+    "created": "2024-06-01T02:24:56.120Z",
     "players": [
       [
         "flamethrower",
@@ -5546,12 +5769,13 @@ const terminidData = [
         "rocket_sentry",
         "mg_sentry"
       ]
-    ],
-    "id": "Screenshot (12783).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12799).png",
+    "created": "2024-06-01T02:30:16.553Z",
     "players": [
       [
         "ems_sentry",
@@ -5571,12 +5795,13 @@ const terminidData = [
         "spear",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12799).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12807).png",
+    "created": "2024-06-01T02:32:58.368Z",
     "players": [
       [
         "eagle_napalm",
@@ -5596,12 +5821,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_precision"
       ]
-    ],
-    "id": "Screenshot (12807).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (12815).png",
+    "created": "2024-06-01T02:35:40.157Z",
     "players": [
       [
         "recoilless_rifle",
@@ -5621,12 +5847,13 @@ const terminidData = [
         "",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (12815).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12823).png",
+    "created": "2024-06-01T02:38:21.686Z",
     "players": [
       [
         "gatling_sentry",
@@ -5646,12 +5873,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12823).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12831).png",
+    "created": "2024-06-01T02:40:59.903Z",
     "players": [
       [
         "eagle_500kg",
@@ -5671,12 +5899,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12831).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12839).png",
+    "created": "2024-06-01T02:43:38.182Z",
     "players": [
       [
         "orbital_railcannon",
@@ -5696,12 +5925,13 @@ const terminidData = [
         "quasar_cannon",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (12839).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12847).png",
+    "created": "2024-06-01T02:46:16.660Z",
     "players": [
       [
         "quasar_cannon",
@@ -5721,12 +5951,13 @@ const terminidData = [
         "flamethrower",
         "arc_sentry"
       ]
-    ],
-    "id": "Screenshot (12847).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12855).png",
+    "created": "2024-06-01T02:48:55.352Z",
     "players": [
       [
         "orbital_ems",
@@ -5746,12 +5977,13 @@ const terminidData = [
         "recoilless_rifle",
         "gatling_barrage"
       ]
-    ],
-    "id": "Screenshot (12855).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12863).png",
+    "created": "2024-06-01T02:51:35.693Z",
     "players": [
       [
         "ems_sentry",
@@ -5771,12 +6003,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12863).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (12871).png",
+    "created": "2024-06-01T02:54:14.419Z",
     "players": [
       [
         "eagle_500kg",
@@ -5796,12 +6029,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12871).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12879).png",
+    "created": "2024-06-01T13:01:45.163Z",
     "players": [
       [
         "eagle_500kg",
@@ -5821,12 +6055,13 @@ const terminidData = [
         "gatling_sentry",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (12879).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (12887).png",
+    "created": "2024-06-01T02:59:34.715Z",
     "players": [
       [
         "barrage_380",
@@ -5846,12 +6081,13 @@ const terminidData = [
         "guard_dog_rover",
         "eagle_cluster"
       ]
-    ],
-    "id": "Screenshot (12887).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12895).png",
+    "created": "2024-06-01T12:57:05.847Z",
     "players": [
       [
         "eagle_500kg",
@@ -5871,12 +6107,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12895).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12903).png",
+    "created": "2024-06-01T03:04:55.237Z",
     "players": [
       [
         "eat",
@@ -5896,12 +6133,13 @@ const terminidData = [
         "eat",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (12903).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12911).png",
+    "created": "2024-06-01T03:07:37.053Z",
     "players": [
       [
         "gatling_sentry",
@@ -5921,12 +6159,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12911).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12919).png",
+    "created": "2024-06-01T03:10:19.093Z",
     "players": [
       [
         "",
@@ -5946,12 +6185,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12919).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (12927).png",
+    "created": "2024-06-01T13:01:02.360Z",
     "players": [
       [
         "shield_backpack",
@@ -5971,12 +6211,13 @@ const terminidData = [
         "orbital_railcannon",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (12927).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12935).png",
+    "created": "2024-06-01T03:15:41.150Z",
     "players": [
       [
         "eagle_airstrike",
@@ -5996,12 +6237,13 @@ const terminidData = [
         "barrage_120",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (12935).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (12943).png",
+    "created": "2024-06-01T03:18:21.330Z",
     "players": [
       [
         "recoilless_rifle",
@@ -6021,12 +6263,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12943).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12951).png",
+    "created": "2024-06-01T12:55:15.323Z",
     "players": [
       [
         "orbital_gas",
@@ -6046,12 +6289,13 @@ const terminidData = [
         "eagle_airstrike",
         "rocket_sentry"
       ]
-    ],
-    "id": "Screenshot (12951).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (12959).png",
+    "created": "2024-06-01T03:23:44.705Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6071,12 +6315,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (12959).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (12967).png",
+    "created": "2024-06-01T03:26:26.255Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6096,12 +6341,13 @@ const terminidData = [
         "eagle_airstrike",
         "eagle_cluster"
       ]
-    ],
-    "id": "Screenshot (12967).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (12983).png",
+    "created": "2024-06-01T03:31:50.325Z",
     "players": [
       [
         "orbital_laser",
@@ -6121,12 +6367,13 @@ const terminidData = [
         "patriot",
         "railgun"
       ]
-    ],
-    "id": "Screenshot (12983).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12991).png",
+    "created": "2024-06-01T03:34:29.162Z",
     "players": [
       [
         "eagle_cluster",
@@ -6146,12 +6393,13 @@ const terminidData = [
         "hmg_encampment",
         "eagle_110"
       ]
-    ],
-    "id": "Screenshot (12991).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 9,
+    "id": "Screenshot (12999).png",
+    "created": "2024-06-01T12:54:11.426Z",
     "players": [
       [
         "arc_sentry",
@@ -6171,12 +6419,13 @@ const terminidData = [
         "ems_sentry",
         "eat"
       ]
-    ],
-    "id": "Screenshot (12999).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (13007).png",
+    "created": "2024-06-01T03:39:46.161Z",
     "players": [
       [
         "eagle_500kg",
@@ -6196,12 +6445,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (13007).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (13015).png",
+    "created": "2024-06-01T03:42:24.985Z",
     "players": [
       [
         "eagle_500kg",
@@ -6221,12 +6471,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (13015).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (13023).png",
+    "created": "2024-06-01T03:45:05.084Z",
     "players": [
       [
         "eagle_500kg",
@@ -6246,12 +6497,13 @@ const terminidData = [
         "mortar_sentry",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (13023).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (13031).png",
+    "created": "2024-06-01T03:47:45.298Z",
     "players": [
       [
         "gatling_sentry",
@@ -6271,12 +6523,13 @@ const terminidData = [
         "orbital_precision",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (13031).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (13039).png",
+    "created": "2024-06-01T03:50:25.514Z",
     "players": [
       [
         "orbital_laser",
@@ -6296,12 +6549,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (13039).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (13047).png",
+    "created": "2024-06-01T12:52:26.001Z",
     "players": [
       [
         "emancipator",
@@ -6321,12 +6575,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (13047).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (13055).png",
+    "created": "2024-06-01T03:55:44.365Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6346,12 +6601,13 @@ const terminidData = [
         "shield_backpack",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (13055).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (13063).png",
+    "created": "2024-06-01T12:50:02.684Z",
     "players": [
       [
         "orbital_ems",
@@ -6371,12 +6627,13 @@ const terminidData = [
         "laser_cannon",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (13063).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (13071).png",
+    "created": "2024-06-01T04:01:06.247Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6396,12 +6653,13 @@ const terminidData = [
         "gatling_sentry",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (13071).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (13079).png",
+    "created": "2024-06-01T04:03:48.228Z",
     "players": [
       [
         "eagle_500kg",
@@ -6421,12 +6679,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (13079).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 8,
+    "id": "Screenshot (13087).png",
+    "created": "2024-06-01T04:06:28.539Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6446,12 +6705,13 @@ const terminidData = [
         "orbital_railcannon",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (13087).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (13095).png",
+    "created": "2024-06-01T12:49:10.059Z",
     "players": [
       [
         "orbital_airburst",
@@ -6471,12 +6731,13 @@ const terminidData = [
         "gatling_sentry",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (13095).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (13111).png",
+    "created": "2024-06-01T04:14:28.960Z",
     "players": [
       [
         "eagle_500kg",
@@ -6496,12 +6757,13 @@ const terminidData = [
         "supply_backpack",
         "railgun"
       ]
-    ],
-    "id": "Screenshot (13111).png"
+    ]
   },
   {
     "type": "DEPLOY DARK FLUID",
     "difficulty": 7,
+    "id": "Screenshot (13119).png",
+    "created": "2024-06-01T04:17:10.661Z",
     "players": [
       [
         "eagle_napalm",
@@ -6521,12 +6783,5212 @@ const terminidData = [
         "autocannon_sentry",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (13119).png"
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14153).png",
+    "created": "2024-06-02T14:12:09.617Z",
+    "players": [
+      [
+        "arc_thrower",
+        "guard_dog_rover",
+        "orbital_railcannon",
+        "emancipator"
+      ],
+      [
+        "orbital_ems",
+        "ems_sentry",
+        "recoilless_rifle",
+        "mg_sentry"
+      ],
+      [
+        "eagle_napalm",
+        "orbital_ems",
+        "orbital_precision",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14161).png",
+    "created": "2024-06-02T14:14:51.328Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eat",
+        "ems_sentry",
+        "autocannon_sentry"
+      ],
+      [
+        "eat",
+        "guard_dog_rover",
+        "ems_sentry",
+        "orbital_airburst"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14169).png",
+    "created": "2024-06-02T14:17:11.954Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "quasar_cannon",
+        "emancipator"
+      ],
+      [
+        "eagle_cluster",
+        "gatling_sentry",
+        "guard_dog",
+        "flamethrower"
+      ],
+      [
+        "eat",
+        "guard_dog_rover",
+        "eagle_500kg",
+        "orbital_laser"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 9,
+    "id": "Screenshot (14178).png",
+    "created": "2024-06-02T14:21:13.144Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "barrage_380",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "orbital_laser",
+        "recoilless_rifle"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14187).png",
+    "created": "2024-06-02T14:24:59.101Z",
+    "players": [
+      [
+        "orbital_laser",
+        "guard_dog_rover",
+        "quasar_cannon",
+        "eagle_airstrike"
+      ],
+      [
+        "mortar_sentry",
+        "orbital_railcannon",
+        "recoilless_rifle",
+        "orbital_laser"
+      ],
+      [
+        "orbital_laser",
+        "mortar_sentry",
+        "orbital_railcannon",
+        "shield_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14195).png",
+    "created": "2024-06-02T14:27:40.398Z",
+    "players": [
+      [
+        "patriot",
+        "gatling_sentry",
+        "orbital_railcannon",
+        "ems_sentry"
+      ],
+      [
+        "orbital_railcannon",
+        "autocannon_sentry",
+        "jump_pack",
+        "arc_thrower"
+      ],
+      [
+        "arc_sentry",
+        "mines_incendiary",
+        "shield_backpack",
+        "gatling_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14210).png",
+    "created": "2024-06-02T14:33:51.837Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "orbital_laser",
+        "barrage_380",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "orbital_laser",
+        "eagle_500kg",
+        "quasar_cannon",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14217).png",
+    "created": "2024-06-02T14:36:25.606Z",
+    "players": [
+      [
+        "patriot",
+        "ems_sentry",
+        "recoilless_rifle",
+        "orbital_railcannon"
+      ],
+      [
+        "eagle_cluster",
+        "orbital_precision",
+        "recoilless_rifle",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "shield_backpack",
+        "flamethrower",
+        "orbital_gas"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14224).png",
+    "created": "2024-06-02T14:38:56.513Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover",
+        "ems_sentry"
+      ],
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "mg_sentry",
+        "orbital_railcannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14231).png",
+    "created": "2024-06-02T14:41:29.109Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "orbital_laser",
+        "airburst_launcher"
+      ],
+      [
+        "emancipator",
+        "eat",
+        "rocket_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "gatling_sentry",
+        "orbital_gas",
+        "orbital_railcannon",
+        "shield_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (14238).png",
+    "created": "2024-06-02T14:44:01.597Z",
+    "players": [
+      [
+        "gatling_barrage",
+        "orbital_railcannon",
+        "supply_backpack",
+        "flamethrower"
+      ],
+      [
+        "barrage_380",
+        "patriot",
+        "orbital_gas",
+        "mines_incendiary"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "shield_backpack",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 9,
+    "id": "Screenshot (14252).png",
+    "created": "2024-06-02T14:49:02.636Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14259).png",
+    "created": "2024-06-02T14:51:36.948Z",
+    "players": [
+      [
+        "eagle_cluster",
+        "orbital_laser",
+        "quasar_cannon",
+        "jump_pack"
+      ],
+      [
+        "orbital_laser",
+        "eagle_cluster",
+        "orbital_precision",
+        "mg"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "shield_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14266).png",
+    "created": "2024-06-02T14:54:11.254Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "autocannon",
+        "orbital_railcannon",
+        "autocannon_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14274).png",
+    "created": "2024-06-02T15:02:23.600Z",
+    "players": [
+      [
+        "eagle_110",
+        "eat",
+        "ems_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "arc_sentry",
+        "guard_dog_rover",
+        "arc_thrower",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_110",
+        "eat",
+        "ems_sentry",
+        "eagle_500kg"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14288).png",
+    "created": "2024-06-02T15:07:35.819Z",
+    "players": [
+      [
+        "eagle_cluster",
+        "eagle_airstrike",
+        "eat",
+        "guard_dog_rover"
+      ],
+      [
+        "orbital_gas",
+        "eat",
+        "supply_backpack",
+        "eagle_napalm"
+      ],
+      [
+        "autocannon",
+        "autocannon_sentry",
+        "orbital_laser",
+        "orbital_precision"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14295).png",
+    "created": "2024-06-02T15:09:46.074Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "recoilless_rifle",
+        "gatling_sentry"
+      ],
+      [
+        "jump_pack",
+        "grenade_launcher",
+        "orbital_railcannon",
+        "eagle_500kg"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14298).png",
+    "created": "2024-06-02T15:11:17.525Z",
+    "players": [
+      [
+        "emancipator",
+        "orbital_gas",
+        "orbital_railcannon",
+        ""
+      ],
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "orbital_precision",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14305).png",
+    "created": "2024-06-02T15:13:28.261Z",
+    "players": [
+      [
+        "ems_sentry",
+        "orbital_railcannon",
+        "eat",
+        "gatling_sentry"
+      ],
+      [
+        "orbital_railcannon",
+        "patriot",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "orbital_railcannon",
+        "supply_backpack",
+        "autocannon_sentry",
+        "stalwart"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14312).png",
+    "created": "2024-06-02T15:16:05.904Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "arc_sentry",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "orbital_laser",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14326).png",
+    "created": "2024-06-02T15:21:20.822Z",
+    "players": [
+      [
+        "quasar_cannon",
+        "eagle_500kg",
+        "eagle_airstrike",
+        "gatling_sentry"
+      ],
+      [
+        "quasar_cannon",
+        "eagle_500kg",
+        "gatling_sentry",
+        "eagle_airstrike"
+      ],
+      [
+        "hmg_encampment",
+        "gatling_sentry",
+        "orbital_precision",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14333).png",
+    "created": "2024-06-02T15:23:55.281Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "rocket_sentry",
+        "flamethrower",
+        "eagle_cluster"
+      ],
+      [
+        "autocannon_sentry",
+        "ems_sentry",
+        "rocket_sentry",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14340).png",
+    "created": "2024-06-02T15:26:32.744Z",
+    "players": [
+      [
+        "stalwart",
+        "supply_backpack",
+        "gatling_sentry",
+        "mg_sentry"
+      ],
+      [
+        "hmg",
+        "jump_pack",
+        "autocannon_sentry",
+        "orbital_laser"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14354).png",
+    "created": "2024-06-02T15:31:44.043Z",
+    "players": [
+      [
+        "grenade_launcher",
+        "orbital_railcannon",
+        "orbital_precision",
+        "supply_backpack"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "orbital_airburst",
+        "spear"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "recoilless_rifle",
+        "eagle_cluster"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14368).png",
+    "created": "2024-06-02T15:36:54.086Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "walking_barrage",
+        "barrage_380",
+        "barrage_120"
+      ],
+      [
+        "eagle_500kg",
+        "walking_barrage",
+        "barrage_380",
+        "barrage_120"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "orbital_railcannon",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (14375).png",
+    "created": "2024-06-02T15:39:28.750Z",
+    "players": [
+      [
+        "eat",
+        "eagle_500kg",
+        "orbital_precision",
+        "orbital_railcannon"
+      ],
+      [
+        "arc_thrower",
+        "shield_backpack",
+        "orbital_railcannon",
+        "eagle_napalm"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14382).png",
+    "created": "2024-06-02T15:42:04.209Z",
+    "players": [
+      [
+        "eat",
+        "autocannon_sentry",
+        "ems_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (14389).png",
+    "created": "2024-06-02T15:44:40.121Z",
+    "players": [
+      [
+        "jump_pack",
+        "stalwart",
+        "eagle_110",
+        "orbital_laser"
+      ],
+      [
+        "barrage_380",
+        "eagle_500kg",
+        "airburst_launcher",
+        "autocannon_sentry"
+      ],
+      [
+        "barrage_380",
+        "guard_dog_rover",
+        "eagle_airstrike",
+        "orbital_precision"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14396).png",
+    "created": "2024-06-02T15:47:14.687Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "airburst_launcher",
+        "gatling_sentry"
+      ],
+      [
+        "orbital_precision",
+        "orbital_gas",
+        "airburst_launcher",
+        "gatling_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "orbital_laser",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14403).png",
+    "created": "2024-06-02T15:49:49.153Z",
+    "players": [
+      [
+        "quasar_cannon",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "quasar_cannon",
+        "supply_backpack"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14410).png",
+    "created": "2024-06-02T15:52:25.272Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "railgun",
+        "shield_backpack",
+        "ems_sentry"
+      ],
+      [
+        "mortar_sentry",
+        "guard_dog_rover",
+        "mg",
+        "eagle_cluster"
+      ],
+      [
+        "orbital_laser",
+        "quasar_cannon",
+        "shield_backpack",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (14431).png",
+    "created": "2024-06-02T16:00:15.145Z",
+    "players": [
+      [
+        "mines_infantry",
+        "mines_incendiary",
+        "patriot",
+        "hmg"
+      ],
+      [
+        "eat",
+        "guard_dog_rover",
+        "orbital_railcannon",
+        "orbital_precision"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14452).png",
+    "created": "2024-06-02T16:08:03.004Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eat"
+      ],
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "",
+        "eat"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_cluster",
+        "barrage_380",
+        "recoilless_rifle"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14459).png",
+    "created": "2024-06-02T16:10:37.666Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_gas",
+        "jump_pack",
+        "grenade_launcher"
+      ],
+      [
+        "orbital_laser",
+        "barrage_380",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14466).png",
+    "created": "2024-06-02T16:13:14.890Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eat",
+        "rocket_sentry",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "quasar_cannon",
+        "mortar_sentry"
+      ],
+      [
+        "eagle_smoke",
+        "orbital_laser",
+        "orbital_ems",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14473).png",
+    "created": "2024-06-02T16:15:52.367Z",
+    "players": [
+      [
+        "stalwart",
+        "orbital_laser",
+        "shield_backpack",
+        "gatling_sentry"
+      ],
+      [
+        "orbital_laser",
+        "shield_backpack",
+        "ems_sentry",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (14480).png",
+    "created": "2024-06-02T16:18:26.804Z",
+    "players": [
+      [
+        "",
+        "barrage_120",
+        "orbital_laser",
+        "orbital_railcannon"
+      ],
+      [
+        "",
+        "barrage_120",
+        "walking_barrage",
+        "orbital_railcannon"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "barrage_380",
+        "barrage_120"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (14487).png",
+    "created": "2024-06-02T16:21:03.048Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "patriot",
+        "airburst_launcher"
+      ],
+      [
+        "emancipator",
+        "gatling_sentry",
+        "rocket_sentry",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 9,
+    "id": "Screenshot (14494).png",
+    "created": "2024-06-02T16:23:37.421Z",
+    "players": [
+      [
+        "",
+        "",
+        "orbital_precision",
+        "orbital_airburst"
+      ],
+      [
+        "orbital_precision",
+        "amr",
+        "jump_pack",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14501).png",
+    "created": "2024-06-02T16:26:11.575Z",
+    "players": [
+      [
+        "orbital_ems",
+        "flamethrower",
+        "gatling_sentry",
+        "eat"
+      ],
+      [
+        "gatling_sentry",
+        "arc_sentry",
+        "orbital_smoke",
+        "eat"
+      ],
+      [
+        "orbital_gas",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "gatling_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (14508).png",
+    "created": "2024-06-02T16:28:47.414Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eat",
+        "gatling_sentry",
+        "arc_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "orbital_laser",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14515).png",
+    "created": "2024-06-02T16:31:23.073Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "eat",
+        "autocannon_sentry",
+        "arc_sentry"
+      ],
+      [
+        "rocket_sentry",
+        "gatling_sentry",
+        "autocannon_sentry",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14522).png",
+    "created": "2024-06-02T16:34:00.806Z",
+    "players": [
+      [
+        "guard_dog_rover",
+        "gatling_sentry",
+        "mg_sentry",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14529).png",
+    "created": "2024-06-02T16:36:38.223Z",
+    "players": [
+      [
+        "orbital_gas",
+        "stalwart",
+        "guard_dog_rover",
+        "orbital_railcannon"
+      ],
+      [
+        "eagle_airstrike",
+        "gatling_sentry",
+        "mg_sentry",
+        "mg"
+      ],
+      [
+        "patriot",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14536).png",
+    "created": "2024-06-02T16:39:13.918Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "ems_sentry",
+        "quasar_cannon",
+        "orbital_laser"
+      ],
+      [
+        "flamethrower",
+        "orbital_railcannon",
+        "gatling_sentry",
+        "ems_sentry"
+      ],
+      [
+        "orbital_ems",
+        "laser_cannon",
+        "guard_dog_rover",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14543).png",
+    "created": "2024-06-02T16:41:51.332Z",
+    "players": [
+      [
+        "arc_thrower",
+        "ems_sentry",
+        "shield_backpack",
+        "arc_sentry"
+      ],
+      [
+        "laser_cannon",
+        "gatling_sentry",
+        "arc_sentry",
+        "mg"
+      ],
+      [
+        "quasar_cannon",
+        "ems_sentry",
+        "arc_sentry",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (14550).png",
+    "created": "2024-06-02T16:44:27.151Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "barrage_120",
+        "recoilless_rifle"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_cluster",
+        "eagle_110",
+        "spear"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14557).png",
+    "created": "2024-06-02T16:47:01.106Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "flamethrower",
+        "shield_relay",
+        "orbital_ems"
+      ],
+      [
+        "eagle_500kg",
+        "barrage_120",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14571).png",
+    "created": "2024-06-02T16:52:14.407Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "flamethrower",
+        "eagle_airstrike",
+        "orbital_railcannon"
+      ],
+      [
+        "gatling_sentry",
+        "orbital_railcannon",
+        "eagle_110",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14585).png",
+    "created": "2024-06-02T16:57:25.777Z",
+    "players": [
+      [
+        "orbital_smoke",
+        "orbital_railcannon",
+        "spear",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "shield_backpack",
+        "flamethrower"
+      ],
+      [
+        "emancipator",
+        "gatling_sentry",
+        "eat",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (14592).png",
+    "created": "2024-06-02T17:00:01.539Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "barrage_380",
+        "mortar_sentry",
+        "laser_cannon"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "orbital_railcannon",
+        "eat"
+      ],
+      [
+        "eagle_500kg",
+        "barrage_380",
+        "ems_sentry",
+        "mortar_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (14599).png",
+    "created": "2024-06-02T17:02:39.181Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "emancipator",
+        "grenade_launcher",
+        "eagle_500kg"
+      ],
+      [
+        "orbital_railcannon",
+        "hmg_encampment",
+        "guard_dog_rover",
+        "grenade_launcher"
+      ],
+      [
+        "guard_dog_rover",
+        "eagle_500kg",
+        "autocannon_sentry",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14606).png",
+    "created": "2024-06-02T17:05:13.689Z",
+    "players": [
+      [
+        "flamethrower",
+        "shield_backpack",
+        "emancipator",
+        "eat"
+      ],
+      [
+        "flamethrower",
+        "jump_pack",
+        "eat",
+        "eagle_airstrike"
+      ],
+      [
+        "supply_backpack",
+        "stalwart",
+        "eat",
+        "eagle_500kg"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (14613).png",
+    "created": "2024-06-02T17:07:49.934Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "quasar_cannon",
+        "shield_backpack"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "orbital_railcannon",
+        "eagle_cluster",
+        "shield_backpack",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14620).png",
+    "created": "2024-06-02T17:10:27.262Z",
+    "players": [
+      [
+        "mortar_sentry",
+        "guard_dog_rover",
+        "orbital_railcannon",
+        "flamethrower"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "autocannon",
+        "emancipator"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14627).png",
+    "created": "2024-06-02T17:13:01.847Z",
+    "players": [
+      [
+        "barrage_380",
+        "eagle_500kg",
+        "guard_dog_rover",
+        "orbital_precision"
+      ],
+      [
+        "orbital_laser",
+        "eagle_500kg",
+        "eagle_napalm",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14634).png",
+    "created": "2024-06-02T17:15:36.347Z",
+    "players": [
+      [
+        "ems_sentry",
+        "autocannon_sentry",
+        "emancipator",
+        "eagle_500kg"
+      ],
+      [
+        "arc_sentry",
+        "autocannon_sentry",
+        "hmg_encampment",
+        "railgun"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14641).png",
+    "created": "2024-06-02T17:18:10.626Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "gatling_sentry",
+        "flamethrower",
+        "jump_pack"
+      ],
+      [
+        "eat",
+        "flamethrower",
+        "ems_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "autocannon_sentry",
+        "orbital_laser",
+        "orbital_railcannon",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (14648).png",
+    "created": "2024-06-02T17:20:46.471Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "eagle_cluster",
+        "orbital_railcannon",
+        "autocannon"
+      ],
+      [
+        "orbital_laser",
+        "eagle_500kg",
+        "emancipator",
+        "quasar_cannon"
+      ],
+      [
+        "barrage_380",
+        "orbital_airburst",
+        "orbital_railcannon",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (14655).png",
+    "created": "2024-06-02T17:23:20.979Z",
+    "players": [
+      [
+        "emancipator",
+        "arc_thrower",
+        "barrage_120",
+        "orbital_laser"
+      ],
+      [
+        "emancipator",
+        "recoilless_rifle",
+        "orbital_railcannon",
+        "eagle_airstrike"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (14662).png",
+    "created": "2024-06-02T17:25:58.480Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "emancipator",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "emancipator",
+        "quasar_cannon",
+        "gatling_sentry"
+      ],
+      [
+        "orbital_airburst",
+        "eat",
+        "arc_sentry",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (14669).png",
+    "created": "2024-06-02T17:28:35.748Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "autocannon",
+        "orbital_precision",
+        "orbital_railcannon",
+        "eagle_airstrike"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_airburst",
+        "barrage_380",
+        "autocannon"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14690).png",
+    "created": "2024-06-02T17:36:21.991Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14697).png",
+    "created": "2024-06-02T17:38:59.809Z",
+    "players": [
+      [
+        "eat",
+        "orbital_railcannon",
+        "orbital_gas",
+        "eagle_cluster"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "ems_sentry",
+        "gatling_sentry",
+        "eat",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14704).png",
+    "created": "2024-06-02T17:41:37.311Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "",
+        "shield_backpack",
+        "flamethrower"
+      ],
+      [
+        "orbital_laser",
+        "orbital_precision",
+        "spear",
+        "orbital_railcannon"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_gas",
+        "guard_dog_rover",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14711).png",
+    "created": "2024-06-02T17:44:14.866Z",
+    "players": [
+      [
+        "flamethrower",
+        "gatling_sentry",
+        "eagle_airstrike",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "arc_thrower",
+        "ems_sentry"
+      ],
+      [
+        "stalwart",
+        "eagle_500kg",
+        "eagle_airstrike",
+        "supply_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (14718).png",
+    "created": "2024-06-02T17:46:49.250Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eat",
+        "shield_backpack",
+        "eagle_500kg"
+      ],
+      [
+        "grenade_launcher",
+        "eagle_500kg",
+        "eat",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (14725).png",
+    "created": "2024-06-02T17:49:27.021Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "orbital_railcannon",
+        "autocannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eagle_napalm",
+        "autocannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (14732).png",
+    "created": "2024-06-02T17:52:03.406Z",
+    "players": [
+      [
+        "autocannon",
+        "orbital_laser",
+        "emancipator",
+        "eagle_airstrike"
+      ],
+      [
+        "barrage_380",
+        "orbital_laser",
+        "eagle_110",
+        "quasar_cannon"
+      ],
+      [
+        "barrage_120",
+        "orbital_precision",
+        "quasar_cannon",
+        "shield_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14739).png",
+    "created": "2024-06-02T17:54:38.153Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "ems_sentry",
+        "quasar_cannon",
+        "supply_backpack"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "orbital_ems",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (14746).png",
+    "created": "2024-06-02T17:57:14.433Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (14753).png",
+    "created": "2024-06-02T17:59:50.420Z",
+    "players": [
+      [
+        "orbital_laser",
+        "walking_barrage",
+        "patriot",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "orbital_precision",
+        "spear"
+      ],
+      [
+        "orbital_precision",
+        "orbital_laser",
+        "orbital_airburst",
+        "autocannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (14760).png",
+    "created": "2024-06-02T18:02:26.220Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "quasar_cannon",
+        "shield_backpack"
+      ],
+      [
+        "orbital_railcannon",
+        "barrage_120",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "orbital_laser",
+        "shield_backpack",
+        "grenade_launcher",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 9,
+    "id": "Screenshot (14767).png",
+    "created": "2024-06-02T18:05:00.652Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_500kg",
+        "shield_backpack",
+        "flamethrower"
+      ],
+      [
+        "supply_backpack",
+        "grenade_launcher",
+        "eagle_500kg",
+        "gatling_barrage"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_napalm",
+        "orbital_railcannon",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14774).png",
+    "created": "2024-06-02T18:07:35.134Z",
+    "players": [
+      [
+        "supply_backpack",
+        "ems_sentry",
+        "orbital_ems",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 9,
+    "id": "Screenshot (14781).png",
+    "created": "2024-06-02T18:10:09.664Z",
+    "players": [
+      [
+        "orbital_laser",
+        "mg",
+        "guard_dog",
+        "orbital_ems"
+      ],
+      [
+        "shield_relay",
+        "eagle_napalm",
+        "barrage_380",
+        "quasar_cannon"
+      ],
+      [
+        "ems_sentry",
+        "mg_sentry",
+        "autocannon_sentry",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14788).png",
+    "created": "2024-06-02T18:12:45.546Z",
+    "players": [
+      [
+        "shield_backpack",
+        "flamethrower",
+        "orbital_laser",
+        "eagle_500kg"
+      ],
+      [
+        "autocannon_sentry",
+        "gatling_sentry",
+        "orbital_railcannon",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14809).png",
+    "created": "2024-06-02T18:20:34.355Z",
+    "players": [
+      [
+        "patriot",
+        "eagle_airstrike",
+        "eagle_cluster",
+        "flamethrower"
+      ],
+      [
+        "autocannon",
+        "eagle_500kg",
+        "eagle_smoke",
+        "orbital_railcannon"
+      ],
+      [
+        "guard_dog_rover",
+        "eagle_airstrike",
+        "eat",
+        "orbital_precision"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14816).png",
+    "created": "2024-06-02T18:23:11.959Z",
+    "players": [
+      [
+        "",
+        "eagle_500kg",
+        "eagle_strafe",
+        "grenade_launcher"
+      ],
+      [
+        "orbital_gas",
+        "",
+        "",
+        ""
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "orbital_airburst",
+        "shield_backpack"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14823).png",
+    "created": "2024-06-02T18:25:49.335Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "mg_sentry",
+        "",
+        ""
+      ],
+      [
+        "gatling_sentry",
+        "mg_sentry",
+        "autocannon_sentry",
+        "recoilless_rifle"
+      ],
+      [
+        "gatling_sentry",
+        "mg_sentry",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (14830).png",
+    "created": "2024-06-02T18:28:26.635Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "emancipator",
+        "",
+        "",
+        ""
+      ],
+      [
+        "shield_backpack",
+        "flamethrower",
+        "orbital_gas",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 7,
+    "id": "Screenshot (14837).png",
+    "created": "2024-06-02T18:31:04.361Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "gatling_sentry",
+        "laser_cannon",
+        "orbital_gas"
+      ],
+      [
+        "eagle_cluster",
+        "gatling_sentry",
+        "autocannon_sentry",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "DEPLOY DARK FLUID",
+    "difficulty": 8,
+    "id": "Screenshot (14844).png",
+    "created": "2024-06-02T18:33:40.600Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "shield_backpack",
+        "mg",
+        "eat"
+      ],
+      [
+        "gatling_sentry",
+        "ems_sentry",
+        "orbital_ems",
+        "grenade_launcher"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 9,
+    "id": "Screenshot (15328).png",
+    "created": "2024-06-02T22:25:29.802Z",
+    "players": [
+      [
+        "emancipator",
+        "barrage_120",
+        "orbital_laser",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "amr"
+      ],
+      [
+        "recoilless_rifle",
+        "barrage_120",
+        "barrage_380",
+        "eagle_airstrike"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (15333).png",
+    "created": "2024-06-02T22:28:30.525Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "gatling_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "mortar_sentry",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "autocannon_sentry",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (15340).png",
+    "created": "2024-06-02T22:30:37.856Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "stalwart",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_cluster",
+        "autocannon",
+        "gatling_sentry",
+        "mines_incendiary"
+      ],
+      [
+        "orbital_gas",
+        "orbital_railcannon",
+        "orbital_precision",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (15354).png",
+    "created": "2024-06-02T22:35:48.232Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "emancipator",
+        "airburst_launcher"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eagle_cluster",
+        "recoilless_rifle"
+      ],
+      [
+        "eagle_airstrike",
+        "walking_barrage",
+        "barrage_120",
+        "barrage_380"
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 7,
+    "id": "Screenshot (15361).png",
+    "created": "2024-06-02T22:38:27.685Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "jump_pack",
+        "gatling_sentry",
+        "eat"
+      ],
+      [
+        "supply_backpack",
+        "mg",
+        "orbital_railcannon",
+        "orbital_precision"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (15368).png",
+    "created": "2024-06-02T22:41:02.071Z",
+    "players": [
+      [
+        "barrage_380",
+        "barrage_120",
+        "orbital_railcannon",
+        "orbital_gas"
+      ],
+      [
+        "orbital_railcannon",
+        "autocannon",
+        "autocannon_sentry",
+        "eagle_airstrike"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (15375).png",
+    "created": "2024-06-02T22:43:39.750Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "barrage_380",
+        "guard_dog",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (15382).png",
+    "created": "2024-06-02T22:46:16.905Z",
+    "players": [
+      [
+        "mg",
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "railgun",
+        "shield_backpack",
+        "eagle_airstrike",
+        "orbital_laser"
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 7,
+    "id": "Screenshot (15385).png",
+    "created": "2024-06-02T22:48:50.800Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eat",
+        "orbital_laser"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_gas",
+        "eat",
+        "orbital_railcannon"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "shield_backpack",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (15392).png",
+    "created": "2024-06-02T22:51:22.142Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "mg",
+        "gatling_sentry"
+      ],
+      [
+        "barrage_120",
+        "gatling_barrage",
+        "walking_barrage",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "barrage_380",
+        "laser_cannon",
+        "emancipator"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (15399).png",
+    "created": "2024-06-02T22:53:59.486Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "guard_dog_rover",
+        "eagle_airstrike"
+      ],
+      [
+        "eagle_airstrike",
+        "shield_backpack",
+        "flamethrower",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (15406).png",
+    "created": "2024-06-02T22:56:35.273Z",
+    "players": [
+      [
+        "eat",
+        "gatling_sentry",
+        "eagle_500kg",
+        "orbital_gas"
+      ],
+      [
+        "eagle_airstrike",
+        "patriot",
+        "mines_incendiary",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (15413).png",
+    "created": "2024-06-02T22:59:13.012Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "gatling_sentry",
+        "shield_relay",
+        "stalwart"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "orbital_gas",
+        "amr"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 9,
+    "id": "Screenshot (15420).png",
+    "created": "2024-06-02T23:01:47.292Z",
+    "players": [
+      [
+        "spear",
+        "mortar_sentry",
+        "eagle_500kg",
+        "eagle_napalm"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_ems",
+        "gatling_sentry",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 9,
+    "id": "Screenshot (15424).png",
+    "created": "2024-06-02T23:04:18.605Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "shield_backpack",
+        "eat",
+        "orbital_laser"
+      ],
+      [
+        "eagle_500kg",
+        "eat",
+        "emancipator",
+        "orbital_laser"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (15430).png",
+    "created": "2024-06-02T23:07:39.250Z",
+    "players": [
+      [
+        "orbital_gas",
+        "eagle_airstrike",
+        "emancipator",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (15433).png",
+    "created": "2024-06-02T23:09:38.268Z",
+    "players": [
+      [
+        "emancipator",
+        "mines_incendiary",
+        "mines_infantry",
+        "eagle_500kg"
+      ],
+      [
+        "patriot",
+        "mines_incendiary",
+        "mines_infantry",
+        "orbital_laser"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 7,
+    "id": "Screenshot (15437).png",
+    "created": "2024-06-02T23:11:19.931Z",
+    "players": [
+      [
+        "orbital_laser",
+        "orbital_railcannon",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "recoilless_rifle",
+        "eagle_500kg",
+        "eagle_napalm",
+        "barrage_120"
+      ],
+      [
+        "autocannon_sentry",
+        "autocannon",
+        "orbital_airburst",
+        "eagle_110"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (15441).png",
+    "created": "2024-06-02T23:13:25.934Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (15448).png",
+    "created": "2024-06-02T23:15:40.782Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "mortar_sentry",
+        "guard_dog_rover",
+        "orbital_railcannon"
+      ],
+      [
+        "orbital_railcannon",
+        "emancipator",
+        "mortar_sentry",
+        "arc_thrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (15455).png",
+    "created": "2024-06-02T23:19:10.420Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "guard_dog",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "quasar_cannon",
+        "guard_dog_rover",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (15462).png",
+    "created": "2024-06-02T23:21:49.185Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "barrage_380",
+        "guard_dog_rover",
+        "emancipator"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "grenade_launcher",
+        "guard_dog_rover"
+      ],
+      [
+        "jump_pack",
+        "grenade_launcher",
+        "orbital_laser",
+        "patriot"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (15469).png",
+    "created": "2024-06-02T23:24:29.103Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "arc_thrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 7,
+    "id": "Screenshot (15476).png",
+    "created": "2024-06-02T23:27:10.122Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_110",
+        "guard_dog_rover",
+        "eat"
+      ],
+      [
+        "eagle_airstrike",
+        "quasar_cannon",
+        "guard_dog_rover",
+        "autocannon_sentry"
+      ],
+      [
+        "orbital_gas",
+        "orbital_airburst",
+        "eagle_500kg",
+        "recoilless_rifle"
+      ]
+    ]
+  },
+  {
+    "type": "EMERGENCY EVACUATION",
+    "difficulty": 7,
+    "id": "Screenshot (15483).png",
+    "created": "2024-06-02T23:29:51.512Z",
+    "players": [
+      [
+        "guard_dog_rover",
+        "quasar_cannon",
+        "orbital_precision",
+        "eagle_airstrike"
+      ],
+      [
+        "orbital_laser",
+        "quasar_cannon",
+        "guard_dog_rover",
+        "eagle_airstrike"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (15490).png",
+    "created": "2024-06-02T23:32:29.617Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "arc_sentry",
+        "patriot",
+        "emancipator"
+      ],
+      [
+        "barrage_380",
+        "barrage_120",
+        "orbital_laser",
+        "eagle_500kg"
+      ],
+      [
+        "recoilless_rifle",
+        "ems_sentry",
+        "orbital_ems",
+        "orbital_gas"
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (15497).png",
+    "created": "2024-06-02T23:35:09.525Z",
+    "players": [
+      [
+        "gatling_sentry",
+        "autocannon",
+        "eat",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 7,
+    "id": "Screenshot (15504).png",
+    "created": "2024-06-02T23:37:51.011Z",
+    "players": [
+      [
+        "orbital_laser",
+        "eagle_airstrike",
+        "autocannon_sentry",
+        "recoilless_rifle"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "autocannon",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 9,
+    "id": "Screenshot (15511).png",
+    "created": "2024-06-02T23:40:29.203Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "orbital_precision",
+        "autocannon"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_gas",
+        "eagle_napalm",
+        "recoilless_rifle"
+      ],
+      [
+        "orbital_ems",
+        "orbital_gas",
+        "orbital_precision",
+        "spear"
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (15518).png",
+    "created": "2024-06-02T23:43:11.050Z",
+    "players": [
+      [
+        "orbital_airburst",
+        "orbital_laser",
+        "patriot",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "autocannon",
+        "patriot"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 9,
+    "id": "Screenshot (15528).png",
+    "created": "2024-06-02T23:48:04.978Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "eagle_500kg",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 9,
+    "id": "Screenshot (15531).png",
+    "created": "2024-06-02T23:49:44.929Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "supply_backpack",
+        "eat"
+      ],
+      [
+        "eagle_500kg",
+        "gatling_barrage",
+        "guard_dog_rover",
+        "eagle_napalm"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (15539).png",
+    "created": "2024-06-02T23:52:34.321Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "autocannon",
+        "patriot"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (15546).png",
+    "created": "2024-06-02T23:55:14.599Z",
+    "players": [
+      [
+        "ems_sentry",
+        "mortar_sentry",
+        "barrage_380",
+        "barrage_120"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "spear",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (15553).png",
+    "created": "2024-06-02T23:57:59.012Z",
+    "players": [
+      [
+        "orbital_laser",
+        "eagle_500kg",
+        "emancipator",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "spear",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (15560).png",
+    "created": "2024-06-03T00:00:40.405Z",
+    "players": [
+      [
+        "recoilless_rifle",
+        "ems_sentry",
+        "barrage_380",
+        ""
+      ],
+      [
+        "recoilless_rifle",
+        "flamethrower",
+        "barrage_380",
+        "orbital_precision"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (15571).png",
+    "created": "2024-06-03T00:08:05.016Z",
+    "players": [
+      [
+        "eagle_110",
+        "eagle_airstrike",
+        "jump_pack",
+        "amr"
+      ],
+      [
+        "flamethrower",
+        "shield_backpack",
+        "autocannon_sentry",
+        "orbital_railcannon"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_gas",
+        "shield_backpack",
+        "flamethrower"
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (15578).png",
+    "created": "2024-06-03T00:11:31.683Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "arc_thrower",
+        "eat"
+      ],
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "eat"
+      ],
+      [
+        "orbital_railcannon",
+        "flamethrower",
+        "eat",
+        "eagle_500kg"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 8,
+    "id": "Screenshot (15585).png",
+    "created": "2024-06-03T00:14:30.485Z",
+    "players": [
+      [
+        "orbital_laser",
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "autocannon"
+      ],
+      [
+        "orbital_laser",
+        "guard_dog_rover",
+        "arc_thrower",
+        "orbital_precision"
+      ],
+      [
+        "supply_backpack",
+        "eat",
+        "orbital_gas",
+        "eagle_airstrike"
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 9,
+    "id": "Screenshot (15592).png",
+    "created": "2024-06-03T00:17:27.395Z",
+    "players": [
+      [
+        "patriot",
+        "shield_backpack",
+        "eagle_500kg",
+        "walking_barrage"
+      ],
+      [
+        "eagle_500kg",
+        "emancipator",
+        "supply_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "supply_backpack",
+        "orbital_railcannon",
+        "hmg",
+        "eagle_airstrike"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (15600).png",
+    "created": "2024-06-03T00:21:43.671Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "autocannon",
+        "orbital_laser"
+      ],
+      [
+        "orbital_precision",
+        "mg",
+        "amr",
+        ""
+      ],
+      [
+        "orbital_laser",
+        "autocannon",
+        "eagle_500kg",
+        "eagle_airstrike"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (15603).png",
+    "created": "2024-06-03T00:24:52.229Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "supply_backpack",
+        "grenade_launcher"
+      ],
+      [
+        "orbital_laser",
+        "emancipator",
+        "quasar_cannon",
+        "patriot"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "emancipator",
+        "guard_dog_rover"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 9,
+    "id": "Screenshot (15617).png",
+    "created": "2024-06-03T00:29:42.472Z",
+    "players": [
+      [
+        "eagle_cluster",
+        "jump_pack",
+        "flamethrower",
+        "orbital_laser"
+      ],
+      [
+        "eagle_airstrike",
+        "mg",
+        "mortar_sentry",
+        "gatling_sentry"
+      ],
+      [
+        "recoilless_rifle",
+        "autocannon_sentry",
+        "gatling_sentry",
+        "emancipator"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (15620).png",
+    "created": "2024-06-03T00:32:43.670Z",
+    "players": [
+      [
+        "shield_backpack",
+        "flamethrower",
+        "eagle_airstrike",
+        "orbital_railcannon"
+      ],
+      [
+        "barrage_120",
+        "barrage_380",
+        "eagle_500kg",
+        "eagle_airstrike"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "amr"
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 9,
+    "id": "Screenshot (15627).png",
+    "created": "2024-06-03T00:34:50.576Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "recoilless_rifle",
+        "eagle_napalm",
+        "eagle_airstrike",
+        "orbital_gas"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 8,
+    "id": "Screenshot (15634).png",
+    "created": "2024-06-03T00:37:44.195Z",
+    "players": [
+      [
+        "orbital_laser",
+        "autocannon",
+        "eagle_500kg",
+        "eagle_airstrike"
+      ],
+      [
+        "orbital_precision",
+        "mg",
+        "amr",
+        ""
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "autocannon",
+        "orbital_laser"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (15641).png",
+    "created": "2024-06-03T00:40:36.597Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "stalwart",
+        "orbital_railcannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eagle_110",
+        "jump_pack"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 9,
+    "id": "Screenshot (15648).png",
+    "created": "2024-06-03T00:43:28.865Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "shield_backpack",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (15655).png",
+    "created": "2024-06-03T00:49:10.005Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "recoilless_rifle",
+        "autocannon_sentry",
+        "gatling_sentry",
+        "eagle_500kg"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "EMERGENCY EVACUATION",
+    "difficulty": 8,
+    "id": "Screenshot (15662).png",
+    "created": "2024-06-03T00:51:17.574Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "recoilless_rifle",
+        "shield_relay"
+      ],
+      [
+        "airburst_launcher",
+        "emancipator",
+        "eagle_500kg",
+        "orbital_railcannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (15665).png",
+    "created": "2024-06-03T00:53:34.034Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "guard_dog_rover",
+        "flamethrower",
+        "emancipator"
+      ],
+      [
+        "orbital_laser",
+        "eagle_napalm",
+        "quasar_cannon",
+        ""
+      ],
+      [
+        "quasar_cannon",
+        "mortar_sentry",
+        "autocannon_sentry",
+        "eagle_cluster"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 7,
+    "id": "Screenshot (15672).png",
+    "created": "2024-06-03T00:55:47.054Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (15679).png",
+    "created": "2024-06-03T00:59:53.405Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "arc_sentry",
+        "eat"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_cluster",
+        "spear",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (15686).png",
+    "created": "2024-06-03T01:02:47.095Z",
+    "players": [
+      [
+        "quasar_cannon",
+        "shield_backpack",
+        "eagle_110",
+        "rocket_sentry"
+      ],
+      [
+        "orbital_gas",
+        "quasar_cannon",
+        "eagle_airstrike",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (15693).png",
+    "created": "2024-06-03T01:05:39.114Z",
+    "players": [
+      [
+        "barrage_380",
+        "barrage_120",
+        "walking_barrage",
+        "eagle_500kg"
+      ],
+      [
+        "flamethrower",
+        "guard_dog_rover",
+        "eagle_500kg",
+        "eagle_airstrike"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (15700).png",
+    "created": "2024-06-03T01:08:32.879Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "autocannon_sentry",
+        "railgun",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 8,
+    "id": "Screenshot (15707).png",
+    "created": "2024-06-03T01:11:26.508Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_cluster",
+        "orbital_railcannon",
+        "autocannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "EMERGENCY EVACUATION",
+    "difficulty": 7,
+    "id": "Screenshot (15722).png",
+    "created": "2024-06-03T01:20:51.354Z",
+    "players": [
+      [
+        "emancipator",
+        "eagle_airstrike",
+        "eagle_cluster",
+        ""
+      ],
+      [
+        "eagle_500kg",
+        "orbital_airburst",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 7,
+    "id": "Screenshot (15999).png",
+    "created": "2024-06-03T07:23:27.503Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "eat",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 7,
+    "id": "Screenshot (16013).png",
+    "created": "2024-06-03T07:29:16.889Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (16020).png",
+    "created": "2024-06-03T07:32:11.085Z",
+    "players": [
+      [
+        "rocket_sentry",
+        "ems_sentry",
+        "mortar_sentry",
+        "patriot"
+      ],
+      [
+        "hmg_encampment",
+        "mortar_sentry",
+        "ems_sentry",
+        "rocket_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (16027).png",
+    "created": "2024-06-03T07:35:06.683Z",
+    "players": [
+      [
+        "airburst_launcher",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "autocannon_sentry"
+      ],
+      [
+        "flamethrower",
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "orbital_laser"
+      ],
+      [
+        "eagle_cluster",
+        "orbital_laser",
+        "guard_dog_rover",
+        "grenade_launcher"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (16034).png",
+    "created": "2024-06-03T07:38:03.625Z",
+    "players": [
+      [
+        "patriot",
+        "ems_sentry",
+        "rocket_sentry",
+        "autocannon_sentry"
+      ],
+      [
+        "recoilless_rifle",
+        "gatling_sentry",
+        "autocannon_sentry",
+        "hmg_encampment"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (16048).png",
+    "created": "2024-06-03T07:43:53.265Z",
+    "players": [
+      [
+        "autocannon_sentry",
+        "gatling_sentry",
+        "spear",
+        "eagle_cluster"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "flamethrower",
+        "orbital_railcannon",
+        "orbital_laser",
+        "eagle_airstrike"
+      ]
+    ]
+  },
+  {
+    "type": "EMERGENCY EVACUATION",
+    "difficulty": 9,
+    "id": "Screenshot (16055).png",
+    "created": "2024-06-03T07:46:47.507Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "eagle_cluster",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "guard_dog_rover",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (16069).png",
+    "created": "2024-06-03T07:52:41.920Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_500kg",
+        "quasar_cannon",
+        "shield_backpack"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 9,
+    "id": "Screenshot (16076).png",
+    "created": "2024-06-03T07:55:35.846Z",
+    "players": [
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "orbital_railcannon",
+        "eagle_cluster"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "autocannon",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (16083).png",
+    "created": "2024-06-03T07:58:31.345Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (16090).png",
+    "created": "2024-06-03T08:01:28.277Z",
+    "players": [
+      [
+        "railgun",
+        "jump_pack",
+        "orbital_railcannon",
+        "gatling_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_gas",
+        "recoilless_rifle",
+        "barrage_120"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (16097).png",
+    "created": "2024-06-03T08:04:23.823Z",
+    "players": [
+      [
+        "eagle_napalm",
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "spear"
+      ],
+      [
+        "eagle_napalm",
+        "orbital_railcannon",
+        "spear",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_500kg",
+        "mg",
+        "rocket_sentry",
+        "autocannon_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 9,
+    "id": "Screenshot (16104).png",
+    "created": "2024-06-03T08:07:17.320Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "quasar_cannon",
+        "shield_backpack"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (16111).png",
+    "created": "2024-06-03T08:10:13.979Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "autocannon",
+        "ems_sentry"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "grenade_launcher",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 7,
+    "id": "Screenshot (16118).png",
+    "created": "2024-06-03T08:13:11.183Z",
+    "players": [
+      [
+        "orbital_precision",
+        "orbital_gas",
+        "laser_cannon",
+        "shield_backpack"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "eagle_110",
+        "orbital_gas",
+        "emancipator",
+        "eat"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16125).png",
+    "created": "2024-06-03T08:16:07.921Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16132).png",
+    "created": "2024-06-03T08:19:05.554Z",
+    "players": [
+      [
+        "orbital_laser",
+        "autocannon_sentry",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_gas",
+        "eat",
+        "autocannon_sentry"
+      ],
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "eagle_airstrike",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 9,
+    "id": "Screenshot (16139).png",
+    "created": "2024-06-03T08:21:59.823Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "supply_backpack",
+        "grenade_launcher",
+        "eat"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "spear",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (16146).png",
+    "created": "2024-06-03T08:24:54.126Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "eagle_napalm",
+        "shield_backpack",
+        "eagle_500kg"
+      ],
+      [
+        "eagle_airstrike",
+        "barrage_380",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "Level 102 | COMMANDER Leu:",
+    "difficulty": 7,
+    "id": "Screenshot (16160).png",
+    "created": "2024-06-03T08:30:44.789Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (16167).png",
+    "created": "2024-06-03T08:33:40.312Z",
+    "players": [
+      [
+        "orbital_airburst",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "railgun"
+      ],
+      [
+        "gatling_sentry",
+        "jump_pack",
+        "stalwart",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_airstrike",
+        "jump_pack",
+        "flamethrower",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (16174).png",
+    "created": "2024-06-03T08:36:36.269Z",
+    "players": [
+      [
+        "autocannon",
+        "eagle_500kg",
+        "orbital_gas",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "orbital_laser",
+        "shield_backpack"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16181).png",
+    "created": "2024-06-03T08:39:32.876Z",
+    "players": [
+      [
+        "quasar_cannon",
+        "shield_backpack",
+        "orbital_railcannon",
+        "eagle_500kg"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (16195).png",
+    "created": "2024-06-03T08:45:21.965Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "recoilless_rifle",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "autocannon_sentry",
+        "spear"
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 9,
+    "id": "Screenshot (16202).png",
+    "created": "2024-06-03T08:48:15.880Z",
+    "players": [
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (16209).png",
+    "created": "2024-06-03T08:51:12.493Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "shield_backpack",
+        "eat"
+      ],
+      [
+        "eagle_airstrike",
+        "emancipator",
+        "orbital_railcannon",
+        "grenade_launcher"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16216).png",
+    "created": "2024-06-03T08:54:10.127Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "eat",
+        "autocannon_sentry",
+        "mg_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 8,
+    "id": "Screenshot (16223).png",
+    "created": "2024-06-03T08:57:05.734Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_precision",
+        "flamethrower",
+        "gatling_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "recoilless_rifle",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16230).png",
+    "created": "2024-06-03T09:00:02.651Z",
+    "players": [
+      [
+        "jump_pack",
+        "quasar_cannon",
+        "eagle_napalm",
+        "autocannon_sentry"
+      ],
+      [
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "orbital_railcannon",
+        "barrage_380",
+        "quasar_cannon",
+        "autocannon_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (16237).png",
+    "created": "2024-06-03T09:02:58.229Z",
+    "players": [
+      [
+        "eat",
+        "orbital_railcannon",
+        "gatling_sentry",
+        "eagle_napalm"
+      ],
+      [
+        "autocannon",
+        "eagle_500kg",
+        "orbital_gas",
+        "autocannon_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (16244).png",
+    "created": "2024-06-03T09:05:53.851Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 9,
+    "id": "Screenshot (16251).png",
+    "created": "2024-06-03T09:08:47.951Z",
+    "players": [
+      [
+        "",
+        "eagle_airstrike",
+        "eagle_500kg",
+        "autocannon"
+      ],
+      [
+        "orbital_ems",
+        "eagle_napalm",
+        "eat",
+        "spear"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "recoilless_rifle",
+        "eagle_napalm"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 8,
+    "id": "Screenshot (16258).png",
+    "created": "2024-06-03T09:11:43.278Z",
+    "players": [
+      [
+        "eagle_cluster",
+        "orbital_railcannon",
+        "arc_thrower",
+        "jump_pack"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (16265).png",
+    "created": "2024-06-03T09:14:39.061Z",
+    "players": [
+      [
+        "eagle_napalm",
+        "shield_backpack",
+        "autocannon_sentry",
+        "orbital_laser"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "autocannon",
+        "gatling_sentry"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 9,
+    "id": "Screenshot (16272).png",
+    "created": "2024-06-03T09:17:32.907Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "barrage_380",
+        "walking_barrage"
+      ],
+      [
+        "orbital_laser",
+        "eagle_airstrike",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "shield_backpack",
+        "walking_barrage",
+        "eagle_airstrike",
+        "eagle_cluster"
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (16279).png",
+    "created": "2024-06-03T09:20:30.300Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "quasar_cannon",
+        "shield_backpack"
+      ],
+      [
+        "eagle_airstrike",
+        "orbital_laser",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (16286).png",
+    "created": "2024-06-03T09:23:24.910Z",
+    "players": [
+      [
+        "orbital_laser",
+        "eagle_cluster",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "eagle_500kg",
+        "walking_barrage",
+        "arc_thrower",
+        "arc_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "autocannon",
+        "rocket_sentry",
+        "autocannon_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 9,
+    "id": "Screenshot (16300).png",
+    "created": "2024-06-03T09:29:15.900Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "eagle_napalm",
+        "flamethrower"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "difficulty": 9,
+    "id": "Screenshot (16307).png",
+    "created": "2024-06-03T09:32:10.467Z",
+    "players": [
+      [
+        "barrage_380",
+        "orbital_precision",
+        "eagle_110",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (16314).png",
+    "created": "2024-06-03T09:35:05.687Z",
+    "players": [
+      [
+        "orbital_laser",
+        "eagle_cluster",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "orbital_railcannon",
+        "flamethrower",
+        "jump_pack",
+        "eagle_airstrike"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 8,
+    "id": "Screenshot (16321).png",
+    "created": "2024-06-03T09:38:01.673Z",
+    "players": [
+      [
+        "orbital_laser",
+        "eagle_cluster",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "orbital_railcannon",
+        "flamethrower",
+        "jump_pack",
+        "eagle_airstrike"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 7,
+    "id": "Screenshot (16328).png",
+    "created": "2024-06-03T09:40:58.871Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "jump_pack",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "EMERGENCY EVACUATION",
+    "difficulty": 9,
+    "id": "Screenshot (16335).png",
+    "created": "2024-06-03T09:43:52.776Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "barrage_380",
+        "guard_dog_rover",
+        "flamethrower"
+      ],
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "orbital_railcannon",
+        "recoilless_rifle"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 7,
+    "id": "Screenshot (16342).png",
+    "created": "2024-06-03T09:46:49.581Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "eat",
+        "amr"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 9,
+    "id": "Screenshot (16349).png",
+    "created": "2024-06-03T09:49:44.187Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "eagle_500kg",
+        "recoilless_rifle",
+        "eagle_napalm"
+      ],
+      [
+        "flamethrower",
+        "jump_pack",
+        "eagle_500kg",
+        "orbital_railcannon"
+      ],
+      [
+        "jump_pack",
+        "quasar_cannon",
+        "eagle_500kg",
+        "orbital_airburst"
+      ]
+    ]
+  },
+  {
+    "type": "LAUNCH ICBM",
+    "difficulty": 9,
+    "id": "Screenshot (16356).png",
+    "created": "2024-06-03T09:52:38.644Z",
+    "players": [
+      [
+        "eagle_napalm",
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "recoilless_rifle"
+      ],
+      [
+        "ems_sentry",
+        "orbital_gas",
+        "quasar_cannon",
+        "jump_pack"
+      ],
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "orbital_airburst",
+        "gatling_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 9,
+    "id": "Screenshot (16363).png",
+    "created": "2024-06-03T09:55:32.969Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "eagle_airstrike",
+        "airburst_launcher"
+      ],
+      [
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "orbital_laser",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 8,
+    "id": "Screenshot (16370).png",
+    "created": "2024-06-03T09:58:28.416Z",
+    "players": [
+      [
+        "shield_backpack",
+        "flamethrower",
+        "gatling_sentry",
+        "eagle_500kg"
+      ],
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "gatling_sentry",
+        "eagle_airstrike"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (16377).png",
+    "created": "2024-06-03T10:01:25.730Z",
+    "players": [
+      [
+        "eat",
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "gatling_sentry"
+      ],
+      [
+        "stalwart",
+        "eat",
+        "patriot",
+        "hmg_encampment"
+      ],
+      [
+        "ems_sentry",
+        "flamethrower",
+        "orbital_laser",
+        "autocannon_sentry"
+      ]
+    ]
+  },
+  {
+    "type": "PURGE HATCHERIES",
+    "difficulty": 7,
+    "id": "Screenshot (16384).png",
+    "created": "2024-06-03T10:04:20.916Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "eagle_napalm",
+        "orbital_railcannon",
+        "flamethrower",
+        "guard_dog_rover"
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (16391).png",
+    "created": "2024-06-03T10:07:17.057Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "eat",
+        "mortar_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_gas",
+        "arc_thrower",
+        "guard_dog_rover"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ERADICATE TERMINID SWARM",
+    "difficulty": 7,
+    "id": "Screenshot (16398).png",
+    "created": "2024-06-03T10:10:14.504Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_railcannon",
+        "eat",
+        "autocannon_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "eat",
+        "mortar_sentry"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_gas",
+        "arc_thrower",
+        "guard_dog_rover"
+      ]
+    ]
+  },
+  {
+    "type": "CONDUCT GEOLOGICAL SURVEY",
+    "difficulty": 9,
+    "id": "Screenshot (16412).png",
+    "created": "2024-06-03T10:16:03.844Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "eagle_cluster",
+        "autocannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "eat"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 7,
+    "id": "Screenshot (16419).png",
+    "created": "2024-06-03T10:19:00.747Z",
+    "players": [
+      [
+        "orbital_railcannon",
+        "walking_barrage",
+        "grenade_launcher",
+        "supply_backpack"
+      ],
+      [
+        "stalwart",
+        "supply_backpack",
+        "eat",
+        "hmg_encampment"
+      ],
+      [
+        "orbital_laser",
+        "emancipator",
+        "quasar_cannon",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "ENABLE E-710 EXTRACTION",
+    "difficulty": 9,
+    "id": "Screenshot (16426).png",
+    "created": "2024-06-03T10:21:54.539Z",
+    "players": [
+      [
+        "barrage_120",
+        "eagle_500kg",
+        "orbital_laser",
+        "grenade_launcher"
+      ],
+      [
+        "eagle_500kg",
+        "orbital_gas",
+        "quasar_cannon",
+        "orbital_precision"
+      ],
+      [
+        "quasar_cannon",
+        "guard_dog_rover",
+        "eagle_airstrike",
+        "orbital_railcannon"
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (16433).png",
+    "created": "2024-06-03T10:24:51.345Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "orbital_laser",
+        "orbital_railcannon",
+        "autocannon"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_napalm",
+        "patriot",
+        "recoilless_rifle"
+      ],
+      [
+        "eagle_500kg",
+        "eagle_airstrike",
+        "guard_dog_rover",
+        "quasar_cannon"
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (16440).png",
+    "created": "2024-06-03T10:27:46.800Z",
+    "players": [
+      [
+        "eagle_500kg",
+        "eagle_cluster",
+        "autocannon_sentry",
+        "recoilless_rifle"
+      ],
+      [
+        "eagle_cluster",
+        "eagle_airstrike",
+        "gatling_sentry",
+        "recoilless_rifle"
+      ],
+      [
+        "orbital_railcannon",
+        "orbital_laser",
+        "quasar_cannon",
+        "guard_dog_rover"
+      ]
+    ]
+  },
+  {
+    "type": "SPREAD DEMOCRACY",
+    "difficulty": 7,
+    "id": "Screenshot (16447).png",
+    "created": "2024-06-03T10:30:43.742Z",
+    "players": [
+      [
+        "gatling_barrage",
+        "orbital_railcannon",
+        "railgun",
+        "guard_dog_rover"
+      ],
+      [
+        "emancipator",
+        "recoilless_rifle",
+        "patriot",
+        "quasar_cannon"
+      ],
+      [
+        "recoilless_rifle",
+        "eagle_500kg",
+        "orbital_railcannon",
+        "eagle_cluster"
+      ]
+    ]
+  },
+  {
+    "type": "BLITZ: SEARCH AND DESTROY",
+    "difficulty": 7,
+    "id": "Screenshot (16454).png",
+    "created": "2024-06-03T10:33:40.447Z",
+    "players": [
+      [
+        "eagle_airstrike",
+        "orbital_railcannon",
+        "shield_backpack",
+        "quasar_cannon"
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "RETRIEVE VALUABLE DATA",
+    "difficulty": 8,
+    "id": "Screenshot (5255).png",
+    "created": "2024-05-28T01:15:55.023Z",
     "players": [
       [
         "emancipator",
@@ -6546,12 +12008,13 @@ const terminidData = [
         "barrage_380",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (5255).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (5263).png",
+    "created": "2024-05-28T01:19:20.624Z",
     "players": [
       [
         "emancipator",
@@ -6571,12 +12034,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5263).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (5271).png",
+    "created": "2024-05-28T01:21:46.740Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6596,12 +12060,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5271).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (5287).png",
+    "created": "2024-05-31T14:41:11.416Z",
     "players": [
       [
         "eagle_500kg",
@@ -6621,12 +12086,13 @@ const terminidData = [
         "autocannon",
         "mg_sentry"
       ]
-    ],
-    "id": "Screenshot (5287).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 8,
+    "id": "Screenshot (5295).png",
+    "created": "2024-05-28T01:29:03.243Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6646,12 +12112,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5295).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5303).png",
+    "created": "2024-05-28T01:31:28.852Z",
     "players": [
       [
         "eagle_500kg",
@@ -6671,12 +12138,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5303).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (5311).png",
+    "created": "2024-05-28T01:33:54.634Z",
     "players": [
       [
         "eagle_500kg",
@@ -6696,12 +12164,13 @@ const terminidData = [
         "mg",
         "eat"
       ]
-    ],
-    "id": "Screenshot (5311).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5327).png",
+    "created": "2024-05-28T01:38:45.237Z",
     "players": [
       [
         "mg",
@@ -6721,12 +12190,13 @@ const terminidData = [
         "eagle_napalm",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (5327).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (5343).png",
+    "created": "2024-05-28T01:43:36.193Z",
     "players": [
       [
         "flamethrower",
@@ -6746,12 +12216,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5343).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (5354).png",
+    "created": "2024-05-28T01:48:54.744Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6771,12 +12242,13 @@ const terminidData = [
         "barrage_380",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (5354).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5370).png",
+    "created": "2024-05-31T14:41:58.069Z",
     "players": [
       [
         "eagle_cluster",
@@ -6796,12 +12268,13 @@ const terminidData = [
         "supply_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (5370).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (5378).png",
+    "created": "2024-05-28T02:05:20.980Z",
     "players": [
       [
         "eagle_500kg",
@@ -6821,12 +12294,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5378).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5386).png",
+    "created": "2024-05-31T15:35:37.806Z",
     "players": [
       [
         "eagle_500kg",
@@ -6846,12 +12320,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5386).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (5394).png",
+    "created": "2024-05-28T02:10:18.698Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6871,12 +12346,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (5394).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5402).png",
+    "created": "2024-05-28T02:12:47.124Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6896,12 +12372,13 @@ const terminidData = [
         "shield_backpack",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (5402).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (5410).png",
+    "created": "2024-05-28T02:16:07.717Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6921,12 +12398,13 @@ const terminidData = [
         "mortar_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (5410).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (5418).png",
+    "created": "2024-05-28T02:18:39.082Z",
     "players": [
       [
         "eagle_500kg",
@@ -6946,12 +12424,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (5418).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (5426).png",
+    "created": "2024-05-28T02:21:10.799Z",
     "players": [
       [
         "eagle_airstrike",
@@ -6971,12 +12450,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (5426).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (5434).png",
+    "created": "2024-05-28T02:23:48.243Z",
     "players": [
       [
         "orbital_railcannon",
@@ -6996,12 +12476,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5434).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (5450).png",
+    "created": "2024-05-28T03:04:34.895Z",
     "players": [
       [
         "patriot",
@@ -7021,12 +12502,13 @@ const terminidData = [
         "gatling_sentry",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (5450).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 8,
+    "id": "Screenshot (5458).png",
+    "created": "2024-05-28T03:07:07.999Z",
     "players": [
       [
         "eagle_500kg",
@@ -7046,12 +12528,13 @@ const terminidData = [
         "jump_pack",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (5458).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (5466).png",
+    "created": "2024-05-28T03:09:41.129Z",
     "players": [
       [
         "eagle_napalm",
@@ -7071,12 +12554,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5466).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (5475).png",
+    "created": "2024-05-28T03:13:40.461Z",
     "players": [
       [
         "orbital_railcannon",
@@ -7096,12 +12580,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (5475).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5483).png",
+    "created": "2024-05-28T03:16:13.377Z",
     "players": [
       [
         "patriot",
@@ -7121,12 +12606,13 @@ const terminidData = [
         "eagle_500kg",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (5483).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (5491).png",
+    "created": "2024-05-28T03:18:46.193Z",
     "players": [
       [
         "barrage_380",
@@ -7146,12 +12632,13 @@ const terminidData = [
         "eat",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (5491).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (5515).png",
+    "created": "2024-05-28T03:26:28.444Z",
     "players": [
       [
         "emancipator",
@@ -7171,12 +12658,13 @@ const terminidData = [
         "shield_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (5515).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (5524).png",
+    "created": "2024-05-28T03:32:01.649Z",
     "players": [
       [
         "eagle_strafe",
@@ -7196,12 +12684,13 @@ const terminidData = [
         "guard_dog_rover",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (5524).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (5532).png",
+    "created": "2024-05-28T03:34:34.982Z",
     "players": [
       [
         "eagle_airstrike",
@@ -7221,12 +12710,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5532).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5540).png",
+    "created": "2024-05-28T03:37:07.814Z",
     "players": [
       [
         "eagle_500kg",
@@ -7246,12 +12736,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5540).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5548).png",
+    "created": "2024-05-28T03:39:40.973Z",
     "players": [
       [
         "eagle_500kg",
@@ -7271,12 +12762,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5548).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (5556).png",
+    "created": "2024-05-28T03:42:12.485Z",
     "players": [
       [
         "orbital_railcannon",
@@ -7296,12 +12788,13 @@ const terminidData = [
         "barrage_380",
         "eagle_110"
       ]
-    ],
-    "id": "Screenshot (5556).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (5564).png",
+    "created": "2024-05-28T03:44:44.120Z",
     "players": [
       [
         "eagle_500kg",
@@ -7321,12 +12814,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5564).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5574).png",
+    "created": "2024-05-31T14:43:15.212Z",
     "players": [
       [
         "eagle_500kg",
@@ -7346,12 +12840,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5574).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5582).png",
+    "created": "2024-05-28T03:51:05.847Z",
     "players": [
       [
         "eagle_500kg",
@@ -7371,12 +12866,13 @@ const terminidData = [
         "mortar_sentry",
         "eat"
       ]
-    ],
-    "id": "Screenshot (5582).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5590).png",
+    "created": "2024-05-28T03:53:37.485Z",
     "players": [
       [
         "",
@@ -7396,12 +12892,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5590).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (5598).png",
+    "created": "2024-05-28T03:56:12.113Z",
     "players": [
       [
         "ems_sentry",
@@ -7421,12 +12918,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5598).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (5606).png",
+    "created": "2024-05-31T14:44:10.540Z",
     "players": [
       [
         "grenade_launcher",
@@ -7446,12 +12944,13 @@ const terminidData = [
         "eagle_500kg",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (5606).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (5614).png",
+    "created": "2024-05-31T14:44:39.068Z",
     "players": [
       [
         "eagle_500kg",
@@ -7471,12 +12970,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5614).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (5622).png",
+    "created": "2024-05-28T04:03:51.328Z",
     "players": [
       [
         "eagle_500kg",
@@ -7496,12 +12996,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5622).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (5630).png",
+    "created": "2024-05-28T04:06:25.751Z",
     "players": [
       [
         "eagle_500kg",
@@ -7521,12 +13022,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (5630).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (5638).png",
+    "created": "2024-05-28T04:09:00.551Z",
     "players": [
       [
         "barrage_380",
@@ -7546,12 +13048,13 @@ const terminidData = [
         "guard_dog_rover",
         "eat"
       ]
-    ],
-    "id": "Screenshot (5638).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (5646).png",
+    "created": "2024-05-28T04:11:35.394Z",
     "players": [
       [
         "spear",
@@ -7571,12 +13074,13 @@ const terminidData = [
         "orbital_laser",
         "spear"
       ]
-    ],
-    "id": "Screenshot (5646).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (5654).png",
+    "created": "2024-05-28T04:14:06.722Z",
     "players": [
       [
         "eagle_airstrike",
@@ -7596,12 +13100,13 @@ const terminidData = [
         "flamethrower",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (5654).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (5662).png",
+    "created": "2024-05-28T04:16:41.378Z",
     "players": [
       [
         "eat",
@@ -7621,12 +13126,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5662).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (5670).png",
+    "created": "2024-05-28T04:19:13.152Z",
     "players": [
       [
         "eagle_500kg",
@@ -7646,12 +13152,13 @@ const terminidData = [
         "laser_cannon",
         ""
       ]
-    ],
-    "id": "Screenshot (5670).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (5678).png",
+    "created": "2024-05-28T04:22:33.986Z",
     "players": [
       [
         "barrage_380",
@@ -7671,12 +13178,13 @@ const terminidData = [
         "orbital_railcannon",
         "barrage_380"
       ]
-    ],
-    "id": "Screenshot (5678).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (5686).png",
+    "created": "2024-05-28T04:25:12.890Z",
     "players": [
       [
         "autocannon",
@@ -7696,12 +13204,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5686).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5702).png",
+    "created": "2024-05-28T04:30:33.095Z",
     "players": [
       [
         "eagle_airstrike",
@@ -7721,12 +13230,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5702).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (5718).png",
+    "created": "2024-05-28T04:35:50.500Z",
     "players": [
       [
         "emancipator",
@@ -7746,12 +13256,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5718).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (5726).png",
+    "created": "2024-05-28T04:38:30.321Z",
     "players": [
       [
         "eagle_airstrike",
@@ -7771,12 +13282,13 @@ const terminidData = [
         "orbital_laser",
         "barrage_380"
       ]
-    ],
-    "id": "Screenshot (5726).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (5734).png",
+    "created": "2024-05-28T04:41:10.664Z",
     "players": [
       [
         "recoilless_rifle",
@@ -7796,12 +13308,13 @@ const terminidData = [
         "gatling_sentry",
         "arc_thrower"
       ]
-    ],
-    "id": "Screenshot (5734).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5766).png",
+    "created": "2024-05-28T04:51:49.223Z",
     "players": [
       [
         "eagle_500kg",
@@ -7821,12 +13334,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5766).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (5774).png",
+    "created": "2024-05-28T04:54:31.013Z",
     "players": [
       [
         "eagle_napalm",
@@ -7846,12 +13360,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (5774).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (5782).png",
+    "created": "2024-05-28T04:57:09.515Z",
     "players": [
       [
         "recoilless_rifle",
@@ -7871,12 +13386,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5782).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5790).png",
+    "created": "2024-05-28T04:59:51.148Z",
     "players": [
       [
         "orbital_railcannon",
@@ -7896,12 +13412,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5790).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5798).png",
+    "created": "2024-05-28T05:02:32.960Z",
     "players": [
       [
         "eagle_110",
@@ -7921,12 +13438,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5798).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (5806).png",
+    "created": "2024-05-28T05:05:11.518Z",
     "players": [
       [
         "eagle_500kg",
@@ -7946,12 +13464,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5806).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (5814).png",
+    "created": "2024-05-31T14:45:31.505Z",
     "players": [
       [
         "eagle_500kg",
@@ -7971,12 +13490,13 @@ const terminidData = [
         "orbital_ems",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (5814).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (5822).png",
+    "created": "2024-05-31T14:46:08.341Z",
     "players": [
       [
         "orbital_railcannon",
@@ -7996,12 +13516,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5822).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (5830).png",
+    "created": "2024-05-28T05:13:11.416Z",
     "players": [
       [
         "eagle_500kg",
@@ -8021,12 +13542,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5830).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5838).png",
+    "created": "2024-05-28T05:15:53.185Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8046,12 +13568,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5838).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (5862).png",
+    "created": "2024-05-28T05:23:53.006Z",
     "players": [
       [
         "",
@@ -8071,12 +13594,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5862).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5870).png",
+    "created": "2024-05-28T05:26:34.295Z",
     "players": [
       [
         "",
@@ -8096,12 +13620,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5870).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (5878).png",
+    "created": "2024-05-28T05:29:13.931Z",
     "players": [
       [
         "ems_sentry",
@@ -8121,12 +13646,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (5878).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (5902).png",
+    "created": "2024-05-28T05:37:12.190Z",
     "players": [
       [
         "eagle_500kg",
@@ -8146,12 +13672,13 @@ const terminidData = [
         "emancipator",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (5902).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (5910).png",
+    "created": "2024-05-28T05:39:53.616Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8171,12 +13698,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5910).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (5918).png",
+    "created": "2024-05-28T05:42:35.258Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8196,12 +13724,13 @@ const terminidData = [
         "orbital_airburst",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (5918).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (5926).png",
+    "created": "2024-05-28T05:45:16.544Z",
     "players": [
       [
         "orbital_railcannon",
@@ -8221,12 +13750,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5926).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (5934).png",
+    "created": "2024-05-28T05:47:56.530Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8246,12 +13776,13 @@ const terminidData = [
         "orbital_laser",
         "eat"
       ]
-    ],
-    "id": "Screenshot (5934).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (5942).png",
+    "created": "2024-05-28T05:50:36.752Z",
     "players": [
       [
         "supply_backpack",
@@ -8271,12 +13802,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5942).png"
+    ]
   },
   {
     "type": "ELIMINATE BROOD COMMANDERS",
     "difficulty": 7,
+    "id": "Screenshot (5958).png",
+    "created": "2024-05-28T05:55:57.094Z",
     "players": [
       [
         "eagle_cluster",
@@ -8296,12 +13828,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (5958).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (6058).png",
+    "created": "2024-05-28T06:35:53.881Z",
     "players": [
       [
         "eagle_500kg",
@@ -8321,12 +13854,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (6058).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (6066).png",
+    "created": "2024-05-28T06:38:32.062Z",
     "players": [
       [
         "eagle_napalm",
@@ -8346,12 +13880,13 @@ const terminidData = [
         "autocannon_sentry",
         "orbital_precision"
       ]
-    ],
-    "id": "Screenshot (6066).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (6076).png",
+    "created": "2024-05-28T06:51:57.929Z",
     "players": [
       [
         "flamethrower",
@@ -8371,12 +13906,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6076).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (6084).png",
+    "created": "2024-05-28T06:54:36.332Z",
     "players": [
       [
         "eagle_500kg",
@@ -8396,12 +13932,13 @@ const terminidData = [
         "eagle_500kg",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (6084).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6092).png",
+    "created": "2024-05-28T06:57:16.542Z",
     "players": [
       [
         "emancipator",
@@ -8421,12 +13958,13 @@ const terminidData = [
         "barrage_120",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (6092).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (6100).png",
+    "created": "2024-05-28T06:59:57.906Z",
     "players": [
       [
         "shield_backpack",
@@ -8446,12 +13984,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6100).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (6108).png",
+    "created": "2024-05-28T07:02:39.467Z",
     "players": [
       [
         "orbital_laser",
@@ -8471,12 +14010,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (6108).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 8,
+    "id": "Screenshot (6124).png",
+    "created": "2024-05-28T07:08:01.084Z",
     "players": [
       [
         "patriot",
@@ -8496,12 +14036,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6124).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6140).png",
+    "created": "2024-05-28T07:13:24.618Z",
     "players": [
       [
         "eagle_500kg",
@@ -8521,12 +14062,13 @@ const terminidData = [
         "shield_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (6140).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (6148).png",
+    "created": "2024-05-28T07:16:03.097Z",
     "players": [
       [
         "eagle_cluster",
@@ -8546,12 +14088,13 @@ const terminidData = [
         "spear",
         "guard_dog"
       ]
-    ],
-    "id": "Screenshot (6148).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (6156).png",
+    "created": "2024-05-28T07:18:41.569Z",
     "players": [
       [
         "gatling_barrage",
@@ -8571,12 +14114,13 @@ const terminidData = [
         "orbital_railcannon",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (6156).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6164).png",
+    "created": "2024-05-28T07:21:21.216Z",
     "players": [
       [
         "quasar_cannon",
@@ -8596,12 +14140,13 @@ const terminidData = [
         "autocannon",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (6164).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6188).png",
+    "created": "2024-05-28T07:29:19.862Z",
     "players": [
       [
         "emancipator",
@@ -8621,12 +14166,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6188).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (6196).png",
+    "created": "2024-05-28T07:32:01.375Z",
     "players": [
       [
         "recoilless_rifle",
@@ -8646,12 +14192,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6196).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (6204).png",
+    "created": "2024-05-28T07:34:41.319Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8671,12 +14218,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6204).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (6236).png",
+    "created": "2024-05-28T07:45:21.648Z",
     "players": [
       [
         "recoilless_rifle",
@@ -8696,12 +14244,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6236).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 8,
+    "id": "Screenshot (6260).png",
+    "created": "2024-05-28T07:53:23.742Z",
     "players": [
       [
         "orbital_railcannon",
@@ -8721,12 +14270,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6260).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (6284).png",
+    "created": "2024-05-28T08:01:25.180Z",
     "players": [
       [
         "eagle_cluster",
@@ -8746,12 +14296,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (6284).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (6292).png",
+    "created": "2024-05-28T08:04:05.472Z",
     "players": [
       [
         "orbital_railcannon",
@@ -8771,12 +14322,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6292).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (6300).png",
+    "created": "2024-05-28T08:06:45.590Z",
     "players": [
       [
         "orbital_laser",
@@ -8796,12 +14348,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6300).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (6324).png",
+    "created": "2024-05-28T08:14:49.680Z",
     "players": [
       [
         "orbital_railcannon",
@@ -8821,12 +14374,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (6324).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (6332).png",
+    "created": "2024-05-28T08:17:29.647Z",
     "players": [
       [
         "eagle_strafe",
@@ -8846,12 +14400,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (6332).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (6340).png",
+    "created": "2024-05-28T08:20:09.977Z",
     "players": [
       [
         "eat",
@@ -8871,12 +14426,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6340).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6348).png",
+    "created": "2024-05-28T08:22:50.231Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8896,12 +14452,13 @@ const terminidData = [
         "jump_pack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (6348).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (6372).png",
+    "created": "2024-05-28T08:30:52.052Z",
     "players": [
       [
         "emancipator",
@@ -8921,12 +14478,13 @@ const terminidData = [
         "autocannon",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (6372).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6380).png",
+    "created": "2024-05-28T08:33:32.535Z",
     "players": [
       [
         "eagle_500kg",
@@ -8946,12 +14504,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6380).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (6396).png",
+    "created": "2024-05-28T08:38:52.230Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8971,12 +14530,13 @@ const terminidData = [
         "autocannon_sentry",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (6396).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (6404).png",
+    "created": "2024-05-28T08:41:33.990Z",
     "players": [
       [
         "eagle_airstrike",
@@ -8996,12 +14556,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6404).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (6412).png",
+    "created": "2024-05-28T08:44:12.195Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9021,12 +14582,13 @@ const terminidData = [
         "eagle_airstrike",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (6412).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (6420).png",
+    "created": "2024-05-28T08:46:50.959Z",
     "players": [
       [
         "orbital_laser",
@@ -9046,12 +14608,13 @@ const terminidData = [
         "orbital_gas",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (6420).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (6428).png",
+    "created": "2024-05-28T08:49:29.603Z",
     "players": [
       [
         "patriot",
@@ -9071,12 +14634,13 @@ const terminidData = [
         "eagle_napalm",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (6428).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (6436).png",
+    "created": "2024-05-28T08:52:08.358Z",
     "players": [
       [
         "gatling_sentry",
@@ -9096,12 +14660,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6436).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (6444).png",
+    "created": "2024-05-28T08:54:49.806Z",
     "players": [
       [
         "autocannon",
@@ -9121,12 +14686,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6444).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6452).png",
+    "created": "2024-05-28T08:57:31.567Z",
     "players": [
       [
         "eagle_500kg",
@@ -9146,12 +14712,13 @@ const terminidData = [
         "quasar_cannon",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (6452).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (6468).png",
+    "created": "2024-05-28T09:02:51.705Z",
     "players": [
       [
         "eagle_500kg",
@@ -9171,12 +14738,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6468).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (6476).png",
+    "created": "2024-05-28T09:05:33.566Z",
     "players": [
       [
         "grenade_launcher",
@@ -9196,12 +14764,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6476).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (6484).png",
+    "created": "2024-05-28T09:08:15.339Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9221,12 +14790,13 @@ const terminidData = [
         "emancipator",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (6484).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (6492).png",
+    "created": "2024-05-28T09:10:53.418Z",
     "players": [
       [
         "emancipator",
@@ -9246,12 +14816,13 @@ const terminidData = [
         "flamethrower",
         "supply_backpack"
       ]
-    ],
-    "id": "Screenshot (6492).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (6500).png",
+    "created": "2024-05-28T09:13:35.358Z",
     "players": [
       [
         "orbital_precision",
@@ -9271,12 +14842,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6500).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (6516).png",
+    "created": "2024-05-28T09:18:55.774Z",
     "players": [
       [
         "orbital_laser",
@@ -9296,12 +14868,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6516).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (6524).png",
+    "created": "2024-05-28T09:21:37.413Z",
     "players": [
       [
         "eagle_napalm",
@@ -9321,12 +14894,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6524).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (6532).png",
+    "created": "2024-05-28T09:24:15.618Z",
     "players": [
       [
         "",
@@ -9346,12 +14920,13 @@ const terminidData = [
         "eat",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (6532).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6540).png",
+    "created": "2024-05-28T09:26:55.228Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9371,12 +14946,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6540).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (6548).png",
+    "created": "2024-05-28T09:29:36.805Z",
     "players": [
       [
         "orbital_railcannon",
@@ -9396,12 +14972,13 @@ const terminidData = [
         "orbital_laser",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (6548).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (6556).png",
+    "created": "2024-05-28T09:32:15.209Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9421,12 +14998,13 @@ const terminidData = [
         "recoilless_rifle",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (6556).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (6564).png",
+    "created": "2024-05-28T09:34:53.524Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9446,12 +15024,13 @@ const terminidData = [
         "shield_backpack",
         "eat"
       ]
-    ],
-    "id": "Screenshot (6564).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (6572).png",
+    "created": "2024-05-28T09:37:35.229Z",
     "players": [
       [
         "eagle_500kg",
@@ -9471,12 +15050,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6572).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6588).png",
+    "created": "2024-05-28T09:42:54.889Z",
     "players": [
       [
         "",
@@ -9496,12 +15076,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6588).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6596).png",
+    "created": "2024-05-28T09:45:34.907Z",
     "players": [
       [
         "walking_barrage",
@@ -9521,12 +15102,13 @@ const terminidData = [
         "arc_thrower",
         "arc_sentry"
       ]
-    ],
-    "id": "Screenshot (6596).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (6604).png",
+    "created": "2024-05-28T09:48:13.442Z",
     "players": [
       [
         "patriot",
@@ -9546,12 +15128,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6604).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6612).png",
+    "created": "2024-05-28T09:50:53.788Z",
     "players": [
       [
         "orbital_laser",
@@ -9571,12 +15154,13 @@ const terminidData = [
         "grenade_launcher",
         "eat"
       ]
-    ],
-    "id": "Screenshot (6612).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (6644).png",
+    "created": "2024-05-28T10:01:26.976Z",
     "players": [
       [
         "quasar_cannon",
@@ -9596,12 +15180,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (6644).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6652).png",
+    "created": "2024-05-28T10:04:07.355Z",
     "players": [
       [
         "orbital_laser",
@@ -9621,12 +15206,13 @@ const terminidData = [
         "eat",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (6652).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (6692).png",
+    "created": "2024-05-28T10:17:28.804Z",
     "players": [
       [
         "orbital_laser",
@@ -9646,12 +15232,13 @@ const terminidData = [
         "guard_dog_rover",
         "eat"
       ]
-    ],
-    "id": "Screenshot (6692).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6700).png",
+    "created": "2024-05-28T10:20:10.714Z",
     "players": [
       [
         "emancipator",
@@ -9671,12 +15258,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6700).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (6717).png",
+    "created": "2024-05-28T10:25:33.469Z",
     "players": [
       [
         "walking_barrage",
@@ -9696,12 +15284,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6717).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (6728).png",
+    "created": "2024-05-28T10:30:14.520Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9721,12 +15310,13 @@ const terminidData = [
         "jump_pack",
         "amr"
       ]
-    ],
-    "id": "Screenshot (6728).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6837).png",
+    "created": "2024-05-28T11:05:00.742Z",
     "players": [
       [
         "emancipator",
@@ -9746,12 +15336,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6837).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (6845).png",
+    "created": "2024-05-28T11:07:42.097Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9771,12 +15362,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6845).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (6853).png",
+    "created": "2024-05-28T11:10:20.578Z",
     "players": [
       [
         "orbital_laser",
@@ -9796,12 +15388,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6853).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (6861).png",
+    "created": "2024-05-28T11:13:00.141Z",
     "players": [
       [
         "eagle_500kg",
@@ -9821,12 +15414,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6861).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6869).png",
+    "created": "2024-05-28T11:15:40.158Z",
     "players": [
       [
         "eagle_500kg",
@@ -9846,12 +15440,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6869).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (6877).png",
+    "created": "2024-05-28T11:18:18.844Z",
     "players": [
       [
         "recoilless_rifle",
@@ -9871,12 +15466,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6877).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (6893).png",
+    "created": "2024-05-28T11:23:42.543Z",
     "players": [
       [
         "eagle_500kg",
@@ -9896,12 +15492,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6893).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6901).png",
+    "created": "2024-05-28T11:26:22.945Z",
     "players": [
       [
         "eagle_airstrike",
@@ -9921,12 +15518,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6901).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (6909).png",
+    "created": "2024-05-28T11:29:03.444Z",
     "players": [
       [
         "orbital_laser",
@@ -9946,12 +15544,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6909).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (6917).png",
+    "created": "2024-05-28T11:31:41.865Z",
     "players": [
       [
         "orbital_gas",
@@ -9971,12 +15570,13 @@ const terminidData = [
         "recoilless_rifle",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (6917).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (6925).png",
+    "created": "2024-05-28T11:34:23.554Z",
     "players": [
       [
         "eagle_500kg",
@@ -9996,12 +15596,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (6925).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (6933).png",
+    "created": "2024-05-28T11:37:03.351Z",
     "players": [
       [
         "orbital_laser",
@@ -10021,12 +15622,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6933).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (6941).png",
+    "created": "2024-05-28T11:39:43.684Z",
     "players": [
       [
         "orbital_railcannon",
@@ -10046,12 +15648,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6941).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (6957).png",
+    "created": "2024-05-28T11:45:01.919Z",
     "players": [
       [
         "eagle_500kg",
@@ -10071,12 +15674,13 @@ const terminidData = [
         "eagle_110",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (6957).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (6965).png",
+    "created": "2024-05-28T11:47:43.258Z",
     "players": [
       [
         "quasar_cannon",
@@ -10096,12 +15700,13 @@ const terminidData = [
         "orbital_gas",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (6965).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (6981).png",
+    "created": "2024-05-28T11:53:00.009Z",
     "players": [
       [
         "orbital_laser",
@@ -10121,12 +15726,13 @@ const terminidData = [
         "eagle_500kg",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (6981).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (6988).png",
+    "created": "2024-05-28T11:55:29.607Z",
     "players": [
       [
         "barrage_380",
@@ -10146,12 +15752,13 @@ const terminidData = [
         "eagle_500kg",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (6988).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (6997).png",
+    "created": "2024-05-28T11:58:20.435Z",
     "players": [
       [
         "eagle_500kg",
@@ -10171,12 +15778,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (6997).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (7005).png",
+    "created": "2024-05-31T15:30:08.907Z",
     "players": [
       [
         "stalwart",
@@ -10196,12 +15804,13 @@ const terminidData = [
         "emancipator",
         "rocket_sentry"
       ]
-    ],
-    "id": "Screenshot (7005).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7013).png",
+    "created": "2024-05-31T15:32:02.338Z",
     "players": [
       [
         "eagle_500kg",
@@ -10221,12 +15830,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7013).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (7021).png",
+    "created": "2024-05-31T15:31:18.197Z",
     "players": [
       [
         "walking_barrage",
@@ -10246,12 +15856,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7021).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7029).png",
+    "created": "2024-05-28T12:08:57.422Z",
     "players": [
       [
         "orbital_gas",
@@ -10271,12 +15882,13 @@ const terminidData = [
         "supply_backpack",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (7029).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (7037).png",
+    "created": "2024-05-28T12:11:38.882Z",
     "players": [
       [
         "supply_backpack",
@@ -10296,12 +15908,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7037).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (7069).png",
+    "created": "2024-05-28T12:22:22.700Z",
     "players": [
       [
         "emancipator",
@@ -10321,12 +15934,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7069).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (7077).png",
+    "created": "2024-05-28T12:25:00.785Z",
     "players": [
       [
         "orbital_laser",
@@ -10346,12 +15960,13 @@ const terminidData = [
         "autocannon_sentry",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (7077).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (7085).png",
+    "created": "2024-05-28T12:27:40.767Z",
     "players": [
       [
         "jump_pack",
@@ -10371,12 +15986,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7085).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (7093).png",
+    "created": "2024-05-28T12:30:19.501Z",
     "players": [
       [
         "recoilless_rifle",
@@ -10396,12 +16012,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7093).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (7112).png",
+    "created": "2024-05-28T20:31:14.278Z",
     "players": [
       [
         "eagle_airstrike",
@@ -10421,12 +16038,13 @@ const terminidData = [
         "recoilless_rifle",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (7112).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7121).png",
+    "created": "2024-05-28T20:33:36.533Z",
     "players": [
       [
         "orbital_railcannon",
@@ -10446,12 +16064,13 @@ const terminidData = [
         "shield_backpack",
         "flamethrower"
       ]
-    ],
-    "id": "Screenshot (7121).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (7145).png",
+    "created": "2024-05-28T20:41:36.859Z",
     "players": [
       [
         "eagle_airstrike",
@@ -10471,12 +16090,13 @@ const terminidData = [
         "mg_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (7145).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (7153).png",
+    "created": "2024-05-28T20:44:18.845Z",
     "players": [
       [
         "eagle_500kg",
@@ -10496,12 +16116,13 @@ const terminidData = [
         "eat",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (7153).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (7161).png",
+    "created": "2024-05-28T20:47:00.316Z",
     "players": [
       [
         "eagle_napalm",
@@ -10521,12 +16142,13 @@ const terminidData = [
         "guard_dog_rover",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7161).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (7169).png",
+    "created": "2024-05-28T20:49:41.953Z",
     "players": [
       [
         "gatling_sentry",
@@ -10546,12 +16168,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7169).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (7177).png",
+    "created": "2024-05-28T20:52:20.433Z",
     "players": [
       [
         "autocannon",
@@ -10571,12 +16194,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7177).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (7185).png",
+    "created": "2024-05-28T20:55:02.127Z",
     "players": [
       [
         "",
@@ -10596,12 +16220,13 @@ const terminidData = [
         "spear",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (7185).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (7193).png",
+    "created": "2024-05-28T20:57:43.937Z",
     "players": [
       [
         "orbital_railcannon",
@@ -10621,12 +16246,13 @@ const terminidData = [
         "recoilless_rifle",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (7193).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (7201).png",
+    "created": "2024-05-28T21:00:25.488Z",
     "players": [
       [
         "orbital_railcannon",
@@ -10646,12 +16272,13 @@ const terminidData = [
         "recoilless_rifle",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (7201).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (7209).png",
+    "created": "2024-05-28T21:03:07.012Z",
     "players": [
       [
         "guard_dog_rover",
@@ -10671,12 +16298,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (7209).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 9,
+    "id": "Screenshot (7217).png",
+    "created": "2024-05-28T21:05:45.513Z",
     "players": [
       [
         "eagle_500kg",
@@ -10696,12 +16324,13 @@ const terminidData = [
         "eagle_500kg",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (7217).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (7225).png",
+    "created": "2024-05-28T21:08:25.452Z",
     "players": [
       [
         "emancipator",
@@ -10721,12 +16350,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (7225).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7233).png",
+    "created": "2024-05-28T21:11:03.785Z",
     "players": [
       [
         "eagle_500kg",
@@ -10746,12 +16376,13 @@ const terminidData = [
         "eagle_500kg",
         "mortar_sentry"
       ]
-    ],
-    "id": "Screenshot (7233).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (7241).png",
+    "created": "2024-05-28T21:13:43.684Z",
     "players": [
       [
         "autocannon",
@@ -10771,12 +16402,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7241).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (7261).png",
+    "created": "2024-05-28T21:52:27.038Z",
     "players": [
       [
         "shield_backpack",
@@ -10796,12 +16428,13 @@ const terminidData = [
         "eagle_cluster",
         "arc_thrower"
       ]
-    ],
-    "id": "Screenshot (7261).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7269).png",
+    "created": "2024-05-28T21:55:05.429Z",
     "players": [
       [
         "barrage_120",
@@ -10821,12 +16454,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7269).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 9,
+    "id": "Screenshot (7277).png",
+    "created": "2024-05-28T21:57:43.884Z",
     "players": [
       [
         "eagle_airstrike",
@@ -10846,12 +16480,13 @@ const terminidData = [
         "gatling_sentry",
         "rocket_sentry"
       ]
-    ],
-    "id": "Screenshot (7277).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (7303).png",
+    "created": "2024-05-29T01:56:48.829Z",
     "players": [
       [
         "ems_sentry",
@@ -10871,12 +16506,13 @@ const terminidData = [
         "flamethrower",
         ""
       ]
-    ],
-    "id": "Screenshot (7303).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (7307).png",
+    "created": "2024-05-29T01:58:45.445Z",
     "players": [
       [
         "eagle_airstrike",
@@ -10896,12 +16532,13 @@ const terminidData = [
         "eat",
         "hmg_encampment"
       ]
-    ],
-    "id": "Screenshot (7307).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (7315).png",
+    "created": "2024-05-29T02:01:07.799Z",
     "players": [
       [
         "",
@@ -10921,12 +16558,13 @@ const terminidData = [
         "quasar_cannon",
         ""
       ]
-    ],
-    "id": "Screenshot (7315).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7334).png",
+    "created": "2024-05-29T03:02:02.393Z",
     "players": [
       [
         "arc_thrower",
@@ -10946,12 +16584,13 @@ const terminidData = [
         "orbital_gas",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (7334).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (7345).png",
+    "created": "2024-05-29T03:07:19.924Z",
     "players": [
       [
         "eagle_500kg",
@@ -10971,12 +16610,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7345).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (7353).png",
+    "created": "2024-05-29T03:09:59.737Z",
     "players": [
       [
         "eagle_500kg",
@@ -10996,12 +16636,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7353).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7361).png",
+    "created": "2024-05-29T03:12:39.980Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11021,12 +16662,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7361).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7369).png",
+    "created": "2024-05-29T03:15:18.285Z",
     "players": [
       [
         "eagle_napalm",
@@ -11046,12 +16688,13 @@ const terminidData = [
         "walking_barrage",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (7369).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7377).png",
+    "created": "2024-05-29T03:17:56.962Z",
     "players": [
       [
         "spear",
@@ -11071,12 +16714,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7377).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (7385).png",
+    "created": "2024-05-29T03:20:36.630Z",
     "players": [
       [
         "",
@@ -11096,12 +16740,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7385).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (7393).png",
+    "created": "2024-05-29T03:23:16.354Z",
     "players": [
       [
         "quasar_cannon",
@@ -11121,12 +16766,13 @@ const terminidData = [
         "orbital_railcannon",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (7393).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 7,
+    "id": "Screenshot (7401).png",
+    "created": "2024-05-29T03:25:57.810Z",
     "players": [
       [
         "ems_sentry",
@@ -11146,12 +16792,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7401).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7409).png",
+    "created": "2024-05-29T03:28:37.773Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11171,12 +16818,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7409).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (7417).png",
+    "created": "2024-05-29T03:31:19.228Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11196,12 +16844,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7417).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7425).png",
+    "created": "2024-05-29T03:33:59.218Z",
     "players": [
       [
         "shield_backpack",
@@ -11221,12 +16870,13 @@ const terminidData = [
         "orbital_railcannon",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7425).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (7433).png",
+    "created": "2024-05-29T03:36:39.347Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11246,12 +16896,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7433).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7441).png",
+    "created": "2024-05-29T03:39:19.177Z",
     "players": [
       [
         "shield_backpack",
@@ -11271,12 +16922,13 @@ const terminidData = [
         "orbital_railcannon",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7441).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7449).png",
+    "created": "2024-05-29T03:41:59.495Z",
     "players": [
       [
         "shield_backpack",
@@ -11296,12 +16948,13 @@ const terminidData = [
         "orbital_railcannon",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7449).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7457).png",
+    "created": "2024-05-29T03:44:37.735Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11321,12 +16974,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7457).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 7,
+    "id": "Screenshot (7465).png",
+    "created": "2024-05-29T03:47:19.518Z",
     "players": [
       [
         "eagle_500kg",
@@ -11346,12 +17000,13 @@ const terminidData = [
         "emancipator",
         "rocket_sentry"
       ]
-    ],
-    "id": "Screenshot (7465).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (7473).png",
+    "created": "2024-05-29T03:50:01.143Z",
     "players": [
       [
         "orbital_railcannon",
@@ -11371,12 +17026,13 @@ const terminidData = [
         "guard_dog_rover",
         "hmg"
       ]
-    ],
-    "id": "Screenshot (7473).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (7481).png",
+    "created": "2024-05-29T03:52:41.331Z",
     "players": [
       [
         "ems_sentry",
@@ -11396,12 +17052,13 @@ const terminidData = [
         "shield_backpack",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7481).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (7489).png",
+    "created": "2024-05-31T15:28:20.486Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11421,12 +17078,13 @@ const terminidData = [
         "emancipator",
         ""
       ]
-    ],
-    "id": "Screenshot (7489).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (7497).png",
+    "created": "2024-05-31T15:28:44.219Z",
     "players": [
       [
         "eagle_500kg",
@@ -11446,12 +17104,13 @@ const terminidData = [
         "quasar_cannon",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (7497).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (7505).png",
+    "created": "2024-05-29T04:00:44.649Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11471,12 +17130,13 @@ const terminidData = [
         "eat",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (7505).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (7513).png",
+    "created": "2024-05-29T04:03:25.093Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11496,12 +17156,13 @@ const terminidData = [
         "quasar_cannon",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (7513).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7521).png",
+    "created": "2024-05-29T04:06:03.631Z",
     "players": [
       [
         "orbital_gas",
@@ -11521,12 +17182,13 @@ const terminidData = [
         "supply_backpack",
         "eat"
       ]
-    ],
-    "id": "Screenshot (7521).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (7529).png",
+    "created": "2024-05-29T04:08:44.799Z",
     "players": [
       [
         "quasar_cannon",
@@ -11546,12 +17208,13 @@ const terminidData = [
         "eagle_napalm",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (7529).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 7,
+    "id": "Screenshot (7537).png",
+    "created": "2024-05-29T04:11:26.454Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11571,12 +17234,13 @@ const terminidData = [
         "autocannon",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (7537).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 9,
+    "id": "Screenshot (7545).png",
+    "created": "2024-05-29T04:14:05.185Z",
     "players": [
       [
         "gatling_sentry",
@@ -11596,12 +17260,13 @@ const terminidData = [
         "shield_backpack",
         "arc_thrower"
       ]
-    ],
-    "id": "Screenshot (7545).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (7577).png",
+    "created": "2024-05-29T04:24:42.449Z",
     "players": [
       [
         "orbital_gas",
@@ -11621,12 +17286,13 @@ const terminidData = [
         "autocannon_sentry",
         "airburst_launcher"
       ]
-    ],
-    "id": "Screenshot (7577).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (7585).png",
+    "created": "2024-05-29T04:27:22.466Z",
     "players": [
       [
         "eagle_500kg",
@@ -11646,12 +17312,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (7585).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (7611).png",
+    "created": "2024-05-29T04:36:11.204Z",
     "players": [
       [
         "mortar_sentry",
@@ -11671,12 +17338,13 @@ const terminidData = [
         "eat",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (7611).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (7618).png",
+    "created": "2024-05-29T04:38:03.656Z",
     "players": [
       [
         "mortar_sentry",
@@ -11696,12 +17364,13 @@ const terminidData = [
         "eat",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (7618).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (7625).png",
+    "created": "2024-05-29T04:40:39.432Z",
     "players": [
       [
         "barrage_380",
@@ -11721,12 +17390,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7625).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7649).png",
+    "created": "2024-05-29T04:48:39.307Z",
     "players": [
       [
         "eagle_500kg",
@@ -11746,12 +17416,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7649).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (7657).png",
+    "created": "2024-05-29T04:51:19.530Z",
     "players": [
       [
         "supply_backpack",
@@ -11771,12 +17442,13 @@ const terminidData = [
         "jump_pack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (7657).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7665).png",
+    "created": "2024-05-29T04:54:00.133Z",
     "players": [
       [
         "orbital_railcannon",
@@ -11796,12 +17468,13 @@ const terminidData = [
         "autocannon_sentry",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (7665).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 7,
+    "id": "Screenshot (7673).png",
+    "created": "2024-05-29T04:56:41.752Z",
     "players": [
       [
         "orbital_laser",
@@ -11821,12 +17494,13 @@ const terminidData = [
         "autocannon",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (7673).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (7689).png",
+    "created": "2024-05-29T05:02:03.479Z",
     "players": [
       [
         "emancipator",
@@ -11846,12 +17520,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7689).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (7697).png",
+    "created": "2024-05-29T05:04:41.819Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11871,12 +17546,13 @@ const terminidData = [
         "autocannon_sentry",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (7697).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (7705).png",
+    "created": "2024-05-29T05:07:21.873Z",
     "players": [
       [
         "orbital_railcannon",
@@ -11896,12 +17572,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7705).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (7713).png",
+    "created": "2024-05-29T05:10:00.281Z",
     "players": [
       [
         "eagle_500kg",
@@ -11921,12 +17598,13 @@ const terminidData = [
         "spear",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (7713).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (7721).png",
+    "created": "2024-05-29T05:12:40.216Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11946,12 +17624,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (7721).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (7729).png",
+    "created": "2024-05-31T15:36:11.231Z",
     "players": [
       [
         "guard_dog",
@@ -11971,12 +17650,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (7729).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (8194).png",
+    "created": "2024-05-29T07:49:26.349Z",
     "players": [
       [
         "eagle_airstrike",
@@ -11996,12 +17676,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8194).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (8202).png",
+    "created": "2024-05-29T07:52:04.896Z",
     "players": [
       [
         "guard_dog_rover",
@@ -12021,12 +17702,13 @@ const terminidData = [
         "jump_pack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (8202).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (8210).png",
+    "created": "2024-05-29T07:54:45.173Z",
     "players": [
       [
         "quasar_cannon",
@@ -12046,12 +17728,13 @@ const terminidData = [
         "eagle_500kg",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (8210).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (8218).png",
+    "created": "2024-05-29T07:57:25.433Z",
     "players": [
       [
         "eagle_500kg",
@@ -12071,12 +17754,13 @@ const terminidData = [
         "quasar_cannon",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (8218).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (8226).png",
+    "created": "2024-05-29T08:00:06.836Z",
     "players": [
       [
         "eagle_500kg",
@@ -12096,12 +17780,13 @@ const terminidData = [
         "patriot",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (8226).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (8234).png",
+    "created": "2024-05-29T08:02:48.422Z",
     "players": [
       [
         "eagle_500kg",
@@ -12121,12 +17806,13 @@ const terminidData = [
         "patriot",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (8234).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (8266).png",
+    "created": "2024-05-29T08:13:27.666Z",
     "players": [
       [
         "",
@@ -12146,12 +17832,13 @@ const terminidData = [
         "quasar_cannon",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (8266).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (8306).png",
+    "created": "2024-05-29T08:26:51.981Z",
     "players": [
       [
         "recoilless_rifle",
@@ -12171,12 +17858,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8306).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 8,
+    "id": "Screenshot (8314).png",
+    "created": "2024-05-29T08:29:31.782Z",
     "players": [
       [
         "ems_sentry",
@@ -12196,12 +17884,13 @@ const terminidData = [
         "shield_backpack",
         ""
       ]
-    ],
-    "id": "Screenshot (8314).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (8322).png",
+    "created": "2024-05-29T08:32:13.653Z",
     "players": [
       [
         "orbital_railcannon",
@@ -12221,12 +17910,13 @@ const terminidData = [
         "quasar_cannon",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (8322).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (8330).png",
+    "created": "2024-05-29T08:34:52.176Z",
     "players": [
       [
         "",
@@ -12246,12 +17936,13 @@ const terminidData = [
         "autocannon",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (8330).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (8338).png",
+    "created": "2024-05-29T08:37:33.667Z",
     "players": [
       [
         "eagle_500kg",
@@ -12271,12 +17962,13 @@ const terminidData = [
         "mg",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (8338).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (8346).png",
+    "created": "2024-05-29T08:40:15.295Z",
     "players": [
       [
         "eagle_500kg",
@@ -12296,12 +17988,13 @@ const terminidData = [
         "orbital_laser",
         "eat"
       ]
-    ],
-    "id": "Screenshot (8346).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (8354).png",
+    "created": "2024-05-29T08:42:57.014Z",
     "players": [
       [
         "eagle_500kg",
@@ -12321,12 +18014,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8354).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (8378).png",
+    "created": "2024-05-29T08:50:57.065Z",
     "players": [
       [
         "mg",
@@ -12346,12 +18040,13 @@ const terminidData = [
         "gatling_sentry",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (8378).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (8386).png",
+    "created": "2024-05-29T08:53:37.497Z",
     "players": [
       [
         "orbital_railcannon",
@@ -12371,12 +18066,13 @@ const terminidData = [
         "flamethrower",
         "patriot"
       ]
-    ],
-    "id": "Screenshot (8386).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (8394).png",
+    "created": "2024-05-29T08:56:16.198Z",
     "players": [
       [
         "stalwart",
@@ -12396,12 +18092,13 @@ const terminidData = [
         "gatling_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (8394).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (8402).png",
+    "created": "2024-05-29T08:58:54.306Z",
     "players": [
       [
         "eagle_500kg",
@@ -12421,12 +18118,13 @@ const terminidData = [
         "gatling_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (8402).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (8410).png",
+    "created": "2024-05-29T09:01:32.690Z",
     "players": [
       [
         "",
@@ -12446,12 +18144,13 @@ const terminidData = [
         "guard_dog_rover",
         "arc_thrower"
       ]
-    ],
-    "id": "Screenshot (8410).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (8418).png",
+    "created": "2024-05-29T09:04:12.508Z",
     "players": [
       [
         "eagle_airstrike",
@@ -12471,12 +18170,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8418).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 8,
+    "id": "Screenshot (8432).png",
+    "created": "2024-05-29T09:09:14.544Z",
     "players": [
       [
         "emancipator",
@@ -12496,12 +18196,13 @@ const terminidData = [
         "eagle_500kg",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (8432).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (8474).png",
+    "created": "2024-05-29T09:22:52.459Z",
     "players": [
       [
         "eagle_500kg",
@@ -12521,12 +18222,13 @@ const terminidData = [
         "supply_backpack",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (8474).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (8482).png",
+    "created": "2024-05-29T09:25:30.787Z",
     "players": [
       [
         "eagle_500kg",
@@ -12546,12 +18248,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8482).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (8490).png",
+    "created": "2024-05-29T09:28:12.579Z",
     "players": [
       [
         "autocannon_sentry",
@@ -12571,12 +18274,13 @@ const terminidData = [
         "autocannon_sentry",
         "eagle_500kg"
       ]
-    ],
-    "id": "Screenshot (8490).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (8498).png",
+    "created": "2024-05-29T09:30:53.995Z",
     "players": [
       [
         "orbital_railcannon",
@@ -12596,12 +18300,13 @@ const terminidData = [
         "orbital_railcannon",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (8498).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (8506).png",
+    "created": "2024-05-29T09:33:35.295Z",
     "players": [
       [
         "grenade_launcher",
@@ -12621,12 +18326,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8506).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (8538).png",
+    "created": "2024-05-29T09:44:15.193Z",
     "players": [
       [
         "",
@@ -12646,12 +18352,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8538).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (8546).png",
+    "created": "2024-05-29T09:46:53.947Z",
     "players": [
       [
         "eagle_500kg",
@@ -12671,12 +18378,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (8546).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 9,
+    "id": "Screenshot (8554).png",
+    "created": "2024-05-29T09:49:32.606Z",
     "players": [
       [
         "ems_sentry",
@@ -12696,12 +18404,13 @@ const terminidData = [
         "airburst_launcher",
         "barrage_380"
       ]
-    ],
-    "id": "Screenshot (8554).png"
+    ]
   },
   {
     "type": "RETRIEVE ESSENTIAL PERSONNEL",
     "difficulty": 9,
+    "id": "Screenshot (8562).png",
+    "created": "2024-05-29T09:52:11.009Z",
     "players": [
       [
         "eagle_airstrike",
@@ -12721,12 +18430,13 @@ const terminidData = [
         "quasar_cannon",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (8562).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (8570).png",
+    "created": "2024-05-29T09:54:50.858Z",
     "players": [
       [
         "barrage_380",
@@ -12746,12 +18456,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (8570).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (8578).png",
+    "created": "2024-05-29T09:57:29.302Z",
     "players": [
       [
         "eagle_airstrike",
@@ -12771,12 +18482,13 @@ const terminidData = [
         "recoilless_rifle",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (8578).png"
+    ]
   },
   {
     "type": "EVACUATE HIGH-VALUE ASSETS",
     "difficulty": 7,
+    "id": "Screenshot (8582).png",
+    "created": "2024-05-29T09:59:34.844Z",
     "players": [
       [
         "mortar_sentry",
@@ -12796,12 +18508,13 @@ const terminidData = [
         "shield_backpack",
         "hmg_encampment"
       ]
-    ],
-    "id": "Screenshot (8582).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (8827).png",
+    "created": "2024-05-29T11:20:47.634Z",
     "players": [
       [
         "orbital_railcannon",
@@ -12821,12 +18534,13 @@ const terminidData = [
         "autocannon",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (8827).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (8835).png",
+    "created": "2024-05-29T11:23:26.209Z",
     "players": [
       [
         "grenade_launcher",
@@ -12846,12 +18560,13 @@ const terminidData = [
         "eagle_500kg",
         "orbital_airburst"
       ]
-    ],
-    "id": "Screenshot (8835).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (8862).png",
+    "created": "2024-05-29T15:42:36.367Z",
     "players": [
       [
         "guard_dog_rover",
@@ -12871,12 +18586,13 @@ const terminidData = [
         "spear",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (8862).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (8870).png",
+    "created": "2024-05-29T15:44:56.793Z",
     "players": [
       [
         "emancipator",
@@ -12896,12 +18612,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8870).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (8878).png",
+    "created": "2024-05-29T15:47:17.927Z",
     "players": [
       [
         "eagle_500kg",
@@ -12921,12 +18638,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8878).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (8886).png",
+    "created": "2024-05-29T15:49:58.020Z",
     "players": [
       [
         "guard_dog_rover",
@@ -12946,12 +18664,13 @@ const terminidData = [
         "orbital_railcannon",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (8886).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (8890).png",
+    "created": "2024-05-29T15:51:20.115Z",
     "players": [
       [
         "eagle_500kg",
@@ -12971,12 +18690,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8890).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (8895).png",
+    "created": "2024-05-29T15:52:34.637Z",
     "players": [
       [
         "eagle_500kg",
@@ -12996,12 +18716,13 @@ const terminidData = [
         "eagle_cluster",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (8895).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (8900).png",
+    "created": "2024-05-29T15:54:32.295Z",
     "players": [
       [
         "eagle_500kg",
@@ -13021,12 +18742,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8900).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (8908).png",
+    "created": "2024-05-29T15:56:46.829Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13046,12 +18768,13 @@ const terminidData = [
         "orbital_railcannon",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (8908).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (8916).png",
+    "created": "2024-05-29T15:59:10.503Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13071,12 +18794,13 @@ const terminidData = [
         "rocket_sentry",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (8916).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (8924).png",
+    "created": "2024-05-29T16:01:50.841Z",
     "players": [
       [
         "eagle_napalm",
@@ -13096,12 +18820,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8924).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (8929).png",
+    "created": "2024-05-29T16:03:52.710Z",
     "players": [
       [
         "eagle_500kg",
@@ -13121,12 +18846,13 @@ const terminidData = [
         "emancipator",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (8929).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 9,
+    "id": "Screenshot (8937).png",
+    "created": "2024-05-29T16:06:05.639Z",
     "players": [
       [
         "jump_pack",
@@ -13146,12 +18872,13 @@ const terminidData = [
         "mg",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (8937).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (8942).png",
+    "created": "2024-05-29T16:07:27.265Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13171,12 +18898,13 @@ const terminidData = [
         "guard_dog_rover",
         "eat"
       ]
-    ],
-    "id": "Screenshot (8942).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (8958).png",
+    "created": "2024-05-29T16:12:24.016Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13196,12 +18924,13 @@ const terminidData = [
         "orbital_laser",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (8958).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (8964).png",
+    "created": "2024-05-29T16:14:27.777Z",
     "players": [
       [
         "recoilless_rifle",
@@ -13221,12 +18950,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8964).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (8972).png",
+    "created": "2024-05-29T16:16:29.412Z",
     "players": [
       [
         "orbital_laser",
@@ -13246,12 +18976,13 @@ const terminidData = [
         "autocannon",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (8972).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (8979).png",
+    "created": "2024-05-29T16:17:58.617Z",
     "players": [
       [
         "orbital_laser",
@@ -13271,12 +19002,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8979).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (8987).png",
+    "created": "2024-05-29T16:20:12.136Z",
     "players": [
       [
         "eagle_110",
@@ -13296,12 +19028,13 @@ const terminidData = [
         "orbital_laser",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (8987).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (8991).png",
+    "created": "2024-05-29T16:25:28.424Z",
     "players": [
       [
         "eagle_500kg",
@@ -13321,12 +19054,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (8991).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (9000).png",
+    "created": "2024-05-29T16:27:48.085Z",
     "players": [
       [
         "eagle_500kg",
@@ -13346,12 +19080,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9000).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (9008).png",
+    "created": "2024-05-29T16:30:26.341Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13371,12 +19106,13 @@ const terminidData = [
         "autocannon",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (9008).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (9016).png",
+    "created": "2024-05-29T16:33:04.947Z",
     "players": [
       [
         "quasar_cannon",
@@ -13396,12 +19132,13 @@ const terminidData = [
         "rocket_sentry",
         "eat"
       ]
-    ],
-    "id": "Screenshot (9016).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (9021).png",
+    "created": "2024-05-29T16:35:16.875Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13421,12 +19158,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9021).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (9032).png",
+    "created": "2024-05-29T16:37:42.038Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13446,12 +19184,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9032).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 8,
+    "id": "Screenshot (9040).png",
+    "created": "2024-05-29T16:40:22.049Z",
     "players": [
       [
         "guard_dog_rover",
@@ -13471,12 +19210,13 @@ const terminidData = [
         "guard_dog_rover",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (9040).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (9052).png",
+    "created": "2024-05-29T16:44:37.720Z",
     "players": [
       [
         "eagle_cluster",
@@ -13496,12 +19236,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (9052).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (9060).png",
+    "created": "2024-05-29T16:47:16.286Z",
     "players": [
       [
         "eagle_strafe",
@@ -13521,12 +19262,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9060).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (9068).png",
+    "created": "2024-05-29T16:49:56.234Z",
     "players": [
       [
         "grenade_launcher",
@@ -13546,12 +19288,13 @@ const terminidData = [
         "quasar_cannon",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (9068).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (9074).png",
+    "created": "2024-05-29T16:53:48.622Z",
     "players": [
       [
         "eagle_500kg",
@@ -13571,12 +19314,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9074).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (9080).png",
+    "created": "2024-05-29T17:04:04.588Z",
     "players": [
       [
         "orbital_gas",
@@ -13596,12 +19340,13 @@ const terminidData = [
         "autocannon",
         "autocannon_sentry"
       ]
-    ],
-    "id": "Screenshot (9080).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9084).png",
+    "created": "2024-05-29T17:06:07.807Z",
     "players": [
       [
         "orbital_laser",
@@ -13621,12 +19366,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9084).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (9088).png",
+    "created": "2024-05-29T17:07:33.314Z",
     "players": [
       [
         "flamethrower",
@@ -13646,12 +19392,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9088).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (9093).png",
+    "created": "2024-05-29T17:08:41.863Z",
     "players": [
       [
         "flamethrower",
@@ -13671,12 +19418,13 @@ const terminidData = [
         "arc_sentry",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (9093).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 8,
+    "id": "Screenshot (9098).png",
+    "created": "2024-05-29T17:09:53.826Z",
     "players": [
       [
         "orbital_railcannon",
@@ -13696,12 +19444,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9098).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (9102).png",
+    "created": "2024-05-29T17:12:24.369Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13721,12 +19470,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9102).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (9112).png",
+    "created": "2024-05-29T17:15:20.529Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13746,12 +19496,13 @@ const terminidData = [
         "orbital_railcannon",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9112).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (9119).png",
+    "created": "2024-05-29T17:17:43.862Z",
     "players": [
       [
         "eagle_500kg",
@@ -13771,12 +19522,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9119).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (9124).png",
+    "created": "2024-05-29T17:18:51.285Z",
     "players": [
       [
         "eagle_500kg",
@@ -13796,12 +19548,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9124).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (9129).png",
+    "created": "2024-05-29T17:19:57.900Z",
     "players": [
       [
         "eagle_cluster",
@@ -13821,12 +19574,13 @@ const terminidData = [
         "patriot",
         "stalwart"
       ]
-    ],
-    "id": "Screenshot (9129).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9135).png",
+    "created": "2024-05-29T17:21:54.140Z",
     "players": [
       [
         "quasar_cannon",
@@ -13846,12 +19600,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9135).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 8,
+    "id": "Screenshot (9139).png",
+    "created": "2024-05-29T17:28:37.715Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13871,12 +19626,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9139).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9142).png",
+    "created": "2024-05-29T17:29:55.956Z",
     "players": [
       [
         "orbital_gas",
@@ -13896,12 +19652,13 @@ const terminidData = [
         "eagle_500kg",
         "orbital_precision"
       ]
-    ],
-    "id": "Screenshot (9142).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9145).png",
+    "created": "2024-05-29T17:30:59.148Z",
     "players": [
       [
         "spear",
@@ -13921,12 +19678,13 @@ const terminidData = [
         "orbital_railcannon",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (9145).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (9148).png",
+    "created": "2024-05-29T17:32:07.260Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13946,12 +19704,13 @@ const terminidData = [
         "shield_backpack",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (9148).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (9151).png",
+    "created": "2024-05-29T17:33:21.546Z",
     "players": [
       [
         "eagle_airstrike",
@@ -13971,12 +19730,13 @@ const terminidData = [
         "eat",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (9151).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (9154).png",
+    "created": "2024-05-31T15:33:00.128Z",
     "players": [
       [
         "eagle_500kg",
@@ -13996,12 +19756,13 @@ const terminidData = [
         "emancipator",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (9154).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (9157).png",
+    "created": "2024-05-29T17:35:21.475Z",
     "players": [
       [
         "eagle_napalm",
@@ -14021,12 +19782,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9157).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (9165).png",
+    "created": "2024-05-30T00:00:11.089Z",
     "players": [
       [
         "emancipator",
@@ -14046,12 +19808,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9165).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (9168).png",
+    "created": "2024-05-30T00:01:24.187Z",
     "players": [
       [
         "eagle_cluster",
@@ -14071,12 +19834,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9168).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 8,
+    "id": "Screenshot (9177).png",
+    "created": "2024-05-30T00:03:38.524Z",
     "players": [
       [
         "autocannon_sentry",
@@ -14096,12 +19860,13 @@ const terminidData = [
         "orbital_airburst",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (9177).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (9185).png",
+    "created": "2024-05-30T00:05:54.018Z",
     "players": [
       [
         "eagle_500kg",
@@ -14121,12 +19886,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9185).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (9189).png",
+    "created": "2024-05-30T00:08:16.932Z",
     "players": [
       [
         "orbital_railcannon",
@@ -14146,12 +19912,13 @@ const terminidData = [
         "recoilless_rifle",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (9189).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9192).png",
+    "created": "2024-05-30T00:09:46.264Z",
     "players": [
       [
         "eagle_500kg",
@@ -14171,12 +19938,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9192).png"
+    ]
   },
   {
     "type": "EMERGENCY EVACUATION",
     "difficulty": 7,
+    "id": "Screenshot (9195).png",
+    "created": "2024-05-30T00:11:20.924Z",
     "players": [
       [
         "orbital_railcannon",
@@ -14196,12 +19964,13 @@ const terminidData = [
         "quasar_cannon",
         "jump_pack"
       ]
-    ],
-    "id": "Screenshot (9195).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9198).png",
+    "created": "2024-05-30T00:12:33.356Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14221,12 +19990,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9198).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (9204).png",
+    "created": "2024-05-30T00:14:57.620Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14246,12 +20016,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9204).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (9208).png",
+    "created": "2024-05-30T00:17:36.311Z",
     "players": [
       [
         "orbital_laser",
@@ -14271,12 +20042,13 @@ const terminidData = [
         "gatling_sentry",
         ""
       ]
-    ],
-    "id": "Screenshot (9208).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (9211).png",
+    "created": "2024-05-30T00:19:55.430Z",
     "players": [
       [
         "quasar_cannon",
@@ -14296,12 +20068,13 @@ const terminidData = [
         "eagle_110",
         "supply_backpack"
       ]
-    ],
-    "id": "Screenshot (9211).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (9218).png",
+    "created": "2024-05-31T15:36:40.899Z",
     "players": [
       [
         "shield_backpack",
@@ -14321,12 +20094,13 @@ const terminidData = [
         "emancipator",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (9218).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 9,
+    "id": "Screenshot (9221).png",
+    "created": "2024-05-30T00:25:57.604Z",
     "players": [
       [
         "quasar_cannon",
@@ -14346,12 +20120,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9221).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 9,
+    "id": "Screenshot (9225).png",
+    "created": "2024-05-30T00:28:25.977Z",
     "players": [
       [
         "eagle_cluster",
@@ -14371,12 +20146,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9225).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 7,
+    "id": "Screenshot (9233).png",
+    "created": "2024-05-30T00:30:44.355Z",
     "players": [
       [
         "eagle_500kg",
@@ -14396,12 +20172,13 @@ const terminidData = [
         "eagle_napalm",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (9233).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9236).png",
+    "created": "2024-05-30T01:43:37.204Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14421,12 +20198,13 @@ const terminidData = [
         "orbital_railcannon",
         "eagle_airstrike"
       ]
-    ],
-    "id": "Screenshot (9236).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 8,
+    "id": "Screenshot (9252).png",
+    "created": "2024-05-30T05:12:51.849Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14446,12 +20224,13 @@ const terminidData = [
         "eagle_cluster",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (9252).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (9268).png",
+    "created": "2024-05-30T05:17:43.752Z",
     "players": [
       [
         "orbital_laser",
@@ -14471,12 +20250,13 @@ const terminidData = [
         "eagle_500kg",
         "eagle_cluster"
       ]
-    ],
-    "id": "Screenshot (9268).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9276).png",
+    "created": "2024-05-30T05:20:09.047Z",
     "players": [
       [
         "eagle_500kg",
@@ -14496,12 +20276,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9276).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (9284).png",
+    "created": "2024-05-30T05:22:47.432Z",
     "players": [
       [
         "jump_pack",
@@ -14521,12 +20302,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9284).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (9291).png",
+    "created": "2024-05-30T05:25:35.326Z",
     "players": [
       [
         "supply_backpack",
@@ -14546,12 +20328,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9291).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (9303).png",
+    "created": "2024-05-31T15:37:17.517Z",
     "players": [
       [
         "eagle_500kg",
@@ -14571,12 +20354,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9303).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (9319).png",
+    "created": "2024-05-30T05:35:27.439Z",
     "players": [
       [
         "spear",
@@ -14596,12 +20380,13 @@ const terminidData = [
         "recoilless_rifle",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (9319).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (9327).png",
+    "created": "2024-05-30T05:38:07.349Z",
     "players": [
       [
         "emancipator",
@@ -14621,12 +20406,13 @@ const terminidData = [
         "eagle_airstrike",
         "eagle_napalm"
       ]
-    ],
-    "id": "Screenshot (9327).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9333).png",
+    "created": "2024-05-30T05:40:56.998Z",
     "players": [
       [
         "eagle_500kg",
@@ -14646,12 +20432,13 @@ const terminidData = [
         "orbital_gas",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (9333).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (9341).png",
+    "created": "2024-05-30T05:43:10.296Z",
     "players": [
       [
         "mortar_sentry",
@@ -14671,12 +20458,13 @@ const terminidData = [
         "walking_barrage",
         ""
       ]
-    ],
-    "id": "Screenshot (9341).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9349).png",
+    "created": "2024-05-30T05:45:49.954Z",
     "players": [
       [
         "",
@@ -14696,12 +20484,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9349).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (9359).png",
+    "created": "2024-05-30T05:50:10.112Z",
     "players": [
       [
         "eagle_500kg",
@@ -14721,12 +20510,13 @@ const terminidData = [
         "autocannon_sentry",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (9359).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (9367).png",
+    "created": "2024-05-30T05:52:26.099Z",
     "players": [
       [
         "eagle_500kg",
@@ -14746,12 +20536,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9367).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 8,
+    "id": "Screenshot (9384).png",
+    "created": "2024-05-30T05:58:15.359Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14771,12 +20562,13 @@ const terminidData = [
         "orbital_railcannon",
         "autocannon"
       ]
-    ],
-    "id": "Screenshot (9384).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (9391).png",
+    "created": "2024-05-30T06:00:46.859Z",
     "players": [
       [
         "eagle_500kg",
@@ -14796,12 +20588,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9391).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (9404).png",
+    "created": "2024-05-30T06:06:03.085Z",
     "players": [
       [
         "arc_sentry",
@@ -14821,12 +20614,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9404).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (9407).png",
+    "created": "2024-05-30T06:08:00.016Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14846,12 +20640,13 @@ const terminidData = [
         "barrage_120",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (9407).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 7,
+    "id": "Screenshot (9415).png",
+    "created": "2024-05-30T06:10:25.965Z",
     "players": [
       [
         "orbital_gas",
@@ -14871,12 +20666,13 @@ const terminidData = [
         "eagle_airstrike",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (9415).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (9423).png",
+    "created": "2024-05-30T06:13:04.781Z",
     "players": [
       [
         "orbital_railcannon",
@@ -14896,12 +20692,13 @@ const terminidData = [
         "orbital_railcannon",
         "orbital_laser"
       ]
-    ],
-    "id": "Screenshot (9423).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (9432).png",
+    "created": "2024-05-30T06:16:35.732Z",
     "players": [
       [
         "eagle_500kg",
@@ -14921,12 +20718,13 @@ const terminidData = [
         "eagle_napalm",
         "patriot"
       ]
-    ],
-    "id": "Screenshot (9432).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 7,
+    "id": "Screenshot (9440).png",
+    "created": "2024-05-30T06:19:15.677Z",
     "players": [
       [
         "eagle_500kg",
@@ -14946,12 +20744,13 @@ const terminidData = [
         "shield_backpack",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9440).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (9448).png",
+    "created": "2024-05-30T06:21:54.414Z",
     "players": [
       [
         "orbital_airburst",
@@ -14971,12 +20770,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9448).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 9,
+    "id": "Screenshot (9456).png",
+    "created": "2024-05-30T06:24:32.664Z",
     "players": [
       [
         "eagle_airstrike",
@@ -14996,12 +20796,13 @@ const terminidData = [
         "eagle_cluster",
         "recoilless_rifle"
       ]
-    ],
-    "id": "Screenshot (9456).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 8,
+    "id": "Screenshot (9472).png",
+    "created": "2024-05-30T06:29:54.397Z",
     "players": [
       [
         "eagle_napalm",
@@ -15021,12 +20822,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9472).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 9,
+    "id": "Screenshot (9496).png",
+    "created": "2024-05-30T06:37:52.710Z",
     "players": [
       [
         "eagle_cluster",
@@ -15046,12 +20848,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9496).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (9504).png",
+    "created": "2024-05-30T06:40:31.238Z",
     "players": [
       [
         "orbital_railcannon",
@@ -15071,12 +20874,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9504).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 9,
+    "id": "Screenshot (9512).png",
+    "created": "2024-05-30T06:43:10.223Z",
     "players": [
       [
         "orbital_railcannon",
@@ -15096,12 +20900,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9512).png"
+    ]
   },
   {
     "type": "PURGE HATCHERIES",
     "difficulty": 8,
+    "id": "Screenshot (9536).png",
+    "created": "2024-05-30T06:51:12.440Z",
     "players": [
       [
         "eagle_500kg",
@@ -15121,12 +20926,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9536).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 7,
+    "id": "Screenshot (9544).png",
+    "created": "2024-05-30T06:53:54.079Z",
     "players": [
       [
         "eagle_500kg",
@@ -15146,12 +20952,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9544).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 9,
+    "id": "Screenshot (9568).png",
+    "created": "2024-05-30T07:01:55.850Z",
     "players": [
       [
         "barrage_120",
@@ -15171,12 +20978,13 @@ const terminidData = [
         "eat",
         "ems_sentry"
       ]
-    ],
-    "id": "Screenshot (9568).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 8,
+    "id": "Screenshot (9576).png",
+    "created": "2024-05-30T07:04:35.737Z",
     "players": [
       [
         "supply_backpack",
@@ -15196,12 +21004,13 @@ const terminidData = [
         "autocannon",
         "emancipator"
       ]
-    ],
-    "id": "Screenshot (9576).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9584).png",
+    "created": "2024-05-30T07:07:17.730Z",
     "players": [
       [
         "",
@@ -15221,12 +21030,13 @@ const terminidData = [
         "orbital_airburst",
         "orbital_railcannon"
       ]
-    ],
-    "id": "Screenshot (9584).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9600).png",
+    "created": "2024-05-30T07:12:41.451Z",
     "players": [
       [
         "eagle_500kg",
@@ -15246,12 +21056,13 @@ const terminidData = [
         "",
         ""
       ]
-    ],
-    "id": "Screenshot (9600).png"
+    ]
   },
   {
     "type": "BLITZ: SEARCH AND DESTROY",
     "difficulty": 8,
+    "id": "Screenshot (9616).png",
+    "created": "2024-05-30T07:18:01.833Z",
     "players": [
       [
         "orbital_gas",
@@ -15271,12 +21082,13 @@ const terminidData = [
         "autocannon_sentry",
         "gatling_sentry"
       ]
-    ],
-    "id": "Screenshot (9616).png"
+    ]
   },
   {
     "type": "RETRIEVE VALUABLE DATA",
     "difficulty": 7,
+    "id": "Screenshot (9624).png",
+    "created": "2024-05-30T07:20:43.699Z",
     "players": [
       [
         "grenade_launcher",
@@ -15296,12 +21108,13 @@ const terminidData = [
         "jump_pack",
         "grenade_launcher"
       ]
-    ],
-    "id": "Screenshot (9624).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 8,
+    "id": "Screenshot (9632).png",
+    "created": "2024-05-30T07:23:24.138Z",
     "players": [
       [
         "eagle_airstrike",
@@ -15321,12 +21134,13 @@ const terminidData = [
         "grenade_launcher",
         "orbital_gas"
       ]
-    ],
-    "id": "Screenshot (9632).png"
+    ]
   },
   {
     "type": "CONDUCT GEOLOGICAL SURVEY",
     "difficulty": 7,
+    "id": "Screenshot (9640).png",
+    "created": "2024-05-30T07:26:04.320Z",
     "players": [
       [
         "eagle_500kg",
@@ -15346,12 +21160,13 @@ const terminidData = [
         "grenade_launcher",
         "guard_dog_rover"
       ]
-    ],
-    "id": "Screenshot (9640).png"
+    ]
   },
   {
     "type": "ENABLE E-710 EXTRACTION",
     "difficulty": 9,
+    "id": "Screenshot (9648).png",
+    "created": "2024-05-30T07:28:42.935Z",
     "players": [
       [
         "eagle_500kg",
@@ -15371,12 +21186,13 @@ const terminidData = [
         "guard_dog_rover",
         "quasar_cannon"
       ]
-    ],
-    "id": "Screenshot (9648).png"
+    ]
   },
   {
     "type": "SPREAD DEMOCRACY",
     "difficulty": 7,
+    "id": "Screenshot (9656).png",
+    "created": "2024-05-30T07:31:22.798Z",
     "players": [
       [
         "",
@@ -15396,12 +21212,13 @@ const terminidData = [
         "patriot",
         "eagle_strafe"
       ]
-    ],
-    "id": "Screenshot (9656).png"
+    ]
   },
   {
     "type": "LAUNCH ICBM",
     "difficulty": 9,
+    "id": "Screenshot (9664).png",
+    "created": "2024-05-30T07:34:01.628Z",
     "players": [
       [
         "eagle_napalm",
@@ -15421,12 +21238,13 @@ const terminidData = [
         "eagle_110",
         "shield_backpack"
       ]
-    ],
-    "id": "Screenshot (9664).png"
+    ]
   },
   {
     "type": "ERADICATE TERMINID SWARM",
     "difficulty": 7,
+    "id": "Screenshot (9674).png",
+    "created": "2024-05-30T07:37:33.805Z",
     "players": [
       [
         "orbital_laser",
@@ -15446,9 +21264,8 @@ const terminidData = [
         "eagle_airstrike",
         ""
       ]
-    ],
-    "id": "Screenshot (9674).png"
+    ]
   }
-];
+]
 
   export { terminidData };
