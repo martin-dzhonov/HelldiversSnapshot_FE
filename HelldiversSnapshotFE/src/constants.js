@@ -314,6 +314,8 @@ const difficultiesNames = [
   "9 - Helldive"
 ];
 
+const apiBaseUrl = `http://localhost:3001`;
+
 export { 
   baseIconsSvg, 
   baseLabels, 
@@ -323,5 +325,6 @@ export {
   itemCategories, 
   itemCategoryColors, 
   itemCategoryIndexes, 
-  difficultiesNames 
+  difficultiesNames,
+  apiBaseUrl
 };

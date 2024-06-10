@@ -23,9 +23,9 @@ export const options = {
       },
       grid: {
         drawBorder: false,
-        color: '#aaa', // for the grid lines
-        drawTicks: false, // true is default 
-        drawOnChartArea: true // true is default 
+        color: '#aaa', 
+        drawTicks: false, 
+        drawOnChartArea: true
       },
     },
     y: {
@@ -38,9 +38,9 @@ export const options = {
       },
       grid: {
         drawBorder: false,
-        color: '#aaa', // for the grid lines
-        drawTicks: false, // true is default 
-        drawOnChartArea: false // true is default 
+        color: '#aaa', 
+        drawTicks: false, 
+        drawOnChartArea: false 
       },
 
       beginAtZero: true,
@@ -63,11 +63,6 @@ export const options = {
 export const optionsStrategem = {
   indexAxis: 'x',
   maintainAspectRatio: false,
-  layout: {
-    // padding: {
-    //   bottom: 80
-    // }
-  },
   elements: {
     bar: {
       borderWidth: 2,
@@ -86,9 +81,9 @@ export const optionsStrategem = {
       },
       grid: {
         drawBorder: false,
-        color: '#aaa', // for the grid lines
-        drawTicks: true, // true is default 
-        drawOnChartArea: false // true is default 
+        color: '#aaa', 
+        drawTicks: true, 
+        drawOnChartArea: false
       },
     },
     y: {
@@ -102,9 +97,9 @@ export const optionsStrategem = {
       },
       grid: {
         drawBorder: false,
-        color: '#aaa', // for the grid lines
-        drawTicks: false, // true is default 
-        drawOnChartArea: true // true is default 
+        color: '#aaa', 
+        drawTicks: false, 
+        drawOnChartArea: true 
       },
 
       beginAtZero: true,
@@ -129,5 +124,4 @@ export const optionsStrategem = {
       },
     },
   },
-
 };

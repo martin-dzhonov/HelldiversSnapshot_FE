@@ -36,6 +36,11 @@ const getMissionsByLength = (type) => {
         type === "Long" ? missionNames.slice(0, 8) : missionNames.slice(8, missionNames.length);
 };
 
+const getMissionLenght = (missionName) => {
+    const longMissions = getMissionsByLength("Long");
+    return longMissions.includes(missionName) ? "Long" : "Short";
+};
+
 const getCountingSuffix = (number) => {
     const suffixes = ["th", "st", "nd", "rd"];
     const v = number % 100;
@@ -44,22 +49,68 @@ const getCountingSuffix = (number) => {
 }
 
 const getPercentage = (number1, number2, decimals) => {
-    
     const percantageRaw = (number1 / number2) * 100;
-    console.log(percantageRaw);
-    if(percantageRaw < 0){
+    if (percantageRaw < 0) {
         return percantageRaw.toFixed(1);
     } else {
         return Math.round(percantageRaw);
     }
 }
 
+const sortDictArray = (a, b) => { return b[1] - a[1] };
+
+const getRankedDict = (data) => {
+    let dictObj = {};
+    let dictObjResult = {};
+    let loadoutsCount = 0;
+
+    const categoryRankings = {
+        "Eagle/Orbital": 1,
+        "Support": 1,
+        "Defensive": 1
+    }
+
+    data.forEach((game) => {
+        game.players.forEach((loadout) => {
+            loadoutsCount++;
+            console.log(game)
+            console.log(loadout);
+            loadout.forEach((item) => {
+                if (dictObj[item]) {
+                    dictObj[item] += 1;
+                } else {
+                    dictObj[item] = 1;
+                }
+            })
+
+        })
+    })
+
+
+    Object.entries(dictObj)
+        .sort(sortDictArray)
+        .forEach((item, index) => {
+            const itemCategory = getItemCategory(item[0]);
+            dictObjResult[item[0]] = {
+                total: item[1],
+                rankTotal: index + 1,
+                rankCategory: categoryRankings[itemCategory],
+                percentageLoadouts: getPercentage(item[1], loadoutsCount)
+            }
+            categoryRankings[itemCategory]++;
+        });
+
+    return dictObjResult;
+}
+
 export {
     getMissionsByLength,
+    getMissionLenght,
     getItemName,
     getItemColor,
     getItemCategory,
     getItemsByCategory,
     getCountingSuffix,
-    getPercentage
+    getPercentage,
+    getRankedDict
 };

@@ -21,24 +21,24 @@ function GamesTable({data}) {
                 {data && data.map((game, index) =>
                     <tr>
                         <td className='filter-results-text' >{index}</td>
-                        <td className='filter-results-text' >{game.created}</td>
+                        <td className='filter-results-text' >{game.createdAt}</td>
                         <td className='filter-results-text'>
                             <div class='table-loadout-row-wrapper'>
                                 {game.players.map((loadout) =>
                                     <div class='table-loadout-wrapper'>
                                         {loadout.map((item) => {
                                             return baseLabels.indexOf(item) !== -1 ?
-                                                <img className='armory-img-wrapper' src={baseIconsSvg[ baseLabels.indexOf(item)]} width={40}></img>
+                                                <img className='armory-img-wrapper' src={baseIconsSvg[baseLabels.indexOf(item)]} width={40}></img>
                                                 : <div className='armory-img-wrapper'></div>;
                                         })}
                                     </div>)}
                             </div>
                             <td>
-                                <ScreenshotToggle id={game.id} />
+                                <ScreenshotToggle id={game.snapLoadout} />
                             </td>
                         </td>
                         <td className='filter-results-text'>{game.difficulty}</td>
-                        <td className='filter-results-text'>{game.type}</td>
+                        <td className='filter-results-text'>{game.missionName}</td>
                     </tr>
                 )}
             </tbody>

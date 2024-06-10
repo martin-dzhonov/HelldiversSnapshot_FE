@@ -42,10 +42,11 @@ function FactionPage() {
     const ref1 = useRef(null);
     const chartRef = useRef(null);
 
+    const [factionName, setFactionName] = useState('Terminid');
+    const [factionData, setFactionData] = useState(null);
     const [showGames, setShowGames] = useState(false);
     const [graphData, setGraphData] = useState(null);
     const [filters, setFilters] = useState({
-        faction: "Terminid",
         type: itemCategories[0],
         typeIndexes: itemCategoryIndexes[0],
         difficulty: 0,
@@ -56,17 +57,28 @@ function FactionPage() {
         loadoutCount: 0,
     });
 
-    const sortDictArray = (a, b) => { return b[1] - a[1] };
+    const fetchFactionData = async (url) => {
+        const response = await fetch(`http://localhost:3001${url}`);
+        console.log('1')
+        const data = await response.json();
+        setFactionData(data);
+    }
+
+    useEffect(() => {
+        if(filters){
+            fetchFactionData(`/faction/${factionName.toLocaleLowerCase()}`);
+        }
+    }, [factionName])
 
     const dataFiltered = useMemo(() => {
-        if (filters) {
+        if (factionData && filters) {
             let validMissions = getMissionsByLength(filters.missionType);
-            const filtered = terminidData
+            const filtered = factionData
                 .filter((game) => filters.difficulty === 0 ? true : game.difficulty === filters.difficulty)
-                .filter((game) => validMissions.includes(game.type));
+                .filter((game) => validMissions.includes(game.missionName));
             return filtered;
         }
-    }, [filters, terminidData]);
+    }, [filters, factionData]);
 
     useEffect(() => {
         if (dataFiltered) {
@@ -77,11 +89,13 @@ function FactionPage() {
                 const players = match.players;
                 players.forEach((playerItems) => {
                     let hasItems = false;
-                    playerItems.forEach((itemName) => {
-                        if (itemName !== "") { hasItems = true; }
-                        if (metaDictObj[itemName]) { metaDictObj[itemName] += 1; }
-                        else { metaDictObj[itemName] = 1; }
-                    })
+                    if (playerItems) {
+                        playerItems.forEach((itemName) => {
+                            if (itemName !== "") { hasItems = true; }
+                            if (metaDictObj[itemName]) { metaDictObj[itemName] += 1; }
+                            else { metaDictObj[itemName] = 1; }
+                        })
+                    }
                     if (hasItems) { loadoutCount++; }
                 })
             })
@@ -121,7 +135,7 @@ function FactionPage() {
                 const imageIndex = itemNames.indexOf(element);
                 let labelImage = new Image();
                 labelImage.setAttribute('crossorigin', 'anonymous');
-                
+
                 labelImage.src = baseIconsSvg[imageIndex];
 
                 let offsetMagic = j;
@@ -170,19 +184,22 @@ function FactionPage() {
         return graphData.labels[index];
     };
 
+    const sortDictArray = (a, b) => { return b[1] - a[1] };
+
+
     return (
         <div className='content-wrapper'>
             <div className='filters-container'>
                 <DropdownButton
                     className='dropdown-button'
-                    title={"Faction: " + filters.faction}>
+                    title={"Faction: " + factionName}>
                     <Dropdown.Item as="button"
-                        onClick={() => { setFilters({ ...filters, faction: "Terminid", }) }}>
+                        onClick={() => { setFactionName("Terminid") }}>
                         Terminid
                     </Dropdown.Item>
-                    <Dropdown.Item as="button" disabled 
-                        onClick={() => { setFilters({ ...filters, faction: "Automaton", }) }}>
-                        Automaton (Soon)
+                    <Dropdown.Item as="button"
+                        onClick={() => { setFactionName("Automaton") }}>
+                        Automaton
                     </Dropdown.Item>
                 </DropdownButton>
 
@@ -191,7 +208,7 @@ function FactionPage() {
                     title={"Strategems: " + filters.type}>
                     {itemCategories.map((category, index) =>
                         <Dropdown.Item as="button"
-                            onClick={() => { setFilters({...filters, type: category })}}>
+                            onClick={() => { setFilters({ ...filters, type: category }) }}>
                             {category}
                         </Dropdown.Item>
                     )}
@@ -231,7 +248,7 @@ function FactionPage() {
             </div>
             {showGames &&
                 <div className='show-games-table-wrapper'>
-                  <GamesTable data={dataFiltered} />
+                    <GamesTable data={dataFiltered} />
                 </div>
             }
             {graphData &&
