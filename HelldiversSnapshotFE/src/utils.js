@@ -33,7 +33,7 @@ const getItemsByCategory = (category) => {
 
 const getMissionsByLength = (type) => {
     return type === "All" ? missionNames :
-        type === "Long" ? missionNames.slice(0, 8) : missionNames.slice(8, missionNames.length);
+        type === "Long" ? missionNames.slice(0, 10) : missionNames.slice(10, missionNames.length);
 };
 
 const getMissionLenght = (missionName) => {
@@ -73,8 +73,6 @@ const getRankedDict = (data) => {
     data.forEach((game) => {
         game.players.forEach((loadout) => {
             loadoutsCount++;
-            console.log(game)
-            console.log(loadout);
             loadout.forEach((item) => {
                 if (dictObj[item]) {
                     dictObj[item] += 1;

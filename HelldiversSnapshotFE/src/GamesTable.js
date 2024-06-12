@@ -5,7 +5,6 @@ import ScreenshotToggle from './screenshotToggle';
 import Table from 'react-bootstrap/Table';
 
 function GamesTable({data}) {
-
     return (
         <Table striped bordered hover size="sm" variant="dark">
             <thead>
@@ -21,7 +20,7 @@ function GamesTable({data}) {
                 {data && data.map((game, index) =>
                     <tr>
                         <td className='filter-results-text' >{index}</td>
-                        <td className='filter-results-text' >{game.createdAt}</td>
+                        <td className='filter-results-text' >{new Date(game.createdAt).toLocaleString()}</td>
                         <td className='filter-results-text'>
                             <div class='table-loadout-row-wrapper'>
                                 {game.players.map((loadout) =>
@@ -34,7 +33,7 @@ function GamesTable({data}) {
                                     </div>)}
                             </div>
                             <td>
-                                <ScreenshotToggle id={game.snapLoadout} />
+                                <ScreenshotToggle img={game.loadoutImg} />
                             </td>
                         </td>
                         <td className='filter-results-text'>{game.difficulty}</td>

@@ -4,7 +4,6 @@ import { baseLabels, baseIconsSvg, missionNames, apiBaseUrl } from './constants'
 import { getItemName, getItemColor, getCountingSuffix, getItemCategory, getPercentage, getRankedDict, getMissionLenght } from './utils';
 
 import { useParams } from 'react-router-dom';
-import { terminidData } from './data/terminid';
 import * as settings from "./settings/chartSettings";
 
 import {
@@ -30,12 +29,15 @@ ChartJS.register(
 function StrategemPage() {
     let { itemId: itemName } = useParams();
 
-    const [factionName, setFactionName] = useState('terminid')
+    console.log(itemName);
+    const [factionName, setFactionName] = useState('terminid');
+    const [factionData, setFactionData] = useState(null);
     const [strategemData, setStrategemData] = useState(null)
-    const [factionData, setFactionData] = useState(null)
-
     const [graphData, setGraphData] = useState(null);
     const [graphData1, setGraphData1] = useState(null);
+    const [factionLoading, setFactionLoading] = useState(true);
+    const [strategemLoading, setStrategemLoading] = useState(true);
+
 
     const [width, setWidth] = useState(window.innerWidth);
 
@@ -50,14 +52,18 @@ function StrategemPage() {
         }
     }, []);
 
+
     useEffect(() => {
+        setFactionLoading(true);
+        setStrategemLoading(true);
+
         fetch(apiBaseUrl + `/faction/${factionName}`)
             .then(response => response.json())
-            .then(data => setFactionData(data));
+            .then(data => { setFactionLoading(false); setFactionData(data); });
 
         fetch(apiBaseUrl + `/games/${factionName}/${itemName}`)
             .then(response => response.json())
-            .then(data => setStrategemData(data));
+            .then(data => { setStrategemLoading(false); setStrategemData(data) });
     }, [factionName])
 
     const itemsRankings = useMemo(() => {
@@ -70,9 +76,9 @@ function StrategemPage() {
     useEffect(() => {
 
         if (factionData && strategemData) {
-            const loadoutsByDiff = {7: 0, 8: 0, 9: 0};
+            const loadoutsByDiff = { 7: 0, 8: 0, 9: 0 };
             const itemLoadoutsByDiff = Object.assign({}, loadoutsByDiff);
-            const loadoutsByMission = {"Short": 0, "Long": 0};
+            const loadoutsByMission = { "Short": 0, "Long": 0 };
             const itemLoadoutsByMission = Object.assign({}, loadoutsByMission);
 
             factionData.forEach((game) => {
@@ -124,45 +130,49 @@ function StrategemPage() {
                 </div>
                 {width > 1200 &&
                     <div className='flex-row' style={{ marginRight: "120px" }}>
-                        <div className='item-details-tab-active'
-                        onClick={()=>{setFactionName('terminid')}}>Terminid</div>
-                        <div className='item-details-tab'
-                        onClick={()=>{setFactionName('automaton')}}>Automaton</div>
+                        <div className={`${factionName === 'terminid' ? 'item-details-tab-active' : 'item-details-tab'}`}
+                            onClick={() => { setFactionName('terminid') }}>Terminid</div>
+                        <div className={`${factionName === 'automaton' ? 'item-details-tab-active' : 'item-details-tab'}`}
+                            onClick={() => { setFactionName('automaton') }}>Automaton</div>
                     </div>}
             </div>
             <div className='strategem-rankings-container'>
-                <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{itemsRankings?.rankTotal}
-                        <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankTotal)}</span>
+                {(strategemLoading || factionLoading) ? <div className="spinner-faction-container">
+                    <div className="lds-dual-ring"></div>
+                </div> : <>
+                    <div className='strategem-rankings-item'>
+                        <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{itemsRankings?.rankTotal}
+                            <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankTotal)}</span>
+                        </div>
+                        <div className='strategem-rankings-text-wrapper'>
+                            <div className='strategem-rankings-text-small'>in</div>
+                            <div className='strategem-rankings-text-small'>All Strategem</div>
+                        </div>
                     </div>
-                    <div className='strategem-rankings-text-wrapper'>
-                        <div className='strategem-rankings-text-small'>in</div>
-                        <div className='strategem-rankings-text-small'>All Strategem</div>
+                    <div className='strategem-rankings-item'>
+                        <div className='strategem-rankings-number' style={{ color: getItemColor(itemName) }}>{itemsRankings?.rankCategory}
+                            <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankCategory)}</span>
+                        </div>
+                        <div className='strategem-rankings-text-wrapper'>
+                            <div className='strategem-rankings-text-small'>in</div>
+                            <div className='strategem-rankings-text-small'>{getItemCategory(itemName)}</div>
+                        </div>
                     </div>
-                </div>
-                <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: getItemColor(itemName) }}>{itemsRankings?.rankCategory}
-                        <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankCategory)}</span>
+                    <div className='strategem-rankings-item'>
+                        <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{getPercentage(strategemData?.length, factionData?.length)}</div>
+                        <div className='strategem-rankings-text-wrapper'>
+                            <div className='strategem-rankings-text-small'>percent</div>
+                            <div className='strategem-rankings-text-small'>of matches</div>
+                        </div>
                     </div>
-                    <div className='strategem-rankings-text-wrapper'>
-                        <div className='strategem-rankings-text-small'>in</div>
-                        <div className='strategem-rankings-text-small'>{getItemCategory(itemName)}</div>
+                    <div className='strategem-rankings-item'>
+                        <div className='strategem-rankings-number' style={{ color: getItemColor(itemName) }}>{itemsRankings?.percentageLoadouts}</div>
+                        <div className='strategem-rankings-text-wrapper'>
+                            <div className='strategem-rankings-text-small'>percent</div>
+                            <div className='strategem-rankings-text-small'>of loadouts</div>
+                        </div>
                     </div>
-                </div>
-                <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{getPercentage(strategemData?.length, terminidData.length)}</div>
-                    <div className='strategem-rankings-text-wrapper'>
-                        <div className='strategem-rankings-text-small'>percent</div>
-                        <div className='strategem-rankings-text-small'>of matches</div>
-                    </div>
-                </div>
-                <div className='strategem-rankings-item'>
-                    <div className='strategem-rankings-number' style={{ color: getItemColor(itemName) }}>{itemsRankings?.percentageLoadouts}</div>
-                    <div className='strategem-rankings-text-wrapper'>
-                        <div className='strategem-rankings-text-small'>percent</div>
-                        <div className='strategem-rankings-text-small'>of loadouts</div>
-                    </div>
-                </div>
+                </>}
 
             </div>
             <div className='strategem-divier'></div>

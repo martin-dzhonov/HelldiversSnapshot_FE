@@ -4,9 +4,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import * as settings from "./settings/chartSettings";
-import { baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames } from './constants';
+import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames } from './constants';
 import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength } from './utils';
-import { terminidData } from './data/terminid';
 
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -48,7 +47,7 @@ function FactionPage() {
     const [graphData, setGraphData] = useState(null);
     const [filters, setFilters] = useState({
         type: itemCategories[0],
-        typeIndexes: itemCategoryIndexes[0],
+        period: "All",
         difficulty: 0,
         missionType: "All"
     });
@@ -56,16 +55,19 @@ function FactionPage() {
         matchCount: 0,
         loadoutCount: 0,
     });
+    const [loading, setLoading] = useState(true);
+
 
     const fetchFactionData = async (url) => {
-        const response = await fetch(`http://localhost:3001${url}`);
-        console.log('1')
+        const response = await fetch(`${apiBaseUrl}${url}`);
         const data = await response.json();
         setFactionData(data);
+        setLoading(false);
     }
 
     useEffect(() => {
-        if(filters){
+        if (filters) {
+            setLoading(true);
             fetchFactionData(`/faction/${factionName.toLocaleLowerCase()}`);
         }
     }, [factionName])
@@ -74,8 +76,10 @@ function FactionPage() {
         if (factionData && filters) {
             let validMissions = getMissionsByLength(filters.missionType);
             const filtered = factionData
-                .filter((game) => filters.difficulty === 0 ? true : game.difficulty === filters.difficulty)
-                .filter((game) => validMissions.includes(game.missionName));
+            .filter((game) => filters.difficulty === 0 ? true : game.difficulty === filters.difficulty)
+            .filter((game) => validMissions.includes(game.missionName));
+
+            console.log(filtered)
             return filtered;
         }
     }, [filters, factionData]);
@@ -174,7 +178,7 @@ function FactionPage() {
         const elementAtEvent = getDatasetElement(getElementAtEvent(chart, event));
         if (elementAtEvent) {
             const elIndex = itemNames.indexOf(elementAtEvent);
-            navigate(`/armory/${baseLabels[elIndex]}`)
+            navigate(`/armory/${factionName.toLowerCase()}/${baseLabels[elIndex]}`)
         }
     };
 
@@ -213,6 +217,7 @@ function FactionPage() {
                         </Dropdown.Item>
                     )}
                 </DropdownButton>
+                
                 <DropdownButton
                     className='dropdown-button'
                     title={filters.difficulty === 0 ? "Difficulty: All" : "Difficulty: " + filters.difficulty}>
@@ -223,6 +228,7 @@ function FactionPage() {
                         </Dropdown.Item>
                     )}
                 </DropdownButton>
+
                 <DropdownButton
                     className='dropdown-button'
                     title={"Mission Type: " + filters.missionType}>
@@ -251,34 +257,38 @@ function FactionPage() {
                     <GamesTable data={dataFiltered} />
                 </div>
             }
-            {graphData &&
-                <div className='bar-container'>
-                    <div style={{
-                        height: `${graphData.labels.length * 40}px`,
-                        position: "relative"
-                    }}>
-                        <Bar class="bar-factions" style={{
-                            backgroundColor: '#181818',
-                            padding: "0px 0px 0px 60px",
-                        }}
-                            ref={chartRef}
-                            options={settings.options}
-                            width="100%"
-                            data={graphData}
-                            redraw={true}
-                            onClick={onBarClick}
-                        />
+            {graphData && (
+                loading ?
+                    <div className="spinner-faction-container">
+                        <div className="lds-dual-ring"></div>
+                    </div> :
+                    <div className='bar-container'>
+                        <div style={{
+                            height: `${graphData.labels.length * 40}px`,
+                            position: "relative"
+                        }}>
+                            <Bar class="bar-factions" style={{
+                                backgroundColor: '#181818',
+                                padding: "0px 0px 0px 60px",
+                            }}
+                                ref={chartRef}
+                                options={settings.options}
+                                width="100%"
+                                data={graphData}
+                                redraw={true}
+                                onClick={onBarClick}
+                            />
 
-                        <canvas style={{
-                            position: "absolute",
-                            top: "0px", left: "0px"
-                        }}
-                            ref={ref1}
-                            width={75}
-                            height={(graphData.labels.length * 40) - 28} />
+                            <canvas style={{
+                                position: "absolute",
+                                top: "0px", left: "0px"
+                            }}
+                                ref={ref1}
+                                width={75}
+                                height={(graphData.labels.length * 40) - 28} />
+                        </div>
                     </div>
-                </div>
-            }
+            )}
         </div>
     );
 }

@@ -280,7 +280,10 @@ const missionNames = [
   "EMERGENCY EVACUATION",
   "CONDUCT GEOLOGICAL SURVEY",
   "DEPLOY DARK FLUID",
+  "DESTROY COMMAND BUNKERS",
+  "SABOTAGE AIR BASE",
   "ERADICATE TERMINID SWARM",
+  "ERADICATE AUTOMATON FORCES",
   "BLITZ: SEARCH AND DESTROY",
   "EVACUATE HIGH-VALUE ASSETS",
   "RETRIEVE ESSENTIAL PERSONNEL"
@@ -314,7 +317,7 @@ const difficultiesNames = [
   "9 - Helldive"
 ];
 
-const apiBaseUrl = `http://localhost:3001`;
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
 
 export { 
   baseIconsSvg, 
