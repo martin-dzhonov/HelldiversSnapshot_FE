@@ -1,16 +1,16 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import './App.css';
+import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import * as settings from "./settings/chartSettings";
-import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames } from './constants';
-import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength } from './utils';
+import * as settings from "../settings/chartSettings";
+import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames, patchPeriods } from '../constants';
+import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength, getRankedDict, isDateBetween, filterByPatch } from '../utils';
 
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import GamesTable from './GamesTable';
+import GamesTable from '../components/GamesTable';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -19,44 +19,52 @@ import {
     Title,
     Tooltip,
     Legend,
+    PointElement,
+    LineElement,
 } from 'chart.js';
-import {
-    Bar, getElementAtEvent,
-} from 'react-chartjs-2';
 
-import logoAutomaton from "./assets/logos/automatonlogo.png"
-import logoTerminid from "./assets/logos/termlogo4.png"
+import {
+    Bar, Line, getElementAtEvent,
+} from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
     LinearScale,
     BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
 );
 
 function FactionPage() {
     const navigate = useNavigate();
     const ref1 = useRef(null);
     const chartRef = useRef(null);
-
+    const [loading, setLoading] = useState(true);
     const [factionName, setFactionName] = useState('Terminid');
     const [factionData, setFactionData] = useState(null);
     const [showGames, setShowGames] = useState(false);
+    const [showTrends, setShowTrends] = useState(false);
     const [graphData, setGraphData] = useState(null);
+
+    const [timelineGraphData, setTimelineGraphData] = useState(null);
+
     const [filters, setFilters] = useState({
-        type: itemCategories[0],
-        period: "All",
+        type: "All",
         difficulty: 0,
-        missionType: "All"
+        missionType: "All",
+        period: {
+            id: patchPeriods[1].id,
+            start: patchPeriods[1].start,
+            end: patchPeriods[1].end
+        },
     });
     const [chartFilterData, setChartFilterData] = useState({
         matchCount: 0,
         loadoutCount: 0,
     });
-    const [loading, setLoading] = useState(true);
-
 
     const fetchFactionData = async (url) => {
         const response = await fetch(`${apiBaseUrl}${url}`);
@@ -74,54 +82,63 @@ function FactionPage() {
 
     const dataFiltered = useMemo(() => {
         if (factionData && filters) {
-            let validMissions = getMissionsByLength(filters.missionType);
             const filtered = factionData
-            .filter((game) => filters.difficulty === 0 ? true : game.difficulty === filters.difficulty)
-            .filter((game) => validMissions.includes(game.missionName));
+                .filter((game) => filterByPatch(filters.period.id, game))
+                .filter((game) => filters.difficulty !== 0 ? game.difficulty === filters.difficulty : true)
+            // .filter((game) => getMissionsByLength(filters.missionType).includes(game.missionName));
 
-            console.log(filtered)
             return filtered;
         }
     }, [filters, factionData]);
 
     useEffect(() => {
         if (dataFiltered) {
-            let metaDictObj = {};
-            let loadoutCount = 0;
 
-            dataFiltered.forEach((match) => {
-                const players = match.players;
-                players.forEach((playerItems) => {
-                    let hasItems = false;
-                    if (playerItems) {
-                        playerItems.forEach((itemName) => {
-                            if (itemName !== "") { hasItems = true; }
-                            if (metaDictObj[itemName]) { metaDictObj[itemName] += 1; }
-                            else { metaDictObj[itemName] = 1; }
-                        })
-                    }
-                    if (hasItems) { loadoutCount++; }
-                })
-            })
+            const rankedDict = getRankedDict(dataFiltered, filters.type);
+            const loadoutCount = dataFiltered.reduce((sum, item) => sum + item.players.length, 0);
 
             setChartFilterData({ matchCount: dataFiltered.length, loadoutCount });
-
-            let dataSorted = Object.entries(metaDictObj)
-                .filter((item) => getItemsByCategory(filters.type).includes(item[0]))
-                .sort(sortDictArray);
-
-            let dataParse = {
-                labels: dataSorted.map((item) => getItemName(item[0], "short")),
+            setGraphData({
+                labels: Object.keys(rankedDict).map((item) => getItemName(item, "short")),
                 datasets: [{
-                    data: dataSorted.map((item) => item[1]),
-                    backgroundColor: dataSorted.map((item) => getItemColor(item[0])),
+                    data: Object.values(rankedDict).map((item) => item.percentageLoadouts),
+                    backgroundColor: Object.keys(rankedDict).map((item) => getItemColor(item)),
+                    total: Object.values(rankedDict).map((item) => item.total),
                     barThickness: 18,
                 }],
-            };
-
-            setGraphData(dataParse);
+            });
         }
     }, [filters, dataFiltered]);
+
+    useEffect(() => {
+        if (factionData) {
+            const labels = patchPeriods.map((item) => item.id);
+
+            const patch300Data = getRankedDict(factionData.filter((game) => filterByPatch("1.000.300", game)), filters.type);
+            const patch400Data = getRankedDict(factionData.filter((game) => filterByPatch("1.000.400", game)), filters.type);
+
+            const datasets = Object.keys(patch400Data).map((item) => {
+                return {
+                    label: item,
+                    data: [patch300Data[item]?.percentageLoadouts, patch400Data[item]?.percentageLoadouts],
+                    borderColor: getItemColor(item)
+                }
+            })
+
+            const datasets1 = Object.keys(patch400Data).map((item) => {
+                return Number(patch400Data[item]?.percentageLoadouts - patch300Data[item]?.percentageLoadouts).toFixed(1);
+            })
+
+            setTimelineGraphData({
+                labels: Object.keys(patch400Data).map((item) => getItemName(item, "short")),
+                datasets: [{
+                    data: datasets1,
+                    backgroundColor: Object.keys(patch400Data).map((item) => getItemColor(item)),
+                    barThickness: 21,
+                }],
+            });
+        }
+    }, [factionData, filters.type]);
 
     useEffect(() => {
         //draw X axis images for each graph
@@ -171,7 +188,6 @@ function FactionPage() {
         }
     }, [graphData]);
 
-
     const onBarClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
@@ -188,8 +204,18 @@ function FactionPage() {
         return graphData.labels[index];
     };
 
-    const sortDictArray = (a, b) => { return b[1] - a[1] };
-
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart',
+            },
+        },
+    };
 
     return (
         <div className='content-wrapper'>
@@ -217,7 +243,18 @@ function FactionPage() {
                         </Dropdown.Item>
                     )}
                 </DropdownButton>
-                
+
+                <DropdownButton
+                    className='dropdown-button'
+                    title={"Patch: " + filters.period.id}>
+                    {patchPeriods.map((patchPeriod, index) =>
+                        <Dropdown.Item as="button"
+                            onClick={() => { setFilters({ ...filters, period: patchPeriod }) }}>
+                            {`${patchPeriod.id === "All" ? "" : "Patch"} ${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                        </Dropdown.Item>
+                    )}
+                </DropdownButton>
+
                 <DropdownButton
                     className='dropdown-button'
                     title={filters.difficulty === 0 ? "Difficulty: All" : "Difficulty: " + filters.difficulty}>
@@ -249,14 +286,44 @@ function FactionPage() {
             </div>
             <div className='filter-results-container'>
                 <div className='filter-results-text'>Matches: {chartFilterData.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {chartFilterData.loadoutCount} </div>
-                <div className='filter-results-text' style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
-                    onClick={() => setShowGames(!showGames)}> Show Games </div>
+                <div className='filter-results-container2'>
+                <div className='filter-results-text'
+                    style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
+                    onClick={() => setShowTrends(!showTrends)}>
+                    Show Trends
+                </div>
+                <div className='filter-results-text'
+                    style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer", paddingLeft: "40px" }}
+                    onClick={() => setShowGames(!showGames)}>
+                    Show Games
+                </div>
+                </div>
             </div>
             {showGames &&
                 <div className='show-games-table-wrapper'>
                     <GamesTable data={dataFiltered} />
                 </div>
             }
+
+            {timelineGraphData && showTrends &&
+                <div className='bar-container2'>
+                <div className='strategem-graph-title' style={{paddingLeft: "50px", paddingBottom:"10px"}}>Patch 1.000.300 - 1.000.400</div>
+                    <div style={{
+                        height: `700px`,
+                        position: "relative"
+                    }}>
+                        <Bar style={{
+                            backgroundColor: '#181818',
+                            padding: "0px 0px 0px 20px",
+                        }}
+                            options={settings.optionsTrends}
+                            width="100%"
+                            height="100px"
+                            data={timelineGraphData}
+                            redraw={true}
+                            onClick={onBarClick}
+                        />
+                    </div></div>}
             {graphData && (
                 loading ?
                     <div className="spinner-faction-container">
@@ -289,6 +356,9 @@ function FactionPage() {
                         </div>
                     </div>
             )}
+
+
+
         </div>
     );
 }

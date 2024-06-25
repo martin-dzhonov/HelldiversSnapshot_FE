@@ -1,7 +1,8 @@
-import './App.css';
-import { baseLabels, baseIconsSvg } from './constants';
+import '../App.css';
+import { baseLabels, baseIconsSvg } from '../constants';
 
-import ScreenshotToggle from './screenshotToggle';
+import ScreenshotToggle from './ScreenshotToggle';
+
 import Table from 'react-bootstrap/Table';
 
 function GamesTable({data}) {

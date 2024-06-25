@@ -51,6 +51,8 @@ import shield_relay_svg from './assets/svgs/Shield Generator Relay.svg'
 import mines_infantry_svg from './assets/svgs/Anti-Personnel Minefield.svg'
 import mines_incendiary_svg from './assets/svgs/Incendiary Mines.svg'
 
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+
 const baseIconsSvg = [
   eagle_airstrike_svg,
   eagle_500kg_svg,
@@ -277,6 +279,7 @@ const missionNames = [
   "RETRIEVE VALUABLE DATA",
   "SPREAD DEMOCRACY",
   "PURGE HATCHERIES",
+  "NUKE NURSERY",
   "EMERGENCY EVACUATION",
   "CONDUCT GEOLOGICAL SURVEY",
   "DEPLOY DARK FLUID",
@@ -317,7 +320,12 @@ const difficultiesNames = [
   "9 - Helldive"
 ];
 
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+const patchPeriods = [
+  {id: "1.000.300", start: "04/01/2024", end: "06/14/2024"},
+  {id: "1.000.400", start: "06/14/2024", end: "Present"}
+];
+
+
 
 export { 
   baseIconsSvg, 
@@ -329,5 +337,6 @@ export {
   itemCategoryColors, 
   itemCategoryIndexes, 
   difficultiesNames,
-  apiBaseUrl
+  apiBaseUrl,
+  patchPeriods
 };
