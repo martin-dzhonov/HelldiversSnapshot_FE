@@ -1,11 +1,9 @@
 import '../App.css';
 import { baseLabels, baseIconsSvg } from '../constants';
-
 import ScreenshotToggle from './ScreenshotToggle';
-
 import Table from 'react-bootstrap/Table';
 
-function GamesTable({data}) {
+function GamesTable({ data }) {
     return (
         <Table striped bordered hover size="sm" variant="dark">
             <thead>
@@ -26,16 +24,13 @@ function GamesTable({data}) {
                             <div class='table-loadout-row-wrapper'>
                                 {game.players.map((loadout) =>
                                     <div class='table-loadout-wrapper'>
-                                        {loadout.map((item) => {
-                                            return baseLabels.indexOf(item) !== -1 ?
+                                        {loadout.map((item) =>
+                                            baseLabels.indexOf(item) !== -1 ?
                                                 <img className='armory-img-wrapper' src={baseIconsSvg[baseLabels.indexOf(item)]} width={40}></img>
-                                                : <div className='armory-img-wrapper'></div>;
-                                        })}
+                                                : <div className='armory-img-wrapper'></div>)}
                                     </div>)}
                             </div>
-                            <td>
-                                <ScreenshotToggle img={game.loadoutImg} />
-                            </td>
+                            <ScreenshotToggle img={game.loadoutImg} />
                         </td>
                         <td className='filter-results-text'>{game.difficulty}</td>
                         <td className='filter-results-text'>{game.missionName}</td>

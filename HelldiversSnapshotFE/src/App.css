@@ -295,24 +295,7 @@ h1 {
   scrollbar-width: none;
 }
 
-.bar-factions {
-  background-color: black;
-  padding: 0px 0px 0px 510px,
-}
 
-@media (any-pointer: fine) {
-  .bar-factions {
-    background-color: black;
-    padding: 0px 0px 0px 100px,
-  }
-}
-
-@media (any-pointer: coarse) {
-  .bar-factions {
-    background-color: black;
-    padding: 0px 0px 0px 510px,
-  }
-}
 
 .spinner-faction-container{
   display: flex;

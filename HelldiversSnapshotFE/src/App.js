@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from './layout';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Layout from './Layout';
 import ArmoryPage from './pages/ArmoryPage';
 import FactionPage from './pages/FactionPage';
 import StrategemPage from './pages/StrategemPage';
@@ -12,11 +12,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          <Layout>
-            <FactionPage />
-          </Layout>
-        } />
+        <Route path="/" element={<Navigate to="/snapshot" />}>
+          
+        </Route>
+        <Route path="/snapshot"
+          element={
+            <Layout>
+              <FactionPage />
+            </Layout>
+          } />
         <Route path="armory" element={
           <Layout>
             <ArmoryPage />
@@ -27,12 +31,12 @@ function App() {
           <Layout>
             <StrategemPage />
           </Layout>
-        }/>
+        } />
         <Route path="/about" element={
           <Layout>
             <AboutPage />
           </Layout>
-        }/>
+        } />
       </Routes>
     </BrowserRouter>
   );

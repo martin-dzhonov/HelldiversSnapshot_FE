@@ -57,11 +57,7 @@ const isDateBetween = (targetDate, startDate, endDate) => {
     const target = new Date(targetDate);
     const start = new Date(startDate);
     const end = endDate === "Present" ? new Date() : new Date(endDate);
-    
-    console.log('----------');
-    console.log(target);
-    console.log(start);
-    console.log(end);
+
     const targetTime = target.getTime();
     const startTime = start.getTime();
     const endTime = end.getTime();
@@ -75,7 +71,6 @@ const filterByPatch = (period, game) => {
     const patchPeriodFull = patchPeriods.find((item) => item.id === period);
     return period.id !== "All" ? isDateBetween(game.createdAt, patchPeriodFull.start, patchPeriodFull.end) : true;
 };
-
 
 const getRankedDict = (data, category, itemName) => {
 
@@ -133,8 +128,6 @@ const getRankedDict = (data, category, itemName) => {
     Object.entries(dictObjResult)
         .filter((item) => getItemsByCategory(category).includes(item[0]))
         .forEach((item) => { dictObjByCategory[item[0]] = item[1] })
-
-
 
     return dictObjByCategory;
 }

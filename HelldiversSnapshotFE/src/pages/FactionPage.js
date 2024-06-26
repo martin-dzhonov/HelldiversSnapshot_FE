@@ -1,42 +1,17 @@
 
-import { useEffect, useMemo, useRef, useState } from 'react'
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import * as settings from "../settings/chartSettings";
-import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes, difficultiesNames, patchPeriods } from '../constants';
-import { getItemsByCategory, getItemName, getItemColor, getMissionsByLength, getRankedDict, isDateBetween, filterByPatch } from '../utils';
-
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import {getElementAtEvent} from 'react-chartjs-2';
+
+import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, patchPeriods } from '../constants';
+import { getItemName, getItemColor, getRankedDict, filterByPatch } from '../utils';
+import * as settings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-    PointElement,
-    LineElement,
-} from 'chart.js';
+import Filters from '../components/Filters';
+import BarGraph from '../components/BarGraph';
 
-import {
-    Bar, Line, getElementAtEvent,
-} from 'react-chartjs-2';
-
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-);
 
 function FactionPage() {
     const navigate = useNavigate();
@@ -204,99 +179,24 @@ function FactionPage() {
         return graphData.labels[index];
     };
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Line Chart',
-            },
-        },
-    };
-
     return (
-        <div className='content-wrapper'>
-            <div className='filters-container'>
-                <DropdownButton
-                    className='dropdown-button'
-                    title={"Faction: " + factionName}>
-                    <Dropdown.Item as="button"
-                        onClick={() => { setFactionName("Terminid") }}>
-                        Terminid
-                    </Dropdown.Item>
-                    <Dropdown.Item as="button"
-                        onClick={() => { setFactionName("Automaton") }}>
-                        Automaton
-                    </Dropdown.Item>
-                </DropdownButton>
+        <div className='content-wrapper'> 
+        
+            <Filters factionName={factionName} setFactionName={setFactionName} filters={filters} setFilters={setFilters} />
 
-                <DropdownButton
-                    className='dropdown-button'
-                    title={"Strategems: " + filters.type}>
-                    {itemCategories.map((category, index) =>
-                        <Dropdown.Item as="button"
-                            onClick={() => { setFilters({ ...filters, type: category }) }}>
-                            {category}
-                        </Dropdown.Item>
-                    )}
-                </DropdownButton>
-
-                <DropdownButton
-                    className='dropdown-button'
-                    title={"Patch: " + filters.period.id}>
-                    {patchPeriods.map((patchPeriod, index) =>
-                        <Dropdown.Item as="button"
-                            onClick={() => { setFilters({ ...filters, period: patchPeriod }) }}>
-                            {`${patchPeriod.id === "All" ? "" : "Patch"} ${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
-                        </Dropdown.Item>
-                    )}
-                </DropdownButton>
-
-                <DropdownButton
-                    className='dropdown-button'
-                    title={filters.difficulty === 0 ? "Difficulty: All" : "Difficulty: " + filters.difficulty}>
-                    {difficultiesNames.map((difficultyName) =>
-                        <Dropdown.Item as="button"
-                            onClick={() => { setFilters({ ...filters, difficulty: difficultyName === "All" ? 0 : Number(difficultyName[0]) }) }}>
-                            {difficultyName}
-                        </Dropdown.Item>
-                    )}
-                </DropdownButton>
-
-                <DropdownButton
-                    className='dropdown-button'
-                    title={"Mission Type: " + filters.missionType}>
-                    <Dropdown.Item as="button"
-                        onClick={() => { setFilters({ ...filters, missionType: "All", }) }}>
-                        All
-                    </Dropdown.Item>
-                    <Dropdown.Item as="button"
-                        onClick={() => { setFilters({ ...filters, missionType: "Long", }) }}>
-                        Long (40min)
-                    </Dropdown.Item>
-                    <Dropdown.Item as="button"
-                        onClick={() => { setFilters({ ...filters, missionType: "Short", }) }}>
-                        Short
-                    </Dropdown.Item>
-                </DropdownButton>
-
-            </div>
             <div className='filter-results-container'>
                 <div className='filter-results-text'>Matches: {chartFilterData.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {chartFilterData.loadoutCount} </div>
                 <div className='filter-results-container2'>
-                <div className='filter-results-text'
-                    style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
-                    onClick={() => setShowTrends(!showTrends)}>
-                    Show Trends
-                </div>
-                <div className='filter-results-text'
-                    style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer", paddingLeft: "40px" }}
-                    onClick={() => setShowGames(!showGames)}>
-                    Show Games
-                </div>
+                    <div className='filter-results-text'
+                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
+                        onClick={() => setShowTrends(!showTrends)}>
+                        Show Trends
+                    </div>
+                    <div className='filter-results-text'
+                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer", paddingLeft: "40px" }}
+                        onClick={() => setShowGames(!showGames)}>
+                        Show Games
+                    </div>
                 </div>
             </div>
             {showGames &&
@@ -307,45 +207,23 @@ function FactionPage() {
 
             {timelineGraphData && showTrends &&
                 <div className='bar-container2'>
-                <div className='strategem-graph-title' style={{paddingLeft: "50px", paddingBottom:"10px"}}>Patch 1.000.300 - 1.000.400</div>
-                    <div style={{
-                        height: `700px`,
-                        position: "relative"
-                    }}>
-                        <Bar style={{
-                            backgroundColor: '#181818',
-                            padding: "0px 0px 0px 20px",
-                        }}
-                            options={settings.optionsTrends}
-                            width="100%"
-                            height="100px"
-                            data={timelineGraphData}
-                            redraw={true}
-                            onClick={onBarClick}
-                        />
-                    </div></div>}
-            {graphData && (
-                loading ?
-                    <div className="spinner-faction-container">
-                        <div className="lds-dual-ring"></div>
-                    </div> :
+                    <div className='strategem-graph-title' style={{ paddingLeft: "50px", paddingBottom: "10px" }}>Patch 1.000.300 - 1.000.400</div>
+                    <BarGraph data={timelineGraphData} options={settings.optionsTrends} onBarClick={onBarClick} redraw />
+                </div>}
+
+            {loading ?
+                <div className="spinner-faction-container">
+                    <div className="lds-dual-ring"></div>
+                </div> :
+                (graphData &&
                     <div className='bar-container'>
                         <div style={{
                             height: `${graphData.labels.length * 40}px`,
-                            position: "relative"
+                            position: "relative",
+                            padding: "0px 0px 0px 60px",
                         }}>
-                            <Bar class="bar-factions" style={{
-                                backgroundColor: '#181818',
-                                padding: "0px 0px 0px 60px",
-                            }}
-                                ref={chartRef}
-                                options={settings.options}
-                                width="100%"
-                                data={graphData}
-                                redraw={true}
-                                onClick={onBarClick}
-                            />
 
+                            <BarGraph data={graphData} chartRef={chartRef} options={settings.options} onBarClick={onBarClick} redraw />
                             <canvas style={{
                                 position: "absolute",
                                 top: "0px", left: "0px"
@@ -354,11 +232,7 @@ function FactionPage() {
                                 width={75}
                                 height={(graphData.labels.length * 40) - 28} />
                         </div>
-                    </div>
-            )}
-
-
-
+                    </div>)}
         </div>
     );
 }

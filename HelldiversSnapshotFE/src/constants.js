@@ -53,6 +53,21 @@ import mines_incendiary_svg from './assets/svgs/Incendiary Mines.svg'
 
 const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
 
+const navRoutes = [
+  {
+    name: "Meta Snapshot",
+    route: "snapshot"
+  },
+  {
+    name: "Strategems",
+    route: "armory"
+  },
+  {
+    name: "The Project",
+    route: "about"
+  },
+];
+
 const baseIconsSvg = [
   eagle_airstrike_svg,
   eagle_500kg_svg,
@@ -325,9 +340,9 @@ const patchPeriods = [
   {id: "1.000.400", start: "06/14/2024", end: "Present"}
 ];
 
-
-
 export { 
+  apiBaseUrl,
+  navRoutes,
   baseIconsSvg, 
   baseLabels, 
   itemNames, 
@@ -337,6 +352,5 @@ export {
   itemCategoryColors, 
   itemCategoryIndexes, 
   difficultiesNames,
-  apiBaseUrl,
   patchPeriods
 };

@@ -9,7 +9,7 @@ import { getItemName, getItemColor, getCountingSuffix, getItemCategory, getPerce
 import Tooltip from 'react-bootstrap/Tooltip';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-
+import StrategemRank from '../components/StrategemRank';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -20,7 +20,9 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-
+import useMobile from '../hooks/useMobile';
+import GamesTable from '../components/GamesTable';
+import BarGraph from '../components/BarGraph';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -34,7 +36,7 @@ function StrategemPage() {
     const navigate = useNavigate();
     let { itemId } = useParams();
     let { factionId } = useParams();
-
+    const { isMobile } = useMobile();
     const [factionName, setFactionName] = useState(factionId);
     const [dataLoading, setDataLoading] = useState(true);
     const [data, setData] = useState({
@@ -53,17 +55,6 @@ function StrategemPage() {
     const [graphData1, setGraphData1] = useState(null);
     const [graphData2, setGraphData2] = useState(null);
     const [graphData3, setGraphData3] = useState(null);
-
-    const [width, setWidth] = useState(window.innerWidth);
-    function handleWindowSizeChange() {
-        setWidth(window.innerWidth);
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
-    }, []);
 
     useEffect(() => {
         if (factionName && itemId && filters.period) {
@@ -127,7 +118,7 @@ function StrategemPage() {
             })
 
             setGraphData({
-                labels: width > 1200 ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive"] : ["7", "8", "9"],
+                labels: !isMobile ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive"] : ["7", "8", "9"],
                 datasets: [{
                     data: Object.keys(loadoutsByDiff).map((diff, index) => {
                         return getPercentage(itemLoadoutsByDiff[diff], loadoutsByDiff[diff], 1)
@@ -210,92 +201,37 @@ function StrategemPage() {
                             )}
                         </DropdownButton>
                     </div>
-
-
                 </div>
             </div>
             <div className='strategem-divier'></div>
-
-            <div className='strategem-section-container'>
-                <div className='strategem-rankings-container'>
-                    {dataLoading ?
-                        <div className="spinner-faction-container">
-                            <div className="lds-dual-ring"></div>
-                        </div> :
-                        <>
-                            <div className='strategem-rankings-item'>
-                                <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>{itemsRankings?.rankTotal}
-                                    <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankTotal)}</span>
-                                </div>
-                                <div className='strategem-rankings-text-wrapper'>
-                                    <div className='strategem-rankings-text-small'>in</div>
-                                    <div className='strategem-rankings-text-small'>All Strategem</div>
-                                </div>
-                            </div>
-                            <div className='strategem-rankings-item'>
-                                <div className='strategem-rankings-number' style={{ color: getItemColor(itemId) }}>
-                                    {itemsRankings?.rankCategory}
-                                    <span className='strategem-rankings-number-small'>{getCountingSuffix(itemsRankings?.rankCategory)}</span>
-                                </div>
-                                <div className='strategem-rankings-text-wrapper'>
-                                    <div className='strategem-rankings-text-small'>in</div>
-                                    <div className='strategem-rankings-text-small'>{getItemCategory(itemId)}</div>
-                                </div>
-                            </div>
-                            <div className='strategem-rankings-item'>
-                                <div className='strategem-rankings-number' style={{ color: "rgb(255,182,0)" }}>
-                                    {getPercentage(data?.strategem?.length, data?.faction?.length, 1)}
-                                </div>
-                                <div className='strategem-rankings-text-wrapper'>
-                                    <div className='strategem-rankings-text-small'>percent</div>
-                                    <div className='strategem-rankings-text-small'>of matches</div>
-                                </div>
-                            </div>
-                            <div className='strategem-rankings-item'>
-                                <div className='strategem-rankings-number' style={{ color: getItemColor(itemId) }}>
-                                    {itemsRankings?.percentageLoadouts}
-                                </div>
-                                <div className='strategem-rankings-text-wrapper'>
-                                    <div className='strategem-rankings-text-small'>percent</div>
-                                    <div className='strategem-rankings-text-small'>of loadouts</div>
-                                </div>
-                            </div>
-                        </>}
-                </div>
-                {dataLoading ?
-                    <div className="spinner-faction-container">
-                        <div className="lds-dual-ring"></div>
-                    </div> :
+            {dataLoading ?
+                <div className="spinner-faction-container">
+                    <div className="lds-dual-ring"></div>
+                </div> :
+                <div className='strategem-section-container'>
+                    <div className='strategem-rankings-container'>
+                        <StrategemRank text={["in", "All Strategem"]} value={itemsRankings?.rankTotal} color={"rgb(255,182,0)"} suffix />
+                        <StrategemRank text={["in", getItemCategory(itemId)]} value={itemsRankings?.rankCategory} color={getItemColor(itemId)} suffix />
+                        <StrategemRank text={["percent", "of matches"]} value={getPercentage(data?.strategem?.length, data?.faction?.length, 1)} color={"rgb(255,182,0)"} />
+                        <StrategemRank text={["percent", "of loadouts"]} value={itemsRankings?.percentageLoadouts} color={getItemColor(itemId)} />
+                    </div>
                     <div className='strategem-trends-container'>
                         <div className='strategem-trends-wrapper'>
                             {graphData2 &&
                                 <div className='strategem-graph-wrapper-small'>
-                                    <Bar style={{
-                                        backgroundColor: '#181818',
-                                    }}
-                                        options={{ ...settings.stregemSmallOption }}
-                                        width="100%"
-                                        data={graphData2}
-                                        redraw={false}
-                                    /></div>
+                                    <BarGraph data={graphData2} options={{ ...settings.stregemSmallOption }} />
+                                </div>
                             }
                         </div>
                         <div className='strategem-trends-wrapper'>
-
                             {graphData3 &&
                                 <div className='strategem-graph-wrapper-small'>
-                                    <Bar style={{
-                                        backgroundColor: '#181818',
-                                    }}
-                                        options={{ ...settings.stregemSmallOption }}
-                                        width="100%"
-                                        data={graphData3}
-                                        redraw={false}
-                                    /></div>
+                                    <BarGraph data={graphData3} options={{ ...settings.stregemSmallOption }} />
+                                </div>
                             }
                         </div>
-                    </div>}
-            </div>
+                    </div>
+                </div>}
             <div className='strategem-graphs-title'>Companion Picks</div>
             <div className='strategem-divier'></div>
             {dataLoading &&
@@ -330,7 +266,6 @@ function StrategemPage() {
                     )}
                 </div>
             }
-
             <div className='strategem-graphs-title'>Charts</div>
             <div className='strategem-divier'></div>
             <div className='strategem-graphs-wrapper'>
@@ -342,27 +277,14 @@ function StrategemPage() {
                 {graphData && !dataLoading &&
                     <div className='strategem-graph-wrapper'>
                         <div className='strategem-graph-title'>Difficulty</div>
-                        <Bar style={{
-                            backgroundColor: '#181818',
-
-                        }}
-                            options={{ ...settings.optionsStrategem, indexAxis: width < 1200 ? 'y' : 'x' }}
-                            width="100%"
-                            data={graphData}
-                            redraw={false}
-                        /></div>
+                        <BarGraph data={graphData} options={{ ...settings.optionsStrategem, indexAxis: isMobile ? 'y' : 'x' }} />
+                    </div>
                 }
                 {graphData1 && !dataLoading &&
                     <div className='strategem-graph-wrapper'>
                         <div className='strategem-graph-title'>Mission Lenght</div>
-                        <Bar style={{
-                            backgroundColor: '#181818',
-                        }}
-                            options={{ ...settings.optionsStrategem, indexAxis: width < 1200 ? 'y' : 'x' }}
-                            width="100%"
-                            data={graphData1}
-                            redraw={false}
-                        /></div>
+                        <BarGraph data={graphData1} options={{ ...settings.optionsStrategem, indexAxis: isMobile ? 'y' : 'x' }} />
+                    </div>
                 }
             </div>
         </div>
