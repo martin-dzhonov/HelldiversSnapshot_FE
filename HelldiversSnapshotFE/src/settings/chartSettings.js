@@ -95,7 +95,7 @@ export const optionsTrends = {
     },
     y: {
       ticks: {
-        display: true,
+        display: false,
         stepSize: 5,
         font: {
           size: 15
@@ -129,7 +129,71 @@ export const optionsTrends = {
       },
     },
   },
+};
 
+export const optionsTrendsMobile = {
+  indexAxis: 'y',
+  maintainAspectRatio: false,
+  layout: {
+    // padding: {
+    //   bottom: 80
+    // }
+  },
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  scales: {
+    x: {
+      ticks: {
+        display: false,
+        stepSize: 5,
+      },
+      grid: {
+        drawBorder: false,
+        color: '#aaa', 
+        drawTicks: false, 
+        drawOnChartArea: true
+      },
+    },
+    y: {
+      ticks: {
+        display: false,
+        stepSize: 5,
+        font: {
+          size: 15
+        },
+        color: 'white'
+      },
+      grid: {
+        drawBorder: false,
+        color: '#aaa', 
+        drawTicks: false, 
+        drawOnChartArea: false 
+      },
+
+      beginAtZero: true,
+    },
+  },
+  plugins: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false,
+    },
+    customCanvasBackgroundColor: {
+      color: 'lightGreen',
+    },
+    tooltip: {
+      displayColors: false,
+      callbacks: {
+        label: (item) => { return (item.raw > 0 ? '+' : '-') + item.raw + '%' }
+      },
+    },
+  },
 };
 
 export const optionsStrategem = {
@@ -191,7 +255,7 @@ export const optionsStrategem = {
     tooltip: {
       displayColors: false,
       callbacks: {
-        label: (item) => { return `${item.raw}%` }
+        label: (item) => { return `In ${item.raw}% of loadouts` }
 
       },
     },
@@ -257,7 +321,7 @@ export const stregemSmallOption = {
     tooltip: {
       displayColors: false,
       callbacks: {
-        label: (item) => { return `${item.raw}%` }
+        label: (item) => { return `In ${item.raw}% of loadouts` }
 
       },
     },

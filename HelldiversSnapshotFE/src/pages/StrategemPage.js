@@ -60,26 +60,20 @@ function StrategemPage() {
         if (factionName && itemId && filters.period) {
             setDataLoading(true);
 
-            const fetchFaction = fetch(apiBaseUrl + `/faction/${factionName}`)
-                .then(response => response.json());
-
-            const fetchAutomaton = fetch(apiBaseUrl + `/faction/automaton`)
-                .then(response => response.json());
-
-            const fetchTerminid = fetch(apiBaseUrl + `/faction/terminid`)
+            const fetchFaction = fetch(apiBaseUrl + `/faction/all`)
                 .then(response => response.json());
 
             const fetchStrategem = fetch(apiBaseUrl + `/games/${factionName}/${itemId}`)
                 .then(response => response.json());
 
-            Promise.all([fetchFaction, fetchStrategem, fetchAutomaton, fetchTerminid]).then((res) => {
+            Promise.all([fetchFaction, fetchStrategem]).then((res) => {
                 setData({
-                    faction: res[0].filter((game) => filterByPatch(filters.period.id, game)),
+                    faction: res[0].filter((game) => game.faction === factionName).filter((game) => filterByPatch(filters.period.id, game)),
                     strategem: res[1].filter((game) => filterByPatch(filters.period.id, game)),
-                    automaton: res[2].filter((game) => filterByPatch(filters.period.id, game)),
-                    terminid: res[3].filter((game) => filterByPatch(filters.period.id, game)),
-                    patch300: res[0].filter((game) => filterByPatch("1.000.300", game)),
-                    patch400: res[0].filter((game) => filterByPatch("1.000.400", game)),
+                    automaton: res[0].filter((game) => game.faction === 'automaton').filter((game) => filterByPatch(filters.period.id, game)),
+                    terminid: res[0].filter((game) => game.faction === 'terminid').filter((game) => filterByPatch(filters.period.id, game)),
+                    patch300: res[0].filter((game) => game.faction === factionName).filter((game) => filterByPatch("1.000.300", game)),
+                    patch400: res[0].filter((game) => game.faction === factionName).filter((game) => filterByPatch("1.000.400", game)),
                 })
                 setDataLoading(false);
             })
@@ -141,7 +135,6 @@ function StrategemPage() {
                 }],
             });
 
-            console.log(getRankedDict(data.automaton, "All")[itemId])
             setGraphData2({
                 labels: ["Automaton", "Terminid"],
                 datasets: [{
@@ -250,7 +243,7 @@ function StrategemPage() {
                                         <OverlayTrigger
                                             overlay={(props) => (
                                                 <Tooltip {...props}>
-                                                    In {item[1].percentageLoadouts}%{item[1].percentageLoadouts === 100 ? "(duh)" : ""} of loadouts
+                                                    In {item[1].percentageLoadouts}%{item[1].percentageLoadouts === 100 ? "(duh)" : ""} of strategem loadouts
                                                 </Tooltip>
                                             )}
                                             placement="bottom">

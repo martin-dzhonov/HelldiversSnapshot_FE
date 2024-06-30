@@ -16,7 +16,7 @@ function ArmoryPage() {
                         <div className='group-container' >
                             {baseIconsSvg.slice(groupIndexes[groupIndex][0], groupIndexes[groupIndex][1]).map((icon, index) =>
                                 <div className='armory-item-wrapper'
-                                    onClick={()=> navigate(`/armory/terminid/${baseLabels.slice(groupIndexes[groupIndex][0], groupIndexes[groupIndex][1])[index]}`)}>
+                                    onClick={()=> navigate(`/armory/terminid/${baseLabels.slice(groupIndexes[groupIndex][0], groupIndexes[groupIndex][1])[index] === 'ballistic_shield' ? '' : baseLabels.slice(groupIndexes[groupIndex][0], groupIndexes[groupIndex][1])[index]}`)}>
                                     <div className='armory-img-wrapper'>
                                         <img src={icon} />
                                     </div>

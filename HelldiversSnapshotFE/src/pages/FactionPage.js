@@ -3,7 +3,7 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import {getElementAtEvent} from 'react-chartjs-2';
+import { getElementAtEvent } from 'react-chartjs-2';
 
 import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, patchPeriods } from '../constants';
 import { getItemName, getItemColor, getRankedDict, filterByPatch } from '../utils';
@@ -11,11 +11,14 @@ import * as settings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
 import BarGraph from '../components/BarGraph';
-
+import useMobile from '../hooks/useMobile';
 
 function FactionPage() {
     const navigate = useNavigate();
+    const { isMobile } = useMobile();
     const ref1 = useRef(null);
+    const ref2 = useRef(null);
+
     const chartRef = useRef(null);
     const [loading, setLoading] = useState(true);
     const [factionName, setFactionName] = useState('Terminid');
@@ -92,24 +95,21 @@ function FactionPage() {
             const patch300Data = getRankedDict(factionData.filter((game) => filterByPatch("1.000.300", game)), filters.type);
             const patch400Data = getRankedDict(factionData.filter((game) => filterByPatch("1.000.400", game)), filters.type);
 
-            const datasets = Object.keys(patch400Data).map((item) => {
-                return {
-                    label: item,
-                    data: [patch300Data[item]?.percentageLoadouts, patch400Data[item]?.percentageLoadouts],
-                    borderColor: getItemColor(item)
-                }
-            })
 
-            const datasets1 = Object.keys(patch400Data).map((item) => {
+            let labels1= Object.keys(patch400Data).map((item) => getItemName(item, "short"));
+
+            let datasets1 = Object.keys(patch400Data).map((item) => {
                 return Number(patch400Data[item]?.percentageLoadouts - patch300Data[item]?.percentageLoadouts).toFixed(1);
             })
 
+        
+
             setTimelineGraphData({
-                labels: Object.keys(patch400Data).map((item) => getItemName(item, "short")),
+                labels: labels1,
                 datasets: [{
                     data: datasets1,
                     backgroundColor: Object.keys(patch400Data).map((item) => getItemColor(item)),
-                    barThickness: 21,
+                    barThickness: 26,
                 }],
             });
         }
@@ -163,6 +163,54 @@ function FactionPage() {
         }
     }, [graphData]);
 
+    useEffect(() => {
+        //draw X axis images for each graph
+        if (ref2.current) {
+            const labels = timelineGraphData.labels;
+            const dataLength = labels.length;
+            const sectionSize = 30;
+            const containerWidth = (dataLength * sectionSize) - 28;
+            const imgDimensions = 36;
+
+            const ctx = ref2.current.getContext('2d', { willReadFrequently: true });
+            ctx.clearRect(0, 0, containerWidth, 100);
+
+            labels.forEach((element, j) => {
+                const imageIndex = itemNames.indexOf(element);
+                let labelImage = new Image();
+                labelImage.setAttribute('crossorigin', 'anonymous');
+
+                labelImage.src = baseIconsSvg[imageIndex];
+
+                let offsetMagic = j;
+
+                if (dataLength > 5) {
+                    offsetMagic = j * 3;
+                }
+                if (dataLength > 10) {
+                    offsetMagic = j * 2.8;
+                }
+                if (dataLength > 15) {
+                    offsetMagic = j * 1.15;
+                }
+                if (dataLength > 40) {
+                    offsetMagic = j / 1.7;
+                }
+
+                const imageX = (sectionSize * j) + ((sectionSize - imgDimensions) / 2) - offsetMagic;
+                labelImage.onload = () => {
+                    ctx.drawImage(
+                        labelImage,
+                        imageX,
+                        20,
+                        imgDimensions,
+                        imgDimensions
+                    );
+                }
+            });
+        }
+    }, [timelineGraphData, showTrends]);
+
     const onBarClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
@@ -180,8 +228,8 @@ function FactionPage() {
     };
 
     return (
-        <div className='content-wrapper'> 
-        
+        <div className='content-wrapper'>
+
             <Filters factionName={factionName} setFactionName={setFactionName} filters={filters} setFilters={setFilters} />
 
             <div className='filter-results-container'>
@@ -208,7 +256,8 @@ function FactionPage() {
             {timelineGraphData && showTrends &&
                 <div className='bar-container2'>
                     <div className='strategem-graph-title' style={{ paddingLeft: "50px", paddingBottom: "10px" }}>Patch 1.000.300 - 1.000.400</div>
-                    <BarGraph data={timelineGraphData} options={settings.optionsTrends} onBarClick={onBarClick} redraw />
+                    <BarGraph data={timelineGraphData} options={ isMobile ? settings.optionsTrendsMobile : settings.optionsTrends } onBarClick={onBarClick} redraw />
+                    
                 </div>}
 
             {loading ?

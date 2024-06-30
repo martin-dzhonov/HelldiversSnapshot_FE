@@ -158,6 +158,7 @@ h1 {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 @media (any-pointer: fine) {
@@ -289,10 +290,10 @@ h1 {
 }
 .bar-container2 {
   padding: 60px 0px 50px 0px;
-  height: 850px;
+  height: 700px;
   overflow: scroll; 
-  -ms-overflow-style: none;
   scrollbar-width: none;
+  position: relative;
 }
 
 
@@ -381,6 +382,16 @@ h1 {
   width: 100%;
 }
 
+@media only screen and (max-width: 1000px) {
+  .item-details-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    width: 100%;
+  }
+}
+
 @media (any-pointer: coarse) {
   .item-details-title-wrapper  {
     padding-left: 20px;
@@ -410,10 +421,28 @@ h1 {
   width: 45%;
 }
 
+@media only screen and (max-width: 1000px) {
+  .strategem-details-title{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+  }
+}
+
 .strategem-details-filters-container{
   display: flex;
   flex-direction: row;
   width: 45%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .strategem-details-filters-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 20px;
+  }
 }
 
 .strategem-details-filter-container{
@@ -423,6 +452,17 @@ h1 {
   padding-bottom: 15px;
   width: 50%;
 }
+
+@media only screen and (max-width: 1000px) {
+  .strategem-details-filter-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px 10px 10px 40px;
+    width: 30%;
+  }
+}
+
 .strategem-rankings-item {
   color: white;
   height: 120px;
@@ -430,11 +470,12 @@ h1 {
   display: flex;
   align-items: flex-start;
   font-size: 30px;
+  padding-left: 15px;
 }
 
 @media (any-pointer: coarse) {
   .strategem-rankings-item {
-    width: 100%;
+    width: 50%;
     align-items: center;
 
   }
@@ -522,16 +563,17 @@ h1 {
 
 }
 
-@media (any-pointer: coarse) {
+
+@media only screen and (max-width: 1000px) {
   .strategem-trends-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 90%;
     padding-top: 20px;
-    padding-left: 20px;
   }
 }
+
 .strategem-section-container{
   display: flex;
   flex-direction: row;
@@ -555,18 +597,18 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   width: 45%;
-  padding-bottom: 30px;
+  padding-bottom: 5px;
+  padding-left: 15px;
 }
-
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 1000px) {
   .strategem-loadouts-wrapper{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 800px;
-    padding-bottom: 30px;
+    padding-left: 20px;
   }
 }
+
 .strategem-loadouts-section-wrapper{
   padding: 15px 0px 10px 0px;
   display: flex;
@@ -584,6 +626,7 @@ h1 {
 .strategem-graphs-wrapper {
   margin-top: 20px;
   margin-left: 5px;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -602,8 +645,8 @@ h1 {
   border: 1px solid white;
   border-radius: 15px;
   padding: 50px 20px 35px 20px !important;
-  width: 600px;
   height: 380px;
+  width: 42%;
 }
 
 @media (any-pointer: coarse) {
@@ -635,6 +678,7 @@ h1 {
 }
 
 .strategem-graphs-title {
+  padding-top: 20px;
   padding-left: 16px;
   padding-bottom: 5px;
   color: white;
@@ -654,6 +698,8 @@ h1 {
 .strategem-graph-title {
   color: white;
   font-size: 22px;
+  padding-top: 15px;
+
   padding-left: 20px;
   padding-bottom: 10px;
   margin-top: -50px;
@@ -718,7 +764,7 @@ h1 {
   font-family: 'CustomFont';
   color: white;
   font-size: 22px;
-  padding: 20px 20px 20px 50px;
+  padding: 20px 10px 20px 10px;
 }
 
 
