@@ -68,22 +68,13 @@ function AboutPage() {
                     style={{ paddingLeft: "20px", paddingTop: "10px" }}
                 >
                     {" "}
-                    For feedback, suggestions and anything else, go to:
-                    <a
-                        className="about-text"
-                        href="https://discord.gg/2ZJNZjNF"
-                    >
-                        https://discord.gg/e7hhKSJt
-                    </a>
-                    or
-                    <a
-                        className="about-text"
-                        href="https://www.reddit.com/user/aretakembis/"
-                    >
-                        https://www.reddit.com/user/aretakembis/
+                    For feedback, suggestions, or anything else, you can visit
+                    our <a href="https://discord.gg/2ZJNZjNF">Discord</a> or
+                    message us on{" "}
+                    <a href="https://www.reddit.com/user/aretakembis/">
+                        Reddit
                     </a>
                 </div>
-                or
             </div>
         </div>
     );
