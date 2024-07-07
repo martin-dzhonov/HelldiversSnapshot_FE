@@ -1,4 +1,4 @@
-import "../App.css";
+import "../styles/App.css";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
 import { Dropdown, DropdownButton } from "react-bootstrap";

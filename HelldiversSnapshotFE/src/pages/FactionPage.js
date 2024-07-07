@@ -1,4 +1,4 @@
-import "../App.css";
+import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";

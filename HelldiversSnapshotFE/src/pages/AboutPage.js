@@ -1,4 +1,4 @@
-import "../App.css";
+import "../styles/App.css";
 
 function AboutPage() {
     return (
@@ -20,7 +20,7 @@ function AboutPage() {
                     className="about-text"
                     style={{ fontSize: "26px", paddingLeft: "20px" }}
                 >
-                    How does it work ?
+                    How does it work?
                 </div>
                 <div className="about-text">
                     {" "}
