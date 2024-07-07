@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: #181818;
+}
+
 .filter-results-text {
     color: white;
     font-family: "CustomFont";
@@ -9,10 +13,7 @@
 
 body {
     background-color: #181818;
-}
-
-body {
-    background-color: #eee;
+    min-height: 100%;
 }
 
 h1 {
@@ -32,10 +33,8 @@ h1 {
 }
 
 .content-wrapper {
-    background-color: #181818;
     padding: 10px 8% 50px 8%;
     min-height: 900px;
-    height: 100%;
 }
 
 @media (any-pointer: fine) {
