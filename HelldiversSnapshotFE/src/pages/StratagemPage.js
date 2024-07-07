@@ -18,7 +18,7 @@ import {
     getItemCategory,
     getPercentage,
     getRankedDict,
-    getMissionLenght,
+    getMissionLength,
     filterByPatch
 } from "../utils";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -132,7 +132,7 @@ function StratagemPage() {
             data.faction.forEach((game) => {
                 game.players.forEach((loadout) => {
                     loadoutsByDiff[game.difficulty]++;
-                    loadoutsByMission[getMissionLenght(game.missionName)]++;
+                    loadoutsByMission[getMissionLength(game.missionName)]++;
                 });
             });
 
@@ -141,7 +141,7 @@ function StratagemPage() {
                     if (loadout.includes(itemId)) {
                         itemLoadoutsByDiff[game.difficulty]++;
                         itemLoadoutsByMission[
-                            getMissionLenght(game.missionName)
+                            getMissionLength(game.missionName)
                         ]++;
                     }
                 });
@@ -445,7 +445,7 @@ function StratagemPage() {
                 {graphData1 && !dataLoading && (
                     <div className="stratagem-graph-wrapper">
                         <div className="stratagem-graph-title">
-                            Mission Lenght
+                            Mission Length
                         </div>
                         <BarGraph
                             data={graphData1}
