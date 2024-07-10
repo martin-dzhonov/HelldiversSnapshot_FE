@@ -1,7 +1,7 @@
-import '../App.css';
-import { baseLabels, baseIconsSvg } from '../constants';
-import ScreenshotToggle from './ScreenshotToggle';
-import Table from 'react-bootstrap/Table';
+import "../styles/App.css";
+import { baseLabels, baseIconsSvg } from "../constants";
+import ScreenshotToggle from "./ScreenshotToggle";
+import Table from "react-bootstrap/Table";
 
 function GamesTable({ data }) {
     return (
@@ -16,26 +16,48 @@ function GamesTable({ data }) {
                 </tr>
             </thead>
             <tbody>
-                {data && data.map((game, index) =>
-                    <tr>
-                        <td className='filter-results-text' >{index}</td>
-                        <td className='filter-results-text' >{new Date(game.createdAt).toLocaleString()}</td>
-                        <td className='filter-results-text'>
-                            <div class='table-loadout-row-wrapper'>
-                                {game.players.map((loadout) =>
-                                    <div class='table-loadout-wrapper'>
-                                        {loadout.map((item) =>
-                                            baseLabels.indexOf(item) !== -1 ?
-                                                <img className='armory-img-wrapper' src={baseIconsSvg[baseLabels.indexOf(item)]} width={40}></img>
-                                                : <div className='armory-img-wrapper'></div>)}
-                                    </div>)}
-                            </div>
-                            <ScreenshotToggle img={game.loadoutImg} />
-                        </td>
-                        <td className='filter-results-text'>{game.difficulty}</td>
-                        <td className='filter-results-text'>{game.missionName}</td>
-                    </tr>
-                )}
+                {data &&
+                    data.map((game, index) => (
+                        <tr>
+                            <td className="filter-results-text">{index}</td>
+                            <td className="filter-results-text">
+                                {new Date(game.createdAt).toLocaleString()}
+                            </td>
+                            <td className="filter-results-text">
+                                <div class="table-loadout-row-wrapper">
+                                    {game.players.map((loadout) => (
+                                        <div class="table-loadout-wrapper">
+                                            {loadout.map((item) =>
+                                                baseLabels.indexOf(item) !==
+                                                -1 ? (
+                                                    <img
+                                                        className="armory-img-wrapper"
+                                                        src={
+                                                            baseIconsSvg[
+                                                                baseLabels.indexOf(
+                                                                    item
+                                                                )
+                                                            ]
+                                                        }
+                                                        width={40}
+                                                    ></img>
+                                                ) : (
+                                                    <div className="armory-img-wrapper"></div>
+                                                )
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                                <ScreenshotToggle img={game.loadoutImg} />
+                            </td>
+                            <td className="filter-results-text">
+                                {game.difficulty}
+                            </td>
+                            <td className="filter-results-text">
+                                {game.missionName}
+                            </td>
+                        </tr>
+                    ))}
             </tbody>
         </Table>
     );

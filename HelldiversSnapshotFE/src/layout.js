@@ -1,4 +1,4 @@
-import './App.css';
+import "./styles/App.css";
 import Navigation from "./components/Navigation";
 
 const Layout = ({ children }) => {
@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
             <Navigation />
             {children}
         </div>
-    )
+    );
 };
 
 export default Layout;
