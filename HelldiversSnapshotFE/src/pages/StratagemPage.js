@@ -14,38 +14,19 @@ import {
 import {
     getItemName,
     getItemColor,
-    getCountingSuffix,
     getItemCategory,
     getPercentage,
     getRankedDict,
     getMissionLength,
-    filterByPatch
+    filterByPatch,
+    capitalizeFirstLetter
 } from "../utils";
 import Tooltip from "react-bootstrap/Tooltip";
-import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import StratagemRank from "../components/StratagemRank";
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip as ChartTooltip,
-    Legend
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
 import useMobile from "../hooks/useMobile";
-import GamesTable from "../components/GamesTable";
 import BarGraph from "../components/BarGraph";
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    ChartTooltip,
-    Legend
-);
+
 
 function StratagemPage() {
     const navigate = useNavigate();
@@ -201,6 +182,7 @@ function StratagemPage() {
                 ]
             });
 
+
             setGraphData3({
                 labels: ["Patch 1.000.300", "Patch 1.000.400"],
                 datasets: [
@@ -218,11 +200,6 @@ function StratagemPage() {
             });
         }
     }, [data]);
-
-    function capitalizeFirstLetter(str) {
-        if (str.length === 0) return str; // Return the string as is if it is empty
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
 
     return (
         <div className="content-wrapper">

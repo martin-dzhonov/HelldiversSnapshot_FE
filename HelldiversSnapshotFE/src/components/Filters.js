@@ -1,26 +1,6 @@
-import "../styles/App.css";
-import ScreenshotToggle from "./ScreenshotToggle";
-import Table from "react-bootstrap/Table";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import {
-    apiBaseUrl,
-    baseLabels,
-    baseIconsSvg,
-    itemNames,
-    itemCategories,
-    itemCategoryIndexes,
-    difficultiesNames,
-    patchPeriods
-} from "../constants";
-import {
-    getItemsByCategory,
-    getItemName,
-    getItemColor,
-    getMissionsByLength,
-    getRankedDict,
-    isDateBetween,
-    filterByPatch
-} from "../utils";
+import '../App.css';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { itemCategories, difficultiesNames, patchPeriods } from '../constants';
 
 function Filters({ factionName, setFactionName, filters, setFilters }) {
     return (

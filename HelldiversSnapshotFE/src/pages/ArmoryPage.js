@@ -1,11 +1,6 @@
-import "../styles/App.css";
-import {
-    baseLabels,
-    baseIconsSvg,
-    itemNames,
-    itemCategories,
-    itemCategoryIndexes
-} from "../constants";
+import '../App.css';
+import './ArmoryPage.css';
+import { baseLabels, baseIconsSvg, itemNames, itemCategories, itemCategoryIndexes } from '../constants';
 import { useNavigate } from "react-router-dom";
 
 function ArmoryPage() {

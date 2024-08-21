@@ -1,27 +1,17 @@
-import "../styles/App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getElementAtEvent } from "react-chartjs-2";
 
-import {
-    apiBaseUrl,
-    baseLabels,
-    baseIconsSvg,
-    itemNames,
-    patchPeriods
-} from "../constants";
-import {
-    getItemName,
-    getItemColor,
-    getRankedDict,
-    filterByPatch
-} from "../utils";
+import '../App.css';
+import './FactionPage.css';
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMobile } from '../hooks/useMobile';
+import { useNavigate } from "react-router-dom";
+import { getElementAtEvent } from 'react-chartjs-2';
+import { apiBaseUrl, baseLabels, baseIconsSvg, itemNames, patchPeriods } from '../constants';
+import { getItemName, getItemColor, getRankedDict, filterByPatch } from '../utils';
 import * as settings from "../settings/chartSettings";
-import GamesTable from "../components/GamesTable";
-import Filters from "../components/Filters";
-import BarGraph from "../components/BarGraph";
-import useMobile from "../hooks/useMobile";
+import GamesTable from '../components/GamesTable';
+import Filters from '../components/Filters';
+import BarGraph from '../components/BarGraph';
+import Loader from '../components/Loader';
 
 function FactionPage() {
     const navigate = useNavigate();
@@ -57,6 +47,7 @@ function FactionPage() {
     const fetchFactionData = async (url) => {
         const response = await fetch(`${apiBaseUrl}${url}`);
         const data = await response.json();
+       
         setFactionData(data);
         setLoading(false);
     };
@@ -130,16 +121,12 @@ function FactionPage() {
                 filters.type
             );
 
-            let labels1 = Object.keys(patch400Data).map((item) =>
-                getItemName(item, "short")
-            );
+
+            let labels1 = Object.keys(patch400Data).map((item) => getItemName(item, "short"));
 
             let datasets1 = Object.keys(patch400Data).map((item) => {
-                return Number(
-                    patch400Data[item]?.percentageLoadouts -
-                        patch300Data[item]?.percentageLoadouts
-                ).toFixed(1);
-            });
+                return Number(patch400Data[item]?.percentageLoadouts - patch300Data[item]?.percentageLoadouts).toFixed(1);
+            })
 
             setTimelineGraphData({
                 labels: labels1,
@@ -293,33 +280,17 @@ function FactionPage() {
                 setFilters={setFilters}
             />
 
-            <div className="filter-results-container">
-                <div className="filter-results-text">
-                    Matches: {chartFilterData.matchCount} &nbsp;&nbsp;&nbsp;
-                    Loadouts: {chartFilterData.loadoutCount}{" "}
-                </div>
-                <div className="filter-results-container2">
-                    <div
-                        className="filter-results-text"
-                        style={{
-                            fontSize: "18px",
-                            textDecoration: "underline",
-                            cursor: "pointer"
-                        }}
-                        onClick={() => setShowTrends(!showTrends)}
-                    >
+            <div className='filter-results-container'>
+                <div className='text-small'>Matches: {chartFilterData.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {chartFilterData.loadoutCount} </div>
+                <div className='filter-results-container2'>
+                    <div className='text-small'
+                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
+                        onClick={() => setShowTrends(!showTrends)}>
                         Show Trends
                     </div>
-                    <div
-                        className="filter-results-text"
-                        style={{
-                            fontSize: "18px",
-                            textDecoration: "underline",
-                            cursor: "pointer",
-                            paddingLeft: "40px"
-                        }}
-                        onClick={() => setShowGames(!showGames)}
-                    >
+                    <div className='text-small'
+                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer", paddingLeft: "40px" }}
+                        onClick={() => setShowGames(!showGames)}>
                         Show Games
                     </div>
                 </div>
@@ -330,41 +301,21 @@ function FactionPage() {
                 </div>
             )}
 
-            {timelineGraphData && showTrends && (
-                <div className="bar-container2">
-                    <div
-                        className="stratagem-graph-title"
-                        style={{ paddingLeft: "50px", paddingBottom: "10px" }}
-                    >
-                        Patch 1.000.300 - 1.000.400
-                    </div>
-                    <BarGraph
-                        data={timelineGraphData}
-                        options={
-                            isMobile
-                                ? settings.optionsTrendsMobile
-                                : settings.optionsTrends
-                        }
-                        onBarClick={onBarClick}
-                        redraw
-                    />
-                </div>
-            )}
+            {timelineGraphData && showTrends &&
+                <div className='bar-container2'>
+                    <div className='strategem-graph-title' style={{ paddingLeft: "50px", paddingBottom: "10px" }}>Patch 1.000.300 - 1.000.400</div>
+                    <BarGraph data={timelineGraphData} options={isMobile ? settings.optionsTrendsMobile : settings.optionsTrends} onBarClick={onBarClick} redraw />
+                </div>}
 
-            {loading ? (
-                <div className="spinner-faction-container">
-                    <div className="lds-dual-ring"></div>
-                </div>
-            ) : (
-                graphData && (
-                    <div className="bar-container">
-                        <div
-                            style={{
-                                height: `${graphData.labels.length * 40}px`,
-                                position: "relative",
-                                padding: "0px 0px 0px 60px"
-                            }}
-                        >
+            <Loader loading={loading}>
+                {graphData &&
+                    <div className='bar-container'>
+                        <div style={{
+                            height: `${graphData.labels.length * 40}px`,
+                            position: "relative",
+                            padding: "0px 0px 0px 60px",
+                        }}>
+                           
                             <BarGraph
                                 data={graphData}
                                 chartRef={chartRef}
@@ -383,9 +334,8 @@ function FactionPage() {
                                 height={graphData.labels.length * 40 - 28}
                             />
                         </div>
-                    </div>
-                )
-            )}
+                    </div>}
+            </Loader>
         </div>
     );
 }

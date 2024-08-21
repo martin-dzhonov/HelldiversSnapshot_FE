@@ -1,11 +1,5 @@
 import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import { FaBars } from "react-icons/fa";
-import hdlogo from "../assets/logos/hdlogo.svg";
-import { navRoutes } from "../constants";
-import useMobile from "../hooks/useMobile";
 import {
     Chart as ChartJS,
     CategoryScale,

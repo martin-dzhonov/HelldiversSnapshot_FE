@@ -1,7 +1,7 @@
 // useScreenSize.js
 import { useState, useEffect } from 'react';
 
-const useMobile = () => {
+export const useMobile = () => {
     const sizes = {
         mobile: 900
     };

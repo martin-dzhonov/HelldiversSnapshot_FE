@@ -31,6 +31,7 @@ import spear_svg from "./assets/svgs/Spear.svg";
 import flamethrower_svg from "./assets/svgs/Flamethrower.svg";
 import arc_thrower_svg from "./assets/svgs/Arc Thrower.svg";
 import airburst_launcher_svg from "./assets/svgs/Airburst Rocket Launcher.svg";
+import commando_svg from "./assets/svgs/Commando.svg";
 import guard_dog_rover_svg from "./assets/svgs/Guard Dog Rover.svg";
 import guard_dog_svg from "./assets/svgs/Guard Dog.svg";
 import ballistic_shield_svg from "./assets/svgs/Ballistic Shield Backpack.svg";
@@ -50,6 +51,7 @@ import arc_sentry_svg from "./assets/svgs/Tesla Tower.svg";
 import shield_relay_svg from "./assets/svgs/Shield Generator Relay.svg";
 import mines_infantry_svg from "./assets/svgs/Anti-Personnel Minefield.svg";
 import mines_incendiary_svg from "./assets/svgs/Incendiary Mines.svg";
+import mines_at_svg from "./assets/svgs/Anti-Tank Mines.svg";
 
 const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
 
@@ -102,6 +104,7 @@ const baseIconsSvg = [
     flamethrower_svg,
     arc_thrower_svg,
     airburst_launcher_svg,
+    commando_svg,
     guard_dog_rover_svg,
     guard_dog_svg,
     ballistic_shield_svg,
@@ -120,7 +123,8 @@ const baseIconsSvg = [
     arc_sentry_svg,
     shield_relay_svg,
     mines_infantry_svg,
-    mines_incendiary_svg
+    mines_incendiary_svg,
+    mines_at_svg
 ];
 
 const baseLabels = [
@@ -157,6 +161,7 @@ const baseLabels = [
     "flamethrower",
     "arc_thrower",
     "airburst_launcher",
+    "commando",
     "guard_dog_rover",
     "guard_dog",
     "ballistic_shield",
@@ -175,7 +180,8 @@ const baseLabels = [
     "arc_sentry",
     "shield_relay",
     "mines_infantry",
-    "mines_incendiary"
+    "mines_incendiary",
+    "mines_at"
 ];
 
 const itemNames = [
@@ -212,6 +218,7 @@ const itemNames = [
     "Flamethrower",
     "Arc Thrower",
     "Airburst Rocket Launcher",
+    "Commando",
     "Guard Dog Rover",
     "Guard Dog",
     "Ballistic Shield Backpack",
@@ -230,7 +237,8 @@ const itemNames = [
     "Tesla Tower",
     "Shield Generator Relay",
     "Anti-Personnel Minefield",
-    "Incendiary Mines"
+    "Incendiary Mines",
+    "Anti-Tank Mines"
 ];
 
 const itemNamesFull = [
@@ -267,6 +275,7 @@ const itemNamesFull = [
     "FLAM-40 Flamethrower",
     "ARC-3 Arc Thrower",
     "RL-77 Airburst Rocket Launcher",
+    "MLS-4X Commando",
     "AX/LAS-5 Guard Dog Rover",
     "AD-334 Guard Dog",
     "SH-20 Ballistic Shield Backpack",
@@ -285,7 +294,8 @@ const itemNamesFull = [
     "A/ARC-3 Tesla Tower",
     "FX-12 Shield Generator Relay",
     "MD-6 Anti-Personnel Minefield",
-    "MD-I4 Incendiary Mines"
+    "MD-I4 Incendiary Mines",
+    "MD-17 Anti-Tank Mines"
 ];
 
 const missionNames = [
@@ -322,7 +332,7 @@ const difficultiesNames = [
     "All",
     "7 - Suicide Mission",
     "8 - Impossible",
-    "9 - Helldive"
+    "9 - Helldive",
 ];
 
 const patchPeriods = [

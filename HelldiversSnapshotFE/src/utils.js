@@ -30,7 +30,7 @@ const getItemCategory = (item) => {
     const itemIndex = baseLabels.indexOf(item);
     return itemIndex < 18
         ? itemCategories[1]
-        : itemIndex < 41
+        : itemIndex < 42
         ? itemCategories[2]
         : itemCategories[3];
 };
@@ -61,6 +61,11 @@ const getCountingSuffix = (number) => {
     const v = number % 100;
     return suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0];
 };
+
+function capitalizeFirstLetter(str) {
+    if (str.length === 0) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 const getPercentage = (number1, number2, decimals) => {
     const percantageRaw = (number1 / number2) * 100;
@@ -95,15 +100,19 @@ const filterByPatch = (period, game) => {
 };
 
 const getRankedDict = (data, category, itemName) => {
-    let dictObj = {};
+    let dictObj = baseLabels.reduce((acc, key) => {
+        acc[key] = 0;
+        return acc;
+      }, {});
+
     let dictObjResult = {};
     let loadoutsCount = 0;
     let dictObjByCategory = {};
 
     const categoryRankings = {
         "Eagle/Orbital": 1,
-        Support: 1,
-        Defensive: 1
+        "Support": 1,
+        "Defensive": 1
     };
 
     data.forEach((game) => {
@@ -145,6 +154,7 @@ const getRankedDict = (data, category, itemName) => {
             categoryRankings[itemCategory]++;
         });
 
+      
     Object.entries(dictObjResult)
         .filter((item) => getItemsByCategory(category).includes(item[0]))
         .forEach((item) => {
@@ -162,6 +172,7 @@ export {
     getItemCategory,
     getItemsByCategory,
     getCountingSuffix,
+    capitalizeFirstLetter,
     getPercentage,
     isDateBetween,
     getRankedDict,
