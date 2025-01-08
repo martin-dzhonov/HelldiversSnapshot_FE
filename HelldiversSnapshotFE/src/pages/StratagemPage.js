@@ -4,269 +4,311 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useParams, useNavigate } from "react-router-dom";
 import * as settings from "../settings/chartSettings";
-import {
-    baseLabels,
-    baseIconsSvg,
-    apiBaseUrl,
-    patchPeriods,
-    itemCategories
-} from "../constants";
-import {
-    getItemName,
-    getItemColor,
-    getItemCategory,
-    getPercentage,
-    getRankedDict,
-    getMissionLength,
-    filterByPatch,
-    capitalizeFirstLetter
-} from "../utils";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import StratagemRank from "../components/StratagemRank";
 import useMobile from "../hooks/useMobile";
 import BarGraph from "../components/BarGraph";
-
+import Loader from "../components/Loader";
+import {
+    apiBaseUrl,
+    patchPeriods,
+    strategems,
+    factions
+} from "../constants";
+import {
+    getItemColor,
+    getPercentage,
+    capitalizeFirstLetter,
+    getStrategemRank
+} from "../utils";
 
 function StratagemPage() {
     const navigate = useNavigate();
+    const { isMobile } = useMobile();
     let { itemId } = useParams();
     let { factionId } = useParams();
-    const { isMobile } = useMobile();
-    const [factionName, setFactionName] = useState(factionId);
+
     const [dataLoading, setDataLoading] = useState(true);
-    const [data, setData] = useState({
-        faction: null,
-        stratagem: null
-    });
+    const [fetchData, setFetchData] = useState();
     const [filters, setFilters] = useState({
-        period: {
-            id: patchPeriods[1].id,
-            start: patchPeriods[1].start,
-            end: patchPeriods[1].end
-        }
+        faction: factionId,
+        patch: {...patchPeriods[0]}
     });
 
-    const [graphData, setGraphData] = useState(null);
-    const [graphData1, setGraphData1] = useState(null);
-    const [graphData2, setGraphData2] = useState(null);
-    const [graphData3, setGraphData3] = useState(null);
+    const [diffGraph, setDiffGraph] = useState(null);
+    const [missionGraph, setMissionGraph] = useState(null);
+    const [factionGraph, setFactionGraph] = useState(null);
+    const [patchGraph, setPatchGraph] = useState(null);
 
     useEffect(() => {
-        if (factionName && itemId && filters.period) {
-            setDataLoading(true);
+        setDataLoading(true);
+        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+            .then((response) => response.json());
 
-            const fetchFaction = fetch(apiBaseUrl + `/faction/all`).then(
-                (response) => response.json()
-            );
+        fetchStratagem.then((res) => {
+            setFetchData(res);
+            setDataLoading(false);
+        });
+    }, []);
 
-            const fetchStratagem = fetch(
-                apiBaseUrl + `/games/${factionName}/${itemId}`
-            ).then((response) => response.json());
-
-            Promise.all([fetchFaction, fetchStratagem]).then((res) => {
-                setData({
-                    faction: res[0]
-                        .filter((game) => game.faction === factionName)
-                        .filter((game) =>
-                            filterByPatch(filters.period.id, game)
-                        ),
-                    stratagem: res[1].filter((game) =>
-                        filterByPatch(filters.period.id, game)
-                    ),
-                    automaton: res[0]
-                        .filter((game) => game.faction === "automaton")
-                        .filter((game) =>
-                            filterByPatch(filters.period.id, game)
-                        ),
-                    terminid: res[0]
-                        .filter((game) => game.faction === "terminid")
-                        .filter((game) =>
-                            filterByPatch(filters.period.id, game)
-                        ),
-                    patch300: res[0]
-                        .filter((game) => game.faction === factionName)
-                        .filter((game) => filterByPatch("1.000.300", game)),
-                    patch400: res[0]
-                        .filter((game) => game.faction === factionName)
-                        .filter((game) => filterByPatch("1.000.400", game))
-                });
-                setDataLoading(false);
-            });
+    const data = useMemo(() => {
+        if (fetchData && filters) {
+            const patchId = patchPeriods.findIndex(item => item.id === filters.patch.id);
+            const filtered = fetchData[patchId][filters.faction];
+            return filtered;
         }
-    }, [factionName, itemId, filters]);
+    }, [fetchData, filters]);
 
-    const itemsRankings = useMemo(() => {
-        if (data?.faction) {
-            const factionDict = getRankedDict(data.faction, "All");
-            return factionDict[itemId];
+    const strategemData = useMemo(() => {
+        if (data) {
+            return data.strategems[itemId];
         }
-    }, [data]);
+    }, [data, itemId]);
 
     useEffect(() => {
-        if (data.faction && data.stratagem) {
-            const loadoutsByDiff = { 7: 0, 8: 0, 9: 0 };
-            const itemLoadoutsByDiff = Object.assign({}, loadoutsByDiff);
-            const loadoutsByMission = { Short: 0, Long: 0 };
-            const itemLoadoutsByMission = Object.assign({}, loadoutsByMission);
+        if (fetchData) {
+            const patchId = patchPeriods.findIndex(item => item.id === filters.patch.id);
+            const filteredByPatch = fetchData[patchId];
 
-            data.faction.forEach((game) => {
-                game.players.forEach((loadout) => {
-                    loadoutsByDiff[game.difficulty]++;
-                    loadoutsByMission[getMissionLength(game.missionName)]++;
-                });
-            });
+            const factionsDataset = Object.entries(filteredByPatch)
+                .map(([key, value]) => { return getPercentage(value.strategems[itemId].loadouts, filteredByPatch[key].totalLoadouts, 1) });
 
-            data.stratagem.forEach((game) => {
-                game.players.forEach((loadout) => {
-                    if (loadout.includes(itemId)) {
-                        itemLoadoutsByDiff[game.difficulty]++;
-                        itemLoadoutsByMission[
-                            getMissionLength(game.missionName)
-                        ]++;
-                    }
-                });
-            });
-
-            setGraphData({
-                labels: !isMobile
-                    ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive"]
-                    : ["7", "8", "9"],
+            setFactionGraph({
+                labels: Object.keys(filteredByPatch),
                 datasets: [
                     {
-                        data: Object.keys(loadoutsByDiff).map((diff, index) => {
-                            return getPercentage(
-                                itemLoadoutsByDiff[diff],
-                                loadoutsByDiff[diff],
-                                1
-                            );
-                        }),
+                        data: factionsDataset,
+                        backgroundColor: ["rgb(255,182,0)", "#de7b6c", "rgb(107,58,186)"],
+                        barThickness: 24
+                    }
+                ]
+            });
+        }
+    }, [fetchData, filters]);
+
+    useEffect(() => {
+        if (fetchData && itemId && filters.faction) {
+
+            const dataset = fetchData.map((patch) => {
+                const stratagem = patch[filters.faction].strategems[itemId];
+                return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts, 1);
+            })
+
+            setPatchGraph({
+                labels: patchPeriods.map((item) => item.id),
+                datasets: [
+                    {
+                        data: dataset,
+                        backgroundColor: getItemColor(itemId),
+                        barThickness: 24
+                    }
+                ]
+            });
+        }
+    }, [fetchData, itemId, filters]);
+
+
+    useEffect(() => {
+        if (strategemData) {
+            setDiffGraph({
+                labels: !isMobile
+                    ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive", "10 - Super Helldive"]
+                    : ["7", "8", "9", "10"],
+                datasets: [
+                    {
+                        data: Object.values(strategemData.diffs).map((item) => getPercentage(item, strategemData.loadouts, 1)),
                         backgroundColor: getItemColor(itemId),
                         barThickness: 24
                     }
                 ]
             });
 
-            setGraphData1({
+            setMissionGraph({
                 labels: ["Short", "Long"],
                 datasets: [
                     {
-                        data: Object.keys(loadoutsByMission).map(
-                            (name, index) => {
-                                return getPercentage(
-                                    itemLoadoutsByMission[name],
-                                    loadoutsByMission[name],
-                                    1
-                                );
-                            }
-                        ),
-                        backgroundColor: getItemColor(itemId),
-                        barThickness: 24
-                    }
-                ]
-            });
-
-            setGraphData2({
-                labels: ["Automaton", "Terminid"],
-                datasets: [
-                    {
-                        data: [
-                            getRankedDict(data.automaton, "All")[itemId]
-                                .percentageLoadouts,
-                            getRankedDict(data.terminid, "All")[itemId]
-                                .percentageLoadouts
-                        ],
-                        backgroundColor: ["#de7b6c", "rgb(255,182,0)"],
-                        barThickness: 24
-                    }
-                ]
-            });
-
-
-            setGraphData3({
-                labels: ["Patch 1.000.300", "Patch 1.000.400"],
-                datasets: [
-                    {
-                        data: [
-                            getRankedDict(data.patch300, "All")[itemId]
-                                .percentageLoadouts,
-                            getRankedDict(data.patch400, "All")[itemId]
-                                .percentageLoadouts
-                        ],
+                        data: Object.values(strategemData.missions).map((item) => getPercentage(item, strategemData.loadouts, 1)),
                         backgroundColor: getItemColor(itemId),
                         barThickness: 24
                     }
                 ]
             });
         }
-    }, [data]);
+    }, [strategemData]);
 
     return (
         <div className="content-wrapper">
             <div className="item-details-title-wrapper">
                 <div className="stratagem-details-title">
                     <div className="item-details-img-wrapper">
-                        <img
-                            src={baseIconsSvg[baseLabels.indexOf(itemId)]}
-                        ></img>
+                        <img src={strategems[itemId].svg} alt=""></img>
                     </div>
                     <div className="item-details-title-text">
-                        {getItemName(itemId, "long")}
+                        {strategems[itemId].nameFull}
                     </div>
                 </div>
                 <div className="stratagem-details-filters-container">
                     <div className="stratagem-details-filter-container">
                         <DropdownButton
                             className="dropdown-button"
-                            title={
-                                "Faction: " + capitalizeFirstLetter(factionName)
-                            }
-                        >
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => {
-                                    setFactionName("terminid");
-                                }}
-                            >
-                                Terminid
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => {
-                                    setFactionName("automaton");
-                                }}
-                            >
-                                Automaton
-                            </Dropdown.Item>
+                            title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
+                            {factions.map((factionName) => (
+                                <Dropdown.Item
+                                    as="button"
+                                    onClick={() => { setFilters({ ...filters, faction: factionName.toLocaleLowerCase() }); }}>
+                                    {factionName}
+                                </Dropdown.Item>
+                            ))}
                         </DropdownButton>
                     </div>
                     <div className="stratagem-details-filter-container">
                         <DropdownButton
                             className="dropdown-button"
-                            title={"Patch: " + filters.period.id}
-                        >
+                            title={"Patch: " + filters.patch.id}>
                             {patchPeriods.map((patchPeriod, index) => (
                                 <Dropdown.Item
                                     as="button"
-                                    onClick={() => {
-                                        setFilters({
-                                            ...filters,
-                                            period: patchPeriod
-                                        });
-                                    }}
-                                >
-                                    {`${
-                                        patchPeriod.id === "All" ? "" : "Patch"
-                                    } ${patchPeriod.id} : ${
-                                        patchPeriod.start
-                                    } - ${patchPeriod.end}`}
+                                    onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
+                                    {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
                                 </Dropdown.Item>
                             ))}
                         </DropdownButton>
                     </div>
                 </div>
             </div>
+
             <div className="stratagem-divier"></div>
+            {data && <Loader loading={dataLoading}>
+                <div className="stratagem-section-container">
+                    <div className="stratagem-rankings-container">
+                        <StratagemRank
+                            text={["in", "All Stratagem"]}
+                            value={getStrategemRank(data, itemId)}
+                            color={"rgb(255,182,0)"}
+                            suffix
+                        />
+                        <StratagemRank
+                            text={["in", strategems[itemId].category]}
+                            value={getStrategemRank(data, itemId, true)}
+                            color={getItemColor(itemId)}
+                            suffix
+                        />
+                        <StratagemRank
+                            text={["percent", "of matches"]}
+                            value={getPercentage(
+                                strategemData?.games,
+                                data?.totalGames,
+                                1)}
+                            color={"rgb(255,182,0)"}
+                        />
+                        <StratagemRank
+                            text={["percent", "of loadouts"]}
+                            value={getPercentage(
+                                strategemData?.loadouts,
+                                data?.totalLoadouts,
+                                1)}
+                            color={getItemColor(itemId)}
+                        />
+                    </div>
+                    <div className="stratagem-trends-container">
+                        <div className="stratagem-trends-wrapper">
+                            {factionGraph && (
+                                <div className="stratagem-graph-wrapper-small">
+                                    <BarGraph
+                                        data={factionGraph}
+                                        options={{
+                                            ...settings.stregemSmallOption
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="stratagem-trends-wrapper">
+                            {patchGraph && (
+                                <div className="stratagem-graph-wrapper-small">
+                                    <BarGraph
+                                        data={patchGraph}
+                                        options={{
+                                            ...settings.stregemSmallOption
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </Loader>}
+            <div className="stratagem-graphs-title">Companion Picks</div>
+            <div className="stratagem-divier"></div>
+
+            {(data && strategemData) && <div className="stratagem-loadouts-wrapper">
+                {Object.entries(strategemData?.companions).map(([categoryName, category], categoryIndex) => (
+                    <div className="stratagem-loadouts-section-wrapper" key={categoryName}>
+                        <div className="stratagem-loadouts-title">
+                            {categoryName}
+                        </div>
+                        <div className="table-loadout-wrapper">
+                            {category.map((item, itemIndex) => (
+                                <OverlayTrigger
+                                    overlay={(props) => (
+                                        <Tooltip {...props}>
+                                            {strategems[item.name].name}
+                                            Paired in {getPercentage(item.value, strategemData.loadouts, 1)}% of games
+                                        </Tooltip>
+                                    )}
+                                    placement="bottom">
+                                    <img
+                                        key={`${categoryIndex}-${itemIndex}`}
+                                        className="armory-img-wrapper" alt=""
+                                        onClick={() => navigate(`/armory/${filters.faction}/${item.name}`)}
+                                        src={strategems[item.name].svg}
+                                        width={40}
+                                    />
+                                </OverlayTrigger>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            }
+
+            <div className="stratagem-graphs-title">Charts</div>
+            <div className="stratagem-divier"></div>
+
+            <div className="stratagem-graphs-wrapper">
+                <Loader loading={dataLoading}>
+                    {diffGraph &&
+                        <div className="stratagem-graph-wrapper">
+                            <div className="stratagem-graph-title">Difficulty</div>
+                            <BarGraph
+                                data={diffGraph}
+                                options={{
+                                    ...settings.optionsStratagem,
+                                    indexAxis: isMobile ? "y" : "x"
+                                }}
+                            />
+                        </div>
+                    }
+                </Loader>
+                <Loader loading={dataLoading}>
+                    {missionGraph &&
+                        <div className="stratagem-graph-wrapper">
+                            <div className="stratagem-graph-title">
+                                Mission Length
+                            </div>
+                            <BarGraph
+                                data={missionGraph}
+                                options={{
+                                    ...settings.optionsStratagem,
+                                    indexAxis: isMobile ? "y" : "x"
+                                }}
+                            />
+                        </div>
+                    }
+                </Loader>
+            </div>
+            {/* <div className="stratagem-divier"></div>
             {dataLoading ? (
                 <div className="spinner-faction-container">
                     <div className="lds-dual-ring"></div>
@@ -368,7 +410,7 @@ function StratagemPage() {
                                                     %
                                                     {item[1]
                                                         .percentageLoadouts ===
-                                                    100
+                                                        100
                                                         ? "(duh)"
                                                         : ""}{" "}
                                                     of stratagem loadouts
@@ -378,6 +420,7 @@ function StratagemPage() {
                                         >
                                             <img
                                                 className="armory-img-wrapper"
+                                                alt=""
                                                 onClick={() =>
                                                     navigate(
                                                         `/armory/${factionName}/${item[0]}`
@@ -385,9 +428,9 @@ function StratagemPage() {
                                                 }
                                                 src={
                                                     baseIconsSvg[
-                                                        baseLabels.indexOf(
-                                                            item[0]
-                                                        )
+                                                    baseLabels.indexOf(
+                                                        item[0]
+                                                    )
                                                     ]
                                                 }
                                                 width={40}
@@ -402,38 +445,55 @@ function StratagemPage() {
             <div className="stratagem-graphs-title">Charts</div>
             <div className="stratagem-divier"></div>
             <div className="stratagem-graphs-wrapper">
-                {dataLoading && (
-                    <div className="spinner-faction-container">
-                        <div className="lds-dual-ring"></div>
-                    </div>
-                )}
-                {graphData && !dataLoading && (
-                    <div className="stratagem-graph-wrapper">
-                        <div className="stratagem-graph-title">Difficulty</div>
-                        <BarGraph
-                            data={graphData}
-                            options={{
-                                ...settings.optionsStratagem,
-                                indexAxis: isMobile ? "y" : "x"
-                            }}
-                        />
-                    </div>
-                )}
-                {graphData1 && !dataLoading && (
-                    <div className="stratagem-graph-wrapper">
-                        <div className="stratagem-graph-title">
-                            Mission Length
+                <Loader loading={dataLoading}>
+                    {graphData &&
+                        <div className="stratagem-graph-wrapper">
+                            <div className="stratagem-graph-title">Difficulty</div>
+                            <BarGraph
+                                data={graphData}
+                                options={{
+                                    ...settings.optionsStratagem,
+                                    indexAxis: isMobile ? "y" : "x"
+                                }}
+                            />
                         </div>
-                        <BarGraph
-                            data={graphData1}
-                            options={{
-                                ...settings.optionsStratagem,
-                                indexAxis: isMobile ? "y" : "x"
-                            }}
-                        />
-                    </div>
-                )}
+                    }
+                </Loader>
+                <Loader loading={dataLoading}>
+                    {graphData1 &&
+                        <div className="stratagem-graph-wrapper">
+                            <div className="stratagem-graph-title">
+                                Mission Length
+                            </div>
+                            <BarGraph
+                                data={graphData1}
+                                options={{
+                                    ...settings.optionsStratagem,
+                                    indexAxis: isMobile ? "y" : "x"
+                                }}
+                            />
+                        </div>
+                    }
+                </Loader>
             </div>
+            <div className="stratagem-graphs-wrapper">
+                <Loader loading={dataLoading}>
+                    {graphData1 &&
+                        <div className="stratagem-graph-wrapper" style={{width: "86.5%"}}>
+                            <div className="stratagem-graph-title">
+                                Mission Modifiers
+                            </div>
+                            <BarGraph
+                                data={graphData1}
+                                options={{
+                                    ...settings.optionsStratagem,
+                                    indexAxis: isMobile ? "y" : "x"
+                                }}
+                            />
+                        </div>
+                    }
+                </Loader>
+            </div> */}
         </div>
     );
 }

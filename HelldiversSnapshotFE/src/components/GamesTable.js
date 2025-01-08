@@ -1,5 +1,5 @@
 import "../styles/App.css";
-import { baseLabels, baseIconsSvg } from "../constants";
+import { strategems } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
 
@@ -8,32 +8,34 @@ function GamesTable({ data }) {
         <Table striped bordered hover size="sm" variant="dark">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Time</th>
+                    <th>id</th>
+                    <th>Date</th>
                     <th>Loadouts</th>
-                    <th>Difficulty</th>
+                    <th>Planet</th>
                     <th>Mission</th>
+                    <th>Modifiers</th>
+                    <th>Diff</th>
                 </tr>
             </thead>
             <tbody>
                 {data && data.map((game, index) =>
                     <tr>
-                        <td className='text-small' >{index}</td>
+                        <td className='text-small'>{game.id}</td>
                         <td className='text-small' >{new Date(game.createdAt).toLocaleString()}</td>
                         <td className='text-small'>
                             <div class='table-loadout-row-wrapper'>
                                 {game.players.map((loadout) =>
                                     <div class='table-loadout-wrapper'>
                                         {loadout.map((item) =>
-                                            baseLabels.indexOf(item) !== -1 ?
-                                                <img className='armory-img-wrapper' src={baseIconsSvg[baseLabels.indexOf(item)]} width={40}></img>
-                                                : <div className='armory-img-wrapper'></div>)}
+                                            <img className='armory-img-wrapper' src={strategems[item].svg} width={40} alt=""></img>)}
                                     </div>)}
                             </div>
-                            <ScreenshotToggle img={game.loadoutImg} />
+                            <ScreenshotToggle id={game.id} alt="" />
                         </td>
+                        <th>{game.planet}</th>
+                        <td className='text-small'>{game.mission}</td>
+                        <td className='text-small'>{game.modifiers}</td>
                         <td className='text-small'>{game.difficulty}</td>
-                        <td className='text-small'>{game.missionName}</td>
                     </tr>
                 )}
             </tbody>

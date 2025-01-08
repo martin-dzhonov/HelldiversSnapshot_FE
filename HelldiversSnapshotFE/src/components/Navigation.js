@@ -35,7 +35,7 @@ const Navigation = () => {
                     HELLDIVE.LIVE
                 </div>
                 <div className="hd-logo" onClick={() => navigate("/")}>
-                    <img src={hdlogo} />
+                    <img src={hdlogo} alt="" />
                 </div>
             </div>
 
@@ -44,12 +44,7 @@ const Navigation = () => {
                     {navRoutes.map((navRoute) => (
                         <Link
                             to={`/${navRoute.route}`}
-                            className={`${
-                                location.pathname.includes(navRoute.route)
-                                    ? "menu-active"
-                                    : ""
-                            }`}
-                        >
+                            className={`${location.pathname.includes(navRoute.route)? "menu-active": ""}`}>
                             <span className={`custom-font`}>
                                 {navRoute.name}
                             </span>

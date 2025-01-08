@@ -18,6 +18,7 @@ ChartJS.register(
     ChartTooltip,
     Legend
 );
+
 const BarGraph = ({ data, options, chartRef, onBarClick, redraw = false }) => {
     return (
         <Bar

@@ -1,54 +1,36 @@
 import {
-    baseLabels,
-    itemNames,
     missionNames,
     itemCategoryColors,
     itemCategories,
-    itemCategoryIndexes,
-    itemNamesFull,
-    patchPeriods
+    strategems
 } from "./constants";
 
-const getItemName = (item, type) => {
-    const index = baseLabels.indexOf(item);
-    if (index !== -1) {
-        return type === "short" ? itemNames[index] : itemNamesFull[index];
-    }
-    return "";
-};
+const getStrategemByName = (name) =>{
+   const result = Object.entries(strategems).find(([key, value])=> value.name === name);
+   return {
+    "id": result[0],
+    ...result[1]
+   };
+}
 
 const getItemColor = (item) => {
-    const index = baseLabels.indexOf(item);
-    return index < 18
-        ? itemCategoryColors[1]
-        : index < 41
-        ? itemCategoryColors[2]
-        : itemCategoryColors[3];
+    return itemCategoryColors[itemCategories.indexOf(strategems[item].category)];
 };
 
-const getItemCategory = (item) => {
-    const itemIndex = baseLabels.indexOf(item);
-    return itemIndex < 18
-        ? itemCategories[1]
-        : itemIndex < 42
-        ? itemCategories[2]
-        : itemCategories[3];
-};
 const getItemsByCategory = (category) => {
-    const categoryIndex = itemCategories.indexOf(category);
-    const sliced = baseLabels.slice(
-        itemCategoryIndexes[categoryIndex][0],
-        itemCategoryIndexes[categoryIndex][1]
-    );
-    return sliced;
+    if (category === "All") {
+        return Object.values(strategems);
+    }
+    const result = Object.values(strategems).filter((item) => item.category === category);
+    return result;
 };
 
 const getMissionsByLength = (type) => {
     return type === "All"
         ? missionNames
         : type === "Long"
-        ? missionNames.slice(0, 11)
-        : missionNames.slice(11, missionNames.length);
+            ? missionNames.slice(0, 15)
+            : missionNames.slice(15, missionNames.length);
 };
 
 const getMissionLength = (missionName) => {
@@ -89,25 +71,87 @@ const sortDictArray = (a, b) => {
 };
 
 const filterByPatch = (period, game) => {
-    const patchPeriodFull = patchPeriods.find((item) => item.id === period);
     return period.id !== "All"
         ? isDateBetween(
-              game.createdAt,
-              patchPeriodFull.start,
-              patchPeriodFull.end
-          )
+            game.createdAt,
+            period.start,
+            period.end
+        )
         : true;
 };
 
 const getRankedDict = (data, category, itemName) => {
-    let dictObj = baseLabels.reduce((acc, key) => {
+    let dictObj = Object.keys(strategems).reduce((acc, key) => {
         acc[key] = 0;
         return acc;
-      }, {});
+    }, {});
 
-    let dictObjResult = {};
+
+    // let dictObjResult = {};
+    // let loadoutsCount = 0;
+    // let dictObjByCategory = {};
+
+    // const categoryRankings = {
+    //     "Eagle/Orbital": 1,
+    //     "Support": 1,
+    //     "Defensive": 1
+    // };
+
+    // data.forEach((game) => {
+    //     game.players.forEach((loadout) => {
+    //         if (itemName) {
+    //             if (loadout.includes(itemName)) {
+    //                 loadoutsCount++;
+    //                 loadout.forEach((item) => {
+    //                     if (dictObj[item]) {
+    //                         dictObj[item] += 1;
+    //                     } else {
+    //                         dictObj[item] = 1;
+    //                     }
+    //                 });
+    //             }
+    //         } else {
+    //             loadoutsCount++;
+    //             loadout.forEach((item) => {
+    //                 if (dictObj[item]) {
+    //                     dictObj[item] += 1;
+    //                 } else {
+    //                     dictObj[item] = 1;
+    //                 }
+    //             });
+    //         }
+    //     });
+    // });
+
+    // console.log(dictObj)
+
+    // Object.entries(dictObj)
+    //     .sort(sortDictArray)
+    //     .forEach((item, index) => {
+    //         const itemCategory = getItemCategory(item[0]);
+    //         dictObjResult[item[0]] = {
+    //             total: item[1],
+    //             rankTotal: index + 1,
+    //             rankCategory: categoryRankings[itemCategory],
+    //             percentageLoadouts: getPercentage(item[1], loadoutsCount, 1)
+    //         };
+    //         categoryRankings[itemCategory]++;
+    //     });
+
+
+    // Object.entries(dictObjResult)
+    //     .filter((item) => getItemsByCategory(category).includes(item[0]))
+    //     .forEach((item) => {
+    //         dictObjByCategory[item[0]] = item[1];
+    //     });
+
+    return dictObj;
+};
+
+function countPlayerItems(data, category) {
+    const itemCount = {};
+    let itemCountRanked = {};
     let loadoutsCount = 0;
-    let dictObjByCategory = {};
 
     const categoryRankings = {
         "Eagle/Orbital": 1,
@@ -115,37 +159,22 @@ const getRankedDict = (data, category, itemName) => {
         "Defensive": 1
     };
 
-    data.forEach((game) => {
-        game.players.forEach((loadout) => {
-            if (itemName) {
-                if (loadout.includes(itemName)) {
-                    loadoutsCount++;
-                    loadout.forEach((item) => {
-                        if (dictObj[item]) {
-                            dictObj[item] += 1;
-                        } else {
-                            dictObj[item] = 1;
-                        }
-                    });
-                }
-            } else {
-                loadoutsCount++;
-                loadout.forEach((item) => {
-                    if (dictObj[item]) {
-                        dictObj[item] += 1;
-                    } else {
-                        dictObj[item] = 1;
-                    }
-                });
-            }
+    data.forEach(mission => {
+        const players = mission.players || [];
+        loadoutsCount += players.length;
+        players.forEach(playerList => {
+            playerList.forEach(item => {
+                itemCount[item] = (itemCount[item] || 0) + 1;
+            });
         });
     });
-
-    Object.entries(dictObj)
+    Object.entries(itemCount)
         .sort(sortDictArray)
         .forEach((item, index) => {
-            const itemCategory = getItemCategory(item[0]);
-            dictObjResult[item[0]] = {
+            //console.log(item);
+            //console.log(strategems[item[0]]);
+            const itemCategory = strategems[item[0]].category;
+            itemCountRanked[item[0]] = {
                 total: item[1],
                 rankTotal: index + 1,
                 rankCategory: categoryRankings[itemCategory],
@@ -154,27 +183,48 @@ const getRankedDict = (data, category, itemName) => {
             categoryRankings[itemCategory]++;
         });
 
-      
-    Object.entries(dictObjResult)
-        .filter((item) => getItemsByCategory(category).includes(item[0]))
-        .forEach((item) => {
-            dictObjByCategory[item[0]] = item[1];
-        });
+    const rankedByCategory = Object.fromEntries(
+        Object.entries(itemCountRanked).filter(([key]) => {
+            return category === "All" ? true : strategems[key]?.category === category
+        })
+    );
 
-    return dictObjByCategory;
+    return rankedByCategory;
+}
+
+const getItemId = (name) => {
+    const entry = Object.entries(strategems).find(([key, value]) => value.name === name);
+    return entry ? entry[0] : null;
 };
+
+const getStrategemRank = (data, strategemName, category) =>{
+    const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].loadouts - a[1].loadouts);
+
+    if(category){
+        const strategemCategory = strategems[strategemName].category;
+        console.log(sorted.filter((item)=> strategems[item[0]].category === strategemCategory));
+        const categoryRank = sorted.filter((item)=> strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
+        return categoryRank + 1;
+    } else {
+        const rankAll = sorted.findIndex(item => item[0] === strategemName);
+        return rankAll + 1;
+    }
+}
+
 
 export {
     getMissionsByLength,
     getMissionLength,
-    getItemName,
     getItemColor,
-    getItemCategory,
     getItemsByCategory,
     getCountingSuffix,
     capitalizeFirstLetter,
     getPercentage,
     isDateBetween,
     getRankedDict,
-    filterByPatch
+    filterByPatch,
+    getItemId,
+    countPlayerItems,
+    getStrategemByName,
+    getStrategemRank
 };

@@ -1,43 +1,30 @@
 import '../App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { itemCategories, difficultiesNames, patchPeriods } from '../constants';
+import { itemCategories, difficultiesNames, patchPeriods, factions } from '../constants';
+import { capitalizeFirstLetter } from '../utils';
 
-function Filters({ factionName, setFactionName, filters, setFilters }) {
+function Filters({ filters, setFilters }) {
     return (
         <div className="filters-container">
             <DropdownButton
                 className="dropdown-button"
-                title={"Faction: " + factionName}
-            >
-                <Dropdown.Item
-                    as="button"
-                    onClick={() => {
-                        setFactionName("Terminid");
-                    }}
-                >
-                    Terminid
-                </Dropdown.Item>
-                <Dropdown.Item
-                    as="button"
-                    onClick={() => {
-                        setFactionName("Automaton");
-                    }}
-                >
-                    Automaton
-                </Dropdown.Item>
+                title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
+                {factions.map((factionName) => (
+                    <Dropdown.Item
+                        as="button"
+                        onClick={() => { setFilters({ ...filters, faction: factionName.toLocaleLowerCase() }); }}>
+                        {factionName}
+                    </Dropdown.Item>
+                ))}
             </DropdownButton>
 
             <DropdownButton
                 className="dropdown-button"
-                title={"Stratagems: " + filters.type}
-            >
+                title={"Stratagems: " + filters.type}>
                 {itemCategories.map((category, index) => (
                     <Dropdown.Item
                         as="button"
-                        onClick={() => {
-                            setFilters({ ...filters, type: category });
-                        }}
-                    >
+                        onClick={() => { setFilters({ ...filters, type: category }); }}>
                         {category}
                     </Dropdown.Item>
                 ))}
@@ -45,18 +32,12 @@ function Filters({ factionName, setFactionName, filters, setFilters }) {
 
             <DropdownButton
                 className="dropdown-button"
-                title={"Patch: " + filters.period.id}
-            >
+                title={"Patch: " + filters.period.id}>
                 {patchPeriods.map((patchPeriod, index) => (
                     <Dropdown.Item
                         as="button"
-                        onClick={() => {
-                            setFilters({ ...filters, period: patchPeriod });
-                        }}
-                    >
-                        {`${patchPeriod.id === "All" ? "" : "Patch"} ${
-                            patchPeriod.id
-                        } : ${patchPeriod.start} - ${patchPeriod.end}`}
+                        onClick={() => { setFilters({ ...filters, period: patchPeriod }); }}>
+                        {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
                     </Dropdown.Item>
                 ))}
             </DropdownButton>
@@ -67,52 +48,37 @@ function Filters({ factionName, setFactionName, filters, setFilters }) {
                     filters.difficulty === 0
                         ? "Difficulty: All"
                         : "Difficulty: " + filters.difficulty
-                }
-            >
-                {difficultiesNames.map((difficultyName) => (
+                }>
+                {difficultiesNames.map((diffName, diffIndex) => (
                     <Dropdown.Item
                         as="button"
                         onClick={() => {
                             setFilters({
                                 ...filters,
-                                difficulty:
-                                    difficultyName === "All"
-                                        ? 0
-                                        : Number(difficultyName[0])
+                                difficulty: diffName === "All" ? 0 : (6 + diffIndex)
                             });
-                        }}
-                    >
-                        {difficultyName}
+                        }}>
+                        {diffName}
                     </Dropdown.Item>
                 ))}
             </DropdownButton>
 
             <DropdownButton
                 className="dropdown-button"
-                title={"Mission Type: " + filters.missionType}
-            >
+                title={"Mission Type: " + filters.mission}>
                 <Dropdown.Item
                     as="button"
-                    onClick={() => {
-                        setFilters({ ...filters, missionType: "All" });
-                    }}
-                >
+                    onClick={() => { setFilters({ ...filters, mission: "All" }); }}>
                     All
                 </Dropdown.Item>
                 <Dropdown.Item
                     as="button"
-                    onClick={() => {
-                        setFilters({ ...filters, missionType: "Long" });
-                    }}
-                >
+                    onClick={() => { setFilters({ ...filters, mission: "Long" }); }}>
                     Long (40min)
                 </Dropdown.Item>
                 <Dropdown.Item
                     as="button"
-                    onClick={() => {
-                        setFilters({ ...filters, missionType: "Short" });
-                    }}
-                >
+                    onClick={() => { setFilters({ ...filters, mission: "Short" }); }}>
                     Short
                 </Dropdown.Item>
             </DropdownButton>

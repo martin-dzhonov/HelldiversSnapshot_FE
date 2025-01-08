@@ -1,99 +1,99 @@
 .filters-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  
-  @media only screen and (min-width: 1000px) {
-    .filters-container {
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 25px 2% 30px 2%;
-    }
-  }
-  
-  @media only screen and (max-width: 1000px) {
-    .filters-container {
-      flex-direction: row;
-      gap: 15px;
-      padding: 20px 2% 30px 20px;
-    }
-  }
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
-  .filter-results-container {
-    display: flex;
+@media only screen and (min-width: 1000px) {
+  .filters-container {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 25px 2% 30px 2%;
   }
-  
-  .filter-results-container2 {
-    display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+  .filters-container {
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px 2% 30px 20px;
   }
-  
-  @media only screen and (min-width: 1000px) {
-    .filter-results-container  {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 20px 20px 20px 60px;
-    }
+}
+
+.filter-results-container {
+  display: flex;
+}
+
+.filter-results-container2 {
+  display: flex;
+}
+
+@media only screen and (min-width: 1000px) {
+  .filter-results-container  {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px 20px 60px;
   }
-  
-  @media only screen and (max-width: 1000px) {
-    .filter-results-container  {
-      flex-direction: column;
-      padding: 0px 0px 20px 20px;
-  
-    }
+}
+
+@media only screen and (max-width: 1000px) {
+  .filter-results-container  {
+    flex-direction: column;
+    padding: 0px 0px 20px 20px;
   }
-  
+}
+
+.show-games-table-wrapper{
+  height: 600px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 20px 20px 30px 40px;
+  margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 1000px) {
   .show-games-table-wrapper{
-    height: 600px;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    padding: 20px 20px 30px 40px;
-    margin-bottom: 30px;
+    height: 450px;
+    padding: 20px 10px 30px 10px;
+
   }
-  @media only screen and (max-width: 1000px) {
-    .show-games-table-wrapper{
-      height: 450px;
-      padding: 20px 10px 30px 10px;
-  
-    }
-  }
-  
-  .table-loadout-wrapper{
-    display: flex;
-    direction: row;
-    gap:12px;
-  }
-  
+}
+
+.table-loadout-wrapper{
+  display: flex;
+  direction: row;
+  gap:12px;
+}
+
+.table-loadout-row-wrapper{
+  display: flex;
+  flex-direction: row;
+  gap:40px;
+  padding: 10px 20px;
+}
+
+@media only screen and (max-width: 1000px) {
   .table-loadout-row-wrapper{
     display: flex;
-    flex-direction: row;
-    gap:40px;
-    padding: 10px 20px;
+    flex-direction: column;
+   
   }
-  
-  @media only screen and (max-width: 1000px) {
-    .table-loadout-row-wrapper{
-      display: flex;
-      flex-direction: column;
-     
-    }
-  }
-  
-  .bar-container {
-    padding: 0px 0px 50px 0px;
-    overflow: scroll; 
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .bar-container2 {
-    padding: 60px 0px 50px 0px;
-    height: 800px;
-    overflow: scroll; 
-    scrollbar-width: none;
-    position: relative;
-  }
+}
+
+.bar-container {
+  padding: 0px 0px 50px 0px;
+  overflow: scroll; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bar-container2 {
+  padding: 60px 0px 50px 0px;
+  height: 800px;
+  overflow: scroll; 
+  scrollbar-width: none;
+  position: relative;
+}

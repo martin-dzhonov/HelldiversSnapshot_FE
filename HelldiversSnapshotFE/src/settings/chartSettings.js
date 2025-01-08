@@ -271,7 +271,7 @@ export const optionsStratagem = {
 };
 
 export const stregemSmallOption = {
-    indexAxis: "x",
+    indexAxis: "y",
     maintainAspectRatio: false,
     elements: {
         bar: {
@@ -309,7 +309,7 @@ export const stregemSmallOption = {
                 drawBorder: false,
                 color: "#aaa",
                 drawTicks: false,
-                drawOnChartArea: true
+                drawOnChartArea: false
             },
 
             beginAtZero: true

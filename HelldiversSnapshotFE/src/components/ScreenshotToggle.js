@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-function ScreenshotToggle({ img }) {
+function ScreenshotToggle({ id }) {
     const [show, setShow] = useState(false);
     const onClick = () => setShow(!show);
     return (
         <div>
             <div onClick={onClick}
-                className='text-small'
-                style={{ fontSize: '17px', marginLeft: "20px", textDecoration: "underline", cursor: "pointer" }}>Show Snapshot</div>
-            {show && <img src={`https://s3.amazonaws.com/helldive.live.images/${img.replace(' ', '+')}`} width={768} />}
+                className='screenshot-toggle-text'>Show Snapshot</div>
+            {show && <img src={`https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`} width={768} alt="" />}
         </div>
     )
 }
