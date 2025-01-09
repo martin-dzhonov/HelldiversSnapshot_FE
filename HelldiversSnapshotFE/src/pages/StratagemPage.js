@@ -22,6 +22,7 @@ import {
     capitalizeFirstLetter,
     getStrategemRank
 } from "../utils";
+import LineGraph from "../components/LineGraph";
 
 function StratagemPage() {
     const navigate = useNavigate();
@@ -33,7 +34,7 @@ function StratagemPage() {
     const [fetchData, setFetchData] = useState();
     const [filters, setFilters] = useState({
         faction: factionId,
-        patch: {...patchPeriods[0]}
+        patch: { ...patchPeriods[0] }
     });
 
     const [diffGraph, setDiffGraph] = useState(null);
@@ -69,39 +70,66 @@ function StratagemPage() {
     useEffect(() => {
         if (fetchData) {
             const patchId = patchPeriods.findIndex(item => item.id === filters.patch.id);
-            const filteredByPatch = fetchData[patchId];
+            const patchData = fetchData[patchId];
 
-            const factionsDataset = Object.entries(filteredByPatch)
-                .map(([key, value]) => { return getPercentage(value.strategems[itemId].loadouts, filteredByPatch[key].totalLoadouts, 1) });
+            const dataset = Object.entries(patchData)
+                .map(([key, value]) => {
+                    return getPercentage(value.strategems[itemId].loadouts, patchData[key].totalLoadouts)
+                });
 
             setFactionGraph({
-                labels: Object.keys(filteredByPatch),
+                labels: Object.keys(patchData),
                 datasets: [
                     {
-                        data: factionsDataset,
+                        data: dataset,
                         backgroundColor: ["rgb(255,182,0)", "#de7b6c", "rgb(107,58,186)"],
                         barThickness: 24
                     }
                 ]
             });
         }
-    }, [fetchData, filters]);
+    }, [fetchData, filters, itemId]);
+
+    const hexToRgbA = (hex, alpha) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
 
     useEffect(() => {
         if (fetchData && itemId && filters.faction) {
 
             const dataset = fetchData.map((patch) => {
                 const stratagem = patch[filters.faction].strategems[itemId];
-                return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts, 1);
-            })
+                return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts);
+            }).reverse();
+            const itemColor = getItemColor(itemId);
 
             setPatchGraph({
-                labels: patchPeriods.map((item) => item.id),
+                labels: patchPeriods.map((item) => item.id).reverse(),
                 datasets: [
                     {
                         data: dataset,
-                        backgroundColor: getItemColor(itemId),
-                        barThickness: 24
+                        fill: 'origin',
+                        borderColor: itemColor,
+                        pointRadius: 4,
+                        pointBackgroundColor: getItemColor(itemId),
+                        pointBorderColor: getItemColor(itemId),
+                        backgroundColor: (context) => {
+                            const chart = context.chart;
+                            const { ctx, chartArea } = chart;
+
+                            if (!chartArea) {
+                                return;
+                            }
+                            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                            gradient.addColorStop(0, hexToRgbA(itemColor, 0.15));
+                            gradient.addColorStop(0.2, hexToRgbA(itemColor, 0.25));
+                            gradient.addColorStop(1, hexToRgbA(itemColor, 0.9));
+
+                            return gradient;
+                        },
                     }
                 ]
             });
@@ -117,7 +145,7 @@ function StratagemPage() {
                     : ["7", "8", "9", "10"],
                 datasets: [
                     {
-                        data: Object.values(strategemData.diffs).map((item) => getPercentage(item, strategemData.loadouts, 1)),
+                        data: Object.keys(data.diffs).map(key => getPercentage(strategemData.diffs[key], data.diffs[key])),
                         backgroundColor: getItemColor(itemId),
                         barThickness: 24
                     }
@@ -128,7 +156,7 @@ function StratagemPage() {
                 labels: ["Short", "Long"],
                 datasets: [
                     {
-                        data: Object.values(strategemData.missions).map((item) => getPercentage(item, strategemData.loadouts, 1)),
+                        data: Object.keys(data.missions).map(key => getPercentage(strategemData.missions[key], data.missions[key])),
                         backgroundColor: getItemColor(itemId),
                         barThickness: 24
                     }
@@ -179,38 +207,37 @@ function StratagemPage() {
             </div>
 
             <div className="stratagem-divier"></div>
-            {data && <Loader loading={dataLoading}>
+            <Loader loading={!data}>
                 <div className="stratagem-section-container">
-                    <div className="stratagem-rankings-container">
-                        <StratagemRank
-                            text={["in", "All Stratagem"]}
-                            value={getStrategemRank(data, itemId)}
-                            color={"rgb(255,182,0)"}
-                            suffix
-                        />
-                        <StratagemRank
-                            text={["in", strategems[itemId].category]}
-                            value={getStrategemRank(data, itemId, true)}
-                            color={getItemColor(itemId)}
-                            suffix
-                        />
-                        <StratagemRank
-                            text={["percent", "of matches"]}
-                            value={getPercentage(
-                                strategemData?.games,
-                                data?.totalGames,
-                                1)}
-                            color={"rgb(255,182,0)"}
-                        />
-                        <StratagemRank
-                            text={["percent", "of loadouts"]}
-                            value={getPercentage(
-                                strategemData?.loadouts,
-                                data?.totalLoadouts,
-                                1)}
-                            color={getItemColor(itemId)}
-                        />
-                    </div>
+                    {data &&
+                        <div className="stratagem-rankings-container">
+                            <StratagemRank
+                                text={["in", "All Stratagem"]}
+                                value={getStrategemRank(data, itemId)}
+                                color={"rgb(255,182,0)"}
+                                suffix
+                            />
+                            <StratagemRank
+                                text={["in", strategems[itemId].category]}
+                                value={getStrategemRank(data, itemId, true)}
+                                color={getItemColor(itemId)}
+                                suffix
+                            />
+                            <StratagemRank
+                                text={["percent", "of matches"]}
+                                value={getPercentage(
+                                    strategemData?.games,
+                                    data?.totalGames)}
+                                color={"rgb(255,182,0)"}
+                            />
+                            <StratagemRank
+                                text={["percent", "of loadouts"]}
+                                value={getPercentage(
+                                    strategemData?.loadouts,
+                                    data?.totalLoadouts)}
+                                color={getItemColor(itemId)}
+                            />
+                        </div>}
                     <div className="stratagem-trends-container">
                         <div className="stratagem-trends-wrapper">
                             {factionGraph && (
@@ -227,10 +254,10 @@ function StratagemPage() {
                         <div className="stratagem-trends-wrapper">
                             {patchGraph && (
                                 <div className="stratagem-graph-wrapper-small">
-                                    <BarGraph
+                                    <LineGraph
                                         data={patchGraph}
                                         options={{
-                                            ...settings.stregemSmallOption
+                                            ...settings.patchGraphOptions
                                         }}
                                     />
                                 </div>
@@ -238,44 +265,10 @@ function StratagemPage() {
                         </div>
                     </div>
                 </div>
-            </Loader>}
-            <div className="stratagem-graphs-title">Companion Picks</div>
+            </Loader>
+
+            <div className="stratagem-graphs-title"></div>
             <div className="stratagem-divier"></div>
-
-            {(data && strategemData) && <div className="stratagem-loadouts-wrapper">
-                {Object.entries(strategemData?.companions).map(([categoryName, category], categoryIndex) => (
-                    <div className="stratagem-loadouts-section-wrapper" key={categoryName}>
-                        <div className="stratagem-loadouts-title">
-                            {categoryName}
-                        </div>
-                        <div className="table-loadout-wrapper">
-                            {category.map((item, itemIndex) => (
-                                <OverlayTrigger
-                                    overlay={(props) => (
-                                        <Tooltip {...props}>
-                                            {strategems[item.name].name}
-                                            Paired in {getPercentage(item.value, strategemData.loadouts, 1)}% of games
-                                        </Tooltip>
-                                    )}
-                                    placement="bottom">
-                                    <img
-                                        key={`${categoryIndex}-${itemIndex}`}
-                                        className="armory-img-wrapper" alt=""
-                                        onClick={() => navigate(`/armory/${filters.faction}/${item.name}`)}
-                                        src={strategems[item.name].svg}
-                                        width={40}
-                                    />
-                                </OverlayTrigger>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-            }
-
-            <div className="stratagem-graphs-title">Charts</div>
-            <div className="stratagem-divier"></div>
-
             <div className="stratagem-graphs-wrapper">
                 <Loader loading={dataLoading}>
                     {diffGraph &&
@@ -308,192 +301,43 @@ function StratagemPage() {
                     }
                 </Loader>
             </div>
-            {/* <div className="stratagem-divier"></div>
-            {dataLoading ? (
-                <div className="spinner-faction-container">
-                    <div className="lds-dual-ring"></div>
-                </div>
-            ) : (
-                <div className="stratagem-section-container">
-                    <div className="stratagem-rankings-container">
-                        <StratagemRank
-                            text={["in", "All Stratagem"]}
-                            value={itemsRankings?.rankTotal}
-                            color={"rgb(255,182,0)"}
-                            suffix
-                        />
-                        <StratagemRank
-                            text={["in", getItemCategory(itemId)]}
-                            value={itemsRankings?.rankCategory}
-                            color={getItemColor(itemId)}
-                            suffix
-                        />
-                        <StratagemRank
-                            text={["percent", "of matches"]}
-                            value={getPercentage(
-                                data?.stratagem?.length,
-                                data?.faction?.length,
-                                1
-                            )}
-                            color={"rgb(255,182,0)"}
-                        />
-                        <StratagemRank
-                            text={["percent", "of loadouts"]}
-                            value={itemsRankings?.percentageLoadouts}
-                            color={getItemColor(itemId)}
-                        />
-                    </div>
-                    <div className="stratagem-trends-container">
-                        <div className="stratagem-trends-wrapper">
-                            {graphData2 && (
-                                <div className="stratagem-graph-wrapper-small">
-                                    <BarGraph
-                                        data={graphData2}
-                                        options={{
-                                            ...settings.stregemSmallOption
-                                        }}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                        <div className="stratagem-trends-wrapper">
-                            {graphData3 && (
-                                <div className="stratagem-graph-wrapper-small">
-                                    <BarGraph
-                                        data={graphData3}
-                                        options={{
-                                            ...settings.stregemSmallOption
-                                        }}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
+
             <div className="stratagem-graphs-title">Companion Picks</div>
             <div className="stratagem-divier"></div>
-            {dataLoading && (
-                <div className="spinner-faction-container">
-                    <div className="lds-dual-ring"></div>
-                </div>
-            )}
-            {data?.stratagem && !dataLoading && (
-                <div className="stratagem-loadouts-wrapper">
-                    {itemCategories.map((category) => (
-                        <div className="stratagem-loadouts-section-wrapper">
-                            <div className="stratagem-loadouts-title">
-                                {category}
-                            </div>
-                            <div class="table-loadout-wrapper">
-                                {Object.entries(
-                                    getRankedDict(
-                                        data?.stratagem,
-                                        category,
-                                        itemId
-                                    )
-                                )
-                                    .slice(
-                                        category === getItemCategory(itemId)
-                                            ? 1
-                                            : 0,
-                                        category === getItemCategory(itemId)
-                                            ? 5
-                                            : 4
-                                    )
-                                    .map((item) => (
+            <Loader loading={!data}>
+                {(data && strategemData) && <div className="stratagem-loadouts-wrapper">
+                    {Object.entries(strategemData?.companions)
+                        .map(([categoryName, category], categoryIndex) => (
+                            <div className="stratagem-loadouts-section-wrapper" key={categoryName}>
+                                <div className="stratagem-loadouts-title">
+                                    {categoryName}
+                                </div>
+                                <div className="table-loadout-wrapper">
+                                    {category.map((item, itemIndex) => (
                                         <OverlayTrigger
                                             overlay={(props) => (
                                                 <Tooltip {...props}>
-                                                    In{" "}
-                                                    {item[1].percentageLoadouts}
-                                                    %
-                                                    {item[1]
-                                                        .percentageLoadouts ===
-                                                        100
-                                                        ? "(duh)"
-                                                        : ""}{" "}
-                                                    of stratagem loadouts
+                                                    {strategems[item.name].name}
+                                                    Paired in {getPercentage(item.value, strategemData.loadouts)}
+                                                    % of games
                                                 </Tooltip>
                                             )}
-                                            placement="bottom"
-                                        >
+                                            placement="bottom">
                                             <img
-                                                className="armory-img-wrapper"
-                                                alt=""
-                                                onClick={() =>
-                                                    navigate(
-                                                        `/armory/${factionName}/${item[0]}`
-                                                    )
-                                                }
-                                                src={
-                                                    baseIconsSvg[
-                                                    baseLabels.indexOf(
-                                                        item[0]
-                                                    )
-                                                    ]
-                                                }
+                                                key={`${categoryIndex}-${itemIndex}`}
+                                                className="armory-img-wrapper" alt=""
+                                                onClick={() => navigate(`/armory/${filters.faction}/${item.name}`)}
+                                                src={strategems[item.name].svg}
                                                 width={40}
                                             />
                                         </OverlayTrigger>
                                     ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
                 </div>
-            )}
-            <div className="stratagem-graphs-title">Charts</div>
-            <div className="stratagem-divier"></div>
-            <div className="stratagem-graphs-wrapper">
-                <Loader loading={dataLoading}>
-                    {graphData &&
-                        <div className="stratagem-graph-wrapper">
-                            <div className="stratagem-graph-title">Difficulty</div>
-                            <BarGraph
-                                data={graphData}
-                                options={{
-                                    ...settings.optionsStratagem,
-                                    indexAxis: isMobile ? "y" : "x"
-                                }}
-                            />
-                        </div>
-                    }
-                </Loader>
-                <Loader loading={dataLoading}>
-                    {graphData1 &&
-                        <div className="stratagem-graph-wrapper">
-                            <div className="stratagem-graph-title">
-                                Mission Length
-                            </div>
-                            <BarGraph
-                                data={graphData1}
-                                options={{
-                                    ...settings.optionsStratagem,
-                                    indexAxis: isMobile ? "y" : "x"
-                                }}
-                            />
-                        </div>
-                    }
-                </Loader>
-            </div>
-            <div className="stratagem-graphs-wrapper">
-                <Loader loading={dataLoading}>
-                    {graphData1 &&
-                        <div className="stratagem-graph-wrapper" style={{width: "86.5%"}}>
-                            <div className="stratagem-graph-title">
-                                Mission Modifiers
-                            </div>
-                            <BarGraph
-                                data={graphData1}
-                                options={{
-                                    ...settings.optionsStratagem,
-                                    indexAxis: isMobile ? "y" : "x"
-                                }}
-                            />
-                        </div>
-                    }
-                </Loader>
-            </div> */}
+                }
+            </Loader>
         </div>
     );
 }

@@ -6,32 +6,33 @@ import { useMobile } from '../hooks/useMobile';
 import { useNavigate } from "react-router-dom";
 import { getElementAtEvent } from 'react-chartjs-2';
 import { apiBaseUrl, patchPeriods, strategems } from '../constants';
-import { getItemColor, filterByPatch, countPlayerItems, getMissionsByLength, getStrategemByName } from '../utils';
+import { getItemColor, filterByPatch, countPlayerItems, getMissionsByLength, getStrategemByName, isFiniteNumber } from '../utils';
 import * as settings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
 import BarGraph from '../components/BarGraph';
 import Loader from '../components/Loader';
+import BarChart from '../components/BarChart';
+import BarChart2 from '../components/BarChart2';
 
 function FactionPage() {
-    const navigate = useNavigate();
     const { isMobile } = useMobile();
     const [loading, setLoading] = useState(true);
     const [factionData, setFactionData] = useState(null);
     const [showGames, setShowGames] = useState(false);
+    const [showGraph, setShowGraph] = useState(false);
+
     const [showTrends, setShowTrends] = useState(false);
-    const [graphData, setGraphData] = useState(null);
     const [timelineGraphData, setTimelineGraphData] = useState(null);
 
-    const chartRef = useRef(null);
-    const chartCanvasRef = useRef(null);
+    const [dict, setDict] = useState(null);
 
     const [filters, setFilters] = useState({
         faction: "terminid",
         type: "All",
         difficulty: 0,
         mission: "All",
-        period: {
+        patch: {
             id: patchPeriods[0].id,
             start: patchPeriods[0].start,
             end: patchPeriods[0].end
@@ -62,7 +63,7 @@ function FactionPage() {
                 return (
                     game.faction === filters.faction &&
                     (filters.difficulty === 0 || game.difficulty === filters.difficulty) &&
-                    filterByPatch(filters.period, game) &&
+                    filterByPatch(filters.patch, game) &&
                     getMissionsByLength(filters.mission).includes(game.mission)
                 );
             });
@@ -72,26 +73,19 @@ function FactionPage() {
 
     useEffect(() => {
         if (dataFiltered) {
-            const rankedDict = countPlayerItems(dataFiltered, filters.type);
+            let rankedDict = countPlayerItems(dataFiltered, filters.type);
+            if(!showGraph){
+                rankedDict = Object.fromEntries(Object.entries(rankedDict).slice(0, 15))
+            }
 
             setChartFilterResults({
                 matchCount: dataFiltered.length,
                 loadoutCount: dataFiltered.reduce((sum, item) => sum + item.players.length, 0)
             });
 
-            setGraphData({
-                labels: Object.keys(rankedDict).map((item) => strategems[item].name),
-                datasets: [
-                    {
-                        data: Object.values(rankedDict).map((item) => item.percentageLoadouts),
-                        backgroundColor: Object.keys(rankedDict).map((item) => getItemColor(item)),
-                        total: Object.values(rankedDict).map((item) => item.total),
-                        barThickness: 18
-                    }
-                ]
-            });
+            setDict(rankedDict);
         }
-    }, [filters, dataFiltered]);
+    }, [filters, dataFiltered, showGraph]);
 
     useEffect(() => {
         if (factionData && filters) {
@@ -108,96 +102,36 @@ function FactionPage() {
             let labels = Object.keys(currPatchData).map((item) => strategems[item].name);
 
             let datasets = Object.keys(currPatchData).map((item) => {
-                return Number(currPatchData[item]?.percentageLoadouts - prevPatchData[item]?.percentageLoadouts).toFixed(1);
+                const newValue = Number(currPatchData[item]?.percentageLoadouts);  
+                const oldValue = Number(prevPatchData[item]?.percentageLoadouts);
+                return Number(Number(((newValue - oldValue) / oldValue) * 100).toFixed(1));
+            })
+
+            const labelsFiltered = labels.filter((item, index)=>{
+                if(isFiniteNumber(datasets[index])){
+                    return true;
+                }
+            })
+            const datasetsFiltered = datasets.filter((item, index)=>{
+                if(isFiniteNumber(item)){
+                    return true;
+                }
             })
 
             setTimelineGraphData({
-                labels: labels,
+                labels: labelsFiltered,
                 datasets: [
                     {
-                        data: datasets,
-                        backgroundColor: Object.keys(currPatchData).map((item) =>
-                            getItemColor(item)
+                        data: datasetsFiltered,
+                        backgroundColor: labelsFiltered.map((item) =>
+                            getItemColor(getStrategemByName(item).id)
                         ),
-                        barThickness: 26
+                        barThickness: 15
                     }
                 ]
             });
         }
     }, [factionData, filters]);
-
-    useEffect(() => {
-        if (chartCanvasRef.current) {
-            const labels = graphData.labels;
-            const dataLength = labels.length;
-            const sectionSize = 40;
-            const containerHeight = dataLength * sectionSize - 28;
-            const imgDimensions = 36;
-
-            const ctx = chartCanvasRef.current.getContext("2d", {
-                willReadFrequently: true
-            });
-            ctx.clearRect(0, 0, 75, containerHeight);
-            labels.forEach((element, j) => {
-                const strategemData = Object.values(strategems).find((strategem) => strategem.name === element);
-
-                let labelImage = new Image();
-                labelImage.setAttribute("crossorigin", "anonymous");
-                labelImage.src = strategemData.svg;
-
-                let offsetMagic = j;
-
-                if (dataLength > 5) {
-                    offsetMagic = j * 3;
-                }
-                if (dataLength > 10) {
-                    offsetMagic = j * 2.8;
-                }
-                if (dataLength > 15) {
-                    offsetMagic = j * 1.15;
-                }
-                if (dataLength > 40) {
-                    offsetMagic = j / 1.7;
-                }
-
-                const imageX =
-                    sectionSize * j +
-                    (sectionSize - imgDimensions) / 2 -
-                    offsetMagic;
-                labelImage.onload = () => {
-                    ctx.drawImage(
-                        labelImage,
-                        20,
-                        imageX,
-                        imgDimensions,
-                        imgDimensions
-                    );
-                };
-            });
-        }
-    }, [graphData]);
-
-    const getDatasetElement = (element) => {
-        if (!element.length) return;
-        const { index } = element[0];
-        return graphData.labels[index];
-    };
-
-    const onBarClick = (event) => {
-        const { current: chart } = chartRef;
-        if (!chart) {
-            return;
-        }
-        const elementAtEvent = getDatasetElement(
-            getElementAtEvent(chart, event)
-        );
-        if (elementAtEvent) {
-            const strategem = getStrategemByName(elementAtEvent);
-            navigate(
-                `/armory/${filters.faction.toLowerCase()}/${strategem.id}`
-            );
-        }
-    };
 
     return (
         <div className="content-wrapper">
@@ -228,41 +162,19 @@ function FactionPage() {
             )}
 
             {timelineGraphData && showTrends &&
-                <div className='bar-container2'>
-                    <BarGraph data={timelineGraphData} options={isMobile ? settings.optionsTrendsMobile : settings.optionsTrends} onBarClick={onBarClick} redraw />
-                </div>}
+                <BarChart2 barData={timelineGraphData} />
+            }
 
             <Loader loading={loading}>
-                {graphData &&
-                    <div className='bar-container'>
-                        <div style={{
-                            height: `${graphData.labels.length * 40}px`,
-                            position: "relative",
-                            padding: "0px 0px 0px 60px",
-                        }}>
-
-                            <BarGraph
-                                data={graphData}
-                                chartRef={chartRef}
-                                options={settings.options}
-                                onBarClick={onBarClick}
-                                redraw
-                            />
-                            <canvas
-                                style={{
-                                    position: "absolute",
-                                    top: "0px",
-                                    left: "0px"
-                                }}
-                                ref={chartCanvasRef}
-                                width={75}
-                                height={graphData.labels.length * 40 - 28}
-                            />
-                        </div>
-                    </div>}
+                {dict &&
+                    <> 
+                    <BarChart barData={dict} filters={filters} />
+                    <div className='text-small' onClick={() => setShowGraph(!showGraph)}>Matches:  </div>
+                    </>}
             </Loader>
         </div>
     );
 }
 
 export default FactionPage;
+ 

@@ -29,8 +29,8 @@ const getMissionsByLength = (type) => {
     return type === "All"
         ? missionNames
         : type === "Long"
-            ? missionNames.slice(0, 15)
-            : missionNames.slice(15, missionNames.length);
+            ? missionNames.slice(0, 16)
+            : missionNames.slice(16, missionNames.length);
 };
 
 const getMissionLength = (missionName) => {
@@ -49,10 +49,14 @@ function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const getPercentage = (number1, number2, decimals) => {
+const getPercentage = (number1, number2, decimals = 1) => {
     const percantageRaw = (number1 / number2) * 100;
     return Number(percantageRaw.toFixed(decimals));
 };
+
+function isFiniteNumber(value) {
+    return typeof value === 'number' && Number.isFinite(value);
+  }
 
 const isDateBetween = (targetDate, startDate, endDate) => {
     const target = new Date(targetDate);
@@ -202,7 +206,6 @@ const getStrategemRank = (data, strategemName, category) =>{
 
     if(category){
         const strategemCategory = strategems[strategemName].category;
-        console.log(sorted.filter((item)=> strategems[item[0]].category === strategemCategory));
         const categoryRank = sorted.filter((item)=> strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
         return categoryRank + 1;
     } else {
@@ -226,5 +229,6 @@ export {
     getItemId,
     countPlayerItems,
     getStrategemByName,
-    getStrategemRank
+    getStrategemRank,
+    isFiniteNumber
 };

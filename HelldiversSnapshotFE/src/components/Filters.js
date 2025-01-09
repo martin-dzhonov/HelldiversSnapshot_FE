@@ -32,11 +32,11 @@ function Filters({ filters, setFilters }) {
 
             <DropdownButton
                 className="dropdown-button"
-                title={"Patch: " + filters.period.id}>
+                title={"Patch: " + filters.patch.id}>
                 {patchPeriods.map((patchPeriod, index) => (
                     <Dropdown.Item
                         as="button"
-                        onClick={() => { setFilters({ ...filters, period: patchPeriod }); }}>
+                        onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                         {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
                     </Dropdown.Item>
                 ))}
