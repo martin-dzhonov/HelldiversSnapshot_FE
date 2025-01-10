@@ -6,19 +6,19 @@
   gap: 15px;
 }
 
-@media only screen and (min-width: 1000px) {
+@media (any-pointer: fine) {
   .filters-container {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 25px 2% 30px 2%;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 25px 2% 30px 2%;
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media (any-pointer: coarse) {
   .filters-container {
-    flex-direction: row;
-    gap: 15px;
-    padding: 20px 2% 30px 20px;
+      flex-direction: row;
+      gap: 15px;
+      padding: 20px 2% 30px 20px;
   }
 }
 
@@ -60,40 +60,4 @@
     padding: 20px 10px 30px 10px;
 
   }
-}
-
-.table-loadout-wrapper{
-  display: flex;
-  direction: row;
-  gap:12px;
-}
-
-.table-loadout-row-wrapper{
-  display: flex;
-  flex-direction: row;
-  gap:40px;
-  padding: 10px 20px;
-}
-
-@media only screen and (max-width: 1000px) {
-  .table-loadout-row-wrapper{
-    display: flex;
-    flex-direction: column;
-   
-  }
-}
-
-.bar-container {
-  padding: 0px 0px 50px 0px;
-  overflow: scroll; 
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.bar-container2 {
-  padding: 60px 0px 50px 0px;
-  height: 800px;
-  overflow: scroll; 
-  scrollbar-width: none;
-  position: relative;
 }

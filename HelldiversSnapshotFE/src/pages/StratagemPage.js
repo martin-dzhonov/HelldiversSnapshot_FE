@@ -1,4 +1,5 @@
 import "../styles/App.css";
+import "../styles/StrategemPage.css";
 import { useEffect, useState, useMemo } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -245,7 +246,7 @@ function StratagemPage() {
                                     <BarGraph
                                         data={factionGraph}
                                         options={{
-                                            ...settings.stregemSmallOption
+                                            ...settings.strategemSmall
                                         }}
                                     />
                                 </div>
@@ -257,7 +258,7 @@ function StratagemPage() {
                                     <LineGraph
                                         data={patchGraph}
                                         options={{
-                                            ...settings.patchGraphOptions
+                                            ...settings.strategemPatch
                                         }}
                                     />
                                 </div>
@@ -277,7 +278,7 @@ function StratagemPage() {
                             <BarGraph
                                 data={diffGraph}
                                 options={{
-                                    ...settings.optionsStratagem,
+                                    ...settings.strategemLarge,
                                     indexAxis: isMobile ? "y" : "x"
                                 }}
                             />
@@ -293,7 +294,7 @@ function StratagemPage() {
                             <BarGraph
                                 data={missionGraph}
                                 options={{
-                                    ...settings.optionsStratagem,
+                                    ...settings.strategemLarge,
                                     indexAxis: isMobile ? "y" : "x"
                                 }}
                             />
@@ -325,7 +326,7 @@ function StratagemPage() {
                                             placement="bottom">
                                             <img
                                                 key={`${categoryIndex}-${itemIndex}`}
-                                                className="armory-img-wrapper" alt=""
+                                                className="item-img-wrapper" alt=""
                                                 onClick={() => navigate(`/armory/${filters.faction}/${item.name}`)}
                                                 src={strategems[item.name].svg}
                                                 width={40}

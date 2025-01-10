@@ -13,6 +13,11 @@ const getStrategemByName = (name) =>{
    };
 }
 
+const getItemId = (name) => {
+    const entry = Object.entries(strategems).find(([key, value]) => value.name === name);
+    return entry ? entry[0] : null;
+};
+
 const getItemColor = (item) => {
     return itemCategoryColors[itemCategories.indexOf(strategems[item].category)];
 };
@@ -27,10 +32,8 @@ const getItemsByCategory = (category) => {
 
 const getMissionsByLength = (type) => {
     return type === "All"
-        ? missionNames
-        : type === "Long"
-            ? missionNames.slice(0, 16)
-            : missionNames.slice(16, missionNames.length);
+        ? missionNames[0].concat(missionNames[1])
+        : type === "Long" ? missionNames[0] : missionNames[1];
 };
 
 const getMissionLength = (missionName) => {
@@ -70,10 +73,6 @@ const isDateBetween = (targetDate, startDate, endDate) => {
     return targetTime >= startTime && targetTime <= endTime;
 };
 
-const sortDictArray = (a, b) => {
-    return b[1] - a[1];
-};
-
 const filterByPatch = (period, game) => {
     return period.id !== "All"
         ? isDateBetween(
@@ -84,75 +83,11 @@ const filterByPatch = (period, game) => {
         : true;
 };
 
-const getRankedDict = (data, category, itemName) => {
-    let dictObj = Object.keys(strategems).reduce((acc, key) => {
-        acc[key] = 0;
-        return acc;
-    }, {});
-
-
-    // let dictObjResult = {};
-    // let loadoutsCount = 0;
-    // let dictObjByCategory = {};
-
-    // const categoryRankings = {
-    //     "Eagle/Orbital": 1,
-    //     "Support": 1,
-    //     "Defensive": 1
-    // };
-
-    // data.forEach((game) => {
-    //     game.players.forEach((loadout) => {
-    //         if (itemName) {
-    //             if (loadout.includes(itemName)) {
-    //                 loadoutsCount++;
-    //                 loadout.forEach((item) => {
-    //                     if (dictObj[item]) {
-    //                         dictObj[item] += 1;
-    //                     } else {
-    //                         dictObj[item] = 1;
-    //                     }
-    //                 });
-    //             }
-    //         } else {
-    //             loadoutsCount++;
-    //             loadout.forEach((item) => {
-    //                 if (dictObj[item]) {
-    //                     dictObj[item] += 1;
-    //                 } else {
-    //                     dictObj[item] = 1;
-    //                 }
-    //             });
-    //         }
-    //     });
-    // });
-
-    // console.log(dictObj)
-
-    // Object.entries(dictObj)
-    //     .sort(sortDictArray)
-    //     .forEach((item, index) => {
-    //         const itemCategory = getItemCategory(item[0]);
-    //         dictObjResult[item[0]] = {
-    //             total: item[1],
-    //             rankTotal: index + 1,
-    //             rankCategory: categoryRankings[itemCategory],
-    //             percentageLoadouts: getPercentage(item[1], loadoutsCount, 1)
-    //         };
-    //         categoryRankings[itemCategory]++;
-    //     });
-
-
-    // Object.entries(dictObjResult)
-    //     .filter((item) => getItemsByCategory(category).includes(item[0]))
-    //     .forEach((item) => {
-    //         dictObjByCategory[item[0]] = item[1];
-    //     });
-
-    return dictObj;
+const sortDictArray = (a, b) => {
+    return b[1] - a[1];
 };
 
-function countPlayerItems(data, category) {
+function getItemDict(data, category) {
     const itemCount = {};
     let itemCountRanked = {};
     let loadoutsCount = 0;
@@ -172,11 +107,10 @@ function countPlayerItems(data, category) {
             });
         });
     });
+
     Object.entries(itemCount)
         .sort(sortDictArray)
         .forEach((item, index) => {
-            //console.log(item);
-            //console.log(strategems[item[0]]);
             const itemCategory = strategems[item[0]].category;
             itemCountRanked[item[0]] = {
                 total: item[1],
@@ -196,14 +130,9 @@ function countPlayerItems(data, category) {
     return rankedByCategory;
 }
 
-const getItemId = (name) => {
-    const entry = Object.entries(strategems).find(([key, value]) => value.name === name);
-    return entry ? entry[0] : null;
-};
 
 const getStrategemRank = (data, strategemName, category) =>{
     const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].loadouts - a[1].loadouts);
-
     if(category){
         const strategemCategory = strategems[strategemName].category;
         const categoryRank = sorted.filter((item)=> strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
@@ -214,7 +143,6 @@ const getStrategemRank = (data, strategemName, category) =>{
     }
 }
 
-
 export {
     getMissionsByLength,
     getMissionLength,
@@ -224,10 +152,9 @@ export {
     capitalizeFirstLetter,
     getPercentage,
     isDateBetween,
-    getRankedDict,
     filterByPatch,
     getItemId,
-    countPlayerItems,
+    getItemDict,
     getStrategemByName,
     getStrategemRank,
     isFiniteNumber

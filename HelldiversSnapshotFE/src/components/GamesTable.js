@@ -27,7 +27,7 @@ function GamesTable({ data }) {
                                 {game.players.map((loadout) =>
                                     <div class='table-loadout-wrapper'>
                                         {loadout.map((item) =>
-                                            <img className='armory-img-wrapper' src={strategems[item].svg} width={40} alt=""></img>)}
+                                            <img className='item-img-wrapper' src={strategems[item].svg} width={40} alt=""></img>)}
                                     </div>)}
                             </div>
                             <ScreenshotToggle id={game.id} alt="" />

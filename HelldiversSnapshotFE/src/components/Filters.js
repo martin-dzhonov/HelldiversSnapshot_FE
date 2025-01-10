@@ -1,4 +1,4 @@
-import '../App.css';
+import '../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { itemCategories, difficultiesNames, patchPeriods, factions } from '../constants';
 import { capitalizeFirstLetter } from '../utils';

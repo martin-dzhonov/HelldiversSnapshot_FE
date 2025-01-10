@@ -1,5 +1,4 @@
-import '../App.css';
-import './ArmoryPage.css';
+import '../styles/ArmoryPage.css';
 import { itemCategories } from '../constants';
 import { useNavigate } from "react-router-dom";
 import { getItemsByCategory, getItemId } from '../utils';
@@ -19,7 +18,7 @@ function ArmoryPage() {
                         <div className="group-container">
                             {getItemsByCategory(category).map((item) =>
                                 <div onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} className="armory-item-wrapper">
-                                    <div className="armory-img-wrapper">
+                                    <div className="item-img-wrapper">
                                         <img src={item.svg} alt="" />
                                     </div>
                                     <div className="armory-item-name">{item.name}</div>

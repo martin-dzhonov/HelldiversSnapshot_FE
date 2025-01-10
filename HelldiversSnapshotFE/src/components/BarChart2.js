@@ -119,7 +119,7 @@ const BarChart2 = ({ barData, filters }) => {
                     <Bar
                         ref={chartRef}
                         data={data}
-                        options={settings.snapshotTrendOptions}
+                        options={settings.snapshotItems}
                         redraw={true}
                         onClick={onClick}
                         plugins={[{

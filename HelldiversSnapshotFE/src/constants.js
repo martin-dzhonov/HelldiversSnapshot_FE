@@ -1,6 +1,6 @@
 const svgModules = require.context('./assets/svgs', false, /\.svg$/);
 
-const apiBaseUrl =  "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
+const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
 const factions = ["Automaton", "Terminid", "Illuminate"];
 
@@ -38,30 +38,33 @@ const difficultiesNames = [
 ];
 
 const missionNames = [
-    "LAUNCH ICBM",
-    "ENABLE E-710 EXTRACTION",
-    "RETRIEVE VALUABLE DATA",
-    "SPREAD DEMOCRACY",
-    "PURGE HATCHERIES",
-    "NUKE NURSERY",
-    "EMERGENCY EVACUATION",
-    "CONDUCT GEOLOGICAL SURVEY",
-    "DEPLOY DARK FLUID",
-    "DESTROY COMMAND BUNKERS",
-    "SABOTAGE AIR BASE",
-    "FREE COLONY",
-    "EVACUATE COLONISTS",
-    "RETRIEVE RECON CRAFT INTEL",
-    "NEUTRALIZE ORBITAL DEFENSES",
-    "ENABLE OIL EXTRACTION",
-
-    "ERADICATE TERMINID SWARM",
-    "ERADICATE AUTOMATON FORCES",
-    "BLITZ: SEARCH AND DESTROY",
-    "BLITZ: DESTROY ILLUMINATE WARP SHIPS",
-    "EVACUATE HIGH-VALUE ASSETS",
-    "DEFEND EVACUATION SITE",
-    "RETRIEVE ESSENTIAL PERSONNEL",
+    [
+        "LAUNCH ICBM",
+        "ENABLE E-710 EXTRACTION",
+        "RETRIEVE VALUABLE DATA",
+        "SPREAD DEMOCRACY",
+        "PURGE HATCHERIES",
+        "NUKE NURSERY",
+        "EMERGENCY EVACUATION",
+        "CONDUCT GEOLOGICAL SURVEY",
+        "DEPLOY DARK FLUID",
+        "DESTROY COMMAND BUNKERS",
+        "SABOTAGE AIR BASE",
+        "FREE COLONY",
+        "EVACUATE COLONISTS",
+        "RETRIEVE RECON CRAFT INTEL",
+        "NEUTRALIZE ORBITAL DEFENSES",
+        "ENABLE OIL EXTRACTION"
+    ],
+    [
+        "ERADICATE TERMINID SWARM",
+        "ERADICATE AUTOMATON FORCES",
+        "BLITZ: SEARCH AND DESTROY",
+        "BLITZ: DESTROY ILLUMINATE WARP SHIPS",
+        "EVACUATE HIGH-VALUE ASSETS",
+        "DEFEND EVACUATION SITE",
+        "RETRIEVE ESSENTIAL PERSONNEL"
+    ],
 ];
 
 
@@ -91,7 +94,7 @@ const strategems = {
     barrage_120: createStrategem("Orbital 120MM HE Barrage", "Orbital 120MM HE Barrage", "Eagle/Orbital"),
     barrage_380: createStrategem("Orbital 380MM HE Barrage", "Orbital 380MM HE Barrage", "Eagle/Orbital"),
     barrage_gatling: createStrategem("Orbital Gatling Barrage", "Orbital Gatling Barrage", "Eagle/Orbital"),
-    barrage_napalm:  createStrategem("Orbital Napalm Barrage", "Orbital Napalm Barrage", "Eagle/Orbital"),
+    barrage_napalm: createStrategem("Orbital Napalm Barrage", "Orbital Napalm Barrage", "Eagle/Orbital"),
     barrage_walking: createStrategem("Orbital Walking Barrage", "Orbital Walking Barrage", "Eagle/Orbital"),
     eagle_110mm: createStrategem("Eagle 110MM Rocket Pods", "Eagle 110MM Rocket Pods", "Eagle/Orbital"),
     eagle_500kg: createStrategem("Eagle 500KG Bomb", "Eagle 500KG Bomb", "Eagle/Orbital"),

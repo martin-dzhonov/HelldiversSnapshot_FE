@@ -1,12 +1,10 @@
 
-import '../App.css';
-import './FactionPage.css';
+import '../styles/App.css';
+import '../styles/FactionPage.css';
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
-import { useNavigate } from "react-router-dom";
-import { getElementAtEvent } from 'react-chartjs-2';
 import { apiBaseUrl, patchPeriods, strategems } from '../constants';
-import { getItemColor, filterByPatch, countPlayerItems, getMissionsByLength, getStrategemByName, isFiniteNumber } from '../utils';
+import { getItemColor, filterByPatch, getMissionsByLength, getStrategemByName, isFiniteNumber, getItemDict } from '../utils';
 import * as settings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
@@ -18,48 +16,43 @@ import BarChart2 from '../components/BarChart2';
 function FactionPage() {
     const { isMobile } = useMobile();
     const [loading, setLoading] = useState(true);
-    const [factionData, setFactionData] = useState(null);
     const [showGames, setShowGames] = useState(false);
-    const [showGraph, setShowGraph] = useState(false);
-
+    const [showGraphFull, setShowGraphFull] = useState(false);
     const [showTrends, setShowTrends] = useState(false);
-    const [timelineGraphData, setTimelineGraphData] = useState(null);
 
-    const [dict, setDict] = useState(null);
+    const [matchData, setMatchData] = useState(null);
+    const [graphData, setGraphData] = useState(null);
+    const [timelineGraphData, setTimelineGraphData] = useState(null);
 
     const [filters, setFilters] = useState({
         faction: "terminid",
         type: "All",
         difficulty: 0,
         mission: "All",
-        patch: {
-            id: patchPeriods[0].id,
-            start: patchPeriods[0].start,
-            end: patchPeriods[0].end
-        }
+        patch: patchPeriods[0]
     });
 
-    const [chartFilterResults, setChartFilterResults] = useState({
+    const [filterCount, setFilterCount] = useState({
         matchCount: 0,
         loadoutCount: 0
     });
 
-    const fetchFactionData = async (url) => {
+    const fetchMatchData = async (url) => {
         const response = await fetch(`${apiBaseUrl}${url}`);
         const data = await response.json();
 
-        setFactionData(data);
+        setMatchData(data);
         setLoading(false);
     };
 
     useEffect(() => {
         setLoading(true);
-        fetchFactionData(`/faction/all`);
+        fetchMatchData(`/faction/all`);
     }, []);
 
     const dataFiltered = useMemo(() => {
-        if (factionData && filters) {
-            const filtered = factionData.filter((game) => {
+        if (matchData && filters) {
+            const filtered = matchData.filter((game) => {
                 return (
                     game.faction === filters.faction &&
                     (filters.difficulty === 0 || game.difficulty === filters.difficulty) &&
@@ -69,51 +62,51 @@ function FactionPage() {
             });
             return filtered;
         }
-    }, [filters, factionData]);
+    }, [filters, matchData]);
 
     useEffect(() => {
         if (dataFiltered) {
-            let rankedDict = countPlayerItems(dataFiltered, filters.type);
-            if(!showGraph){
+            let rankedDict = getItemDict(dataFiltered, filters.type);
+            if (!showGraphFull) {
                 rankedDict = Object.fromEntries(Object.entries(rankedDict).slice(0, 15))
             }
 
-            setChartFilterResults({
+            setFilterCount({
                 matchCount: dataFiltered.length,
                 loadoutCount: dataFiltered.reduce((sum, item) => sum + item.players.length, 0)
             });
 
-            setDict(rankedDict);
+            setGraphData(rankedDict);
         }
-    }, [filters, dataFiltered, showGraph]);
+    }, [filters, dataFiltered, showGraphFull]);
 
     useEffect(() => {
-        if (factionData && filters) {
+        if (matchData && filters) {
 
-            const prevPatchData = countPlayerItems(
-                factionData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[1], game)),
+            const prevPatchData = getItemDict(
+                matchData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[1], game)),
                 filters.type
             )
-            const currPatchData = countPlayerItems(
-                factionData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[0], game)),
+            const currPatchData = getItemDict(
+                matchData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[0], game)),
                 filters.type
             );
 
             let labels = Object.keys(currPatchData).map((item) => strategems[item].name);
 
             let datasets = Object.keys(currPatchData).map((item) => {
-                const newValue = Number(currPatchData[item]?.percentageLoadouts);  
+                const newValue = Number(currPatchData[item]?.percentageLoadouts);
                 const oldValue = Number(prevPatchData[item]?.percentageLoadouts);
                 return Number(Number(((newValue - oldValue) / oldValue) * 100).toFixed(1));
             })
 
-            const labelsFiltered = labels.filter((item, index)=>{
-                if(isFiniteNumber(datasets[index])){
+            const labelsFiltered = labels.filter((item, index) => {
+                if (isFiniteNumber(datasets[index])) {
                     return true;
                 }
             })
-            const datasetsFiltered = datasets.filter((item, index)=>{
-                if(isFiniteNumber(item)){
+            const datasetsFiltered = datasets.filter((item, index) => {
+                if (isFiniteNumber(item)) {
                     return true;
                 }
             })
@@ -131,7 +124,7 @@ function FactionPage() {
                 ]
             });
         }
-    }, [factionData, filters]);
+    }, [matchData, filters]);
 
     return (
         <div className="content-wrapper">
@@ -141,7 +134,7 @@ function FactionPage() {
             />
 
             <div className='filter-results-container'>
-                <div className='text-small'>Matches: {chartFilterResults.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {chartFilterResults.loadoutCount} </div>
+                <div className='text-small'>Matches: {filterCount.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {filterCount.loadoutCount} </div>
                 <div className='filter-results-container2'>
                     <div className='text-small'
                         style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
@@ -161,15 +154,15 @@ function FactionPage() {
                 </div>
             )}
 
-            {timelineGraphData && showTrends &&
+            {/* {timelineGraphData && showTrends &&
                 <BarChart2 barData={timelineGraphData} />
-            }
+            } */}
 
             <Loader loading={loading}>
-                {dict &&
-                    <> 
-                    <BarChart barData={dict} filters={filters} />
-                    <div className='text-small' onClick={() => setShowGraph(!showGraph)}>Matches:  </div>
+                {graphData &&
+                    <>
+                        <BarChart barData={graphData} filters={filters} />
+                        <div className='text-small' onClick={() => setShowGraphFull(!showGraphFull)}>Matches:  </div>
                     </>}
             </Loader>
         </div>
@@ -177,4 +170,3 @@ function FactionPage() {
 }
 
 export default FactionPage;
- 

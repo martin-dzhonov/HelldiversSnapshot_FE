@@ -125,7 +125,7 @@ const BarChart = ({ barData, filters }) => {
                     <Bar
                         ref={chartRef}
                         data={data}
-                        options={settings.snapshotChartOptions}
+                        options={settings.snapshotItems}
                         redraw={true}
                         onClick={onClick}
                         plugins={[{
