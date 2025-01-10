@@ -4,9 +4,13 @@ const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsap
 
 const factions = ["Automaton", "Terminid", "Illuminate"];
 
+const factionColors = ["rgb(255,182,0)", "#de7b6c", "rgb(107,58,186)"]
+
 const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
 
 const itemCategoryColors = ["white", "#de7b6c", "#49adc9", "#679552"];
+
+const missionTypes = ["Short", "Long"];
 
 const navRoutes = [
     {
@@ -159,5 +163,7 @@ export {
     itemCategoryColors,
     difficultiesNames,
     patchPeriods,
-    factions
+    factions,
+    factionColors,
+    missionTypes
 };

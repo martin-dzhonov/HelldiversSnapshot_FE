@@ -27,8 +27,6 @@ const BarGraph = ({ data, options, chartRef, onBarClick, redraw = false }) => {
             options={options}
             redraw={redraw}
             onClick={onBarClick}
-            width="100%"
-            style={{ backgroundColor: "#181818" }}
         />
     );
 };

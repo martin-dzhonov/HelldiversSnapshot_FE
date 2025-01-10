@@ -108,7 +108,6 @@ const BarChart = ({ barData, filters }) => {
 
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
-            console.log(elementAtEvent);
             const itemId = Object.keys(barData)[elementAtEvent[0].index];
             navigate(`/armory/${filters.faction}/${itemId}`);
         }
@@ -121,7 +120,7 @@ const BarChart = ({ barData, filters }) => {
     return (<>
         {data && chartHeight &&
             <div style={{ width: "100%", height: `${chartHeight}px` }}>
-                <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                <div className="bar-chart-wrapper">
                     <Bar
                         ref={chartRef}
                         data={data}

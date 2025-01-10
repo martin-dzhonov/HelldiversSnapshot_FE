@@ -26,8 +26,15 @@
   display: flex;
 }
 
-.filter-results-container2 {
+.filter-results-buttons-container {
   display: flex;
+}
+
+.filter-button {
+  display: flex;
+  font-size: 18px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1000px) {

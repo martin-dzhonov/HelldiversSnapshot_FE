@@ -1,14 +1,12 @@
 
 import '../styles/App.css';
 import '../styles/FactionPage.css';
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
 import { apiBaseUrl, patchPeriods, strategems } from '../constants';
 import { getItemColor, filterByPatch, getMissionsByLength, getStrategemByName, isFiniteNumber, getItemDict } from '../utils';
-import * as settings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
-import BarGraph from '../components/BarGraph';
 import Loader from '../components/Loader';
 import BarChart from '../components/BarChart';
 import BarChart2 from '../components/BarChart2';
@@ -83,12 +81,14 @@ function FactionPage() {
     useEffect(() => {
         if (matchData && filters) {
 
-            const prevPatchData = getItemDict(
-                matchData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[1], game)),
+            const prevPatchData = getItemDict(matchData
+                .filter((game) => game.faction === filters.faction)
+                .filter((game) => filterByPatch(patchPeriods[1], game)),
                 filters.type
             )
-            const currPatchData = getItemDict(
-                matchData.filter((game) => game.faction === filters.faction).filter((game) => filterByPatch(patchPeriods[0], game)),
+            const currPatchData = getItemDict(matchData
+                .filter((game) => game.faction === filters.faction)
+                .filter((game) => filterByPatch(patchPeriods[0], game)),
                 filters.type
             );
 
@@ -128,21 +128,22 @@ function FactionPage() {
 
     return (
         <div className="content-wrapper">
-            <Filters
-                filters={filters}
-                setFilters={setFilters}
-            />
+            <Filters filters={filters} setFilters={setFilters} />
 
             <div className='filter-results-container'>
-                <div className='text-small'>Matches: {filterCount.matchCount} &nbsp;&nbsp;&nbsp; Loadouts: {filterCount.loadoutCount} </div>
-                <div className='filter-results-container2'>
-                    <div className='text-small'
-                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer" }}
+                <div className='text-small'>
+                    Matches: {filterCount.matchCount}
+                    &nbsp;&nbsp;&nbsp;
+                    Loadouts: {filterCount.loadoutCount} </div>
+                <div className='filter-results-buttons-container'>
+                    <div
+                        className={'text-small filter-button'}
                         onClick={() => setShowTrends(!showTrends)}>
                         Show Trends
                     </div>
-                    <div className='text-small'
-                        style={{ fontSize: '18px', textDecoration: "underline", cursor: "pointer", paddingLeft: "40px" }}
+                    <div
+                        className={'text-small filter-button'}
+                        style={{ paddingLeft: "40px" }}
                         onClick={() => setShowGames(!showGames)}>
                         Show Games
                     </div>

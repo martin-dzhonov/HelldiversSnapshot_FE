@@ -39,7 +39,6 @@ const BarChart2 = ({ barData, filters }) => {
 
     const data = useMemo(() => {
         if (barData) {
-            console.log(barData)
             return {
                 labels: barData.labels,
                 datasets: barData.datasets,
@@ -102,7 +101,6 @@ const BarChart2 = ({ barData, filters }) => {
 
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
-            console.log(elementAtEvent);
             const itemId = Object.keys(barData)[elementAtEvent[0].index];
             navigate(`/armory/${filters.faction}/${itemId}`);
         }

@@ -5,12 +5,12 @@ import {
     strategems
 } from "./constants";
 
-const getStrategemByName = (name) =>{
-   const result = Object.entries(strategems).find(([key, value])=> value.name === name);
-   return {
-    "id": result[0],
-    ...result[1]
-   };
+const getStrategemByName = (name) => {
+    const result = Object.entries(strategems).find(([key, value]) => value.name === name);
+    return {
+        "id": result[0],
+        ...result[1]
+    };
 }
 
 const getItemId = (name) => {
@@ -47,6 +47,28 @@ const getCountingSuffix = (number) => {
     return suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0];
 };
 
+const hexToRgbA = (hex, alpha) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const getChartGradient = (context, itemColor) => {
+    const chart = context.chart;
+    const { ctx, chartArea } = chart;
+
+    if (!chartArea) {
+        return;
+    }
+    const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, hexToRgbA(itemColor, 0.15));
+    gradient.addColorStop(0.2, hexToRgbA(itemColor, 0.25));
+    gradient.addColorStop(1, hexToRgbA(itemColor, 0.9));
+
+    return gradient;
+};
+
 function capitalizeFirstLetter(str) {
     if (str.length === 0) return str;
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -59,7 +81,7 @@ const getPercentage = (number1, number2, decimals = 1) => {
 
 function isFiniteNumber(value) {
     return typeof value === 'number' && Number.isFinite(value);
-  }
+}
 
 const isDateBetween = (targetDate, startDate, endDate) => {
     const target = new Date(targetDate);
@@ -92,11 +114,10 @@ function getItemDict(data, category) {
     let itemCountRanked = {};
     let loadoutsCount = 0;
 
-    const categoryRankings = {
-        "Eagle/Orbital": 1,
-        "Support": 1,
-        "Defensive": 1
-    };
+    const categoryRankings = itemCategories.slice(1).reduce((acc, category) => {
+        acc[category] = 1;
+        return acc;
+    }, {});
 
     data.forEach(mission => {
         const players = mission.players || [];
@@ -131,11 +152,11 @@ function getItemDict(data, category) {
 }
 
 
-const getStrategemRank = (data, strategemName, category) =>{
+const getStrategemRank = (data, strategemName, category) => {
     const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].loadouts - a[1].loadouts);
-    if(category){
+    if (category) {
         const strategemCategory = strategems[strategemName].category;
-        const categoryRank = sorted.filter((item)=> strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
+        const categoryRank = sorted.filter((item) => strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
         return categoryRank + 1;
     } else {
         const rankAll = sorted.findIndex(item => item[0] === strategemName);
@@ -157,5 +178,7 @@ export {
     getItemDict,
     getStrategemByName,
     getStrategemRank,
-    isFiniteNumber
+    isFiniteNumber,
+    hexToRgbA,
+    getChartGradient
 };

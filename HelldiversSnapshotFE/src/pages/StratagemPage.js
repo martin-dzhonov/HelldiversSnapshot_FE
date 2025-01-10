@@ -15,13 +15,17 @@ import {
     apiBaseUrl,
     patchPeriods,
     strategems,
-    factions
+    missionTypes,
+    factions,
+    factionColors,
+    difficultiesNames
 } from "../constants";
 import {
     getItemColor,
     getPercentage,
     capitalizeFirstLetter,
-    getStrategemRank
+    getStrategemRank,
+    getChartGradient
 } from "../utils";
 import LineGraph from "../components/LineGraph";
 
@@ -74,29 +78,20 @@ function StratagemPage() {
             const patchData = fetchData[patchId];
 
             const dataset = Object.entries(patchData)
-                .map(([key, value]) => {
-                    return getPercentage(value.strategems[itemId].loadouts, patchData[key].totalLoadouts)
-                });
+                .map(([key, value]) => getPercentage(value.strategems[itemId].loadouts, patchData[key].totalLoadouts));
 
             setFactionGraph({
                 labels: Object.keys(patchData),
                 datasets: [
                     {
                         data: dataset,
-                        backgroundColor: ["rgb(255,182,0)", "#de7b6c", "rgb(107,58,186)"],
+                        backgroundColor: factionColors,
                         barThickness: 24
                     }
                 ]
             });
         }
     }, [fetchData, filters, itemId]);
-
-    const hexToRgbA = (hex, alpha) => {
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
-        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    };
 
     useEffect(() => {
         if (fetchData && itemId && filters.faction) {
@@ -105,6 +100,7 @@ function StratagemPage() {
                 const stratagem = patch[filters.faction].strategems[itemId];
                 return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts);
             }).reverse();
+
             const itemColor = getItemColor(itemId);
 
             setPatchGraph({
@@ -117,20 +113,7 @@ function StratagemPage() {
                         pointRadius: 4,
                         pointBackgroundColor: getItemColor(itemId),
                         pointBorderColor: getItemColor(itemId),
-                        backgroundColor: (context) => {
-                            const chart = context.chart;
-                            const { ctx, chartArea } = chart;
-
-                            if (!chartArea) {
-                                return;
-                            }
-                            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-                            gradient.addColorStop(0, hexToRgbA(itemColor, 0.15));
-                            gradient.addColorStop(0.2, hexToRgbA(itemColor, 0.25));
-                            gradient.addColorStop(1, hexToRgbA(itemColor, 0.9));
-
-                            return gradient;
-                        },
+                        backgroundColor: (context) => getChartGradient(context, itemColor),
                     }
                 ]
             });
@@ -140,10 +123,13 @@ function StratagemPage() {
 
     useEffect(() => {
         if (strategemData) {
+
+            const labels = !isMobile ?
+                difficultiesNames.slice(1) :
+                difficultiesNames.slice(1).map((item) => item.match(/\d+/g));
+
             setDiffGraph({
-                labels: !isMobile
-                    ? ["7 - Suicide Mission", "8 - Impossible", "9 - Helldive", "10 - Super Helldive"]
-                    : ["7", "8", "9", "10"],
+                labels: labels,
                 datasets: [
                     {
                         data: Object.keys(data.diffs).map(key => getPercentage(strategemData.diffs[key], data.diffs[key])),
@@ -154,7 +140,7 @@ function StratagemPage() {
             });
 
             setMissionGraph({
-                labels: ["Short", "Long"],
+                labels: missionTypes,
                 datasets: [
                     {
                         data: Object.keys(data.missions).map(key => getPercentage(strategemData.missions[key], data.missions[key])),

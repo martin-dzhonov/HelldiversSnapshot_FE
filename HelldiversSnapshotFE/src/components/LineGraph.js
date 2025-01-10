@@ -32,8 +32,6 @@ const LineGraph = ({ data, options, chartRef, onLineClick, redraw = false }) => 
             options={options}
             redraw={redraw}
             onClick={onLineClick}
-            width="100%"
-            style={{ backgroundColor: "#181818" }}
         />
     );
 };
