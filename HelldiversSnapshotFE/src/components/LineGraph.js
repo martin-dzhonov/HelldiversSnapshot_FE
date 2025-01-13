@@ -30,7 +30,7 @@ const LineGraph = ({ data, options, chartRef, onLineClick, redraw = false }) => 
             ref={chartRef}
             data={data}
             options={options}
-            redraw={redraw}
+            redraw={true}
             onClick={onLineClick}
         />
     );

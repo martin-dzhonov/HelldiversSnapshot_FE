@@ -25,7 +25,7 @@ const BarGraph = ({ data, options, chartRef, onBarClick, redraw = false }) => {
             ref={chartRef}
             data={data}
             options={options}
-            redraw={redraw}
+            redraw={true}
             onClick={onBarClick}
         />
     );

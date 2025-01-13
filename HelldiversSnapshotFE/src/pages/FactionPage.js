@@ -5,11 +5,11 @@ import { useEffect, useMemo, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
 import { apiBaseUrl, patchPeriods, strategems } from '../constants';
 import { getItemColor, filterByPatch, getMissionsByLength, getStrategemByName, isFiniteNumber, getItemDict } from '../utils';
+import * as chartsSettings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';
 import BarChart from '../components/BarChart';
-import BarChart2 from '../components/BarChart2';
 
 function FactionPage() {
     const { isMobile } = useMobile();
@@ -154,18 +154,19 @@ function FactionPage() {
                     <GamesTable data={dataFiltered} />
                 </div>
             )}
+            <Loader loading={loading}>
+                {graphData &&
+                    <>
+                        <BarChart barData={graphData} filters={filters} options={chartsSettings.snapshotItems}/>
+                        <div className='text-small' onClick={() => setShowGraphFull(!showGraphFull)}>Matches:  </div>
+                    </>}
+            </Loader>
 
             {/* {timelineGraphData && showTrends &&
                 <BarChart2 barData={timelineGraphData} />
             } */}
 
-            <Loader loading={loading}>
-                {graphData &&
-                    <>
-                        <BarChart barData={graphData} filters={filters} />
-                        <div className='text-small' onClick={() => setShowGraphFull(!showGraphFull)}>Matches:  </div>
-                    </>}
-            </Loader>
+
         </div>
     );
 }

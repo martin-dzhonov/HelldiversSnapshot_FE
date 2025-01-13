@@ -24,7 +24,7 @@ ChartJS.register(
     Legend
 );
 
-const BarChart = ({ barData, filters }) => {
+const BarChart = ({ barData, filters, options }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const BarChart = ({ barData, filters }) => {
 
     const chartHeight = useMemo(() => {
         if (barData) {
-            return Object.keys(barData).length * 40;
+            return Object.keys(barData).length * options.sectionSize;
         }
     }, [barData]);
 
@@ -87,14 +87,15 @@ const BarChart = ({ barData, filters }) => {
         Object.keys(barData).forEach((imageKey, i) => {
             const imageY = i * (settings.barSize + step) + yOffset;
             const image = loadedImages[imageKey];
+            const imageSize = options.iconSize;
 
             if (image) {
                 ctx.drawImage(
                     image,
                     0,
                     imageY,
-                    settings.imageWidth,
-                    settings.imageHeight
+                    imageSize,
+                    imageSize
                 );
             }
         });
@@ -124,7 +125,7 @@ const BarChart = ({ barData, filters }) => {
                     <Bar
                         ref={chartRef}
                         data={data}
-                        options={settings.snapshotItems}
+                        options={options}
                         redraw={true}
                         onClick={onClick}
                         plugins={[{

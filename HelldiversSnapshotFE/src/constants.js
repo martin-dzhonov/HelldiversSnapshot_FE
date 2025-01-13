@@ -4,11 +4,11 @@ const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsap
 
 const factions = ["Automaton", "Terminid", "Illuminate"];
 
-const factionColors = ["rgb(255,182,0)", "#de7b6c", "rgb(107,58,186)"]
+const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
 
 const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
 
-const itemCategoryColors = ["white", "#de7b6c", "#49adc9", "#679552"];
+const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
 
 const missionTypes = ["Short", "Long"];
 
@@ -39,6 +39,13 @@ const difficultiesNames = [
     "8 - Impossible",
     "9 - Helldive",
     "10 - Super Helldive"
+];
+
+const difficultiesNamesShort = [
+    "Suicide Mission",
+    "Impossible",
+    "Helldive",
+    "Super Helldive"
 ];
 
 const missionNames = [
@@ -151,7 +158,7 @@ const strategems = {
     sup_spear: createStrategem("Spear", "FAF-14 Spear", "Support"),
     sup_stalwart: createStrategem("Stalwart", "M-105 Stalwart", "Support"),
     sup_sterilizer: createStrategem("Sterilizer", "Sterilizer", "Support"),
-    sup_wasp: createStrategem("StA-X3 W.A.S.P. Launcher", "StA-X3 W.A.S.P. Launcher", "Support"),
+    sup_wasp: createStrategem("Wasp", "StA-X3 W.A.S.P. Launcher", "Support"),
 };
 
 export {
@@ -162,6 +169,7 @@ export {
     itemCategories,
     itemCategoryColors,
     difficultiesNames,
+    difficultiesNamesShort,
     patchPeriods,
     factions,
     factionColors,

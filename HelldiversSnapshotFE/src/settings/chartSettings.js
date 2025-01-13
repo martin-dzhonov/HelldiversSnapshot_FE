@@ -5,7 +5,7 @@ export const imageHeight = 36;
 export const imageHalfHeight = imageHeight / 2;
 export const imageBarOffset = (barSize - imageHeight) / 2;
 
-const commonPlugins = {
+const percentLoadoutsPlugins = {
     title: { display: false },
     legend: { display: false },
     tooltip: {
@@ -16,155 +16,236 @@ const commonPlugins = {
     }
 };
 
-const commonScales = {
-    x: {
-        ticks: {
-            display: true,
-            font: { size: 14 },
-            color: "white"
-        },
-        grid: {
-            drawBorder: false,
-            color: "#aaa",
-            drawTicks: true,
-            drawOnChartArea: false
-        }
-    },
-    y: {
-        ticks: {
-            display: true,
-            font: { size: 10 },
-            color: "white"
-        },
-        grid: {
-            drawBorder: false,
-            color: "#aaa",
-            drawTicks: false,
-            drawOnChartArea: true
-        },
-        beginAtZero: true
-    }
-};
-
-const commonElements = {
-    bar: { borderWidth: 2 }
-};
-
 export const strategemLarge = {
-    indexAxis: "x",
+    indexAxis: "y",
     maintainAspectRatio: false,
-    elements: commonElements,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
     responsive: true,
+    plugins: percentLoadoutsPlugins,
     scales: {
-        ...commonScales,
         x: {
-            ...commonScales.x,
             ticks: {
-                ...commonScales.x.ticks,
-                stepSize: 20,
-                font: { size: 13 }
+                display: false,
+                font: { size: 13 },
+                color: "white",
+                stepSize: 10
+
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
             }
         },
         y: {
-            ...commonScales.y,
             ticks: {
-                ...commonScales.y.ticks,
-                stepSize: 10,
-                font: { size: 12 }
-            }
+                padding: 10,
+                display: true,
+                font: {
+                    family: "CustomFont",  // Custom font for x-axis ticks
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
+            },
+            beginAtZero: true
         }
     },
-    plugins: { ...commonPlugins }
 };
 
-export const strategemSmall = {
+export const strategemFaction = {
     indexAxis: "x",
     maintainAspectRatio: false,
-    elements: commonElements,
+    elements: {
+        bar: { borderWidth: 2 }
+    },
     responsive: true,
+    plugins: percentLoadoutsPlugins,
     scales: {
-        ...commonScales,
         x: {
-            ...commonScales.x,
             ticks: {
-                ...commonScales.x.ticks,
-                stepSize: 10
+                display: true,
+                font: {
+                    family: "CustomFont",  
+                    size: 15,
+                },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: true,
+                drawOnChartArea: false
             }
         },
         y: {
-            ...commonScales.y,
+            min: 0,
             ticks: {
-                ...commonScales.y.ticks,
-                stepSize: 5
-            }
+                display: true,
+                font: { size: 11 },
+                color: "white",
+                maxTicksLimit: 4,
+                callback: function (value, index, ticks) {
+                    if (index === ticks.length - 1) return '';
+                    return value;
+                },
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    const ticksLength = context.scale.ticks.length;
+                    return index === ticksLength - 1 ? 0 : 1;
+                },
+            },
+            beginAtZero: true
         }
     },
-    plugins: { ...commonPlugins }
 };
 
 export const strategemPatch = {
     indexAxis: "x",
-    layout: { padding: { bottom: 22 } },
+    layout: {
+        padding:
+            {  top: 35 },
+    },
     maintainAspectRatio: false,
     responsive: true,
+    plugins: percentLoadoutsPlugins,
     scales: {
-        ...commonScales,
         x: {
-            ...commonScales.x,
-            ticks: { ...commonScales.x.ticks, display: false }
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",  
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
+            }
         },
         y: {
-            ...commonScales.y,
-            ticks: { ...commonScales.y.ticks, display: false },
-            grid: { ...commonScales.y.grid, drawOnChartArea: false }
+            ticks: {
+                display: false,
+                font: { size: 11 },
+                color: "white",
+                maxTicksLimit: 3,
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    const ticksLength = context.scale.ticks.length;
+                    return index > 0 ? 0 : 1;
+                },
+            },
+            beginAtZero: true
         }
     },
-    plugins: { ...commonPlugins }
-};
-
-const snapshotScales = {
-    x: {
-        ticks: { display: false, stepSize: 5 },
-        grid: { drawBorder: false, color: "#aaa", drawTicks: false, drawOnChartArea: true }
-    },
-    y: {
-        ticks: { display: false },
-        grid: { display: false },
-        afterFit: (axis) => { axis.width = 50; }
-    }
-};
-
-const snapshotPlugins = {
-    ...commonPlugins,
-    tooltip: {
-        displayColors: false,
-        callbacks: {
-            label: (item) => [
-                `${item.raw}% of loadouts`,
-                `${item.dataset.total[item.dataIndex]} times played`
-            ]
-        }
-    }
-};
-
-const snapshotElements = {
-    bar: { borderWidth: 4 }
 };
 
 export const snapshotItems = {
     indexAxis: "y",
+    sectionSize: 40,
+    iconSize: 36,
     responsive: true,
     maintainAspectRatio: false,
-    elements: snapshotElements,
-    scales: snapshotScales,
-    plugins: snapshotPlugins
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    scales: {
+        x: {
+
+            ticks: { display: true, stepSize: 5 },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true
+            }
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...percentLoadoutsPlugins,
+        tooltip: {
+            displayColors: false,
+            callbacks: {
+                label: (item) => [
+                    `${item.raw}% of loadouts`,
+                    `${item.dataset.total[item.dataIndex]} times played`
+                ]
+            }
+        }
+    }
 };
 
-export const snapshotTrends = {
-    indexAxis: "x",
+export const strategemCompanions = {
+    indexAxis: "y",
+    sectionSize: 36,
+    iconSize: 34,
+
     responsive: true,
     maintainAspectRatio: false,
-    elements: snapshotElements,
-    scales: snapshotScales,
-    plugins: snapshotPlugins
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    scales: {
+        x: {
+            min: 0,
+            max: 50,
+            ticks: { display: false, stepSize: 5 },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
+            },
+            beginAtZero: true
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...percentLoadoutsPlugins,
+        tooltip: {
+            displayColors: false,
+            callbacks: {
+                label: (item) => [
+                    `Paired together ${item.raw}% of games`
+                ]
+            }
+        }
+    }
 };
+
+export const getSettingsWithMax = (settings, maxX) =>{
+    settings.scales.y.max = maxX;
+    return settings;    
+}

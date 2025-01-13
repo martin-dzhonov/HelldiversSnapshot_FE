@@ -1,13 +1,13 @@
-.item-details-title-wrapper {
+.strategem-title-wrapper {
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 5px;
     width: 100%;
 }
 
 @media only screen and (max-width: 1000px) {
-    .item-details-title-wrapper {
+    .strategem-title-wrapper {
         display: flex;
         flex-direction: column;
         padding-top: 30px;
@@ -17,31 +17,31 @@
 }
 
 @media (any-pointer: coarse) {
-    .item-details-title-wrapper {
+    .strategem-title-wrapper {
         padding-left: 20px;
     }
 }
 
-.stratagem-details-title {
+.stratagem-title {
     display: flex;
     flex-direction: row;
-    width: 45%;
+    width: 50%;
 }
 
 @media only screen and (max-width: 1000px) {
-    .stratagem-details-title {
+    .stratagem-title {
         display: flex;
         flex-direction: row;
         width: 100%;
     }
 }
 
-.item-details-img-wrapper {
+.stratagem-title-img {
     width: 100px;
     height: 100px;
 }
 
-.item-details-title-text {
+.stratagem-title-text {
     color: white;
     font-size: 32px;
     font-family: "CustomFont";
@@ -50,14 +50,14 @@
     padding: 0px 0px 5px 20px;
 }
 
-.stratagem-details-filters-container {
+.stratagem-filters-container {
     display: flex;
     flex-direction: row;
-    width: 45%;
+    width: 50%;
 }
 
 @media only screen and (max-width: 1000px) {
-    .stratagem-details-filters-container {
+    .stratagem-filters-container {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -65,7 +65,7 @@
     }
 }
 
-.stratagem-details-filter-container {
+.stratagem-filter-container {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -74,7 +74,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-    .stratagem-details-filter-container {
+    .stratagem-filter-container {
         display: flex;
         justify-content: center;
         align-items: flex-end;
@@ -83,10 +83,9 @@
     }
 }
 
-.stratagem-divier {
-    height: 10px;
+.strategem-divider {
+    height: 5px;
     border-top: 1px solid white;
-    width: 90%;
 }
 
 .stratagem-section-container {
@@ -112,7 +111,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    width: 45%;
+    width: 100%;
     padding-top: 12px;
 }
 
@@ -163,6 +162,14 @@
     padding: 0px 25px;
     margin-top: 5px;
 }
+
+.stratagem-graph-wrapper-patch {
+    height: 240px;
+    width: 100%;
+    padding: 0px 20px;
+    margin-top: 5px;
+}
+
 @media (any-pointer: coarse) {
     .stratagem-graph-wrapper-small {
         border-radius: 15px;
@@ -174,7 +181,7 @@
 }
 
 .stratagem-graphs-title {
-    padding-top: 20px;
+    padding-top: 5px;
     padding-left: 16px;
     padding-bottom: 5px;
     color: white;
@@ -208,21 +215,27 @@
     }
 }
 
-.stratagem-graph-wrapper {
-    padding: 20px 30px 35px 30px !important;
-    height: 380px;
-    width: 42%;
+.stratagem-other-graph-wrapper {
+    padding: 5px 10px !important;
+    height:  160px;
+    width: 100%;
 }
 
 @media (any-pointer: coarse) {
-    .stratagem-graph-wrapper {
+    .stratagem-other-graph-wrapper {
         width: 100%;
         height: 300px;
     }
 }
 
+.stratagem-mission-graph-wrapper{
+    padding: 5px 10px !important;
+    height:  100px;
+    width: 100%;
+}
+
 .stratagem-graph-title {
-    color: white;
+    color: white;   
     font-size: 22px;
     padding-top: 15px;
 
@@ -234,7 +247,7 @@
 
 .stratagem-loadouts-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 45%;
     padding-bottom: 5px;
@@ -259,6 +272,14 @@
 .stratagem-loadouts-title {
     font-family: "CustomFont", sans-serif;
     color: white;
-    padding: 5px;
+    padding: 5px 5px 0px 5px;
     font-size: 19px;
+}
+
+.companion-chart-wrapper{
+    padding: 5px 10px;
+}
+
+.companion-charts-wrapper{
+    margin-top: 100px;
 }
