@@ -9,6 +9,7 @@ import * as chartsSettings from "../settings/chartSettings";
 import GamesTable from '../components/GamesTable';
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';
+import StrategemChart from '../components/StrategemChart';
 import BarChart from '../components/BarChart';
 
 function FactionPage() {
@@ -92,49 +93,40 @@ function FactionPage() {
                 filters.type
             );
 
-            let labels = Object.keys(currPatchData).map((item) => strategems[item].name);
+            let diffs = Object.keys(currPatchData)
+                .map((item) => {
+                    const newValue = Number(currPatchData[item]?.percentageLoadouts);
+                    const oldValue = Number(prevPatchData[item]?.percentageLoadouts);
+                    return { name: item, value: Number(newValue - oldValue).toFixed(1) };
+                })
+                .sort((a, b) => b.value - a.value)
+                .filter((item) => Math.abs(item.value) > 0.5);
 
-            let datasets = Object.keys(currPatchData).map((item) => {
-                const newValue = Number(currPatchData[item]?.percentageLoadouts);
-                const oldValue = Number(prevPatchData[item]?.percentageLoadouts);
-                return Number(Number(((newValue - oldValue) / oldValue) * 100).toFixed(1));
-            })
-
-            const labelsFiltered = labels.filter((item, index) => {
-                if (isFiniteNumber(datasets[index])) {
-                    return true;
-                }
-            })
-            const datasetsFiltered = datasets.filter((item, index) => {
-                if (isFiniteNumber(item)) {
-                    return true;
-                }
-            })
+            const up = diffs.filter((item) => item.value > 0);
+            const down = diffs.filter((item) => item.value < 0).reverse();
 
             setTimelineGraphData({
-                labels: labelsFiltered,
-                datasets: [
-                    {
-                        data: datasetsFiltered,
-                        backgroundColor: labelsFiltered.map((item) =>
-                            getItemColor(getStrategemByName(item).id)
-                        ),
-                        barThickness: 15
-                    }
-                ]
-            });
+                up: up.reduce((acc, item) => {
+                    acc[item.name] = { percentageLoadouts: parseFloat(item.value), total: 10 };
+                    return acc;
+                }, {}),
+                down: down.reduce((acc, item) => {
+                    acc[item.name] = { percentageLoadouts: Math.abs(parseFloat(item.value)), total: 10 };
+                    return acc;
+                }, {}),
+            })
         }
     }, [matchData, filters]);
 
     return (
         <div className="content-wrapper">
             <Filters filters={filters} setFilters={setFilters} />
-
             <div className='filter-results-container'>
-                <div className='text-small'>
+                <div className='text-small' style={{ fontSize: "16px" }}>
                     Matches: {filterCount.matchCount}
                     &nbsp;&nbsp;&nbsp;
-                    Loadouts: {filterCount.loadoutCount} </div>
+                    Loadouts: {filterCount.loadoutCount}
+                </div>
                 <div className='filter-results-buttons-container'>
                     <div
                         className={'text-small filter-button'}
@@ -145,7 +137,7 @@ function FactionPage() {
                         className={'text-small filter-button'}
                         style={{ paddingLeft: "40px" }}
                         onClick={() => setShowGames(!showGames)}>
-                        Show Games
+                        View Games
                     </div>
                 </div>
             </div>
@@ -155,18 +147,23 @@ function FactionPage() {
                 </div>
             )}
             <Loader loading={loading}>
+                {timelineGraphData && showTrends &&
+                    <div className='row'>
+                        <div className="col-6">
+                            <StrategemChart barData={timelineGraphData?.up} filters={filters} options={chartsSettings.snapshotItems} />
+                        </div>
+                        <div className="col-6">
+                            <StrategemChart barData={timelineGraphData?.down} filters={filters} options={chartsSettings.snapshotItems} />
+
+                        </div>
+                    </div>
+                }
                 {graphData &&
                     <>
-                        <BarChart barData={graphData} filters={filters} options={chartsSettings.snapshotItems}/>
-                        <div className='text-small' onClick={() => setShowGraphFull(!showGraphFull)}>Matches:  </div>
+                        <StrategemChart barData={graphData} filters={filters} options={chartsSettings.snapshotItems} />
+                        <div className='text-small text-faction-show-all' onClick={() => setShowGraphFull(!showGraphFull)}>Show {showGraphFull ? "Less" : "All"}</div>
                     </>}
             </Loader>
-
-            {/* {timelineGraphData && showTrends &&
-                <BarChart2 barData={timelineGraphData} />
-            } */}
-
-
         </div>
     );
 }

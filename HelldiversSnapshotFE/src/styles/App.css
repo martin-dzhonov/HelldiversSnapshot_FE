@@ -351,17 +351,17 @@ h1 {
 }
 
 .about-text-title {
+    font-size: 30px;
     font-family: "CustomFont";
     color: white;
-    font-size: 30px;
-    padding: 40px 20px 20px 20px;
+    padding-top: 30px;
 }
 
 .about-text {
     font-family: "CustomFont";
     color: white;
     font-size: 22px;
-    padding: 20px 10px;
+    padding: 12px 20px;
 }
 
 .about-text-title-highlight {
@@ -375,7 +375,9 @@ h1 {
 
 .about-text-large {
     font-size: 26px;
-    padding-left: 20px;
+    font-family: "CustomFont";
+    color: white;
+    padding: 20px 0px 10px 0px;
 }
 
 .about-text-contact {
@@ -395,4 +397,38 @@ h1 {
     font-family: "CustomFont";
     padding-top: 110px;
     padding-left: 90px;
+}
+
+.screenshot-toggle-text{
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    background-color: #373b3e;
+    color: white;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.pagination button.active {
+    background-color: #555;
+    font-weight: bold;
+}
+
+.pagination button:disabled {
+    background-color: #222;
+    cursor: not-allowed;
 }

@@ -9,8 +9,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import StratagemRank from "../components/StratagemRank";
 import useMobile from "../hooks/useMobile";
-import BarGraph from "../components/BarGraph";
-import BarChart from '../components/BarChart';
+import BarChart from "../components/BarChart";
+import StrategemChart from '../components/StrategemChart';
 
 import Loader from "../components/Loader";
 import {
@@ -178,6 +178,14 @@ function StratagemPage() {
         }
     }, [strategemData]);
 
+    const onFactionClick = (element)=>{
+        console.log(element);
+        if(element){
+            console.log()
+            setFilters({ ...filters, faction: factions[element.index].toLocaleLowerCase()});
+        }
+    }
+
     return (
         <div className="content-wrapper">
             <div className="row">
@@ -208,7 +216,7 @@ function StratagemPage() {
                             <div className="stratagem-filter-container">
                                 <DropdownButton
                                     className="dropdown-button"
-                                   
+
                                     title={"Patch: " + filters.patch.id}>
                                     {patchPeriods.map((patchPeriod, index) => (
                                         <Dropdown.Item
@@ -256,9 +264,10 @@ function StratagemPage() {
                             <div className="col-3">
                                 {factionGraph && (
                                     <div className="stratagem-graph-wrapper-small">
-                                        <BarGraph
+                                        <BarChart
                                             data={factionGraph}
                                             options={factionGraph.chartsSettings}
+                                            onBarClick={onFactionClick}
                                         />
                                     </div>
                                 )}
@@ -266,13 +275,14 @@ function StratagemPage() {
                             <div className="col-3">
                                 {patchGraph && (
                                     <div className="stratagem-graph-wrapper-patch">
-                                        {showPatchGraph ? <LineGraph
-                                            data={patchGraph}
-                                            options={patchGraph.chartsSettings}
-                                        /> : <div>
-                                            <div className="chart-empty-text">Data pending</div>
-                                        </div>}
-
+                                        {showPatchGraph ?
+                                            <LineGraph
+                                                data={patchGraph}
+                                                options={patchGraph.chartsSettings}
+                                            /> :
+                                            <div>
+                                                <div className="chart-empty-text">Data pending</div>
+                                            </div>}
                                     </div>
                                 )}
                             </div>
@@ -286,7 +296,7 @@ function StratagemPage() {
                                 return <div className="col-3">
                                     <div className="companion-chart-wrapper">
                                         <div className="stratagem-loadouts-title">{category}</div>
-                                        <BarChart barData={companionGraphs[index]} filters={filters} options={chartsSettings.strategemCompanions} />
+                                        <StrategemChart barData={companionGraphs[index]} filters={filters} options={chartsSettings.strategemCompanions} />
                                     </div>
                                 </div>
                             })}
@@ -300,7 +310,7 @@ function StratagemPage() {
                                 {diffGraph &&
                                     <div className="stratagem-other-graph-wrapper">
                                         <div className="stratagem-loadouts-title">Difficulty</div>
-                                        <BarGraph
+                                        <BarChart
                                             data={diffGraph}
                                             options={chartsSettings.strategemLarge}
                                         />
@@ -310,7 +320,7 @@ function StratagemPage() {
                                 {missionGraph &&
                                     <div className="stratagem-mission-graph-wrapper">
                                         <div className="stratagem-loadouts-title">Mission Lenght</div>
-                                        <BarGraph
+                                        <BarChart
                                             data={missionGraph}
                                             options={chartsSettings.strategemLarge}
                                         />

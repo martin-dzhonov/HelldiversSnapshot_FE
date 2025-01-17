@@ -2,7 +2,7 @@ const svgModules = require.context('./assets/svgs', false, /\.svg$/);
 
 const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
-const factions = ["Automaton", "Terminid", "Illuminate"];
+const factions = ["Terminid", "Automaton", "Illuminate"];
 
 const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
 
@@ -100,7 +100,7 @@ const strategems = {
     backpack_ballistic: createStrategem("Ballistic Shield Backpack", "SH-20 Ballistic Shield Backpack", "Support"),
     backpack_jump: createStrategem("Jump Pack", "LIFT-850 Jump Pack", "Support"),
     backpack_shield: createStrategem("Shield Generator Pack", "SH-20 Shield Generator Pack", "Support"),
-    backpack_shield_directional: createStrategem("Directional Shield", "Directional Shield", "Support"),
+    backpack_shield_directional: createStrategem("Directional Shield", "SH-51 Directional Shield", "Support"),
     backpack_supply: createStrategem("Supply Pack", "B-1 Supply Pack", "Support"),
     barrage_120: createStrategem("Orbital 120MM HE Barrage", "Orbital 120MM HE Barrage", "Eagle/Orbital"),
     barrage_380: createStrategem("Orbital 380MM HE Barrage", "Orbital 380MM HE Barrage", "Eagle/Orbital"),
@@ -115,11 +115,11 @@ const strategems = {
     eagle_smoke: createStrategem("Eagle Smoke Strike", "Eagle Smoke Strike", "Eagle/Orbital"),
     eagle_strafe: createStrategem("Eagle Strafing Run", "Eagle Strafing Run", "Eagle/Orbital"),
     encampment_hmg: createStrategem("HMG Emplacement", "E/MG-101 HMG Emplacement", "Defensive"),
-    encampment_at: createStrategem("Anti-Tank Emplacement", "E/MG-101 HMG Emplacement", "Defensive"),
+    encampment_at: createStrategem("Anti-Tank Emplacement", "E/AT-12 Anti-Tank Emplacement", "Defensive"),
     exo_emancipator: createStrategem("Emancipator Exosuit", "EXO-49 Emancipator Exosuit", "Support"),
     exo_patriot: createStrategem("Patriot Exosuit", "EXO-45 Patriot Exosuit", "Support"),
-    frv: createStrategem("Fast Recon Vehicle", "Fast Recon Vehicle", "Support"),
-    guard_breath: createStrategem("Guard Dog Breath", "Guard Dog Breath", "Support"),
+    frv: createStrategem("Fast Recon Vehicle", "M-102 Fast Recon Vehicle", "Support"),
+    guard_breath: createStrategem("Guard Dog Breath", "AX/TX-13 Guard Dog Breath", "Support"),
     guard_dog: createStrategem("Guard Dog", "AD-334 Guard Dog", "Support"),
     guard_rover: createStrategem("Guard Dog Rover", "AX/LAS-5 Guard Dog Rover", "Support"),
     mines_at: createStrategem("Anti-Tank Mines", "MD-17 Anti-Tank Mines", "Defensive"),
@@ -135,7 +135,7 @@ const strategems = {
     sentry_arc: createStrategem("Tesla Tower", "A/ARC-3 Tesla Tower", "Defensive"),
     sentry_autocannon: createStrategem("Autocannon Sentry", "A/AC-8 Autocannon Sentry", "Defensive"),
     sentry_ems: createStrategem("EMS Mortar Sentry", "A/M-23 EMS Mortar Sentry", "Defensive"),
-    sentry_flame: createStrategem("Flame Sentry", "Flame Sentry", "Defensive"),
+    sentry_flame: createStrategem("Flame Sentry", "A/FLAM-40 Flame Sentry", "Defensive"),
     sentry_gatling: createStrategem("Gatling Sentry", "A/G-16 Gatling Sentry", "Defensive"),
     sentry_mg: createStrategem("Machine Gun Sentry", "A/MG-43 Machine Gun Sentry", "Defensive"),
     sentry_mortar: createStrategem("Mortar Sentry", "A/M-12 Mortar Sentry", "Defensive"),
@@ -157,7 +157,7 @@ const strategems = {
     sup_recoilless_rifle: createStrategem("Recoilless Rifle", "GR-8 Recoilless Rifle", "Support"),
     sup_spear: createStrategem("Spear", "FAF-14 Spear", "Support"),
     sup_stalwart: createStrategem("Stalwart", "M-105 Stalwart", "Support"),
-    sup_sterilizer: createStrategem("Sterilizer", "Sterilizer", "Support"),
+    sup_sterilizer: createStrategem("Sterilizer", "TX-41 Sterilizer", "Support"),
     sup_wasp: createStrategem("Wasp", "StA-X3 W.A.S.P. Launcher", "Support"),
 };
 

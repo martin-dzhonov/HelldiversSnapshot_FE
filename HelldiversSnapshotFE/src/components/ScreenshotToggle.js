@@ -1,3 +1,4 @@
+import '../styles/App.css';
 import React, { useState } from 'react';
 
 function ScreenshotToggle({ id }) {
