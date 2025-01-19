@@ -1,5 +1,7 @@
 import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useRef } from "react";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -24,7 +26,10 @@ ChartJS.register(
     Filler
 );
 
-const LineGraph = ({ data, options, chartRef, onLineClick, redraw = false }) => {
+const LineGraph = ({ data, options, onLineClick }) => {
+
+    const chartRef = useRef(null);
+
     return (
         <Line
             ref={chartRef}

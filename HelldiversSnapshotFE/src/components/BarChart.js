@@ -22,7 +22,6 @@ ChartJS.register(
 
 const BarChart = ({ data, options, onBarClick, redraw = false }) => {
     const chartRef = useRef(null);
-console.log(data);
     const onClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }

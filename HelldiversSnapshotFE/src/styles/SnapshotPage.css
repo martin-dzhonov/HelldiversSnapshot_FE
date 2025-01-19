@@ -4,21 +4,24 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
 }
 
 @media (any-pointer: fine) {
   .filters-container {
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 25px 2% 30px 2%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px 2% 30px 2%;
   }
 }
 
 @media (any-pointer: coarse) {
   .filters-container {
-      flex-direction: row;
-      gap: 15px;
-      padding: 20px 2% 30px 20px;
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px 2% 30px 20px;
   }
 }
 
@@ -38,7 +41,7 @@
 }
 
 @media only screen and (min-width: 1000px) {
-  .filter-results-container  {
+  .filter-results-container {
     flex-direction: row;
     justify-content: space-between;
     padding: 20px 20px 20px 60px;
@@ -46,30 +49,37 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .filter-results-container  {
+  .filter-results-container {
     flex-direction: column;
     padding: 0px 0px 20px 20px;
   }
 }
 
-.show-games-table-wrapper{
+.show-games-table-wrapper {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding: 0px 20px 30px 40px;
 }
 
-@media only screen and (max-width: 1000px) {
-  .show-games-table-wrapper{
-    height: 450px;
-    padding: 0px 10px 30px 10px;
-
-  }
-}
-
-.text-faction-show-all{
+.text-faction-show-all {
   padding-left: 60px;
   font-size: 17px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.trends-title-up{
+  font-size: 28px;
+  padding: 10px 0px;
+  color: #679552;
+}
+
+.trends-title-down{
+  font-size: 28px;
+  padding: 10px 0px;
+  color: #de7b6c;
+}
+
+.trends-container{
+  padding-left: 40px;
 }

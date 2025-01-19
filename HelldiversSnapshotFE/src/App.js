@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import ArmoryPage from "./pages/ArmoryPage";
-import FactionPage from "./pages/FactionPage";
+import SnapshotPage from "./pages/SnapshotPage";
 import StratagemPage from "./pages/StratagemPage";
 import AboutPage from "./pages/AboutPage";
 
@@ -16,7 +16,7 @@ function App() {
                     path="/snapshot"
                     element={
                         <Layout>
-                            <FactionPage />
+                            <SnapshotPage />
                         </Layout>
                     }
                 />

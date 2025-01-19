@@ -10,10 +10,21 @@ const percentLoadoutsPlugins = {
     legend: { display: false },
     tooltip: {
         displayColors: false,
+        bodyFont: {
+            family: "CustomFont",
+            size: 14,
+        },
+        titleFont: {
+            family: "CustomFont",
+            size: 15,
+        },
         callbacks: {
-            label: (item) => `In ${item.raw}% of loadouts`
+            label: (item) => `Pick Rate: ${item.raw}%`
         }
-    }
+    },
+    datalabels: {
+        display: false,
+    },
 };
 
 export const strategemLarge = {
@@ -74,7 +85,7 @@ export const strategemFaction = {
             ticks: {
                 display: true,
                 font: {
-                    family: "CustomFont",  
+                    family: "CustomFont",
                     size: 15,
                 },
                 color: "white",
@@ -118,7 +129,7 @@ export const strategemPatch = {
     indexAxis: "x",
     layout: {
         padding:
-            {  top: 35 },
+            { top: 35 },
     },
     maintainAspectRatio: false,
     responsive: true,
@@ -128,7 +139,7 @@ export const strategemPatch = {
             ticks: {
                 display: true,
                 font: {
-                    family: "CustomFont",  
+                    family: "CustomFont",
                     size: 13,
                 },
                 color: "white",
@@ -175,7 +186,15 @@ export const snapshotItems = {
     scales: {
         x: {
 
-            ticks: { display: true, stepSize: 5 },
+            ticks: {
+                padding: 10,
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 12,
+                },
+                color: "white",
+            },
             grid: {
                 drawBorder: false,
                 color: "white",
@@ -190,16 +209,150 @@ export const snapshotItems = {
         }
     },
     plugins: {
+        title: {
+            display: false
+        },
+        legend: {
+            display: false
+        },
+        datalabels: {
+            display: false,
+        },
+        tooltip: {
+            displayColors: false,
+            bodyFont: {
+                family: "CustomFont",
+                size: 14,
+            },
+            titleFont: {
+                family: "CustomFont",
+                size: 14,
+            },
+            callbacks: {
+                label: (item) => {
+                    return [
+                        `Pick Rate: ${item.raw}%`,
+                        `${item.dataset.total[item.dataIndex]} times played`
+                    ];
+                }
+            }
+        }
+    }
+};
+
+export const snapshotTrendsDown = {
+    indexAxis: "y",
+    sectionSize: 40,
+    iconSize: 36,
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    scales: {
+        x: {
+
+            ticks: { display: false, stepSize: 5 },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
+            }
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
         ...percentLoadoutsPlugins,
         tooltip: {
             displayColors: false,
+            bodyFont: {
+                family: "CustomFont",
+                size: 14,
+            },
+            titleFont: {
+                family: "CustomFont",
+                size: 15,
+            },
             callbacks: {
                 label: (item) => [
-                    `${item.raw}% of loadouts`,
-                    `${item.dataset.total[item.dataIndex]} times played`
+                    `Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`
                 ]
             }
+        },
+        datalabels: {
+            color: '#de7b6c',
+            anchor: 'end',
+            align: 'end',
+            font: {
+                family: "CustomFont",
+                weight: 'bold',
+                size: 14,
+            },
+            formatter: (value) => "-" + value + "%",
+        },
+    }
+};
+
+export const snapshotTrendsUp = {
+    indexAxis: "y",
+    sectionSize: 40,
+    iconSize: 36,
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    scales: {
+        x: {
+
+            ticks: { display: false, stepSize: 5 },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: false
+            }
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 50; }
         }
+    },
+    plugins: {
+        ...percentLoadoutsPlugins,
+        tooltip: {
+            displayColors: false,
+            bodyFont: {
+                family: "CustomFont",
+                size: 14,
+            },
+            titleFont: {
+                family: "CustomFont",
+                size: 15,
+            },
+            callbacks: {
+                label: (item) => [
+                    `Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`
+                ]
+            }
+        },
+        datalabels: {
+            color: '#679552',
+            anchor: 'end',
+            align: 'end',
+            font: {
+                family: "CustomFont",
+                weight: 'bold',
+                size: 14,
+            },
+            formatter: (value) => "+" + value + "%",
+        },
     }
 };
 
@@ -236,6 +389,14 @@ export const strategemCompanions = {
         ...percentLoadoutsPlugins,
         tooltip: {
             displayColors: false,
+            bodyFont: {
+                family: "CustomFont",
+                size: 14,
+            },
+            titleFont: {
+                family: "CustomFont",
+                size: 14,
+            },
             callbacks: {
                 label: (item) => [
                     `Paired together ${item.raw}% of games`
@@ -245,7 +406,7 @@ export const strategemCompanions = {
     }
 };
 
-export const getSettingsWithMax = (settings, maxX) =>{
+export const getSettingsWithMax = (settings, maxX) => {
     settings.scales.y.max = maxX;
-    return settings;    
+    return settings;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useRef } from "react";
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import {
     BarElement,
@@ -21,7 +22,8 @@ ChartJS.register(
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    ChartDataLabels
 );
 
 const StrategemChart = ({ barData, filters, options }) => {
@@ -43,9 +45,11 @@ const StrategemChart = ({ barData, filters, options }) => {
                 labels: Object.keys(barData).map((item) => strategems[item].name),
                 datasets: [
                     {
-                        data: Object.values(barData).map((item) => item.percentageLoadouts),
+                        data: Object.values(barData).map((item) => item.value),
                         backgroundColor: Object.keys(barData).map((item) => getItemColor(item)),
                         total: Object.values(barData).map((item) => item.total),
+                        currValue: Object.values(barData).map((item) => item.currValue),
+                        pastValue: Object.values(barData).map((item) => item.pastValue),
                         barThickness: settings.barSize,
                     },
                 ],

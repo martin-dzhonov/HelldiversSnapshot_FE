@@ -137,7 +137,7 @@ function getItemDict(data, category) {
                 total: item[1],
                 rankTotal: index + 1,
                 rankCategory: categoryRankings[itemCategory],
-                percentageLoadouts: getPercentage(item[1], loadoutsCount, 1)
+                value: getPercentage(item[1], loadoutsCount, 1)
             };
             categoryRankings[itemCategory]++;
         });

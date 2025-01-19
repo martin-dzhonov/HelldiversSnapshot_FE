@@ -155,23 +155,23 @@
     }
 }
 
-.stratagem-graph-wrapper-small {
+.stratagem-graph-wrapper-faction {
     border-radius: 15px;
     height: 220px;
     width: 100%;
-    padding: 0px 25px;
+    padding: 0px 20px;
     margin-top: 5px;
 }
 
 .stratagem-graph-wrapper-patch {
     height: 240px;
     width: 100%;
-    padding: 0px 20px;
+    padding: 0px 30px 0px 0px;
     margin-top: 5px;
 }
 
 @media (any-pointer: coarse) {
-    .stratagem-graph-wrapper-small {
+    .stratagem-graph-wrapper-faction {
         border-radius: 15px;
         width: 90%;
         margin-left: 10px;

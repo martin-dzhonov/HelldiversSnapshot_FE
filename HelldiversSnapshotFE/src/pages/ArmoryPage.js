@@ -17,11 +17,14 @@ function ArmoryPage() {
                         </div>
                         <div className="group-container">
                             {getItemsByCategory(category).map((item) =>
-                                <div onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} className="armory-item-wrapper">
+                                <div className="armory-item-wrapper"
+                                    onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} >
                                     <div className="item-img-wrapper">
                                         <img src={item.svg} alt="" />
                                     </div>
-                                    <div className="armory-item-name">{item.name}</div>
+                                    <div className="armory-item-name">
+                                        {item.name}
+                                    </div>
                                 </div>
                             )}
                         </div>
