@@ -3,8 +3,11 @@ import { strategems } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
 import { useState } from "react";
+import { useMobile } from '../hooks/useMobile';
 
 function GamesTable({ data }) {
+    const { isMobile } = useMobile();
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
@@ -14,7 +17,7 @@ function GamesTable({ data }) {
     const currentPageData = data.slice(startIndex, startIndex + itemsPerPage);
 
     const getPageNumbers = () => {
-        const visiblePages = 5; 
+        const visiblePages = 5;
         const pages = [];
 
         if (totalPages <= visiblePages) {
@@ -80,8 +83,12 @@ function GamesTable({ data }) {
                     {currentPageData.map((game, index) => (
                         <tr key={index}>
                             <td className="text-small">
-                            <div >{new Date(game.createdAt).toLocaleString().split(",")[0]} </div>
-                            <div >{new Date(game.createdAt).toLocaleString().split(",")[1]} </div>
+                                <div >{new Date(game.createdAt).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: '2-digit'
+                                }).split(",")[0]} </div>
+                                <div >{new Date(game.createdAt).toLocaleString().split(",")[1]} </div>
                             </td>
                             <td className="text-small">
                                 <div className="table-loadout-row-wrapper">
@@ -102,13 +109,13 @@ function GamesTable({ data }) {
                                 <ScreenshotToggle id={game.id} alt="" />
                             </td>
                             <td className="text-small">{game.planet}</td>
-                            <td className="text-small" style={{width: "180px"}}>{game.mission}</td>
-                            <td className="text-small">{game.modifiers.map((item)=> <div>{item.toUpperCase()}</div>)}</td>
+                            <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
+                            <td className="text-small">{game.modifiers.map((item) => <div>{item.toUpperCase()}</div>)}</td>
                             <td className="text-small">{game.difficulty}</td>
                         </tr>
                     ))}
                 </tbody>
-            </Table>            
+            </Table>
         </div>
     );
 }

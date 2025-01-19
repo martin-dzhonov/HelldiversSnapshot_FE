@@ -137,10 +137,12 @@ export const strategemPatch = {
     scales: {
         x: {
             ticks: {
+                minRotation: 0, // Minimum rotation angle for the ticks
+                maxRotation: 10, // Maximum rotation angle for the ticks
                 display: true,
                 font: {
                     family: "CustomFont",
-                    size: 13,
+                    size: 14,
                 },
                 color: "white",
             },

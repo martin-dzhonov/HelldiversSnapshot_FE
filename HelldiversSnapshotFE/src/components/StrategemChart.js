@@ -33,6 +33,13 @@ const StrategemChart = ({ barData, filters, options }) => {
     const [loadedImages, setLoadedImages] = useState({});
     const [isAllImagesLoaded, setIsAllImagesLoaded] = useState(false);
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
     const chartHeight = useMemo(() => {
         if (barData) {
             return Object.keys(barData).length * options.sectionSize;
@@ -115,6 +122,7 @@ const StrategemChart = ({ barData, filters, options }) => {
         if (elementAtEvent.length > 0) {
             const itemId = Object.keys(barData)[elementAtEvent[0].index];
             navigate(`/armory/${filters.faction}/${itemId}`);
+            window.scrollTo(0, 0);
         }
     }
 

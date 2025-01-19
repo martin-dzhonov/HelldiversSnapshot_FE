@@ -1,4 +1,3 @@
-// useScreenSize.js
 import { useState, useEffect } from 'react';
 
 export const useMobile = () => {

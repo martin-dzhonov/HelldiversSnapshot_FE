@@ -1,8 +1,10 @@
 import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getCountingSuffix } from "../utils";
+import useMobile from "../hooks/useMobile";
 
 const StratagemRank = ({ value, text, color, suffix = false, percent = false }) => {
+    const { isMobile } = useMobile();
     return (
         <div className="stratagem-rankings-item">
             <div className="stratagem-rankings-number" style={{ color }}>
@@ -19,8 +21,16 @@ const StratagemRank = ({ value, text, color, suffix = false, percent = false }) 
                 )}
             </div>
             <div className="stratagem-rankings-text-wrapper">
-                <div className="stratagem-rankings-text-small">{text[0]}</div>
-                <div className="stratagem-rankings-text-small">{text[1]}</div>
+                {isMobile ? 
+                <>
+                    <div className="stratagem-rankings-text-small" style={{ opacity: 0 }}>.</div>
+                    <div className="stratagem-rankings-text-small">{text[0]}&nbsp;{text[1]}</div>
+                    </>
+                    :  <>
+                    <div className="stratagem-rankings-text-small">{text[0]}</div>
+                    <div className="stratagem-rankings-text-small">{text[1]}</div>
+                </>}
+               
             </div>
         </div>
     );

@@ -36,11 +36,11 @@ h1 {
     padding: 10px 100px 20px 100px;
 }
 
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
     .content-wrapper {
-        padding: 0 10px 25px 25px;
+        padding: 0 10px 25px 10px;
     }
-}
+  }
 
 .spinner-container {
     display: flex;
@@ -202,9 +202,11 @@ h1 {
     flex-basis: 80% !important;
 }
 
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
     .dropdown-button .dropdown-toggle {
         margin-top: 4px;
+        padding: 8px 15px 8px 15px;
+        font-size: 15px;
     }
 }
 
@@ -261,10 +263,12 @@ h1 {
     padding: 10px 20px;
 }
 
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
     .table-loadout-row-wrapper {
         display: flex;
         flex-direction: column;
+        gap: 8px;
+        padding: 10px;
     }
 }
 
@@ -276,6 +280,7 @@ h1 {
     align-items: flex-start;
     font-size: 30px;
     padding-left: 15px;
+    padding-top: 10px;
 }
 
 .stratagem-rankings-number {
@@ -293,25 +298,33 @@ h1 {
     padding-left: 3px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-rankings-number {
-        font-size: 36px;
-    }
-    .stratagem-rankings-number-small {
-        font-family: "CustomFont";
-        font-size: 25px;
-    }
-    .stratagem-rankings-text-wrapper {
-        padding-top: 5px;
-        padding-left: 3px;
-    }
-}
-
 .stratagem-rankings-text-small {
     font-family: "CustomFont", sans-serif;
     font-size: 19px;
     padding-left: 10px;
     padding-bottom: 0px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .stratagem-rankings-item{
+        height: 70px;
+        justify-content: center;
+        display: flex;
+    }
+    .stratagem-rankings-number {
+        font-size: 50px;
+    }
+    .stratagem-rankings-number-small {
+        font-family: "CustomFont";
+        font-size: 25px;
+    }
+    .stratagem-rankings-text-small{
+        font-size: 18px;
+    }
+    .stratagem-rankings-text-wrapper {
+        padding-top: 5px;
+    }
 }
 
 .stratagem-rankings-text {
@@ -403,6 +416,16 @@ h1 {
     padding: 0px 12px 12px 12px;
 }
 
+@media only screen and (max-width: 900px) {
+    .pagination {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding: 0px 12px 12px 12px;
+    }
+    
+}
+
 .pagination button {
     padding: 0.5rem 1rem;
     background-color: #373b3e;
@@ -475,3 +498,4 @@ h1 {
         padding: 10px !important;
     }
 }
+

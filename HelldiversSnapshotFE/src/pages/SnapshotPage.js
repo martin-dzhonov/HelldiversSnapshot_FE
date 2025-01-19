@@ -132,8 +132,8 @@ function SnapshotPage() {
 
             <Filters type={tabIndex} filters={filters} setFilters={setFilters} />
 
-            {isMobile && <div className="end-element">
-                        <div className='text-small' style={{ fontSize: "17px" }}>
+            {isMobile && !loading && <div className="end-element">
+                        <div className='filters-result-text'>
                             Matches: {filterCount.matchCount}
                             &nbsp;&nbsp;&nbsp;
                             Loadouts: {filterCount.loadoutCount}
@@ -148,8 +148,8 @@ function SnapshotPage() {
                         <Tab>Games</Tab>
                     </TabList>
 
-                    {!isMobile && <div className="end-element">
-                        <div className='text-small' style={{ fontSize: "17px" }}>
+                    {!isMobile && !loading && <div className="end-element">
+                        <div className='filters-result-text'>
                             Matches: {filterCount.matchCount}
                             &nbsp;&nbsp;&nbsp;
                             Loadouts: {filterCount.loadoutCount}

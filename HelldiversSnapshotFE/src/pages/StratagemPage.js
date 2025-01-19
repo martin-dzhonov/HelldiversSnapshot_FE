@@ -205,7 +205,7 @@ function StratagemPage() {
                 </div>
                 <div className="d-flex flex-column col-lg-6 col-md-12 col-sm-12">
                     <div className="row mt-auto ">
-                        <div className="col-12 col-lg-6 col-md-3 col-sm-6 ">
+                        <div className="col-6 col-lg-6 col-md-3 col-sm-6 ">
                             <div className="stratagem-filter-container">
                                 <DropdownButton
                                     className="dropdown-button"
@@ -220,11 +220,11 @@ function StratagemPage() {
                                 </DropdownButton>
                             </div>
                         </div>
-                        <div className="col-12 col-lg-6 col-md-3 col-sm-6">
+                        <div className="col-6 col-lg-6 col-md-3 col-sm-6">
                             <div className="stratagem-filter-container">
                                 <DropdownButton
                                     className="dropdown-button"
-                                    title={"Patch: " + filters.patch.id}>
+                                    title={`${!isMobile ? "Patch: " : ''} ${filters.patch.id}`} >
                                     {patchPeriods.map((patchPeriod, index) => (
                                         <Dropdown.Item
                                             as="button"
@@ -239,46 +239,6 @@ function StratagemPage() {
                     </div>
                 </div>
             </div>
-            {/* <div className="strategem-title-wrapper">
-                <div className="stratagem-title">
-                    <div className="stratagem-title-img">
-                        <img src={strategems[itemId].svg} alt=""></img>
-                    </div>
-                    <div className="stratagem-title-text">
-                        {strategems[itemId].nameFull}
-                    </div>
-                </div>
-                <div className="stratagem-filters-container">
-                    <div className="stratagem-filter-container">
-                        <DropdownButton
-                            className="dropdown-button"
-                            title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
-                            {factions.map((factionName) => (
-                                <Dropdown.Item
-                                    as="button"
-                                    onClick={() => { setFilters({ ...filters, faction: factionName.toLocaleLowerCase() }); }}>
-                                    {factionName}
-                                </Dropdown.Item>
-                            ))}
-                        </DropdownButton>
-                    </div>
-                    <div className="stratagem-filter-container">
-                        <DropdownButton
-                            className="dropdown-button"
-
-                            title={"Patch: " + filters.patch.id}>
-                            {patchPeriods.map((patchPeriod, index) => (
-                                <Dropdown.Item
-                                    as="button"
-                                    disabled={filters.faction === 'illuminate' && index > 0}
-                                    onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                                    {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
-                                </Dropdown.Item>
-                            ))}
-                        </DropdownButton>
-                    </div>
-                </div>
-            </div> */}
 
             <div className="strategem-divider"></div>
             <Loader loading={!data}>
@@ -286,31 +246,61 @@ function StratagemPage() {
                     <div className="col-lg-6 col-sm-12">
                         {data &&
                             <div className="row">
-                                <div className="col-6 col-lg-6 col-sm-6">
-                                    <StratagemRank
-                                        text={["in", "All Stratagem"]}
-                                        value={getStrategemRank(data, itemId)}
-                                        color={"rgb(255,182,0)"}
-                                        suffix />
-                                    <StratagemRank
-                                        text={["of", "games"]}
-                                        value={getPercentage(strategemData?.games, data?.totalGames)}
-                                        color={"rgb(255,182,0)"}
-                                        percent />
-
+                                <div className="col-12 col-lg-6 col-sm-6">
+                                    {isMobile ?
+                                        <>
+                                            <StratagemRank
+                                                text={["in", strategems[itemId].category]}
+                                                value={getStrategemRank(data, itemId, true)}
+                                                color={getItemColor(itemId)}
+                                                suffix />
+                                            <StratagemRank
+                                                text={["in", "All Stratagem"]}
+                                                value={getStrategemRank(data, itemId)}
+                                                color={"rgb(255,182,0)"}
+                                                suffix />
+                                        </> :
+                                        <>
+                                          
+                                                <StratagemRank
+                                                text={["in", "All Stratagem"]}
+                                                value={getStrategemRank(data, itemId)}
+                                                color={"rgb(255,182,0)"}
+                                                suffix />
+                                            <StratagemRank
+                                                text={["of", "games"]}
+                                                value={getPercentage(strategemData?.games, data?.totalGames)}
+                                                color={"rgb(255,182,0)"}
+                                                percent />
+                                        </>}
                                 </div>
-                                <div className="col-6 col-lg-6 col-sm-6">
-                                    <StratagemRank
-                                        text={["in", strategems[itemId].category]}
-                                        value={getStrategemRank(data, itemId, true)}
-                                        color={getItemColor(itemId)}
-                                        suffix />
-                                    <StratagemRank
-                                        text={["pick ", "rate"]}
-                                        value={getPercentage(strategemData?.loadouts, data?.totalLoadouts)}
-                                        color={getItemColor(itemId)}
-                                        percent />
+                                <div className="col-12 col-lg-6 col-sm-6">
+                                    {isMobile ?
+                                        <>
+                                            <StratagemRank
+                                                text={["pick ", "rate"]}
+                                                value={getPercentage(strategemData?.loadouts, data?.totalLoadouts)}
+                                                color={getItemColor(itemId)}
+                                                percent />
+                                             <StratagemRank
+                                                text={["of", "games"]}
+                                                value={getPercentage(strategemData?.games, data?.totalGames)}
+                                                color={"rgb(255,182,0)"}
+                                                percent />
+                                        </> :
+                                        <>
+                                              <StratagemRank
+                                                text={["in", strategems[itemId].category]}
+                                                value={getStrategemRank(data, itemId, true)}
+                                                color={getItemColor(itemId)}
+                                                suffix />
+                                            <StratagemRank
+                                                text={["pick ", "rate"]}
+                                                value={getPercentage(strategemData?.loadouts, data?.totalLoadouts)}
+                                                color={getItemColor(itemId)}
+                                                percent />
 
+                                        </>}
                                 </div>
                             </div>
                         }
@@ -328,17 +318,21 @@ function StratagemPage() {
                     </div>
                     <div className="col-lg-3 col-sm-12">
                         {patchGraph && (
-                            <div className="stratagem-graph-wrapper-patch">
-                                {showPatchGraph ?
+                            showPatchGraph ? (
+                                <div className="stratagem-graph-wrapper-patch">
                                     <LineGraph
                                         data={patchGraph}
                                         options={patchGraph.chartsSettings}
                                         onLineClick={onPatchClick}
-                                    /> :
+                                    />
+                                </div>
+                            ) : (
+                                !isMobile ?
                                     <div>
                                         <div className="chart-empty-text">Data pending</div>
-                                    </div>}
-                            </div>
+                                    </div> :
+                                    <></>
+                            )
                         )}
                     </div>
                 </div>
