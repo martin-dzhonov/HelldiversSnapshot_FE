@@ -41,9 +41,9 @@ function AboutPage() {
             <div className="about-text-large">Contact</div>
             <div className="about-text about-text-contact">
                 For feedback, suggestions, or anything else, you can visit
-                our <a href="https://discord.gg/2ZJNZjNF">Discord</a> or
+                our <a href="https://discord.gg/TPB89jp5HK">Discord</a> or
                 message us on{" "}
-                <a href="https://www.reddit.com/user/aretakembis/">Reddit</a>.
+                <a href="https://www.reddit.com/user/Natural-Sympathyy">Reddit</a>.
             </div>
         </div>
     </div>

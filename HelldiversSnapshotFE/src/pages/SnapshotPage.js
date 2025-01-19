@@ -144,7 +144,7 @@ function SnapshotPage() {
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
                         <Tab>Snapshot</Tab>
-                        <Tab onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>Trends</Tab>
+                        <Tab disabled={filters.faction==="illuminate"} onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>Trends</Tab>
                         <Tab>Games</Tab>
                     </TabList>
 
