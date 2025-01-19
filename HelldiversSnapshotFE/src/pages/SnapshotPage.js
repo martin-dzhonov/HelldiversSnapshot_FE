@@ -131,6 +131,15 @@ function SnapshotPage() {
         <div className="content-wrapper">
 
             <Filters type={tabIndex} filters={filters} setFilters={setFilters} />
+
+            {isMobile && <div className="end-element">
+                        <div className='text-small' style={{ fontSize: "17px" }}>
+                            Matches: {filterCount.matchCount}
+                            &nbsp;&nbsp;&nbsp;
+                            Loadouts: {filterCount.loadoutCount}
+                        </div>
+                    </div>}
+
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
@@ -138,14 +147,16 @@ function SnapshotPage() {
                         <Tab onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>Trends</Tab>
                         <Tab>Games</Tab>
                     </TabList>
-                    <div className="end-element">
+
+                    {!isMobile && <div className="end-element">
                         <div className='text-small' style={{ fontSize: "17px" }}>
                             Matches: {filterCount.matchCount}
                             &nbsp;&nbsp;&nbsp;
                             Loadouts: {filterCount.loadoutCount}
                         </div>
-                    </div>
+                    </div>}
                 </div>
+                
                 <Loader loading={loading}>
                     <TabPanel>
                         {snapshotGraphData &&
@@ -162,18 +173,18 @@ function SnapshotPage() {
                         {timelineGraphData &&
                             <div className='trends-container'>
                                 <div className='row'>
-                                    <div className='text-medium'>
+                                    <div className='text-medium trends-title-patches'>
                                         {filters.patchStart.id} ➜ {filters.patch.id}
                                     </div>
                                 </div>
                                 <div className='row'>
-                                    <div className="col-6">
+                                    <div className="col-lg-6 col-md-12">
                                         <div className='text-small trends-title-up'>
                                             Up
                                         </div>
                                         <StrategemChart barData={timelineGraphData?.up} filters={filters} options={chartsSettings.snapshotTrendsUp} />
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-lg-6 col-md-12">
                                         <div className='text-small trends-title-down'>
                                             Down
                                         </div>

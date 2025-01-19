@@ -6,34 +6,10 @@
     width: 100%;
 }
 
-@media only screen and (max-width: 1000px) {
-    .strategem-title-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding-top: 30px;
-        padding-bottom: 5px;
-        width: 100%;
-    }
-}
-
-@media (any-pointer: coarse) {
-    .strategem-title-wrapper {
-        padding-left: 20px;
-    }
-}
-
 .stratagem-title {
     display: flex;
     flex-direction: row;
-    width: 50%;
-}
-
-@media only screen and (max-width: 1000px) {
-    .stratagem-title {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
+    width: 100%;
 }
 
 .stratagem-title-img {
@@ -56,103 +32,23 @@
     width: 50%;
 }
 
-@media only screen and (max-width: 1000px) {
-    .stratagem-filters-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding-left: 20px;
-    }
-}
-
 .stratagem-filter-container {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 15px;
-    width: 50%;
+    align-items: center;
+    padding: 0px 0px 15px 15px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
     .stratagem-filter-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 10px 10px 10px 40px;
-        width: 30%;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 }
 
 .strategem-divider {
     height: 5px;
     border-top: 1px solid white;
-}
-
-.stratagem-section-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 100%;
-}
-
-@media (any-pointer: coarse) {
-    .stratagem-section-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        max-width: 100%;
-    }
-}
-
-.stratagem-rankings-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    width: 100%;
-    padding-top: 12px;
-}
-
-@media (any-pointer: coarse) {
-    .stratagem-rankings-container {
-        width: 100%;
-        padding-left: 20px;
-        flex-direction: column;
-    }
-}
-
-.stratagem-trends-container {
-    display: flex;
-    flex-direction: row;
-    width: 45%;
-}
-@media (any-pointer: coarse) {
-    .stratagem-trends-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-}
-
-.stratagem-trends-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    padding-top: 20px;
-}
-
-@media only screen and (max-width: 1000px) {
-    .stratagem-trends-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        padding-top: 20px;
-    }
 }
 
 .stratagem-graph-wrapper-faction {
@@ -166,18 +62,24 @@
 .stratagem-graph-wrapper-patch {
     height: 240px;
     width: 100%;
-    padding: 0px 30px 0px 0px;
     margin-top: 5px;
 }
 
-@media (any-pointer: coarse) {
-    .stratagem-graph-wrapper-faction {
-        border-radius: 15px;
-        width: 90%;
-        margin-left: 10px;
-        height: 250px;
-        margin-top: 5px;
-    }
+.stratagem-mission-graph-wrapper {
+    padding: 5px 10px !important;
+    height: 100px;
+    width: 100%;
+}
+
+.stratagem-graph-title {
+    color: white;
+    font-size: 22px;
+    padding-top: 15px;
+
+    padding-left: 20px;
+    padding-bottom: 10px;
+    margin-top: -50px;
+    font-family: "CustomFont";
 }
 
 .stratagem-graphs-title {
@@ -188,30 +90,9 @@
     font-size: 22px;
     font-family: "CustomFont";
 }
-
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
     .stratagem-graphs-title {
-        padding-left: 20px;
-        color: white;
-        font-size: 22px;
-        font-family: "CustomFont";
-    }
-}
-
-.stratagem-graphs-wrapper {
-    margin-top: 20px;
-    margin-left: 5px;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-@media (any-pointer: coarse) {
-    .stratagem-graphs-wrapper {
-        flex-direction: column;
-        padding: 10px;
+        padding-top: 15px;
     }
 }
 
@@ -219,30 +100,6 @@
     padding: 5px 10px !important;
     height:  160px;
     width: 100%;
-}
-
-@media (any-pointer: coarse) {
-    .stratagem-other-graph-wrapper {
-        width: 100%;
-        height: 300px;
-    }
-}
-
-.stratagem-mission-graph-wrapper{
-    padding: 5px 10px !important;
-    height:  100px;
-    width: 100%;
-}
-
-.stratagem-graph-title {
-    color: white;   
-    font-size: 22px;
-    padding-top: 15px;
-
-    padding-left: 20px;
-    padding-bottom: 10px;
-    margin-top: -50px;
-    font-family: "CustomFont";
 }
 
 .stratagem-loadouts-wrapper {
@@ -254,7 +111,7 @@
     padding-left: 15px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
     .stratagem-loadouts-wrapper {
         display: flex;
         flex-direction: column;
@@ -262,6 +119,7 @@
         padding-left: 20px;
     }
 }
+
 .stratagem-loadouts-section-wrapper {
     padding: 15px 0px 10px 0px;
     display: flex;
@@ -276,10 +134,18 @@
     font-size: 19px;
 }
 
-.companion-chart-wrapper{
+.stratagem-other-title {
+    font-family: "CustomFont", sans-serif;
+    color: white;
+    padding: 0px 5px 0px 5px;
+    font-size: 19px;
+    transform: translateY(10px);
+}
+
+.companion-chart-wrapper {
     padding: 5px 10px;
 }
 
-.companion-charts-wrapper{
+.companion-charts-wrapper {
     margin-top: 100px;
 }

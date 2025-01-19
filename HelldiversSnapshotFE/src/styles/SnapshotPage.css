@@ -1,27 +1,17 @@
 .filters-container {
-  width: 100%;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 15px;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px;
+  flex-wrap: wrap;  
+  justify-content:space-between;
+  padding: 10px 30px 15px 30px;
 }
 
-@media (any-pointer: fine) {
-  .filters-container {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 25px 2% 30px 2%;
-  }
+.filter-container {
+  padding: 10px;
 }
 
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
   .filters-container {
-    flex-direction: row;
-    gap: 15px;
-    padding: 20px 2% 30px 20px;
+    justify-content:center;
   }
 }
 
@@ -38,21 +28,6 @@
   font-size: 18px;
   text-decoration: underline;
   cursor: pointer;
-}
-
-@media only screen and (min-width: 1000px) {
-  .filter-results-container {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 20px 20px 60px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .filter-results-container {
-    flex-direction: column;
-    padding: 0px 0px 20px 20px;
-  }
 }
 
 .show-games-table-wrapper {
@@ -82,4 +57,16 @@
 
 .trends-container{
   padding-left: 40px;
+}
+
+.trends-title-patches{
+  padding-top: 0px;
+}
+
+@media only screen and (max-width: 900px) {
+  .trends-title-patches{
+      padding-top: 5px;
+      display: flex;
+      justify-content: center;
+  }
 }

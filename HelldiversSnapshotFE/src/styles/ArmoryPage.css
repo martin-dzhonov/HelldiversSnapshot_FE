@@ -14,8 +14,7 @@
     color: white;
     margin-left: 20px;
     font-size: 21px;
-    padding-left: 10px;
-    padding-bottom: 5px;
+    padding: 20px 0px 0px 10px;
     width: 30%;
     border-bottom: 1px solid white;
     font-family: 'CustomFont';
@@ -37,6 +36,12 @@
     width: 140px;
 }
 
+@media only screen and (max-width: 900px) {
+    .armory-item-wrapper{
+        width: 100px;
+    }
+}
+
 .armory-item-name {
     color: white;
     text-align: center;
@@ -47,3 +52,9 @@
     font-family: 'CustomFont';
 }
 
+@media only screen and (max-width: 900px) {
+    .armory-item-name {
+        width: 90px;
+        font-size: 14px;
+    }
+}

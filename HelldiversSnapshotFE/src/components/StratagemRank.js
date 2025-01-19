@@ -2,7 +2,7 @@ import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getCountingSuffix } from "../utils";
 
-const StratagemRank = ({ value, text, color, suffix = false }) => {
+const StratagemRank = ({ value, text, color, suffix = false, percent = false }) => {
     return (
         <div className="stratagem-rankings-item">
             <div className="stratagem-rankings-number" style={{ color }}>
@@ -10,6 +10,11 @@ const StratagemRank = ({ value, text, color, suffix = false }) => {
                 {suffix && (
                     <span className="stratagem-rankings-number-small">
                         {getCountingSuffix(value)}
+                    </span>
+                )}
+                {percent && (
+                    <span className="stratagem-rankings-number-small">
+                        %
                     </span>
                 )}
             </div>
