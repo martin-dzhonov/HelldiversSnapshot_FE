@@ -1,14 +1,39 @@
 export const barSize = 24;
 
+export const sectionSize = 40;
 export const imageWidth = 36;
 export const imageHeight = 36;
 export const imageHalfHeight = imageHeight / 2;
 export const imageBarOffset = (barSize - imageHeight) / 2;
 
-const percentLoadoutsPlugins = {
-    title: { display: false },
-    legend: { display: false },
-    tooltip: {
+export const getSettingsWithMax = (settings, maxY) => {
+    settings.scales.y.max = maxY;
+    return settings;
+}
+
+const formatters = {
+    trends: (item) => [`Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`],
+    companions: (item) => [ `Paired together ${item.raw}% of games`],
+    snapshot: (item) => { return [ `Pick Rate: ${item.raw}%`, `${item.dataset.total[item.dataIndex]} times played`];},
+    pickRate: (item) => `Pick Rate: ${item.raw}%`
+};
+
+const datalabelsSettings = ({ color = "white", fontSize = 15, formatter } = {}) => {
+    return {
+        color: color,
+        anchor: 'end',
+        align: 'end',
+        font: {
+            family: "CustomFont",
+            weight: 'bold',
+            size: fontSize,
+        },
+        formatter: (value) => formatter ? formatter(value) : value + "%",
+    }
+}
+
+const tooltipSettings = (formatter) => {
+    return {
         displayColors: false,
         bodyFont: {
             family: "CustomFont",
@@ -19,67 +44,152 @@ const percentLoadoutsPlugins = {
             size: 15,
         },
         callbacks: {
-            label: (item) => `Pick Rate: ${item.raw}%`
+            label: (item) => formatter(item)
         }
-    },
+    }
+}
+
+const pickratePlugins = {
+    title: { display: false },
+    legend: { display: false },
+    tooltip: tooltipSettings(formatters.pickRate),
     datalabels: {
-        display: false,
-    },
+        display: false
+    }
 };
 
-export const strategemLarge = {
+export const snapshotItems = {
     indexAxis: "y",
+    responsive: true,
     maintainAspectRatio: false,
+    sectionSize: sectionSize,
+    iconSize: imageWidth,
     elements: {
         bar: { borderWidth: 4 }
     },
-    responsive: true,
-    plugins: percentLoadoutsPlugins,
+    layout: {
+        padding: { right: 45 },
+    },
     scales: {
         x: {
-            ticks: {
-                display: false,
-                font: { size: 13 },
-                color: "white",
-                stepSize: 10
-
-            },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: false
-            }
+            ticks: { display: false},
+            grid: { drawOnChartArea: false}
         },
         y: {
-            ticks: {
-                padding: 10,
-                display: true,
-                font: {
-                    family: "CustomFont",  // Custom font for x-axis ticks
-                    size: 13,
-                },
-                color: "white",
-            },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: false
-            },
-            beginAtZero: true
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 50; }
         }
     },
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltip: tooltipSettings(formatters.snapshot),
+        datalabels: datalabelsSettings(),
+    }
+};
+
+export const snapshotTrendsDown = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    sectionSize: sectionSize,
+    iconSize: imageWidth,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 40 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false},
+            grid: { drawOnChartArea: false}
+        },
+        y: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        tooltip: tooltipSettings(formatters.trends),
+        datalabels: datalabelsSettings({color: '#de7b6c', formatter: (value) => { return "-" + value + "%"; }}),
+    }
+};
+
+export const snapshotTrendsUp = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    sectionSize: sectionSize,
+    iconSize: imageWidth,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 40 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false},
+            grid: { drawOnChartArea: false}
+        },
+        y: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        tooltip: tooltipSettings(formatters.trends),
+        datalabels: datalabelsSettings({color: '#679552', formatter: (value) => { return "+" + value + "%"; }}),
+    }
+};
+
+export const strategemCompanions = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    sectionSize: 36,
+    iconSize: 34,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 20 },
+    },
+    scales: {
+        x: {
+            min: 0,
+            max: 50,
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        },
+        y: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        tooltip: tooltipSettings(formatters.companions),
+        datalabels: datalabelsSettings({fontSize: 14})
+    }
 };
 
 export const strategemFaction = {
     indexAxis: "x",
+    responsive: true,
     maintainAspectRatio: false,
     elements: {
         bar: { borderWidth: 2 }
     },
-    responsive: true,
-    plugins: percentLoadoutsPlugins,
     scales: {
         x: {
             ticks: {
@@ -90,12 +200,7 @@ export const strategemFaction = {
                 },
                 color: "white",
             },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: true,
-                drawOnChartArea: false
-            }
+            grid: { drawOnChartArea: false}
         },
         y: {
             min: 0,
@@ -123,22 +228,21 @@ export const strategemFaction = {
             beginAtZero: true
         }
     },
+    plugins: pickratePlugins
 };
 
 export const strategemPatch = {
     indexAxis: "x",
-    layout: {
-        padding:
-            { top: 35 },
-    },
-    maintainAspectRatio: false,
     responsive: true,
-    plugins: percentLoadoutsPlugins,
+    maintainAspectRatio: false,
+    layout: { 
+        padding:{ top: 35 }
+    },
     scales: {
         x: {
             ticks: {
-                minRotation: 0, // Minimum rotation angle for the ticks
-                maxRotation: 10, // Maximum rotation angle for the ticks
+                minRotation: 0,
+                maxRotation: 10,
                 display: true,
                 font: {
                     family: "CustomFont",
@@ -147,17 +251,12 @@ export const strategemPatch = {
                 color: "white",
             },
             grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
                 drawOnChartArea: false
             }
         },
         y: {
             ticks: {
                 display: false,
-                font: { size: 11 },
-                color: "white",
                 maxTicksLimit: 3,
             },
             grid: {
@@ -174,241 +273,39 @@ export const strategemPatch = {
             beginAtZero: true
         }
     },
+    plugins: pickratePlugins
 };
 
-export const snapshotItems = {
+export const strategemOther = {
     indexAxis: "y",
-    sectionSize: 40,
-    iconSize: 36,
     responsive: true,
     maintainAspectRatio: false,
     elements: {
         bar: { borderWidth: 4 }
     },
+    layout: {
+        padding:{ right: 45 },
+    },
     scales: {
         x: {
-
+            ticks: { display: false},
+            grid: { drawOnChartArea: false}
+        },
+        y: {
             ticks: {
-                padding: 10,
                 display: true,
                 font: {
                     family: "CustomFont",
-                    size: 12,
+                    size: 13,
                 },
                 color: "white",
             },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: true
-            }
-        },
-        y: {
-            ticks: { display: false },
-            grid: { display: false },
-            afterFit: (axis) => { axis.width = 50; }
-        }
-    },
-    plugins: {
-        title: {
-            display: false
-        },
-        legend: {
-            display: false
-        },
-        datalabels: {
-            display: false,
-        },
-        tooltip: {
-            displayColors: false,
-            bodyFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            titleFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            callbacks: {
-                label: (item) => {
-                    return [
-                        `Pick Rate: ${item.raw}%`,
-                        `${item.dataset.total[item.dataIndex]} times played`
-                    ];
-                }
-            }
-        }
-    }
-};
-
-export const snapshotTrendsDown = {
-    indexAxis: "y",
-    sectionSize: 40,
-    iconSize: 36,
-    responsive: true,
-    maintainAspectRatio: false,
-    elements: {
-        bar: { borderWidth: 4 }
-    },
-    scales: {
-        x: {
-
-            ticks: { display: false, stepSize: 5 },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: false
-            }
-        },
-        y: {
-            ticks: { display: false },
-            grid: { display: false },
-            afterFit: (axis) => { axis.width = 50; }
-        }
-    },
-    plugins: {
-        ...percentLoadoutsPlugins,
-        tooltip: {
-            displayColors: false,
-            bodyFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            titleFont: {
-                family: "CustomFont",
-                size: 15,
-            },
-            callbacks: {
-                label: (item) => [
-                    `Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`
-                ]
-            }
-        },
-        datalabels: {
-            color: '#de7b6c',
-            anchor: 'end',
-            align: 'end',
-            font: {
-                family: "CustomFont",
-                weight: 'bold',
-                size: 14,
-            },
-            formatter: (value) => "-" + value + "%",
-        },
-    }
-};
-
-export const snapshotTrendsUp = {
-    indexAxis: "y",
-    sectionSize: 40,
-    iconSize: 36,
-    responsive: true,
-    maintainAspectRatio: false,
-    elements: {
-        bar: { borderWidth: 4 }
-    },
-    scales: {
-        x: {
-
-            ticks: { display: false, stepSize: 5 },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: false
-            }
-        },
-        y: {
-            ticks: { display: false },
-            grid: { display: false },
-            afterFit: (axis) => { axis.width = 50; }
-        }
-    },
-    plugins: {
-        ...percentLoadoutsPlugins,
-        tooltip: {
-            displayColors: false,
-            bodyFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            titleFont: {
-                family: "CustomFont",
-                size: 15,
-            },
-            callbacks: {
-                label: (item) => [
-                    `Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`
-                ]
-            }
-        },
-        datalabels: {
-            color: '#679552',
-            anchor: 'end',
-            align: 'end',
-            font: {
-                family: "CustomFont",
-                weight: 'bold',
-                size: 14,
-            },
-            formatter: (value) => "+" + value + "%",
-        },
-    }
-};
-
-export const strategemCompanions = {
-    indexAxis: "y",
-    sectionSize: 36,
-    iconSize: 34,
-
-    responsive: true,
-    maintainAspectRatio: false,
-    elements: {
-        bar: { borderWidth: 4 }
-    },
-    scales: {
-        x: {
-            min: 0,
-            max: 50,
-            ticks: { display: false, stepSize: 5 },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: false
-            },
+            grid: { drawOnChartArea: false },
             beginAtZero: true
-        },
-        y: {
-            ticks: { display: false },
-            grid: { display: false },
-            afterFit: (axis) => { axis.width = 50; }
         }
     },
     plugins: {
-        ...percentLoadoutsPlugins,
-        tooltip: {
-            displayColors: false,
-            bodyFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            titleFont: {
-                family: "CustomFont",
-                size: 14,
-            },
-            callbacks: {
-                label: (item) => [
-                    `Paired together ${item.raw}% of games`
-                ]
-            }
-        }
-    }
+        ...pickratePlugins,
+        datalabels: datalabelsSettings({fontSize: 14})
+    },
 };
-
-export const getSettingsWithMax = (settings, maxX) => {
-    settings.scales.y.max = maxX;
-    return settings;
-}

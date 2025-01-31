@@ -44,8 +44,9 @@
 }
 
 .text-faction-show-all {
-  padding-left: 60px;
-  font-size: 17px;
+  padding-left: 50px;
+  padding-top: 5px;
+  font-size: 18px;
   text-decoration: underline;
   cursor: pointer;
 }

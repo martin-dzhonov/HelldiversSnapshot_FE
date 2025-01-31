@@ -5,8 +5,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useParams, useNavigate } from "react-router-dom";
 import * as chartsSettings from "../settings/chartSettings";
-import Tooltip from "react-bootstrap/Tooltip";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import StratagemRank from "../components/StratagemRank";
 import useMobile from "../hooks/useMobile";
 import BarChart from "../components/BarChart";
@@ -20,7 +18,6 @@ import {
     missionTypes,
     factions,
     factionColors,
-    difficultiesNames,
     itemCategories,
     difficultiesNamesShort
 } from "../constants";
@@ -34,10 +31,8 @@ import {
 import LineGraph from "../components/LineGraph";
 
 function StratagemPage() {
-    const navigate = useNavigate();
+    let { itemID, factionID } = useParams();
     const { isMobile } = useMobile();
-    let { itemId } = useParams();
-    let { factionId } = useParams();
 
     const [fetchData, setFetchData] = useState();
     const [diffGraph, setDiffGraph] = useState(null);
@@ -48,104 +43,46 @@ function StratagemPage() {
     const [companionGraphs, setCompanionGraphs] = useState(null);
 
     const [filters, setFilters] = useState({
-        faction: factionId,
+        faction: factionID,
         patch: { ...patchPeriods[0] }
     });
 
-    const data = useMemo(() => {
-        if (fetchData && filters) {
-            const patch = patchPeriods.findIndex(item => item.id === filters.patch.id);
-            const filtered = fetchData[patch][filters.faction];
-            return filtered;
-        }
-    }, [fetchData, filters]);
-
-    const strategemData = useMemo(() => {
-        if (data) {
-            return data.strategems[itemId];
-        }
-    }, [data, itemId]);
-
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-            .then((response) => response.json());
+        const fetchStratagem = fetch(apiBaseUrl + `/strategem`).then((response) => response.json());
 
         fetchStratagem.then((res) => {
             setFetchData(res);
         });
     }, []);
 
-    useEffect(() => {
-        if (fetchData) {
-            const patch = patchPeriods.findIndex(item => item.id === filters.patch.id);
-            const patchData = fetchData[patch];
-
-            const dataset = Object.entries(patchData).map(([key, value]) =>
-                getPercentage(value.strategems[itemId].loadouts, patchData[key].totalLoadouts));
-
-            let maxRounded = Math.round(Math.max(...dataset) / 10) * 10;
-
-            setFactionGraph({
-                labels: Object.keys(patchData).map((item) => capitalizeFirstLetter(item)),
-                datasets: [
-                    {
-                        data: dataset,
-                        backgroundColor: factionColors,
-                        barThickness: 24
-                    }
-                ],
-                chartsSettings: chartsSettings.getSettingsWithMax(chartsSettings.strategemFaction,
-                    maxRounded > 10 ? maxRounded : 20
-                )
-            });
+    const data = useMemo(() => {
+        if (fetchData && filters) {
+            const patchID = patchPeriods.findIndex(item => item.id === filters.patch.id);
+            const filtered = fetchData[patchID][filters.faction];
+            return filtered;
         }
-    }, [fetchData, filters, itemId]);
+    }, [fetchData, filters]);
 
-    useEffect(() => {
-        if (fetchData && itemId && filters.faction) {
-
-            const dataset = fetchData.map((patch) => {
-                const stratagem = patch[filters.faction].strategems[itemId];
-                return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts);
-            }).reverse();
-
-            const itemColor = getItemColor(itemId);
-            const patchesCount = dataset.filter(num => typeof num === 'number' && !isNaN(num)).length;
-
-            setShowPatchGraph(patchesCount > 1);
-            setPatchGraph({
-                labels: patchPeriods.map((item) => item.id).reverse(),
-                datasets: [
-                    {
-                        data: dataset,
-                        fill: 'origin',
-                        borderColor: itemColor,
-                        pointRadius: 6,
-                        pointHoverRadius: 12,
-                        pointBackgroundColor: getItemColor(itemId),
-                        pointBorderColor: getItemColor(itemId),
-                        backgroundColor: (context) => getChartGradient(context, itemColor),
-
-                    }
-                ],
-                chartsSettings: chartsSettings.getSettingsWithMax(chartsSettings.strategemPatch,
-                    Math.max(...dataset) + 4
-                )
-            });
+    const strategemData = useMemo(() => {
+        if (data) {
+            return data.strategems[itemID];
         }
-    }, [fetchData, itemId, filters]);
+    }, [data, itemID]);
 
+    const patchID = useMemo(() => {
+        const id = patchPeriods.findIndex(item => item.id === filters.patch.id);
+        return id;
+    }, [filters.patch]);
 
     useEffect(() => {
         if (strategemData) {
-
             setDiffGraph({
                 labels: difficultiesNamesShort,
                 datasets: [
                     {
                         data: Object.keys(strategemData.diffs).map(key =>
                             getPercentage(strategemData.diffs[key], data.diffs[key])),
-                        backgroundColor: getItemColor(itemId),
+                        backgroundColor: getItemColor(itemID),
                         barThickness: 24
                     }
                 ]
@@ -157,7 +94,7 @@ function StratagemPage() {
                     {
                         data: Object.keys(strategemData.missions).map(key =>
                             getPercentage(strategemData.missions[key], data.missions[key])),
-                        backgroundColor: getItemColor(itemId),
+                        backgroundColor: getItemColor(itemID),
                         barThickness: 24
                     }
                 ]
@@ -180,8 +117,63 @@ function StratagemPage() {
         }
     }, [strategemData]);
 
-    const onPatchClick = (element) => {
-    }
+    useEffect(() => {
+        if (fetchData) {
+            const patchData = fetchData[patchID];
+            const dataset = Object.entries(patchData).map(([key, value]) =>
+                getPercentage(value.strategems[itemID].loadouts, patchData[key].totalLoadouts));
+
+            let maxRounded = Math.round(Math.max(...dataset.filter((item => isFinite(item)))) / 10) * 10;
+
+            setFactionGraph({
+                labels: Object.keys(patchData).map((item) => capitalizeFirstLetter(item)),
+                datasets: [
+                    {
+                        data: dataset,
+                        backgroundColor: factionColors,
+                        barThickness: 24
+                    }
+                ],
+                chartsSettings: chartsSettings.getSettingsWithMax(chartsSettings.strategemFaction,
+                    maxRounded > 10 ? maxRounded : 20
+                )
+            });
+        }
+    }, [fetchData, patchID, itemID]);
+
+    useEffect(() => {
+        if (fetchData && itemID && filters.faction) {
+
+            const allPatchesDataset = fetchData.map((patch) => {
+                const stratagem = patch[filters.faction].strategems[itemID];
+                return getPercentage(stratagem.loadouts, patch[filters.faction].totalLoadouts);
+            }).reverse();
+
+            const itemColor = getItemColor(itemID);
+            const patchesCount = allPatchesDataset.filter(num => typeof num === 'number' && !isNaN(num)).length;
+
+            setShowPatchGraph(patchesCount > 1);
+            setPatchGraph({
+                labels: patchPeriods.map((item) => item.id).reverse(),
+                datasets: [
+                    {
+                        data: allPatchesDataset,
+                        fill: 'origin',
+                        borderColor: itemColor,
+                        pointRadius: 6,
+                        pointHoverRadius: 12,
+                        pointBackgroundColor: getItemColor(itemID),
+                        pointBorderColor: getItemColor(itemID),
+                        backgroundColor: (context) => getChartGradient(context, itemColor),
+
+                    }
+                ],
+                chartsSettings: chartsSettings.getSettingsWithMax(chartsSettings.strategemPatch,
+                    Math.max(...allPatchesDataset) + 4
+                )
+            });
+        }
+    }, [fetchData, itemID, filters]);
 
     const onFactionClick = (element) => {
         if (element) {
@@ -189,17 +181,16 @@ function StratagemPage() {
         }
     }
 
-
     return (
         <div className="content-wrapper">
             <div className="row">
                 <div className="col-lg-6 col-md-12 col-sm-12">
                     <div className="stratagem-title">
                         <div className="stratagem-title-img">
-                            <img src={strategems[itemId].svg} alt=""></img>
+                            <img src={strategems[itemID].svg} alt=""></img>
                         </div>
                         <div className="stratagem-title-text">
-                            {strategems[itemId].nameFull}
+                            {strategems[itemID].nameFull}
                         </div>
                     </div>
                 </div>
@@ -250,13 +241,13 @@ function StratagemPage() {
                                     {isMobile ?
                                         <>
                                             <StratagemRank
-                                                text={["in", strategems[itemId].category]}
-                                                value={getStrategemRank(data, itemId, true)}
-                                                color={getItemColor(itemId)}
+                                                text={["in", strategems[itemID].category]}
+                                                value={getStrategemRank(data, itemID, true)}
+                                                color={getItemColor(itemID)}
                                                 suffix />
                                             <StratagemRank
                                                 text={["in", "All Stratagem"]}
-                                                value={getStrategemRank(data, itemId)}
+                                                value={getStrategemRank(data, itemID)}
                                                 color={"rgb(255,182,0)"}
                                                 suffix />
                                         </> :
@@ -264,7 +255,7 @@ function StratagemPage() {
                                           
                                                 <StratagemRank
                                                 text={["in", "All Stratagem"]}
-                                                value={getStrategemRank(data, itemId)}
+                                                value={getStrategemRank(data, itemID)}
                                                 color={"rgb(255,182,0)"}
                                                 suffix />
                                             <StratagemRank
@@ -280,7 +271,7 @@ function StratagemPage() {
                                             <StratagemRank
                                                 text={["pick ", "rate"]}
                                                 value={getPercentage(strategemData?.loadouts, data?.totalLoadouts)}
-                                                color={getItemColor(itemId)}
+                                                color={getItemColor(itemID)}
                                                 percent />
                                              <StratagemRank
                                                 text={["of", "games"]}
@@ -290,14 +281,14 @@ function StratagemPage() {
                                         </> :
                                         <>
                                               <StratagemRank
-                                                text={["in", strategems[itemId].category]}
-                                                value={getStrategemRank(data, itemId, true)}
-                                                color={getItemColor(itemId)}
+                                                text={["in", strategems[itemID].category]}
+                                                value={getStrategemRank(data, itemID, true)}
+                                                color={getItemColor(itemID)}
                                                 suffix />
                                             <StratagemRank
                                                 text={["pick ", "rate"]}
                                                 value={getPercentage(strategemData?.loadouts, data?.totalLoadouts)}
-                                                color={getItemColor(itemId)}
+                                                color={getItemColor(itemID)}
                                                 percent />
 
                                         </>}
@@ -323,7 +314,6 @@ function StratagemPage() {
                                     <LineGraph
                                         data={patchGraph}
                                         options={patchGraph.chartsSettings}
-                                        onLineClick={onPatchClick}
                                     />
                                 </div>
                             ) : (
@@ -361,7 +351,7 @@ function StratagemPage() {
                                 <div className="stratagem-other-title">Difficulty</div>
                                 <BarChart
                                     data={diffGraph}
-                                    options={chartsSettings.strategemLarge}
+                                    options={chartsSettings.strategemOther}
                                 />
                             </div>}
                     </div>
@@ -371,7 +361,7 @@ function StratagemPage() {
                                 <div className="stratagem-other-title">Mission Lenght</div>
                                 <BarChart
                                     data={missionGraph}
-                                    options={chartsSettings.strategemLarge}
+                                    options={chartsSettings.strategemOther}
                                 />
                             </div>}
                     </div>

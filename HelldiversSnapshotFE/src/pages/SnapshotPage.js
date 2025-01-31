@@ -133,18 +133,22 @@ function SnapshotPage() {
             <Filters type={tabIndex} filters={filters} setFilters={setFilters} />
 
             {isMobile && !loading && <div className="end-element">
-                        <div className='filters-result-text'>
-                            Matches: {filterCount.matchCount}
-                            &nbsp;&nbsp;&nbsp;
-                            Loadouts: {filterCount.loadoutCount}
-                        </div>
-                    </div>}
+                <div className='filters-result-text'>
+                    Matches: {filterCount.matchCount}
+                    &nbsp;&nbsp;&nbsp;
+                    Loadouts: {filterCount.loadoutCount}
+                </div>
+            </div>}
 
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
                         <Tab>Snapshot</Tab>
-                        <Tab disabled={filters.faction==="illuminate"} onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>Trends</Tab>
+                        <Tab
+                            disabled={filters.faction === "illuminate"}
+                            onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>
+                            Trends
+                        </Tab>
                         <Tab>Games</Tab>
                     </TabList>
 
@@ -156,7 +160,7 @@ function SnapshotPage() {
                         </div>
                     </div>}
                 </div>
-                
+
                 <Loader loading={loading}>
                     <TabPanel>
                         {snapshotGraphData &&

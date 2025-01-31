@@ -29,7 +29,7 @@ function App() {
                     }
                 ></Route>
                 <Route
-                    path="/armory/:factionId/:itemId"
+                    path="/armory/:factionID/:itemID"
                     element={
                         <Layout>
                             <StratagemPage />
