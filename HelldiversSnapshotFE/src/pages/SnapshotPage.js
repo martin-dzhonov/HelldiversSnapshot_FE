@@ -3,143 +3,98 @@ import '../styles/App.css';
 import '../styles/SnapshotPage.css';
 import "react-tabs/style/react-tabs.css";
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
-import { apiBaseUrl, patchPeriods, strategems } from '../constants';
-import { filterByPatch, getMissionsByLength, getItemDict, isFiniteNumber } from '../utils';
-import * as chartsSettings from "../settings/chartSettings";
-import GamesTable from '../components/GamesTable';
+import { apiBaseUrl, patchPeriods } from '../constants';
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';
+import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/StrategemChart';
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import * as chartsSettings from "../settings/chartSettings";
+import {
+    getPatchDiffs,
+    strategemsByCategory
+} from '../utils';
 
 function SnapshotPage() {
-    const { isMobile } = useMobile();
+    const { isMobile } = useMobile()
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [showGraphFull, setShowGraphFull] = useState(false);
-    const [tabIndex, setTabIndex] = useState(0);
-
-    const [matchData, setMatchData] = useState(null);
     const [snapshotGraphData, setSnapshotGraphData] = useState(null);
+    const [graphFull, setGraphFull] = useState(false);
     const [timelineGraphData, setTimelineGraphData] = useState(null);
+    const [tabIndex, setTabIndex] = useState(0);
 
     const [filters, setFilters] = useState({
         faction: "terminid",
-        type: "All",
+        category: "All",
         difficulty: 0,
         mission: "All",
         patch: patchPeriods[0],
         patchStart: patchPeriods[1]
     });
-
-    const [filterCount, setFilterCount] = useState({
+    const [filterResults, setFilterResults] = useState({
         matchCount: 0,
         loadoutCount: 0
     });
 
-    const fetchMatchData = async (url) => {
-        const response = await fetch(`${apiBaseUrl}${url}`);
-        const data = await response.json();
-        setMatchData(data);
+    const fetchData = async (url) => {
+        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        const response = await fetchPromise.json();
+        setData(response);
         setLoading(false);
     };
 
     useEffect(() => {
         setLoading(true);
-        fetchMatchData(`/faction/all`);
-    }, []);
-
-    const dataFiltered = useMemo(() => {
-        if (matchData && filters) {
-            const filtered = matchData.filter((game) => {
-                return (
-                    game.faction === filters.faction &&
-                    (filters.difficulty === 0 || game.difficulty === filters.difficulty) &&
-                    filterByPatch(filters.patch, game) &&
-                    getMissionsByLength(filters.mission).includes(game.mission)
-                );
-            });
-            setFilterCount({
-                matchCount: filtered.length,
-                loadoutCount: filtered.reduce((sum, item) => sum + item.players.length, 0)
-            });
-            return filtered;
-        }
-    }, [matchData, filters]);
+        fetchData(`/strategem/filter?diff=${filters.difficulty}&?mission=${filters.mission}`);
+    }, [filters.difficulty, filters.mission]);
 
     useEffect(() => {
-        if (dataFiltered) {
-            let rankedDict = getItemDict(dataFiltered, filters.type);
-            if (!showGraphFull) {
-                rankedDict = Object.fromEntries(Object.entries(rankedDict).slice(0, 15))
-            }
-            setSnapshotGraphData(rankedDict);
+        if (tabIndex === 0 && data && filters) {
+            const factionData = data[filters.faction];
+            const patchData = factionData[filters.patch.id];
+            const graphData = strategemsByCategory(patchData, filters.category, graphFull);
+
+            setFilterResults({
+                matchCount: patchData.totalGames,
+                loadoutCount: patchData.totalLoadouts
+            });
+
+            setSnapshotGraphData(graphData);
         }
-    }, [dataFiltered, filters, showGraphFull]);
+    }, [data, filters, graphFull, tabIndex]);
 
     useEffect(() => {
-        if (matchData && filters) {
-            const patchesData = [filters.patch, filters.patchStart].map((patch) =>
-                getItemDict(matchData
-                    .filter((game) => game.faction === filters.faction)
-                    .filter((game) => filterByPatch(patch, game)),
-                    filters.type
-                ))
+        if (tabIndex === 1 && data && filters) {
+            const factionData = data[filters.faction];
+            const startPatchData = factionData[filters.patch.id];
+            const endPatchData = factionData[filters.patchStart.id];
 
-            const itemValues = Object.keys(patchesData[0])
-                .map((item) => {
-                    const currValue = patchesData[0][item]?.value;
-                    const pastValue = patchesData[1][item]?.value;
-                    return {
-                        name: item,
-                        value: Number((currValue - pastValue).toFixed(1)),
-                        currValue: currValue,
-                        pastValue: pastValue,
-                    }
-                });
+            setFilterResults({
+                matchCount: startPatchData.totalGames + endPatchData.totalGames,
+                loadoutCount: endPatchData.totalLoadouts + endPatchData.totalLoadouts
+            });
 
-            const allFiltered = [...itemValues]
-                .filter((item) => isFiniteNumber(item.value) && Math.abs(item.value) > 0.5)
-                .sort((a, b) => { return a.value - b.value; });
-
-            const up = allFiltered.filter((item) => item.value > 0).reverse();
-            const down = allFiltered.filter((item) => item.value < 0);
-
-            setTimelineGraphData({
-                up: up.reduce((acc, item) => {
-                    acc[item.name] = {
-                        value: item.value,
-                        currValue: item.currValue,
-                        pastValue: item.pastValue,
-                    };
-                    return acc;
-                }, {}),
-                down: down.reduce((acc, item) => {
-                    acc[item.name] = {
-                        value: Math.abs(item.value),
-                        currValue: item.currValue,
-                        pastValue: item.pastValue,
-                    };
-                    return acc;
-                }, {}),
-            })
+            const endPatch = strategemsByCategory(startPatchData, filters.category, true);
+            const startPatch = strategemsByCategory(endPatchData, filters.category, true);
+            const graphData = getPatchDiffs(startPatch, endPatch);
+            setTimelineGraphData(graphData);
         }
-    }, [matchData, filters]);
+    }, [data, filters, tabIndex]);
 
     return (
         <div className="content-wrapper">
-
             <Filters type={tabIndex} filters={filters} setFilters={setFilters} />
 
             {isMobile && !loading && <div className="end-element">
                 <div className='filters-result-text'>
-                    Matches: {filterCount.matchCount}
+                    Matches: {filterResults.matchCount}
                     &nbsp;&nbsp;&nbsp;
-                    Loadouts: {filterCount.loadoutCount}
+                    Loadouts: {filterResults.loadoutCount}
                 </div>
             </div>}
-
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
@@ -154,9 +109,9 @@ function SnapshotPage() {
 
                     {!isMobile && !loading && <div className="end-element">
                         <div className='filters-result-text'>
-                            Matches: {filterCount.matchCount}
+                            Matches: {filterResults.matchCount}
                             &nbsp;&nbsp;&nbsp;
-                            Loadouts: {filterCount.loadoutCount}
+                            Loadouts: {filterResults.loadoutCount}
                         </div>
                     </div>}
                 </div>
@@ -165,11 +120,14 @@ function SnapshotPage() {
                     <TabPanel>
                         {snapshotGraphData &&
                             <>
-                                <StrategemChart barData={snapshotGraphData} filters={filters} options={chartsSettings.snapshotItems} />
+                                <StrategemChart
+                                    barData={snapshotGraphData}
+                                    filters={filters}
+                                    options={chartsSettings.snapshotItems} />
                                 <div
                                     className='text-small text-faction-show-all'
-                                    onClick={() => setShowGraphFull(!showGraphFull)}>
-                                    Show {showGraphFull ? "Less" : "All"}
+                                    onClick={() => setGraphFull(!graphFull)}>
+                                    Show {graphFull ? "Less" : "All"}
                                 </div>
                             </>}
                     </TabPanel>
@@ -178,7 +136,7 @@ function SnapshotPage() {
                             <div className='trends-container'>
                                 <div className='row'>
                                     <div className='text-medium trends-title-patches'>
-                                        {filters.patchStart.id} ➜ {filters.patch.id}
+                                        {filters.patchStart.name} ➜ {filters.patch.name}
                                     </div>
                                 </div>
                                 <div className='row'>
@@ -186,13 +144,19 @@ function SnapshotPage() {
                                         <div className='text-small trends-title-up'>
                                             Up
                                         </div>
-                                        <StrategemChart barData={timelineGraphData?.up} filters={filters} options={chartsSettings.snapshotTrendsUp} />
+                                        <StrategemChart
+                                            barData={timelineGraphData?.up}
+                                            filters={filters}
+                                            options={chartsSettings.snapshotTrendsUp} />
                                     </div>
                                     <div className="col-lg-6 col-md-12">
                                         <div className='text-small trends-title-down'>
                                             Down
                                         </div>
-                                        <StrategemChart barData={timelineGraphData?.down} filters={filters} options={chartsSettings.snapshotTrendsDown} />
+                                        <StrategemChart
+                                            barData={timelineGraphData?.down}
+                                            filters={filters}
+                                            options={chartsSettings.snapshotTrendsDown} />
 
                                     </div>
                                 </div>
@@ -200,11 +164,11 @@ function SnapshotPage() {
                         }
                     </TabPanel>
                     <TabPanel>
-                        {dataFiltered && (
+                        {/* {dataFiltered && (
                             <div className="show-games-table-wrapper">
                                 <GamesTable data={dataFiltered} />
                             </div>
-                        )}
+                        )} */}
                     </TabPanel>
                 </Loader>
             </Tabs>
@@ -213,3 +177,94 @@ function SnapshotPage() {
 }
 
 export default SnapshotPage;
+
+// const fetchMatchData = async (url) => {
+//     const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+//     const data1 = await fetchPromise.json();
+
+//     setMatchData(data1);
+//     setLoading(false);
+// };
+
+// useEffect(() => {
+//     setLoading(true);
+//     fetchMatchData(`/faction/all`);
+// }, []);
+
+// const dataFiltered = useMemo(() => {
+//     if (matchData && filters) {
+//         const filtered = matchData.filter((game) => {f
+//             return (
+//                 game.faction === filters.faction &&
+//                 (filters.difficulty === 0 || game.difficulty === filters.difficulty) &&
+//                 filterByPatch(filters.patch, game) &&
+//                 getMissionsByLength(filters.mission).includes(game.mission)
+//             );
+//         });
+//         setFilterCount({
+//             matchCount: filtered.length,
+//             loadoutCount: filtered.reduce((sum, item) => sum + item.players.length, 0)
+//         });
+//         return filtered;
+//     }
+// }, [matchData, filters]);
+
+// useEffect(() => {
+//     if (dataFiltered) {
+//         let rankedDict = getItemDict(dataFiltered, filters.category);
+//         if (!showGraphFull) {
+//             rankedDict = Object.fromEntries(Object.entries(rankedDict).slice(0, 15))
+//         }
+//         console.log(rankedDict);
+//         setSnapshotGraphData(rankedDict);
+//     }
+// }, [dataFiltered, filters, showGraphFull]);
+
+// useEffect(() => {
+//     if (matchData && filters) {
+//         const patchesData = [filters.patch, filters.patchStart].map((patch) =>
+//             getItemDict(matchData
+//                 .filter((game) => game.faction === filters.faction)
+//                 .filter((game) => filterByPatch(patch, game)),
+//                 filters.category
+//             ))
+
+//         const itemValues = Object.keys(patchesData[0])
+//             .map((item) => {
+//                 const currValue = patchesData[0][item]?.value;
+//                 const pastValue = patchesData[1][item]?.value;
+//                 return {
+//                     name: item,
+//                     value: Number((currValue - pastValue).toFixed(1)),
+//                     currValue: currValue,
+//                     pastValue: pastValue,
+//                 }
+//             });
+
+//         const allFiltered = [...itemValues]
+//             .filter((item) => isFiniteNumber(item.value) && Math.abs(item.value) > 0.5)
+//             .sort((a, b) => { return a.value - b.value; });
+
+//         const up = allFiltered.filter((item) => item.value > 0).reverse();
+//         const down = allFiltered.filter((item) => item.value < 0);
+
+//         setTimelineGraphData({
+//             up: up.reduce((acc, item) => {
+//                 acc[item.name] = {
+//                     value: item.value,
+//                     currValue: item.currValue,
+//                     pastValue: item.pastValue,
+//                 };
+//                 return acc;
+//             }, {}),
+//             down: down.reduce((acc, item) => {
+//                 acc[item.name] = {
+//                     value: Math.abs(item.value),
+//                     currValue: item.currValue,
+//                     pastValue: item.pastValue,
+//                 };
+//                 return acc;
+//             }, {}),
+//         })
+//     }
+// }, [matchData, filters]);

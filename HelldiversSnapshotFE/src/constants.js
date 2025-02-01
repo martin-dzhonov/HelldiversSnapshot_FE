@@ -1,8 +1,8 @@
 const svgModules = require.context('./assets/svgs', false, /\.svg$/);
 
-const apiBaseUrl = "http://localhost:8080"//`https://utm7j5pjvi.us-east-1.awsapprunner.com`;;
+const apiBaseUrl = "http://localhost:8080"//`https://utm7j5pjvi.us-east-1.awsapprunner.com`;//
 
-const factions = ["Terminid", "Automaton", "Illuminate"];
+const factions = ["terminid", "automaton", "illuminate"];
 
 const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
 
@@ -28,9 +28,9 @@ const navRoutes = [
 ];
 
 const patchPeriods = [
-    { id: "Omens of Tyranny", start: "12/12/2024", end: "Present" },
-    { id: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 0, name: "Omens of Tyranny", start: "12/12/2024", end: "Present" },
+    { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 2, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
 ];
 
 const difficultiesNames = [

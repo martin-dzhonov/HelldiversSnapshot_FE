@@ -190,6 +190,9 @@ export const strategemFaction = {
     elements: {
         bar: { borderWidth: 2 }
     },
+    layout: {
+        padding: { top: 30 },
+    },
     scales: {
         x: {
             ticks: {
@@ -205,8 +208,8 @@ export const strategemFaction = {
         y: {
             min: 0,
             ticks: {
-                display: true,
-                font: { size: 11 },
+                display: false,
+                font: { family: "CustomFont", size: 10},
                 color: "white",
                 maxTicksLimit: 4,
                 callback: function (value, index, ticks) {
@@ -222,13 +225,13 @@ export const strategemFaction = {
                 lineWidth: function (context) {
                     const index = context.index;
                     const ticksLength = context.scale.ticks.length;
-                    return index === ticksLength - 1 ? 0 : 1;
+                    return index === 0;
                 },
             },
             beginAtZero: true
         }
     },
-    plugins: pickratePlugins
+    plugins: {...pickratePlugins, datalabels: datalabelsSettings({fontSize: 12})}
 };
 
 export const strategemPatch = {

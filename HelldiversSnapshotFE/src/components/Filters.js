@@ -3,7 +3,7 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { itemCategories, difficultiesNames, patchPeriods, factions } from '../constants';
 import { capitalizeFirstLetter } from '../utils';
 
-function Filters({ type, filters, setFilters }) {
+function    Filters({ type, filters, setFilters }) {
     return (
         <div className="filters-container">
             <div className="filter-container">
@@ -13,8 +13,8 @@ function Filters({ type, filters, setFilters }) {
                     {factions.map((factionName) => (
                         <Dropdown.Item
                             as="button"
-                            onClick={() => { setFilters({ ...filters, faction: factionName.toLocaleLowerCase() }); }}>
-                            {factionName}
+                            onClick={() => { setFilters({ ...filters, faction: factionName }); }}>
+                            {capitalizeFirstLetter(factionName)}
                         </Dropdown.Item>
                     ))}
                 </DropdownButton>
@@ -24,11 +24,11 @@ function Filters({ type, filters, setFilters }) {
                 <div className="filter-container">
                     <DropdownButton
                         className="dropdown-button"
-                        title={"Stratagems: " + filters.type}>
+                        title={"Stratagems: " + filters.category}>
                         {itemCategories.map((category, index) => (
                             <Dropdown.Item
                                 as="button"
-                                onClick={() => { setFilters({ ...filters, type: category }); }}>
+                                onClick={() => { setFilters({ ...filters, category: category }); }}>
                                 {category}
                             </Dropdown.Item>
                         ))}
@@ -39,13 +39,13 @@ function Filters({ type, filters, setFilters }) {
                 <div className="filter-container">
                     <DropdownButton
                         className="dropdown-button"
-                        title={`Start: ` + filters.patchStart.id}>
+                        title={`Start: ` + filters.patchStart.name}>
                         {patchPeriods.slice(1, patchPeriods.length).map((patchPeriod, index) => (
                             <Dropdown.Item
                                 as="button"
-                                disabled={index === patchPeriods.findIndex(item => item.id === filters.patch.id) - 1}
+                                disabled={index + 1 === filters.patch.id}
                                 onClick={() => { setFilters({ ...filters, patchStart: patchPeriod }); }}>
-                                {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                             </Dropdown.Item>
                         ))}
                     </DropdownButton>
@@ -54,14 +54,13 @@ function Filters({ type, filters, setFilters }) {
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"
-                    title={`${type !== 1 ? 'Patch: ' : 'End: '}` + filters.patch.id}>
+                    title={`${type !== 1 ? 'Patch: ' : 'End: '}` + filters.patch.name}>
                     {patchPeriods.map((patchPeriod, index) => (
                         <Dropdown.Item
                             as="button"
-                            disabled={type === 1 &&
-                                index >= patchPeriods.findIndex(item => item.id === filters.patchStart.id)}
+                            disabled={filters.faction=== 'illuminate' || (type === 1 && index >= filters.patchStart.id)}
                             onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                            {`${patchPeriod.id} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                            {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                         </Dropdown.Item>
                     ))}
                 </DropdownButton>
