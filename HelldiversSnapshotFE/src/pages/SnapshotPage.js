@@ -48,7 +48,7 @@ function SnapshotPage() {
 
     useEffect(() => {
         setLoading(true);
-        fetchData(`/strategem/filter?diff=${filters.difficulty}&?mission=${filters.mission}`);
+        fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
     }, [filters.difficulty, filters.mission]);
 
     useEffect(() => {
@@ -164,11 +164,9 @@ function SnapshotPage() {
                         }
                     </TabPanel>
                     <TabPanel>
-                        {/* {dataFiltered && (
-                            <div className="show-games-table-wrapper">
-                                <GamesTable data={dataFiltered} />
-                            </div>
-                        )} */}
+                        <div className="show-games-table-wrapper">
+                            <GamesTable filters={filters} />
+                        </div>
                     </TabPanel>
                 </Loader>
             </Tabs>

@@ -49,7 +49,7 @@ function StratagemPage() {
     });
 
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem/filter`)
+        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
             .then((response) => response.json());
 
         fetchStratagem.then((res) => {

@@ -2,17 +2,38 @@ import "../styles/App.css";
 import { strategems } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMobile } from '../hooks/useMobile';
+import { apiBaseUrl } from '../constants';
 
-function GamesTable({ data }) {
+function GamesTable({ filters }) {
     const { isMobile } = useMobile();
-
+    
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const fetchData = async (url) => {
+        try {
+            setLoading(true);
+            const response = await fetch(`${apiBaseUrl}${url}`);
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
+        if (filters) {
+            fetchData(`/games?faction=${filters.faction}&patch=${filters.patch.id}`);
+        }
+    }, [filters]);
+
+    const totalPages = Math.ceil(data.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentPageData = data.slice(startIndex, startIndex + itemsPerPage);
 
@@ -43,6 +64,10 @@ function GamesTable({ data }) {
         }
     };
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div>
             <div className="pagination">
@@ -56,15 +81,13 @@ function GamesTable({ data }) {
                         key={index}
                         onClick={() => handlePageChange(page)}
                         className={currentPage === page ? "active" : ""}
-                        disabled={page === "..."}
-                    >
+                        disabled={page === "..."}>
                         {page}
                     </button>
                 ))}
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                >
+                    disabled={currentPage === totalPages}>
                     Next
                 </button>
             </div>
@@ -83,12 +106,12 @@ function GamesTable({ data }) {
                     {currentPageData.map((game, index) => (
                         <tr key={index}>
                             <td className="text-small">
-                                <div >{new Date(game.createdAt).toLocaleDateString('en-GB', {
+                                <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
                                     day: '2-digit',
                                     month: '2-digit',
                                     year: '2-digit'
-                                }).split(",")[0]} </div>
-                                <div >{new Date(game.createdAt).toLocaleString().split(",")[1]} </div>
+                                })}</div>
+                                <div>{new Date(game.createdAt).toLocaleTimeString()}</div>
                             </td>
                             <td className="text-small">
                                 <div className="table-loadout-row-wrapper">
@@ -98,7 +121,7 @@ function GamesTable({ data }) {
                                                 <img
                                                     key={itemIndex}
                                                     className="item-img-wrapper"
-                                                    src={strategems[item].svg}
+                                                    src={strategems[item]?.svg}
                                                     width={40}
                                                     alt=""
                                                 />
@@ -110,7 +133,9 @@ function GamesTable({ data }) {
                             </td>
                             <td className="text-small">{game.planet}</td>
                             <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                            <td className="text-small">{game.modifiers.map((item) => <div>{item.toUpperCase()}</div>)}</td>
+                            <td className="text-small">
+                                {game.modifiers.map((item, index) => <div key={index}>{item.toUpperCase()}</div>)}
+                            </td>
                             <td className="text-small">{game.difficulty}</td>
                         </tr>
                     ))}

@@ -78,7 +78,6 @@ const missionNames = [
     ],
 ];
 
-
 const missionModifiers = [
     "Complex Strategem Plotting",
     "AA Defences",
