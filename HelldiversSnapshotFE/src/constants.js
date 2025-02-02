@@ -1,6 +1,6 @@
 const svgModules = require.context('./assets/svgs', false, /\.svg$/);
 
-const apiBaseUrl = "http://localhost:8080"//`https://utm7j5pjvi.us-east-1.awsapprunner.com`;//
+const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsapprunner.com`;
 
 const factions = ["terminid", "automaton", "illuminate"];
 

@@ -20,7 +20,7 @@ import {
 function SnapshotPage() {
     const { isMobile } = useMobile()
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [snapshotGraphData, setSnapshotGraphData] = useState(null);
     const [graphFull, setGraphFull] = useState(false);
     const [timelineGraphData, setTimelineGraphData] = useState(null);
@@ -47,9 +47,18 @@ function SnapshotPage() {
     };
 
     useEffect(() => {
-        setLoading(true);
-        fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+        if(filters){
+            if(filters.difficulty !==0 || filters.mission !== "All"){
+                setLoading(true);
+                fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+            }
+        }
     }, [filters.difficulty, filters.mission]);
+
+    useEffect(() => {
+        setLoading(true);
+        fetchData(`/strategem`);
+    }, []);
 
     useEffect(() => {
         if (tabIndex === 0 && data && filters) {
@@ -74,7 +83,7 @@ function SnapshotPage() {
 
             setFilterResults({
                 matchCount: startPatchData.totalGames + endPatchData.totalGames,
-                loadoutCount: endPatchData.totalLoadouts + endPatchData.totalLoadouts
+                loadoutCount: startPatchData.totalLoadouts + endPatchData.totalLoadouts
             });
 
             const endPatch = strategemsByCategory(startPatchData, filters.category, true);

@@ -5,10 +5,11 @@ import Table from "react-bootstrap/Table";
 import { useState, useEffect } from "react";
 import { useMobile } from '../hooks/useMobile';
 import { apiBaseUrl } from '../constants';
+import Loader from "./Loader";
 
 function GamesTable({ filters }) {
     const { isMobile } = useMobile();
-    
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -64,83 +65,81 @@ function GamesTable({ filters }) {
         }
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
     return (
         <div>
-            <div className="pagination">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}>
-                    Previous
-                </button>
-                {getPageNumbers().map((page, index) => (
+            <Loader loading={loading}>
+                <div className="pagination">
                     <button
-                        key={index}
-                        onClick={() => handlePageChange(page)}
-                        className={currentPage === page ? "active" : ""}
-                        disabled={page === "..."}>
-                        {page}
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>
+                        Previous
                     </button>
-                ))}
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}>
-                    Next
-                </button>
-            </div>
-            <Table striped bordered hover size="sm" variant="dark">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Loadouts</th>
-                        <th>Planet</th>
-                        <th>Mission</th>
-                        <th>Modifiers</th>
-                        <th>Diff</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentPageData.map((game, index) => (
-                        <tr key={index}>
-                            <td className="text-small">
-                                <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: '2-digit'
-                                })}</div>
-                                <div>{new Date(game.createdAt).toLocaleTimeString()}</div>
-                            </td>
-                            <td className="text-small">
-                                <div className="table-loadout-row-wrapper">
-                                    {game.players.map((loadout, loadoutIndex) => (
-                                        <div key={loadoutIndex} className="table-loadout-wrapper">
-                                            {loadout.map((item, itemIndex) => (
-                                                <img
-                                                    key={itemIndex}
-                                                    className="item-img-wrapper"
-                                                    src={strategems[item]?.svg}
-                                                    width={40}
-                                                    alt=""
-                                                />
-                                            ))}
-                                        </div>
-                                    ))}
-                                </div>
-                                <ScreenshotToggle id={game.id} alt="" />
-                            </td>
-                            <td className="text-small">{game.planet}</td>
-                            <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                            <td className="text-small">
-                                {game.modifiers.map((item, index) => <div key={index}>{item.toUpperCase()}</div>)}
-                            </td>
-                            <td className="text-small">{game.difficulty}</td>
-                        </tr>
+                    {getPageNumbers().map((page, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handlePageChange(page)}
+                            className={currentPage === page ? "active" : ""}
+                            disabled={page === "..."}>
+                            {page}
+                        </button>
                     ))}
-                </tbody>
-            </Table>
+                    <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
+                <Table striped bordered hover size="sm" variant="dark">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Loadouts</th>
+                            <th>Planet</th>
+                            <th>Mission</th>
+                            <th>Modifiers</th>
+                            <th>Diff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentPageData.map((game, index) => (
+                            <tr key={index}>
+                                <td className="text-small">
+                                    <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: '2-digit'
+                                    })}</div>
+                                    <div>{new Date(game.createdAt).toLocaleTimeString()}</div>
+                                </td>
+                                <td className="text-small">
+                                    <div className="table-loadout-row-wrapper">
+                                        {game.players.map((loadout, loadoutIndex) => (
+                                            <div key={loadoutIndex} className="table-loadout-wrapper">
+                                                {loadout.map((item, itemIndex) => (
+                                                    <img
+                                                        key={itemIndex}
+                                                        className="item-img-wrapper"
+                                                        src={strategems[item]?.svg}
+                                                        width={40}
+                                                        alt=""
+                                                    />
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <ScreenshotToggle id={game.id} alt="" />
+                                </td>
+                                <td className="text-small">{game.planet}</td>
+                                <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
+                                <td className="text-small">
+                                    {game.modifiers.map((item, index) => <div key={index}>{item.toUpperCase()}</div>)}
+                                </td>
+                                <td className="text-small">{game.difficulty}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Loader>
         </div>
     );
 }
