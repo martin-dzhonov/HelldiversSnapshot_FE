@@ -13,7 +13,7 @@ import {
     Tooltip,
 } from "chart.js";
 import * as settings from "../settings/chartSettings";
-import { strategems } from "../constants";
+import { isDev, itemCategoryColors, strategems } from "../constants";
 import { getItemColor } from "../utils";
 
 ChartJS.register(
@@ -26,19 +26,12 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options }) => {
+const StrategemChart = ({ barData, filters, options}) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
 
-    const [loadedImages, setLoadedImages] = useState({});
-    const [isAllImagesLoaded, setIsAllImagesLoaded] = useState(false);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-    };
+    const [images, setImages] = useState({});
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const chartHeight = useMemo(() => {
         if (barData) {
@@ -57,7 +50,7 @@ const StrategemChart = ({ barData, filters, options }) => {
                         total: Object.values(barData).map((item) => item.total),
                         currValue: Object.values(barData).map((item) => item.currValue),
                         pastValue: Object.values(barData).map((item) => item.pastValue),
-                        barThickness: settings.barSize,
+                        barThickness: options.barSize,
                     },
                 ],
             };
@@ -78,8 +71,8 @@ const StrategemChart = ({ barData, filters, options }) => {
                     loadedCount += 1;
 
                     if (loadedCount === Object.keys(strategems).length) {
-                        setLoadedImages(images);
-                        setIsAllImagesLoaded(true);
+                        setImages(images);
+                        setImagesLoaded(true);
                     }
                 };
             });
@@ -90,17 +83,17 @@ const StrategemChart = ({ barData, filters, options }) => {
         const { ctx } = chart;
         const chartHeight = chart.chartArea?.height;
         const dataLength = Object.keys(barData).length;
-        const step = (chartHeight - settings.barSize * dataLength) / dataLength;
-        const yOffset = step / 2 + settings.imageBarOffset;
+        const step = (chartHeight - options.barSize * dataLength) / dataLength;
+        const yOffset = step / 2 + ((options.barSize - options.imageSize) / 2);
 
         ctx.save();
 
         Object.keys(barData).forEach((imageKey, i) => {
-            const imageY = i * (settings.barSize + step) + yOffset;
-            const image = loadedImages[imageKey];
-            const imageSize = options.iconSize;
+            const imageY = i * (options.barSize + step) + yOffset;
+            const image = images[imageKey];
+            const imageSize = options.imageSize;
 
-            if (image) {
+            if (image && !isDev) {
                 ctx.drawImage(
                     image,
                     0,
@@ -126,11 +119,28 @@ const StrategemChart = ({ barData, filters, options }) => {
         }
     }
 
-    if (!isAllImagesLoaded) {
+    const downloadChart = (event) => {
+        const { current: chart } = chartRef;
+        if (!chart) { return; }
+        const url = chart.toBase64Image();
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "chart.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    if (!imagesLoaded) {
         return null;
     }
 
     return (<>
+        {isDev && <div
+            className="text-small"
+            onClick={() => downloadChart()}>
+            Download
+        </div>}
         {data && chartHeight &&
             <div style={{ width: "100%", height: `${chartHeight}px` }}>
                 <div className="bar-chart-wrapper">

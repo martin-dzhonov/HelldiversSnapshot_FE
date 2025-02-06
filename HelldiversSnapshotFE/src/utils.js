@@ -1,4 +1,5 @@
 import {
+    isDev,
     missionNames,
     itemCategoryColors,
     itemCategories,
@@ -112,20 +113,47 @@ const getPatchDiffs = (startPatch, endPatch) => {
     return { up, down }
 }
 
+const printDiffs = (startPatch, endPatch) => {
+    const diffsObj = {};
+    Object.entries(endPatch).forEach(([key, value]) => {
+        if (startPatch[key]) {
+            const pastValue = startPatch[key].value;
+            const currValue = endPatch[key].value;
+            const startRank = startPatch[key].rank;
+            const endRank = endPatch[key].rank;
+            const total = endPatch[key].total;
+
+            const diff = Number((endPatch[key].value - startPatch[key].value).toFixed(1));
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total}
+        }
+    });
+    
+    const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
+
+    const byCategory = itemCategories.slice(1, 4).map((category)=> {
+        const filtered = all.filter(([key, value]) => strategems[key].category === category).slice(0, category !== "Defensive" ? 10 : 5);
+        return Object.values(Object.fromEntries(filtered));
+    })
+
+    console.log(byCategory[1]);
+    console.log(byCategory[0]);
+    console.log(byCategory[2]);
+}
+
 const strategemsByCategory = (gamesData, category, full) => {
     const result = {};
-
     let strategemsCategory = category === "All" ?
         Object.entries(gamesData.strategems) :
         Object.entries(gamesData.strategems).filter(([key, value]) =>
             strategems[key].category === category);
 
-    if (!full) { strategemsCategory = strategemsCategory.slice(0, 15); }
+    if (!full) { strategemsCategory = strategemsCategory.slice(0, !isDev ? 15 : category === "Defensive" ? 5 : 10); }
 
     strategemsCategory.forEach(([key, value]) => {
         result[key] = {
             total: value.loadouts,
-            value: getPercentage(value.loadouts, gamesData.totalLoadouts)
+            value: getPercentage(value.loadouts, gamesData.totalLoadouts),
+            rank: getStrategemRank(gamesData, key, true),
         };
     })
     return result;
@@ -151,6 +179,7 @@ export {
     getMaxRounded,
     getChartGradient,
     getPatchDiffs,
+    printDiffs,
     strategemsByCategory
 };
 
