@@ -20,7 +20,11 @@ function GamesTable({ filters }) {
             setLoading(true);
             const response = await fetch(`${apiBaseUrl}${url}`);
             const result = await response.json();
-            setData(result);
+            console.log(result);
+            const sorted = result.sort((a, b)=> a.id - b.id)
+            console.log(sorted[sorted.length - 1]);
+
+            setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
         } finally {

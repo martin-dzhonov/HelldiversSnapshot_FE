@@ -116,6 +116,7 @@ const getPatchDiffs = (startPatch, endPatch) => {
 const printDiffs = (startPatch, endPatch) => {
     const diffsObj = {};
     Object.entries(endPatch).forEach(([key, value]) => {
+        
         if (startPatch[key]) {
             const pastValue = startPatch[key].value;
             const currValue = endPatch[key].value;
@@ -123,10 +124,22 @@ const printDiffs = (startPatch, endPatch) => {
             const endRank = endPatch[key].rank;
             const total = endPatch[key].total;
 
-            const diff = Number((endPatch[key].value - startPatch[key].value).toFixed(1));
+            const diff = Number((currValue - pastValue).toFixed(1));
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total}
+        } else if(isDev){
+            const pastValue = 0;
+            const currValue = endPatch[key].value;
+            const startRank = endPatch[key].rank;
+            const endRank = endPatch[key].rank;
+            const total = endPatch[key].total;
+
+            const diff = Number((currValue- pastValue).toFixed(1));
             diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total}
         }
+
     });
+
+    console.log(diffsObj);
     
     const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
 
@@ -135,9 +148,7 @@ const printDiffs = (startPatch, endPatch) => {
         return Object.values(Object.fromEntries(filtered));
     })
 
-    console.log(byCategory[1]);
-    console.log(byCategory[0]);
-    console.log(byCategory[2]);
+    console.log(byCategory);
 }
 
 const strategemsByCategory = (gamesData, category, full) => {

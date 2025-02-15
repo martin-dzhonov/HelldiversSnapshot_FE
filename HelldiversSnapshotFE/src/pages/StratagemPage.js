@@ -3,7 +3,7 @@ import "../styles/StrategemPage.css";
 import { useEffect, useState, useMemo } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as chartsSettings from "../settings/chartSettings";
 import StratagemRank from "../components/StratagemRank";
 import useMobile from "../hooks/useMobile";

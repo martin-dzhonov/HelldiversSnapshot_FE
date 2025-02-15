@@ -84,7 +84,7 @@ export const snapshotItems = {
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({fontSize: isDev ? 36 : 15}),
+        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 15}),
     }
 };
 
@@ -226,7 +226,7 @@ export const strategemFaction = {
                 drawOnChartArea: true,
                 lineWidth: function (context) {
                     const index = context.index;
-                    const ticksLength = context.scale.ticks.length;
+                    //const ticksLength = context.scale.ticks.length;
                     return index === 0;
                 },
             },
@@ -271,7 +271,7 @@ export const strategemPatch = {
                 drawOnChartArea: true,
                 lineWidth: function (context) {
                     const index = context.index;
-                    const ticksLength = context.scale.ticks.length;
+                    //const ticksLength = context.scale.ticks.length;
                     return index > 0 ? 0 : 1;
                 },
             },
@@ -317,7 +317,6 @@ export const strategemOther = {
 
 const datalabelsSettings2 = ({ color = "white", fontSize = 15, anchor = 'end', formatter } = {}) => {
     return {
-        color: color,
         anchor: anchor,
         align: function (context) {
             const dataset = context.chart.data.datasets[context.datasetIndex];
@@ -396,7 +395,6 @@ export const trendsMultiLine = {
                 drawOnChartArea: true,
                 lineWidth: function (context) {
                     const index = context.index;
-                    const ticksLength = context.scale.ticks.length;
                     return index > 0 ? 0 : 1;
                 },
             },

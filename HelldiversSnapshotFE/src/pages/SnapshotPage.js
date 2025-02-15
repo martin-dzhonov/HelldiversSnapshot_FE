@@ -48,12 +48,11 @@ function SnapshotPage() {
     };
 
     useEffect(() => {
-        if (filters) {
-            if (filters.difficulty !== 0 || filters.mission !== "All") {
-                setLoading(true);
-                fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
-            }
+        if (filters.difficulty !== 0 || filters.mission !== "All") {
+            setLoading(true);
+            fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
         }
+
     }, [filters.difficulty, filters.mission]);
 
     useEffect(() => {
@@ -90,7 +89,7 @@ function SnapshotPage() {
             const endPatch = strategemsByCategory(startPatchData, filters.category, true);
             const startPatch = strategemsByCategory(endPatchData, filters.category, true);
             const graphData = getPatchDiffs(startPatch, endPatch);
-            if(isDev){
+            if (isDev) {
                 printDiffs(startPatch, endPatch)
             }
             setTimelineGraphData(graphData);
@@ -137,7 +136,7 @@ function SnapshotPage() {
                                     barData={snapshotGraphData}
                                     filters={filters}
                                     options={chartsSettings.snapshotItems}
-                                    />
+                                />
                                 <div
                                     className='text-small text-faction-show-all'
                                     onClick={() => setGraphFull(!graphFull)}>
@@ -162,7 +161,7 @@ function SnapshotPage() {
                                             barData={timelineGraphData?.up}
                                             filters={filters}
                                             options={chartsSettings.snapshotTrendsUp}
-                                            />
+                                        />
                                     </div>
                                     <div className="col-lg-6 col-md-12">
                                         <div className='text-small trends-title-down'>
@@ -172,7 +171,7 @@ function SnapshotPage() {
                                             barData={timelineGraphData?.down}
                                             filters={filters}
                                             options={chartsSettings.snapshotTrendsDown}
-                                            />
+                                        />
                                     </div>
                                 </div>
                                 {/* <div className='row'>
