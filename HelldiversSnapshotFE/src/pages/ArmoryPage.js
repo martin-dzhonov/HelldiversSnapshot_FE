@@ -2,12 +2,17 @@ import '../styles/ArmoryPage.css';
 import { itemCategories, weaponCategories, weaponsDict } from '../constants';
 import { useNavigate } from "react-router-dom";
 import { getItemsByCategory, getItemId } from '../utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ArmoryPage() {
     const categories = itemCategories.slice(1);
     const navigate = useNavigate();
     const [type, setType] = useState(0);
+    const [show, setShow] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => setShow(true), 50);
+        return () => clearTimeout(timer);
+      }, []);
 
     return (
         <div className="content-wrapper">
@@ -35,7 +40,7 @@ function ArmoryPage() {
                             <div className="group-container">
                                 {getItemsByCategory(category).map((item) =>
                                     <div className="armory-item-wrapper"
-                                        onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} >
+                                        onClick={() => navigate(`/strategem/${getItemId(item.name)}/terminid`)} >
                                         <div className="item-img-wrapper">
                                             <img src={item.image} alt="" />
                                         </div>
@@ -56,17 +61,19 @@ function ArmoryPage() {
                                 {category}
                             </div>
                             <div className="weapons-group-container">
-                                {Object.values(weaponsDict).filter((item)=>item.category === category).map((item) =>
-                                    <div className={`armory-weapons-wrapper armory-weapons-wrapper-${category}`}
-                                        onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} >
-                                        <div className="armory-weapons-img-wrapper">
-                                            <img src={item.image} alt="" />
+                                {Object.values(weaponsDict)
+                                    .filter((item) => item.category === category).map((item) =>
+                                        <div
+                                            className={`armory-weapons-wrapper armory-weapons-wrapper-${category}`}
+                                            onClick={() => navigate(`/weapons/${getItemId(item.name)}/terminid`)} >
+                                            <div className="armory-weapons-img-wrapper">
+                                                <img src={item.image} alt="" loading="lazy"/>
+                                            </div>
+                                            <div className="armory-item-name">
+                                                {item.name}
+                                            </div>
                                         </div>
-                                        <div className="armory-item-name">
-                                        {item.name}
-                                        </div>
-                                    </div>
-                                )}
+                                    )}
                             </div>
                         </div>
                     ))}

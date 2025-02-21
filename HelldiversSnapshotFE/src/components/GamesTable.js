@@ -20,7 +20,7 @@ function GamesTable({ filters }) {
             setLoading(true);
             const response = await fetch(`${apiBaseUrl}${url}`);
             const result = await response.json();
-            const sorted = result.sort((a, b)=> a.id - b.id)
+            const sorted = result.sort((a, b) => a.id - b.id)
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -121,9 +121,8 @@ function GamesTable({ filters }) {
                                                 {loadout.map((item, itemIndex) => (
                                                     <img
                                                         key={itemIndex}
-                                                        className="item-img-wrapper"
+                                                        className="table-img-wrapper"
                                                         src={strategems[item]?.image}
-                                                        width={40}
                                                         alt=""
                                                     />
                                                 ))}
@@ -136,7 +135,10 @@ function GamesTable({ filters }) {
                                                 {loadout.map((item, itemIndex) => (
                                                     <img
                                                         key={itemIndex}
-                                                        className={`${itemIndex === 0 ? 'primary-img-wrapper' : itemIndex === 1 ? 'secondary-img-wrapper' : 'throwable-img-wrapper'}`}
+                                                        className={`${itemIndex === 0 ?
+                                                            'primary-img-wrapper' :
+                                                            itemIndex === 1 ? 'secondary-img-wrapper' :
+                                                                'throwable-img-wrapper'}`}
                                                         src={weaponsDict[item]?.image}
                                                         width={40}
                                                         alt=""

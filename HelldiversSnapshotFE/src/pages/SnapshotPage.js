@@ -58,7 +58,6 @@ function SnapshotPage() {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
             setStrategemGraphData(strategemsByCategory(patchData, filters.category));
-            console.log(filters);
             if (patchData) {
                 setFilterResults({
                     matchCount: patchData.totalGames,
@@ -133,6 +132,7 @@ function SnapshotPage() {
                                 barData={strategemGraphData}
                                 filters={filters}
                                 options={chartsSettings.snapshotItems}
+                                expandable
                             />
                         }
                     </TabPanel>

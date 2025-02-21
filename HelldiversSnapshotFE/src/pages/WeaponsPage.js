@@ -100,6 +100,7 @@ function WeaponsPage() {
                                 barData={weaponsGraphData}
                                 filters={filters}
                                 options={chartsSettings.snapshotWeapons}
+                                expandable
                                 type="weapons"
                             />
                         }

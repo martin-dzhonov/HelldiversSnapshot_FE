@@ -4,7 +4,9 @@ import {
     itemCategoryColors,
     itemCategories,
     strategems,
-    weaponsDict
+    weaponsDict,
+    weaponCategoryColors,
+    weaponCategories
 } from "./constants";
 
 const getStrategemByName = (name) => {
@@ -16,12 +18,16 @@ const getStrategemByName = (name) => {
 }
 
 const getItemId = (name) => {
-    const entry = Object.entries(strategems).find(([key, value]) => value.name === name);
+    const entry = Object.entries({ ...strategems, ...weaponsDict }).find(([key, value]) => value.name === name);
     return entry ? entry[0] : null;
 };
 
 const getItemColor = (item) => {
     return itemCategoryColors[itemCategories.indexOf(strategems[item].category)];
+};
+
+const getWeaponColor = (item) => {
+    return weaponCategoryColors[weaponCategories.indexOf(weaponsDict[item].category)];
 };
 
 const getItemsByCategory = (category) => {
@@ -89,6 +95,13 @@ const getStrategemRank = (data, strategemName, category) => {
     }
 }
 
+const getWeaponRank = (data, weaponName) => {
+    const sorted = Object.entries(data?.weapons).sort((a, b) => b[1].loadouts - a[1].loadouts);
+    const weaponCategory = weaponsDict[weaponName].category;
+    const categoryRank = sorted.filter((item) => weaponsDict[item[0]].category === weaponCategory).findIndex(item => item[0] === weaponName);
+    return categoryRank + 1;
+}
+
 const getPatchDiffs = (startPatch, endPatch) => {
     const diffsObj = {};
     Object.entries(endPatch).forEach(([key, value]) => {
@@ -123,19 +136,19 @@ const printDiffs = (startPatch, endPatch) => {
             const currValue = endPatch[key].value;
             const startRank = startPatch[key].rank;
             const endRank = endPatch[key].rank;
-            const total = endPatch[key].total;
+            const loadouts = endPatch[key].loadouts;
 
             const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total }
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, loadouts }
         } else if (isDev) {
             const pastValue = 0;
             const currValue = endPatch[key].value;
             const startRank = endPatch[key].rank;
             const endRank = endPatch[key].rank;
-            const total = endPatch[key].total;
+            const loadouts = endPatch[key].loadouts;
 
             const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total }
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, loadouts }
         }
 
     });
@@ -166,7 +179,7 @@ const strategemsByCategory = (gamesData, category, full) => {
 
     strategemsCategory.forEach(([key, value]) => {
         result[key] = {
-            total: value.loadouts,
+            loadouts: value.loadouts,
             value: getPercentage(value.loadouts, gamesData.totalLoadouts),
             rank: getStrategemRank(gamesData, key, true),
         };
@@ -174,14 +187,14 @@ const strategemsByCategory = (gamesData, category, full) => {
     return result;
 }
 
-const weaponsByCategory = (gamesData, category, full)  => {
-    if(!gamesData){
+const weaponsByCategory = (gamesData, category, full) => {
+    if (!gamesData) {
         return {};
     }
     const weaponsData = gamesData?.weapons;
     const transformedData = Object.keys(weaponsData).reduce((acc, key) => {
-        const total = weaponsData[key].total;
-        acc[key] = { total, value: getPercentage(total, gamesData.totalLoadouts) };
+        const loadouts = weaponsData[key].loadouts;
+        acc[key] = { loadouts, value: getPercentage(loadouts, gamesData.totalLoadouts) };
         return acc;
     }, {});
     const weaponsFiltered = Object.fromEntries(Object.entries(transformedData).filter(([key, value]) =>
@@ -212,7 +225,9 @@ export {
     getPatchDiffs,
     printDiffs,
     strategemsByCategory,
-    weaponsByCategory
+    weaponsByCategory,
+    getWeaponRank,
+    getWeaponColor
 };
 
 // const isDateBetween = (targetDate, startDate, endDate) => {

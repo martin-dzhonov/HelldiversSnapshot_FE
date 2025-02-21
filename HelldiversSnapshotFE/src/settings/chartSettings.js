@@ -58,14 +58,14 @@ export const snapshotItems = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 36 : 30,
-    imageWidth: 40,
-    imageHeight: 40,
-    sectionSize: isDev ? 140 : 45,
+    imageWidth: 39,
+    imageHeight: 39,
+    sectionSize: isDev ? 140 : 43,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 45 },
+        padding: { right: 50 },
     },
     scales: {
         x: {
@@ -93,7 +93,7 @@ export const snapshotWeapons = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
-    barSize: 38,
+    barSize: 34,
     imageWidth: 125,
     imageHeight: 58,
     sectionSize: 67,
@@ -101,7 +101,7 @@ export const snapshotWeapons = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 45 },
+        padding: { right: 50 },
     },
     scales: {
         x: {
@@ -201,7 +201,7 @@ export const strategemCompanions = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 20 },
+        padding: { right: 30 },
     },
     scales: {
         x: {
@@ -342,7 +342,7 @@ export const strategemOther = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 45 },
+        padding: { right: 50 },
     },
     scales: {
         x: {

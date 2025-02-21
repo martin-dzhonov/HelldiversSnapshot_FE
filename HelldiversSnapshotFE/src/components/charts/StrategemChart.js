@@ -13,7 +13,7 @@ import {
     Tooltip,
 } from "chart.js";
 import { isDev, weaponsDict, strategems } from "../../constants";
-import { getItemColor } from "../../utils";
+import { getItemColor, getWeaponColor } from "../../utils";
 
 ChartJS.register(
     CategoryScale,
@@ -25,7 +25,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
+const StrategemChart = ({ barData, filters, options, type = "strategem", expandable=false }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
 
@@ -35,8 +35,8 @@ const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
 
     const data = useMemo(() => {
         if (barData) {
-            if (!showFull) {
-                return Object.fromEntries(Object.entries(barData).slice(0, type === "strategem" ? 15 :10));
+            if (expandable && !showFull) {
+                return Object.fromEntries(Object.entries(barData).slice(0, type === "strategem" ? 15 : 10));
             } else {
                 return barData;
             }
@@ -51,14 +51,15 @@ const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
 
     const chartData = useMemo(() => {
         if (data) {
+            console.log(data);
             const weapons = { ...strategems, ...weaponsDict }
             return {
                 labels: Object.keys(data).map((item) => weapons[item].name),
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.value),
-                        backgroundColor: type === "strategem" ? Object.keys(data).map((item) => getItemColor(item)) : "#49adc9",
-                        total: Object.values(data).map((item) => item?.total),
+                        backgroundColor:  Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getWeaponColor(item)),
+                        total: Object.values(data).map((item) => item?.loadouts),
                         currValue: Object.values(data).map((item) => item?.currValue),
                         pastValue: Object.values(data).map((item) => item?.pastValue),
                         barThickness: options.barSize,
@@ -105,7 +106,7 @@ const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
             let imageX = 0;
             let imageW = options.imageWidth;
             let imageH = options.imageHeight;
-            if(type === "weapons" && filters.category === "Throwable"){
+            if (type === "weapons" && filters.category === "Throwable") {
                 imageW = 60;
                 imageH = 60;
                 imageX = 60;
@@ -126,16 +127,14 @@ const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
     };
 
     const onClick = (event) => {
-        if (type === "strategem") {
-            const { current: chart } = chartRef;
-            if (!chart) { return; }
+        const { current: chart } = chartRef;
+        if (!chart) { return; }
 
-            const elementAtEvent = getElementAtEvent(chart, event);
-            if (elementAtEvent.length > 0) {
-                const itemId = Object.keys(data)[elementAtEvent[0].index];
-                navigate(`/armory/${filters.faction}/${itemId}`);
-                window.scrollTo(0, 0);
-            }
+        const elementAtEvent = getElementAtEvent(chart, event);
+        if (elementAtEvent.length > 0) {
+            const itemId = Object.keys(data)[elementAtEvent[0].index];
+            navigate(`/${type}/${itemId}/${filters.faction}`);
+            window.scrollTo(0, 0);
         }
     }
 
@@ -188,17 +187,16 @@ const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
                                 />
                             </div>
                         </div>
-                        <div
+                        {expandable && <div
                             className="text-small text-faction-show-all"
-                            onClick={() => setShowFull(!showFull)}
-                        >
+                            onClick={() => setShowFull(!showFull)}>
                             Show {showFull ? "Less" : "All"}
-                        </div>
+                        </div>}
                     </>
                 )
             ) : null}
         </>
     );
-};
+ };
 
 export default StrategemChart;

@@ -5,6 +5,7 @@ import SnapshotPage from "./pages/SnapshotPage";
 import StratagemPage from "./pages/StratagemPage";
 import AboutPage from "./pages/AboutPage";
 import WeaponsPage from "./pages/WeaponsPage";
+import WeaponPage from "./pages/WeaponPage";
 
 function App() {
     document.title = "Helldive.Live";
@@ -39,10 +40,18 @@ function App() {
                     }
                 ></Route>
                 <Route
-                    path="/armory/:factionID/:itemID"
+                    path="/strategem/:itemID/:factionID"
                     element={
                         <Layout>
                             <StratagemPage />
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/weapons/:itemID/:factionID"
+                    element={
+                        <Layout>
+                            <WeaponPage />
                         </Layout>
                     }
                 />
