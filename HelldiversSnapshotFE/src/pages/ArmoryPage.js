@@ -20,7 +20,7 @@ function ArmoryPage() {
                                 <div className="armory-item-wrapper"
                                     onClick={() => navigate(`/armory/terminid/${getItemId(item.name)}`)} >
                                     <div className="item-img-wrapper">
-                                        <img src={item.svg} alt="" />
+                                        <img src={item.image} alt="" />
                                     </div>
                                     <div className="armory-item-name">
                                         {item.name}

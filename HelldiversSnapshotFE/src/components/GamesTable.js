@@ -1,5 +1,5 @@
 import "../styles/App.css";
-import { strategems } from "../constants";
+import { strategems, weaponsDict } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
 import { useState, useEffect } from "react";
@@ -20,10 +20,7 @@ function GamesTable({ filters }) {
             setLoading(true);
             const response = await fetch(`${apiBaseUrl}${url}`);
             const result = await response.json();
-            console.log(result);
             const sorted = result.sort((a, b)=> a.id - b.id)
-            console.log(sorted[sorted.length - 1]);
-
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -123,7 +120,22 @@ function GamesTable({ filters }) {
                                                     <img
                                                         key={itemIndex}
                                                         className="item-img-wrapper"
-                                                        src={strategems[item]?.svg}
+                                                        src={strategems[item]?.image}
+                                                        width={40}
+                                                        alt=""
+                                                    />
+                                                ))}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="table-loadout-row-wrapper">
+                                        {game.weapons.map((loadout, loadoutIndex) => (
+                                            <div key={loadoutIndex} className="table-loadout-wrapper">
+                                                {loadout.map((item, itemIndex) => (
+                                                    <img
+                                                        key={itemIndex}
+                                                        className={`${itemIndex === 0 ? 'primary-img-wrapper' : itemIndex === 1 ? 'secondary-img-wrapper' : 'throwable-img-wrapper'}`}
+                                                        src={weaponsDict[item]?.image}
                                                         width={40}
                                                         alt=""
                                                     />

@@ -3,7 +3,8 @@ import {
     missionNames,
     itemCategoryColors,
     itemCategories,
-    strategems
+    strategems,
+    weaponsDict
 } from "./constants";
 
 const getStrategemByName = (name) => {
@@ -47,7 +48,7 @@ const getCountingSuffix = (number) => {
     const v = number % 100;
     return suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0];
 };
-const getMaxRounded = (dataset) =>{
+const getMaxRounded = (dataset) => {
     let maxRounded = Math.round(Math.max(...dataset.filter((item => isFinite(item)))));
     return maxRounded < 2 ? 4 : maxRounded + 5;
 }
@@ -96,7 +97,7 @@ const getPatchDiffs = (startPatch, endPatch) => {
             const pastValue = startPatch[key].value;
             const diff = endPatch[key].value - startPatch[key].value;
             if (Math.abs(diff) > 0.9) {
-                diffsObj[key] = { currValue, pastValue, value: diff}
+                diffsObj[key] = { currValue, pastValue, value: diff }
             }
         }
     });
@@ -116,7 +117,7 @@ const getPatchDiffs = (startPatch, endPatch) => {
 const printDiffs = (startPatch, endPatch) => {
     const diffsObj = {};
     Object.entries(endPatch).forEach(([key, value]) => {
-        
+
         if (startPatch[key]) {
             const pastValue = startPatch[key].value;
             const currValue = endPatch[key].value;
@@ -125,25 +126,25 @@ const printDiffs = (startPatch, endPatch) => {
             const total = endPatch[key].total;
 
             const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total}
-        } else if(isDev){
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total }
+        } else if (isDev) {
             const pastValue = 0;
             const currValue = endPatch[key].value;
             const startRank = endPatch[key].rank;
             const endRank = endPatch[key].rank;
             const total = endPatch[key].total;
 
-            const diff = Number((currValue- pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total}
+            const diff = Number((currValue - pastValue).toFixed(1));
+            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, total }
         }
 
     });
 
     console.log(diffsObj);
-    
+
     const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
 
-    const byCategory = itemCategories.slice(1, 4).map((category)=> {
+    const byCategory = itemCategories.slice(1, 4).map((category) => {
         const filtered = all.filter(([key, value]) => strategems[key].category === category).slice(0, category !== "Defensive" ? 10 : 5);
         return Object.values(Object.fromEntries(filtered));
     })
@@ -152,13 +153,16 @@ const printDiffs = (startPatch, endPatch) => {
 }
 
 const strategemsByCategory = (gamesData, category, full) => {
+    if (!gamesData) {
+        return {};
+    }
     const result = {};
     let strategemsCategory = category === "All" ?
         Object.entries(gamesData.strategems) :
         Object.entries(gamesData.strategems).filter(([key, value]) =>
             strategems[key].category === category);
 
-    if (!full) { strategemsCategory = strategemsCategory.slice(0, !isDev ? 15 : category === "Defensive" ? 5 : 10); }
+    //if (!full) { strategemsCategory = strategemsCategory.slice(0, !isDev ? 15 : category === "Defensive" ? 5 : 10); }
 
     strategemsCategory.forEach(([key, value]) => {
         result[key] = {
@@ -168,6 +172,22 @@ const strategemsByCategory = (gamesData, category, full) => {
         };
     })
     return result;
+}
+
+const weaponsByCategory = (gamesData, category, full)  => {
+    if(!gamesData){
+        return {};
+    }
+    const weaponsData = gamesData?.weapons;
+    const transformedData = Object.keys(weaponsData).reduce((acc, key) => {
+        const total = weaponsData[key].total;
+        acc[key] = { total, value: getPercentage(total, gamesData.totalLoadouts) };
+        return acc;
+    }, {});
+    const weaponsFiltered = Object.fromEntries(Object.entries(transformedData).filter(([key, value]) =>
+        weaponsDict[key].category === category
+    ));
+    return weaponsFiltered;
 }
 
 const getPercentage = (number1, number2, decimals = 1) => {
@@ -191,7 +211,8 @@ export {
     getChartGradient,
     getPatchDiffs,
     printDiffs,
-    strategemsByCategory
+    strategemsByCategory,
+    weaponsByCategory
 };
 
 // const isDateBetween = (targetDate, startDate, endDate) => {

@@ -11,6 +11,35 @@
   }
 }
 
+.type-buttons-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 80px;
+  padding: 20px 0px 10px 0px;
+  cursor: pointer;
+}
+
+.snapshot-type-button{
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px 40px;
+  font-size: 18px;
+}
+
+.snapshot-type-button-active{
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px 40px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+}
+
+.snapshot-type-button:hover{
+  background-color: #56799c;
+}
+
 .filter-container {
   padding: 10px;
 }
@@ -45,8 +74,7 @@
 
 .text-faction-show-all {
   padding-left: 50px;
-  padding-top: 5px;
-  font-size: 18px;
+  font-size: 19px;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -108,3 +136,4 @@
     font-size: 15px;
   }
 }
+

@@ -1,4 +1,3 @@
-const svgModules = require.context('./assets/svgs', false, /\.svg$/);
 
 const isDev = false; 
 
@@ -11,6 +10,8 @@ const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
 const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
 
 const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
+
+const weaponCategories = ["Primary", "Secondary", "Throwable"];
 
 const missionTypes = ["Short", "Long"];
 
@@ -30,9 +31,10 @@ const navRoutes = [
 ];
 
 const patchPeriods = [
-    { id: 0, name: "Omens of Tyranny", start: "12/12/2024", end: "Present" },
-    { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: 2, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 0, name: "Servants of Freedom", start: "02/08/2025", end: "Present" },
+    { id: 1, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
+    { id: 2, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 3, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
 ];
 
 const difficultiesNames = [
@@ -90,8 +92,10 @@ const missionModifiers = [
     "Atmospheric Interference"
 ];
 
-const createStrategem = (baseName, fullName, category) => ({
-    svg: svgModules(`./${baseName}.svg`),
+const imageModules = require.context('./assets/svgs', false, /\.(svg|png|webp)$/);
+
+const createStrategem = (baseName, fullName, category, ext = "svg") => ({
+    image: imageModules(`./${baseName}.${ext}`),
     name: baseName,
     nameFull: fullName,
     category,
@@ -103,6 +107,7 @@ const strategems = {
     backpack_shield: createStrategem("Shield Generator Pack", "SH-20 Shield Generator Pack", "Support"),
     backpack_shield_directional: createStrategem("Directional Shield", "SH-51 Directional Shield", "Support"),
     backpack_supply: createStrategem("Supply Pack", "B-1 Supply Pack", "Support"),
+    backpack_hellbomb: createStrategem("Portable Hellbomb", "B-100 Portable Hellbomb", "Support"),
     barrage_120: createStrategem("Orbital 120MM HE Barrage", "Orbital 120MM HE Barrage", "Eagle/Orbital"),
     barrage_380: createStrategem("Orbital 380MM HE Barrage", "Orbital 380MM HE Barrage", "Eagle/Orbital"),
     barrage_gatling: createStrategem("Orbital Gatling Barrage", "Orbital Gatling Barrage", "Eagle/Orbital"),
@@ -162,13 +167,77 @@ const strategems = {
     sup_wasp: createStrategem("Wasp", "StA-X3 W.A.S.P. Launcher", "Support"),
 };
 
+const weaponsDict = {
+    liberator: createStrategem("Liberator", "AR-23 Liberator", "Primary", 'webp'),
+    liberator_pen: createStrategem("Liberator Penetrator", "AR-23P Liberator Penetrator", "Primary", 'webp'),
+    liberator_conc: createStrategem("Liberator Concussive", "AR-23C Liberator Concussive", "Primary", 'webp'),
+    liberator_car: createStrategem("Liberator Carabine", "AR-23A Liberator Carabine", "Primary", 'webp'),
+    sta_52: createStrategem("StA-52", "StA-52 Assault Rifle", "Primary", 'webp'),
+    tenderizer: createStrategem("Tenderizer", "AR-61 Tenderizer", "Primary", 'webp'),
+    adjucator: createStrategem("Adjucator", "BR-14 Adjucator", "Primary", 'webp'),
+    constitution: createStrategem("Constitution", "R-2124 Constitution", "Primary", 'webp'),
+    diligence: createStrategem("Diligence", "R-63 Diligence", "Primary", 'webp'),
+    diligence_cs: createStrategem("Diligence Counter Sniper", "R-63CS Diligence Counter Sniper", "Primary", 'webp'),
+    accelerator: createStrategem("Accelerator Rifle", "PLAS-39 Accelerator Rifle", "Primary", 'webp'),
+    knight: createStrategem("Knight", "MP-98 Knight", "Primary", 'webp'),
+    sta_11: createStrategem("StA-11", "StA-11 SMG", "Primary", 'webp'),
+    reprimand: createStrategem("Reprimand", "SMG-32 Reprimand", "Primary", 'webp'),
+    defender: createStrategem("Defender", "SMG-37 Defender", "Primary", 'webp'),
+    pummeler: createStrategem("Pummeler", "SMG-72 Pummeler", "Primary", 'webp'),
+    punisher: createStrategem("Punisher", "MP-98 Punisher", "Primary", 'webp'),
+    slugger: createStrategem("Slugger", "MP-98 Punisher", "Primary", 'webp'),
+    halt: createStrategem("Halt", "MP-98 Punisher", "Primary", 'webp'),
+    cookout: createStrategem("Cookout", "MP-98 Punisher", "Primary", 'webp'),
+    breaker: createStrategem("Breaker", "MP-98 Punisher", "Primary", 'webp'),
+    spray_n_pray: createStrategem("Breaker Spray&Pray", "MP-98 Punisher", "Primary", 'webp'),
+    breaker_inc: createStrategem("Breaker Incendiary", "MP-98 Punisher", "Primary", 'webp'),
+    crossbow: createStrategem("Exploding Crossbow", "MP-98 Punisher", "Primary", 'webp'),
+    eruptor: createStrategem("Eruptor", "MP-98 Punisher", "Primary", 'webp'),
+    punisher_plas: createStrategem("Punisher Plasma", "MP-98 Punisher", "Primary", 'webp'),
+    blitzer: createStrategem("Blitzer", "MP-98 Punisher", "Primary", 'webp'),
+    scythe: createStrategem("Scythe", "MP-98 Punisher", "Primary", 'webp'),
+    sickle: createStrategem("Sickle", "MP-98 Punisher", "Primary", 'webp'),
+    sickle_d: createStrategem("Double Edge Sickle", "MP-98 Punisher", "Primary", 'webp'),
+    scorcher: createStrategem("Scorcher", "MP-98 Punisher", "Primary", 'webp'),
+    purifier: createStrategem("Purifier", "MP-98 Punisher", "Primary", 'webp'),
+    torcher: createStrategem("Torcher", "MP-98 Punisher", "Primary", 'webp'),
+    dominator: createStrategem("Dominator", "MP-98 Punisher", "Primary", 'webp'),
+    peacemaker: createStrategem("Peacemaker", "MP-98 Punisher", "Secondary", 'webp'),
+    redeemer: createStrategem("Redeemer", "MP-98 Punisher", "Secondary", 'webp'),
+    verdict: createStrategem("Verdict", "MP-98 Punisher", "Secondary", 'webp'),
+    senator: createStrategem("Senator", "MP-98 Punisher", "Secondary", 'webp'),
+    shock_lance: createStrategem("Stun Lance", "MP-98 Punisher", "Secondary", 'webp'),
+    shock_batton: createStrategem("Stun Batton", "MP-98 Punisher", "Secondary", 'webp'),
+    axe: createStrategem("Combat Hatchet", "MP-98 Punisher", "Secondary", 'webp'),
+    stim_pistol: createStrategem("Stim Pistol", "MP-98 Punisher", "Secondary", 'webp'),
+    bushwacker: createStrategem("Bushwacker", "MP-98 Punisher", "Secondary", 'webp'),
+    crisper: createStrategem("Crisper", "MP-98 Punisher", "Secondary", 'webp'),
+    grenade_pistol: createStrategem("Grenade Pistol", "MP-98 Punisher", "Secondary", 'webp'),
+    laser_pistol: createStrategem("Dagger", "MP-98 Punisher", "Secondary", 'webp'),
+    ultimatum: createStrategem("Ultimatum", "MP-98 Punisher", "Secondary", 'webp'),
+    loyalist: createStrategem("Loyalist", "MP-98 Punisher", "Secondary", 'webp'),
+    grenade_frag: createStrategem("Frag", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_he: createStrategem("High Explosive", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_inc: createStrategem("Incendiary", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_impact: createStrategem("Impact", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_inc_impact: createStrategem("Incendiary Impact", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_stun: createStrategem("Stun", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_gas: createStrategem("Gas", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_drone: createStrategem("Seeker", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_smoke: createStrategem("Smoke", "MP-98 Punisher", "Throwable", 'webp'),
+    grenade_termite: createStrategem("Thermite", "MP-98 Punisher", "Throwable", 'webp'),
+    throwing_knife: createStrategem("Throwing Knife", "MP-98 Punisher", "Throwable", 'webp'),
+};
+
 export {
     isDev,
     strategems,
+    weaponsDict,
     apiBaseUrl,
     navRoutes,
     missionNames,
     itemCategories,
+    weaponCategories,
     itemCategoryColors,
     difficultiesNames,
     difficultiesNamesShort,

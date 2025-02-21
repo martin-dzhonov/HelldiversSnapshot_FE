@@ -121,7 +121,6 @@ function StratagemPage() {
                     getPercentage(patchData.strategems[itemID].loadouts, patchData.totalLoadouts) : 0;
             })
 
-            console.log(getMaxRounded(dataset));
             setFactionGraph({
                 labels: factions.map((item)=> capitalizeFirstLetter(item)),
                 datasets: [
@@ -184,7 +183,7 @@ function StratagemPage() {
                 <div className="col-lg-6 col-md-12 col-sm-12">
                     <div className="stratagem-title">
                         <div className="stratagem-title-img">
-                            <img src={strategems[itemID].svg} alt=""></img>
+                            <img src={strategems[itemID].image} alt=""></img>
                         </div>
                         <div className="stratagem-title-text">
                             {strategems[itemID].nameFull}

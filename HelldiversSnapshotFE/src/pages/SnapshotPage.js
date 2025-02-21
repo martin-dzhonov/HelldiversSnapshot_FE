@@ -2,7 +2,6 @@
 import '../styles/App.css';
 import '../styles/SnapshotPage.css';
 import "react-tabs/style/react-tabs.css";
-
 import { useEffect, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
 import { isDev, apiBaseUrl, patchPeriods } from '../constants';
@@ -15,17 +14,19 @@ import * as chartsSettings from "../settings/chartSettings";
 import {
     getPatchDiffs,
     printDiffs,
-    strategemsByCategory
+    strategemsByCategory,
+    weaponsByCategory
 } from '../utils';
 
 function SnapshotPage() {
     const { isMobile } = useMobile()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [snapshotGraphData, setSnapshotGraphData] = useState(null);
-    const [graphFull, setGraphFull] = useState(false);
-    const [timelineGraphData, setTimelineGraphData] = useState(null);
+    const [type, setType] = useState(0);
     const [tabIndex, setTabIndex] = useState(0);
+    const [strategemGraphData, setStrategemGraphData] = useState(null);
+    const [timelineGraphData, setTimelineGraphData] = useState(null);
+    const [weaponsGraphData, setWeaponsGraphData] = useState(null);
 
     const [filters, setFilters] = useState({
         faction: "terminid",
@@ -35,10 +36,23 @@ function SnapshotPage() {
         patch: patchPeriods[0],
         patchStart: patchPeriods[1]
     });
+
     const [filterResults, setFilterResults] = useState({
         matchCount: 0,
         loadoutCount: 0
     });
+
+    const [graphsExpand, setGraphsExpand] = useState({
+        strategem: false,
+        weapons: false
+    })
+
+    const toggleGraph = (key) => {
+        setGraphsExpand((prev) => ({
+            ...prev,
+            [key]: !prev[key]
+        }));
+    };
 
     const fetchData = async (url) => {
         const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
@@ -48,72 +62,88 @@ function SnapshotPage() {
     };
 
     useEffect(() => {
-        if (filters.difficulty !== 0 || filters.mission !== "All") {
+        if (filters.difficulty || filters.mission) {
             setLoading(true);
             fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
         }
-
     }, [filters.difficulty, filters.mission]);
-
-    useEffect(() => {
-        setLoading(true);
-        fetchData(`/strategem`);
-    }, []);
 
     useEffect(() => {
         if (tabIndex === 0 && data && filters) {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
-            const graphData = strategemsByCategory(patchData, filters.category, graphFull);
-
-            setFilterResults({
-                matchCount: patchData.totalGames,
-                loadoutCount: patchData.totalLoadouts
-            });
-
-            setSnapshotGraphData(graphData);
+            setStrategemGraphData(strategemsByCategory(patchData, filters.category, graphsExpand.strategem));
+            setWeaponsGraphData(weaponsByCategory(patchData, filters.category, graphsExpand.weapons));
+            if(patchData){
+                setFilterResults({
+                    matchCount: patchData.totalGames,
+                    loadoutCount: patchData.totalLoadouts
+                });
+            }
         }
-    }, [data, filters, graphFull, tabIndex]);
+    }, [data, filters, graphsExpand, tabIndex]);
 
     useEffect(() => {
         if (tabIndex === 1 && data && filters) {
             const factionData = data[filters.faction];
             const startPatchData = factionData[filters.patch.id];
             const endPatchData = factionData[filters.patchStart.id];
+            const endPatch = strategemsByCategory(startPatchData, filters.category, true);
+            const startPatch = strategemsByCategory(endPatchData, filters.category, true);
+            const graphData = getPatchDiffs(startPatch, endPatch);
 
             setFilterResults({
                 matchCount: startPatchData.totalGames + endPatchData.totalGames,
                 loadoutCount: startPatchData.totalLoadouts + endPatchData.totalLoadouts
             });
-
-            const endPatch = strategemsByCategory(startPatchData, filters.category, true);
-            const startPatch = strategemsByCategory(endPatchData, filters.category, true);
-            const graphData = getPatchDiffs(startPatch, endPatch);
+            setTimelineGraphData(graphData);
             if (isDev) {
                 printDiffs(startPatch, endPatch)
             }
-            setTimelineGraphData(graphData);
         }
     }, [data, filters, tabIndex]);
 
     return (
         <div className="content-wrapper">
-            <Filters type={tabIndex} filters={filters} setFilters={setFilters} />
-
-            {isMobile && !loading && <div className="end-element">
-                <div className='filters-result-text'>
-                    Matches: {filterResults.matchCount}
-                    &nbsp;&nbsp;&nbsp;
-                    Loadouts: {filterResults.loadoutCount}
+            <div className='type-buttons-wrapper text-medium'>
+                <div className={`${type === 0 ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
+                    onClick={() => {
+                        setType(0);
+                        setFilters({ ...filters, category: "All" })
+                    }}>
+                    STRATEGEM
                 </div>
-            </div>}
+                <div className={`${type === 1 ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
+                    onClick={() => {
+                        setType(1);
+                        setFilters({ ...filters, category: "Primary" })
+                    }}>
+                    WEAPONS
+                </div>
+            </div>
+            <Filters tab={tabIndex} filters={filters} type={type} setFilters={setFilters} />
+            {isMobile && !loading &&
+                <div className="end-element">
+                    <div className='filters-result-text'>
+                        Matches: {filterResults.matchCount}
+                        &nbsp;&nbsp;&nbsp;
+                        Loadouts: {filterResults.loadoutCount}
+                    </div>
+                </div>
+            }
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
                         <Tab>Snapshot</Tab>
                         <Tab
-                            disabled={filters.faction === "illuminate"}
-                            onClick={() => { setFilters({ ...filters, patchStart: patchPeriods[1], patch: patchPeriods[0] }); }}>
+                            disabled={type === 1}
+                            onClick={() => {
+                                setFilters({
+                                    ...filters,
+                                    patchStart: patchPeriods[1],
+                                    patch: patchPeriods[0]
+                                });
+                            }}>
                             Trends
                         </Tab>
                         <Tab>Games</Tab>
@@ -130,19 +160,37 @@ function SnapshotPage() {
 
                 <Loader loading={loading}>
                     <TabPanel>
-                        {snapshotGraphData &&
+                        {strategemGraphData && type === 0 &&
                             <>
                                 <StrategemChart
-                                    barData={snapshotGraphData}
+                                    barData={strategemGraphData}
                                     filters={filters}
+                                    showCount={5}
                                     options={chartsSettings.snapshotItems}
                                 />
-                                <div
+                                {/* <div
                                     className='text-small text-faction-show-all'
-                                    onClick={() => setGraphFull(!graphFull)}>
-                                    Show {graphFull ? "Less" : "All"}
-                                </div>
+                                    onClick={() => toggleGraph('strategem')}>
+                                    Show {graphsExpand.strategem ? "Less" : "All"}
+                                </div> */}
                             </>}
+
+                        {weaponsGraphData && type === 1 &&
+                            <>
+                                <StrategemChart
+                                    barData={weaponsGraphData}
+                                    filters={filters}
+                                    options={chartsSettings.snapshotWeapons}
+                                    type="weapons"
+                                />
+                                {/* <div
+                                    className='text-small text-faction-show-all'
+                                    onClick={() => toggleGraph('weapons')}>
+                                    Show {graphsExpand.weapons ? "Less" : "All"}
+                                </div> */}
+                            </>
+                        }
+
                     </TabPanel>
                     <TabPanel>
                         {timelineGraphData &&
@@ -196,7 +244,7 @@ function SnapshotPage() {
                     </TabPanel>
                 </Loader>
             </Tabs>
-        </div>
+        </div >
     );
 }
 

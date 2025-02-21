@@ -13,7 +13,7 @@ import {
     Tooltip,
 } from "chart.js";
 import * as settings from "../settings/chartSettings";
-import { isDev, itemCategoryColors, strategems } from "../constants";
+import { isDev, itemCategoryColors, weaponsDict, strategems } from "../constants";
 import { getItemColor } from "../utils";
 
 ChartJS.register(
@@ -26,80 +26,93 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options}) => {
+const StrategemChart = ({ barData, filters, options, showCount, type = "strategem" }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
 
     const [images, setImages] = useState({});
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [showFull, setShowFull] = useState(false);
+
+    const barDataTrimmed = useMemo(() => {
+        if (barData) {
+            if (!showFull) {
+                return Object.fromEntries(Object.entries(barData).slice(0, type === "strategem" ? 15 :10));
+            } else {
+                return barData;
+            }
+        }
+    }, [barData, type, showFull]);
 
     const chartHeight = useMemo(() => {
-        if (barData) {
-            return Object.keys(barData).length * options.sectionSize;
+        if (barDataTrimmed) {
+            return Object.keys(barDataTrimmed).length * options.sectionSize;
         }
-    }, [barData]);
+    }, [barDataTrimmed]);
 
     const data = useMemo(() => {
-        if (barData) {
+        if (barDataTrimmed) {
+            const weapons = { ...strategems, ...weaponsDict }
             return {
-                labels: Object.keys(barData).map((item) => strategems[item].name),
+                labels: Object.keys(barDataTrimmed).map((item) => weapons[item].name),
                 datasets: [
                     {
-                        data: Object.values(barData).map((item) => item.value),
-                        backgroundColor: Object.keys(barData).map((item) => getItemColor(item)),
-                        total: Object.values(barData).map((item) => item.total),
-                        currValue: Object.values(barData).map((item) => item.currValue),
-                        pastValue: Object.values(barData).map((item) => item.pastValue),
+                        data: Object.values(barDataTrimmed).map((item) => item?.value),
+                        backgroundColor: type === "strategem" ? Object.keys(barDataTrimmed).map((item) => getItemColor(item)) : "#49adc9",
+                        total: Object.values(barDataTrimmed).map((item) => item?.total),
+                        currValue: Object.values(barDataTrimmed).map((item) => item?.currValue),
+                        pastValue: Object.values(barDataTrimmed).map((item) => item?.pastValue),
                         barThickness: options.barSize,
                     },
                 ],
             };
         }
-    }, [barData]);
+    }, [barDataTrimmed]);
 
     useMemo(() => {
-        if (strategems) {
+        if (strategems && weaponsDict) {
             const images = {};
             let loadedCount = 0;
-
-            Object.keys(strategems).forEach((imageKey) => {
+            const allDict = { ...strategems, ...weaponsDict }
+            Object.keys(allDict).forEach((imageKey) => {
                 const image = new Image();
-                image.src = strategems[imageKey]?.svg;
+                image.src = allDict[imageKey]?.image;
 
                 image.onload = () => {
                     images[imageKey] = image;
                     loadedCount += 1;
 
-                    if (loadedCount === Object.keys(strategems).length) {
+                    if (loadedCount === Object.keys(allDict).length) {
                         setImages(images);
                         setImagesLoaded(true);
                     }
                 };
             });
         }
-    }, [strategems]);
+    }, [strategems, weaponsDict]);
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
         const chartHeight = chart.chartArea?.height;
-        const dataLength = Object.keys(barData).length;
+        const dataLength = Object.keys(barDataTrimmed).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
-        const yOffset = step / 2 + ((options.barSize - options.imageSize) / 2);
+        const yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
 
         ctx.save();
 
-        Object.keys(barData).forEach((imageKey, i) => {
+        Object.keys(barDataTrimmed).forEach((imageKey, i) => {
             const imageY = i * (options.barSize + step) + yOffset;
             const image = images[imageKey];
-            const imageSize = options.imageSize;
+            const imageW = options.imageWidth;
+            const imageH = options.imageHeight;
 
             if (image && !isDev) {
                 ctx.drawImage(
                     image,
                     0,
                     imageY,
-                    imageSize,
-                    imageSize
+                    imageW,
+                    imageH,
                 );
             }
         });
@@ -108,14 +121,16 @@ const StrategemChart = ({ barData, filters, options}) => {
     };
 
     const onClick = (event) => {
-        const { current: chart } = chartRef;
-        if (!chart) { return; }
+        if (type === "strategem") {
+            const { current: chart } = chartRef;
+            if (!chart) { return; }
 
-        const elementAtEvent = getElementAtEvent(chart, event);
-        if (elementAtEvent.length > 0) {
-            const itemId = Object.keys(barData)[elementAtEvent[0].index];
-            navigate(`/armory/${filters.faction}/${itemId}`);
-            window.scrollTo(0, 0);
+            const elementAtEvent = getElementAtEvent(chart, event);
+            if (elementAtEvent.length > 0) {
+                const itemId = Object.keys(barDataTrimmed)[elementAtEvent[0].index];
+                navigate(`/armory/${filters.faction}/${itemId}`);
+                window.scrollTo(0, 0);
+            }
         }
     }
 
@@ -142,21 +157,28 @@ const StrategemChart = ({ barData, filters, options}) => {
             Download
         </div>}
         {data && chartHeight &&
-            <div style={{ width: "100%", height: `${chartHeight}px` }}>
-                <div className="bar-chart-wrapper">
-                    <Bar
-                        ref={chartRef}
-                        data={data}
-                        options={options}
-                        redraw={true}
-                        onClick={onClick}
-                        plugins={[{
-                            beforeDraw: (chart) => handleDrawImage(chart),
-                            resize: (chart) => handleDrawImage(chart),
-                        }]}
-                    />
+            <>
+                <div style={{ width: "100%", height: `${chartHeight}px` }}>
+                    <div className="bar-chart-wrapper">
+                        <Bar
+                            ref={chartRef}
+                            data={data}
+                            options={options}
+                            redraw={true}
+                            onClick={onClick}
+                            plugins={[{
+                                beforeDraw: (chart) => handleDrawImage(chart),
+                                resize: (chart) => handleDrawImage(chart),
+                            }]}
+                        />
+                    </div>
                 </div>
-            </div>
+                <div
+                    className='text-small text-faction-show-all'
+                    onClick={() => setShowFull(!showFull)}>
+                    Show {showFull ? "Less" : "All"}
+                </div>
+            </>
         }
     </>);
 };

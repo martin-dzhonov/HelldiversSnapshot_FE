@@ -1,9 +1,9 @@
 import '../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { itemCategories, difficultiesNames, patchPeriods, factions } from '../constants';
+import { itemCategories,weaponCategories, difficultiesNames, patchPeriods, factions } from '../constants';
 import { capitalizeFirstLetter } from '../utils';
 
-function Filters({ type, filters, setFilters }) {
+function Filters({ tab, filters, setFilters, type }) {
     return (
         <div className="filters-container">
             <div className="filter-container">
@@ -13,7 +13,6 @@ function Filters({ type, filters, setFilters }) {
                     {factions.map((factionName) => (
                         <Dropdown.Item
                             as="button"
-                            disabled={type === 1 && factionName === 'illuminate'}
                             onClick={() => { setFilters({ ...filters, faction: factionName }); }}>
                             {capitalizeFirstLetter(factionName)}
                         </Dropdown.Item>
@@ -21,11 +20,11 @@ function Filters({ type, filters, setFilters }) {
                 </DropdownButton>
             </div>
 
-            {type !== 2 &&
+            {tab !== 2 &&
                 <div className="filter-container">
-                    <DropdownButton
+                    {type === 0 && <DropdownButton
                         className="dropdown-button"
-                        title={"Stratagems: " + filters.category}>
+                        title={"Category: " + filters.category}>
                         {itemCategories.map((category, index) => (
                             <Dropdown.Item
                                 as="button"
@@ -33,10 +32,22 @@ function Filters({ type, filters, setFilters }) {
                                 {category}
                             </Dropdown.Item>
                         ))}
-                    </DropdownButton>
+                    </DropdownButton>}
+                    {type === 1 && <DropdownButton
+                        className="dropdown-button"
+                        title={"Category: " + filters.category}>
+                        {weaponCategories.map((category, index) => (
+                            <Dropdown.Item
+                                as="button"
+                                onClick={() => { setFilters({ ...filters, category: category }); }}>
+                                {category}
+                            </Dropdown.Item>
+                        ))}
+                    </DropdownButton>}
+                    
                 </div>}
 
-            {type === 1 &&
+            {tab === 1 &&
                 <div className="filter-container">
                     <DropdownButton
                         className="dropdown-button"
@@ -55,11 +66,11 @@ function Filters({ type, filters, setFilters }) {
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"
-                    title={`${type !== 1 ? 'Patch: ' : 'End: '}` + filters.patch.name}>
+                    title={`${tab !== 1 ? 'Patch: ' : 'End: '}` + filters.patch.name}>
                     {patchPeriods.map((patchPeriod, index) => (
                         <Dropdown.Item
                             as="button"
-                            disabled={filters.faction === 'illuminate' || (type === 1 && index >= filters.patchStart.id)}
+                            disabled={tab === 1 && index >= filters.patchStart.id}
                             onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                             {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                         </Dropdown.Item>
@@ -67,11 +78,11 @@ function Filters({ type, filters, setFilters }) {
                 </DropdownButton>
             </div>
 
-            {type !== 1 &&
+            {tab !== 1 &&
                 <div className="filter-container">
                     <DropdownButton
                         className="dropdown-button"
-                        disabled={type === 2}
+                        disabled={tab === 2}
                         title={
                             filters.difficulty === 0
                                 ? "Difficulty: All"
@@ -80,7 +91,6 @@ function Filters({ type, filters, setFilters }) {
                         {difficultiesNames.map((diffName, diffIndex) => (
                             <Dropdown.Item
                                 as="button"
-
                                 onClick={() => {
                                     setFilters({
                                         ...filters,
@@ -93,10 +103,10 @@ function Filters({ type, filters, setFilters }) {
                     </DropdownButton>
                 </div>}
 
-            {type !== 1 &&
+            {tab !== 1 &&
                 <div className="filter-container">
                     <DropdownButton
-                        disabled={type === 2}
+                        disabled={tab === 2}
                         className="dropdown-button"
                         title={"Mission Type: " + filters.mission}>
                         <Dropdown.Item

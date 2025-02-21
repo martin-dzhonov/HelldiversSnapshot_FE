@@ -58,8 +58,9 @@ export const snapshotItems = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 36 : 30,
-    imageSize: 30,
-    sectionSize: isDev ? 140 : 40,
+    imageWidth: 40,
+    imageHeight: 40,
+    sectionSize: isDev ? 140 : 45,
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -84,22 +85,58 @@ export const snapshotItems = {
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 15}),
+        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 17}),
     }
 };
+
+export const snapshotWeapons = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    barSize: 38,
+    imageWidth: 125,
+    imageHeight: 58,
+    sectionSize: 68,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 45 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = 150; }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltip: tooltipSettings(formatters.snapshot),
+        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 17}),
+    }
+};
+
 
 export const snapshotTrendsUp = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     barSize: 30,
-    imageSize: 30,
+    imageWidth: 30,
+    imageHeight: 30,
     sectionSize: 40,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 45 },
+        padding: { right: 50 },
     },
     scales: {
         x: {
@@ -124,13 +161,14 @@ export const snapshotTrendsDown = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: 30,
-    imageSize: 30,
+    imageWidth: 30,
+    imageHeight: 30,
     sectionSize: 40,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 45 },
+        padding: { right: 50 },
     },
     scales: {
         x: {
@@ -156,7 +194,8 @@ export const strategemCompanions = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: 24,
-    imageSize: 34,
+    imageWidth: 34,
+    imageHeight: 34,
     sectionSize: 36,
     elements: {
         bar: { borderWidth: 4 }
@@ -360,7 +399,8 @@ const datalabelsSettings2 = ({ color = "white", fontSize = 15, anchor = 'end', f
 export const trendsMultiLine = {
     indexAxis: "y",
     sectionSize: 60,
-    imageSize: 34,
+    imageWidth: 34,
+    imageHeight: 34,
     responsive: true,
     maintainAspectRatio: false,
     elements: {
