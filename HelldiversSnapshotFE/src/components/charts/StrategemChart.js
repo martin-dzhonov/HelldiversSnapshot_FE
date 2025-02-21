@@ -12,9 +12,8 @@ import {
     Title,
     Tooltip,
 } from "chart.js";
-import * as settings from "../settings/chartSettings";
-import { isDev, itemCategoryColors, weaponsDict, strategems } from "../constants";
-import { getItemColor } from "../utils";
+import { isDev, weaponsDict, strategems } from "../../constants";
+import { getItemColor } from "../../utils";
 
 ChartJS.register(
     CategoryScale,
@@ -26,7 +25,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, showCount, type = "strategem" }) => {
+const StrategemChart = ({ barData, filters, options, type = "strategem" }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
 
@@ -34,7 +33,7 @@ const StrategemChart = ({ barData, filters, options, showCount, type = "stratege
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [showFull, setShowFull] = useState(false);
 
-    const barDataTrimmed = useMemo(() => {
+    const data = useMemo(() => {
         if (barData) {
             if (!showFull) {
                 return Object.fromEntries(Object.entries(barData).slice(0, type === "strategem" ? 15 :10));
@@ -45,29 +44,29 @@ const StrategemChart = ({ barData, filters, options, showCount, type = "stratege
     }, [barData, type, showFull]);
 
     const chartHeight = useMemo(() => {
-        if (barDataTrimmed) {
-            return Object.keys(barDataTrimmed).length * options.sectionSize;
+        if (data) {
+            return Object.keys(data).length * options.sectionSize;
         }
-    }, [barDataTrimmed]);
+    }, [data]);
 
-    const data = useMemo(() => {
-        if (barDataTrimmed) {
+    const chartData = useMemo(() => {
+        if (data) {
             const weapons = { ...strategems, ...weaponsDict }
             return {
-                labels: Object.keys(barDataTrimmed).map((item) => weapons[item].name),
+                labels: Object.keys(data).map((item) => weapons[item].name),
                 datasets: [
                     {
-                        data: Object.values(barDataTrimmed).map((item) => item?.value),
-                        backgroundColor: type === "strategem" ? Object.keys(barDataTrimmed).map((item) => getItemColor(item)) : "#49adc9",
-                        total: Object.values(barDataTrimmed).map((item) => item?.total),
-                        currValue: Object.values(barDataTrimmed).map((item) => item?.currValue),
-                        pastValue: Object.values(barDataTrimmed).map((item) => item?.pastValue),
+                        data: Object.values(data).map((item) => item?.value),
+                        backgroundColor: type === "strategem" ? Object.keys(data).map((item) => getItemColor(item)) : "#49adc9",
+                        total: Object.values(data).map((item) => item?.total),
+                        currValue: Object.values(data).map((item) => item?.currValue),
+                        pastValue: Object.values(data).map((item) => item?.pastValue),
                         barThickness: options.barSize,
                     },
                 ],
             };
         }
-    }, [barDataTrimmed]);
+    }, [data]);
 
     useMemo(() => {
         if (strategems && weaponsDict) {
@@ -94,22 +93,28 @@ const StrategemChart = ({ barData, filters, options, showCount, type = "stratege
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
         const chartHeight = chart.chartArea?.height;
-        const dataLength = Object.keys(barDataTrimmed).length;
+        const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
         const yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
 
         ctx.save();
 
-        Object.keys(barDataTrimmed).forEach((imageKey, i) => {
+        Object.keys(data).forEach((imageKey, i) => {
             const imageY = i * (options.barSize + step) + yOffset;
             const image = images[imageKey];
-            const imageW = options.imageWidth;
-            const imageH = options.imageHeight;
+            let imageX = 0;
+            let imageW = options.imageWidth;
+            let imageH = options.imageHeight;
+            if(type === "weapons" && filters.category === "Throwable"){
+                imageW = 60;
+                imageH = 60;
+                imageX = 60;
+            }
 
             if (image && !isDev) {
                 ctx.drawImage(
                     image,
-                    0,
+                    imageX,
                     imageY,
                     imageW,
                     imageH,
@@ -127,7 +132,7 @@ const StrategemChart = ({ barData, filters, options, showCount, type = "stratege
 
             const elementAtEvent = getElementAtEvent(chart, event);
             if (elementAtEvent.length > 0) {
-                const itemId = Object.keys(barDataTrimmed)[elementAtEvent[0].index];
+                const itemId = Object.keys(data)[elementAtEvent[0].index];
                 navigate(`/armory/${filters.faction}/${itemId}`);
                 window.scrollTo(0, 0);
             }
@@ -150,37 +155,50 @@ const StrategemChart = ({ barData, filters, options, showCount, type = "stratege
         return null;
     }
 
-    return (<>
-        {isDev && <div
-            className="text-small"
-            onClick={() => downloadChart()}>
-            Download
-        </div>}
-        {data && chartHeight &&
-            <>
-                <div style={{ width: "100%", height: `${chartHeight}px` }}>
-                    <div className="bar-chart-wrapper">
-                        <Bar
-                            ref={chartRef}
-                            data={data}
-                            options={options}
-                            redraw={true}
-                            onClick={onClick}
-                            plugins={[{
-                                beforeDraw: (chart) => handleDrawImage(chart),
-                                resize: (chart) => handleDrawImage(chart),
-                            }]}
-                        />
+    return (
+        <>
+            {isDev && (
+                <div className="text-small" onClick={() => downloadChart()}>
+                    Download
+                </div>
+            )}
+            {chartData ? (
+                chartData.labels.length === 0 ? (
+                    <div className="empty-chart-text-wrapper">
+                        <div className="empty-chart-text">
+                            No Data Available
+                        </div>
                     </div>
-                </div>
-                <div
-                    className='text-small text-faction-show-all'
-                    onClick={() => setShowFull(!showFull)}>
-                    Show {showFull ? "Less" : "All"}
-                </div>
-            </>
-        }
-    </>);
+                ) : (
+                    <>
+                        <div style={{ width: "100%", height: `${chartHeight}px` }}>
+                            <div className="bar-chart-wrapper">
+                                <Bar
+                                    ref={chartRef}
+                                    data={chartData}
+                                    options={options}
+                                    redraw={true}
+                                    onClick={onClick}
+                                    plugins={[
+                                        {
+                                            beforeDraw: (chart) => handleDrawImage(chart),
+                                            resize: (chart) => handleDrawImage(chart),
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </div>
+                        <div
+                            className="text-small text-faction-show-all"
+                            onClick={() => setShowFull(!showFull)}
+                        >
+                            Show {showFull ? "Less" : "All"}
+                        </div>
+                    </>
+                )
+            ) : null}
+        </>
+    );
 };
 
 export default StrategemChart;

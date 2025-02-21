@@ -9,24 +9,21 @@ import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';
 import GamesTable from '../components/GamesTable';
-import StrategemChart from '../components/StrategemChart';
+import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getPatchDiffs,
     printDiffs,
     strategemsByCategory,
-    weaponsByCategory
 } from '../utils';
 
 function SnapshotPage() {
     const { isMobile } = useMobile()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [type, setType] = useState(0);
     const [tabIndex, setTabIndex] = useState(0);
     const [strategemGraphData, setStrategemGraphData] = useState(null);
     const [timelineGraphData, setTimelineGraphData] = useState(null);
-    const [weaponsGraphData, setWeaponsGraphData] = useState(null);
 
     const [filters, setFilters] = useState({
         faction: "terminid",
@@ -41,18 +38,6 @@ function SnapshotPage() {
         matchCount: 0,
         loadoutCount: 0
     });
-
-    const [graphsExpand, setGraphsExpand] = useState({
-        strategem: false,
-        weapons: false
-    })
-
-    const toggleGraph = (key) => {
-        setGraphsExpand((prev) => ({
-            ...prev,
-            [key]: !prev[key]
-        }));
-    };
 
     const fetchData = async (url) => {
         const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
@@ -69,19 +54,19 @@ function SnapshotPage() {
     }, [filters.difficulty, filters.mission]);
 
     useEffect(() => {
-        if (tabIndex === 0 && data && filters) {
+        if ((tabIndex === 0 || tabIndex === 2) && data && filters) {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
-            setStrategemGraphData(strategemsByCategory(patchData, filters.category, graphsExpand.strategem));
-            setWeaponsGraphData(weaponsByCategory(patchData, filters.category, graphsExpand.weapons));
-            if(patchData){
+            setStrategemGraphData(strategemsByCategory(patchData, filters.category));
+            console.log(filters);
+            if (patchData) {
                 setFilterResults({
                     matchCount: patchData.totalGames,
                     loadoutCount: patchData.totalLoadouts
                 });
             }
         }
-    }, [data, filters, graphsExpand, tabIndex]);
+    }, [data, filters, tabIndex]);
 
     useEffect(() => {
         if (tabIndex === 1 && data && filters) {
@@ -105,23 +90,7 @@ function SnapshotPage() {
 
     return (
         <div className="content-wrapper">
-            <div className='type-buttons-wrapper text-medium'>
-                <div className={`${type === 0 ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
-                    onClick={() => {
-                        setType(0);
-                        setFilters({ ...filters, category: "All" })
-                    }}>
-                    STRATEGEM
-                </div>
-                <div className={`${type === 1 ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
-                    onClick={() => {
-                        setType(1);
-                        setFilters({ ...filters, category: "Primary" })
-                    }}>
-                    WEAPONS
-                </div>
-            </div>
-            <Filters tab={tabIndex} filters={filters} type={type} setFilters={setFilters} />
+            <Filters tab={tabIndex} filters={filters} type={0} setFilters={setFilters} />
             {isMobile && !loading &&
                 <div className="end-element">
                     <div className='filters-result-text'>
@@ -136,7 +105,6 @@ function SnapshotPage() {
                     <TabList className="custom-tab-list">
                         <Tab>Snapshot</Tab>
                         <Tab
-                            disabled={type === 1}
                             onClick={() => {
                                 setFilters({
                                     ...filters,
@@ -160,37 +128,13 @@ function SnapshotPage() {
 
                 <Loader loading={loading}>
                     <TabPanel>
-                        {strategemGraphData && type === 0 &&
-                            <>
-                                <StrategemChart
-                                    barData={strategemGraphData}
-                                    filters={filters}
-                                    showCount={5}
-                                    options={chartsSettings.snapshotItems}
-                                />
-                                {/* <div
-                                    className='text-small text-faction-show-all'
-                                    onClick={() => toggleGraph('strategem')}>
-                                    Show {graphsExpand.strategem ? "Less" : "All"}
-                                </div> */}
-                            </>}
-
-                        {weaponsGraphData && type === 1 &&
-                            <>
-                                <StrategemChart
-                                    barData={weaponsGraphData}
-                                    filters={filters}
-                                    options={chartsSettings.snapshotWeapons}
-                                    type="weapons"
-                                />
-                                {/* <div
-                                    className='text-small text-faction-show-all'
-                                    onClick={() => toggleGraph('weapons')}>
-                                    Show {graphsExpand.weapons ? "Less" : "All"}
-                                </div> */}
-                            </>
+                        {strategemGraphData &&
+                            <StrategemChart
+                                barData={strategemGraphData}
+                                filters={filters}
+                                options={chartsSettings.snapshotItems}
+                            />
                         }
-
                     </TabPanel>
                     <TabPanel>
                         {timelineGraphData &&
@@ -222,18 +166,6 @@ function SnapshotPage() {
                                         />
                                     </div>
                                 </div>
-                                {/* <div className='row'>
-                                    <div className="col-lg-12 col-md-12">
-                                        <div className='text-small trends-title-up'>
-                                            Up
-                                        </div>
-                                        {timelineGraphData?.up && <MultiLineChart
-                                            data={timelineGraphData?.up}
-                                            filters={filters}
-                                            options={chartsSettings.trends}
-                                            type={1} />}
-                                    </div>
-                                </div> */}
                             </div>
                         }
                     </TabPanel>
@@ -249,3 +181,16 @@ function SnapshotPage() {
 }
 
 export default SnapshotPage;
+
+/* <div className='row'>
+                                    <div className="col-lg-12 col-md-12">
+                                        <div className='text-small trends-title-up'>
+                                            Up
+                                        </div>
+                                        {timelineGraphData?.up && <MultiLineChart
+                                            data={timelineGraphData?.up}
+                                            filters={filters}
+                                            options={chartsSettings.trends}
+                                            type={1} />}
+                                    </div>
+                                </div>  */

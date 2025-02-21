@@ -1,4 +1,4 @@
-import "../styles/App.css";
+import "../../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRef } from "react";
 import {

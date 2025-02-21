@@ -93,6 +93,7 @@ function GamesTable({ filters }) {
                 <Table striped bordered hover size="sm" variant="dark">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Date</th>
                             <th>Loadouts</th>
                             <th>Planet</th>
@@ -104,6 +105,7 @@ function GamesTable({ filters }) {
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
+                                <td className="text-small">{(currentPage * 10) + index - 9}</td>
                                 <td className="text-small">
                                     <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
                                         day: '2-digit',

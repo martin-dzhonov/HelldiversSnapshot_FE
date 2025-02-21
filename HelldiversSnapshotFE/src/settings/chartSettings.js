@@ -96,7 +96,7 @@ export const snapshotWeapons = {
     barSize: 38,
     imageWidth: 125,
     imageHeight: 58,
-    sectionSize: 68,
+    sectionSize: 67,
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -287,12 +287,27 @@ export const strategemPatch = {
             ticks: {
                 minRotation: 0,
                 maxRotation: 10,
+                autoSkip: false, 
                 display: true,
                 font: {
                     family: "CustomFont",
                     size: 14,
                 },
                 color: "white",
+                callback: (value, index, values) => {
+                    const labels = [
+                      "Classic",
+                      "Escalation of Freedom",
+                      "Omens of Tyranny",
+                      "Servants of Freedom",
+                    ];
+                    
+                    if (index === 0 || index === values.length - 1) {
+                      return labels[index]; // Use predefined labels instead of numbers
+                    }
+                    return "";
+                  },
+                
             },
             grid: {
                 drawOnChartArea: false
@@ -301,7 +316,6 @@ export const strategemPatch = {
         y: {
             ticks: {
                 display: false,
-                maxTicksLimit: 3,
             },
             grid: {
                 drawBorder: false,

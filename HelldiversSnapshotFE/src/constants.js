@@ -17,11 +17,15 @@ const missionTypes = ["Short", "Long"];
 
 const navRoutes = [
     {
-        name: "Meta Snapshot",
-        route: "snapshot"
+        name: "Strategem",
+        route: "strategem"
     },
     {
-        name: "Stratagems",
+        name: "Weapons",
+        route: "weapons"
+    },
+    {
+        name: "Armory",
         route: "armory"
     },
     {

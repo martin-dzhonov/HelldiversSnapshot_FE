@@ -8,7 +8,7 @@ function ScreenshotToggle({ id }) {
         <div>
             <div onClick={onClick}
                 className='screenshot-toggle-text'>Show Snapshot</div>
-            {show && <img src={`https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`} width={768} alt="" />}
+            {show && <img src={`https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`} width={700} alt="" />}
         </div>
     )
 }

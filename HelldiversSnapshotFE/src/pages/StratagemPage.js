@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 import * as chartsSettings from "../settings/chartSettings";
 import StratagemRank from "../components/StratagemRank";
 import useMobile from "../hooks/useMobile";
-import BarChart from "../components/BarChart";
-import StrategemChart from '../components/StrategemChart';
+import BarChart from "../components/charts/BarChart";
+import StrategemChart from '../components/charts/StrategemChart';
 
 import Loader from "../components/Loader";
 import {
@@ -29,7 +29,7 @@ import {
     getChartGradient,
     getMaxRounded
 } from "../utils";
-import LineGraph from "../components/LineGraph";
+import LineChart from "../components/charts/LineChart";
 
 function StratagemPage() {
     let { itemID, factionID } = useParams();
@@ -304,7 +304,7 @@ function StratagemPage() {
                         {patchGraph && (
                             showPatchGraph ? (
                                 <div className="stratagem-graph-wrapper-patch">
-                                    <LineGraph
+                                    <LineChart
                                         data={patchGraph}
                                         options={patchGraph.chartsSettings}
                                     />

@@ -90,7 +90,7 @@ function Filters({ tab, filters, setFilters, type }) {
                         }>
                         {difficultiesNames.map((diffName, diffIndex) => (
                             <Dropdown.Item
-                                as="button"
+                                as="button" 
                                 onClick={() => {
                                     setFilters({
                                         ...filters,

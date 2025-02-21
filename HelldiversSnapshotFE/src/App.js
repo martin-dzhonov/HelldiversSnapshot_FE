@@ -4,6 +4,7 @@ import ArmoryPage from "./pages/ArmoryPage";
 import SnapshotPage from "./pages/SnapshotPage";
 import StratagemPage from "./pages/StratagemPage";
 import AboutPage from "./pages/AboutPage";
+import WeaponsPage from "./pages/WeaponsPage";
 
 function App() {
     document.title = "Helldive.Live";
@@ -11,12 +12,21 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to="/snapshot" />}></Route>
+                <Route path="/" element={<Navigate to="/strategem" />}></Route>
+
                 <Route
-                    path="/snapshot"
+                    path="/strategem"
                     element={
                         <Layout>
                             <SnapshotPage />
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/weapons"
+                    element={
+                        <Layout>
+                            <WeaponsPage />
                         </Layout>
                     }
                 />

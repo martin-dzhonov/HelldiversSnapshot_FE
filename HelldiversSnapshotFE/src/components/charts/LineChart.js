@@ -1,4 +1,4 @@
-import "../styles/App.css";
+import "../../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useRef } from "react";
 
@@ -26,7 +26,7 @@ ChartJS.register(
     Filler
 );
 
-const LineGraph = ({ data, options, onLineClick }) => {
+const LineChart = ({ data, options, onLineClick }) => {
 
     const chartRef = useRef(null);
 
@@ -41,4 +41,4 @@ const LineGraph = ({ data, options, onLineClick }) => {
     );
 };
 
-export default LineGraph;
+export default LineChart;
