@@ -28,20 +28,105 @@ const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fo
             if(!value){
                 return '';
             }
-            const rankingValue = rankingMax - value + 1;
+            const rankingValue = rankingMax - value - 3;
             return rankingMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
         }
     }
 }
 
+const tooltipSettings = (formatter) => {
+    return {
+        displayColors: false,
+        bodyFont: {
+            family: "CustomFont",
+            size: 14,
+        },
+        titleFont: {
+            family: "CustomFont",
+            size: 15,
+        },
+        callbacks: {
+            label: (item) => formatter(item)
+        }
+    }
+}
+
+const pickratePlugins = {
+    title: { display: false },
+    legend: { display: false },
+    tooltip: tooltipSettings(formatters.pickRate),
+    datalabels: {
+        display: false
+    }
+};
+
+
+export const factionChart = ({
+    percentMax,
+    rankingMax,
+} = {}) => ({
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    onHover: (event, chartElement) => {
+        if (chartElement.length) {
+            event.native.target.style.cursor = 'pointer';
+        } else {
+            event.native.target.style.cursor = 'default';
+        }
+    },
+    elements: {
+        bar: { borderWidth: 2 }
+    },
+    layout: {
+        padding: { top: 40 },
+    },
+    scales: {
+        x: {
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 15,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            min: 0,
+            ...(percentMax && { max: percentMax }),
+            ...(rankingMax > 0 && { max: rankingMax }),
+            ticks: {
+                display: false,
+                font: { family: "CustomFont", size: 10 },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    return index === 0;
+                },
+            },
+        }
+    },
+    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankingMax }) }
+});
+
+
 export const patchChart = ({
+    percentMax,
     rankingMax,
 } = {}) => ({
     indexAxis: "x",
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 35, right: 25 }
+        padding: { top: 30, right: 25 },
     },
     scales: {
         x: {
@@ -74,6 +159,10 @@ export const patchChart = ({
             }
         },
         y: {
+            offset: false,
+            min: 0,
+            ...(percentMax && { max: percentMax }),
+            ...(rankingMax > 0 && { max: rankingMax }),
             ticks: {
                 display: false,
             },
@@ -95,90 +184,6 @@ export const patchChart = ({
         datalabels: datalabelsSettings({ align: 'top', fontSize: 15, rankingMax }),
     }
 });
-
-const tooltipSettings = (formatter) => {
-    return {
-        displayColors: false,
-        bodyFont: {
-            family: "CustomFont",
-            size: 14,
-        },
-        titleFont: {
-            family: "CustomFont",
-            size: 15,
-        },
-        callbacks: {
-            label: (item) => formatter(item)
-        }
-    }
-}
-
-const pickratePlugins = {
-    title: { display: false },
-    legend: { display: false },
-    tooltip: tooltipSettings(formatters.pickRate),
-    datalabels: {
-        display: false
-    }
-};
-
-
-export const factionChart = ({
-    rankingMax,
-} = {}) => ({
-    indexAxis: "x",
-    responsive: true,
-    maintainAspectRatio: false,
-    onHover: (event, chartElement) => {
-        if (chartElement.length) {
-            event.native.target.style.cursor = 'pointer';
-        } else {
-            event.native.target.style.cursor = 'default';
-        }
-    },
-    elements: {
-        bar: { borderWidth: 2 }
-    },
-    layout: {
-        padding: { top: 30 },
-    },
-    scales: {
-        x: {
-            ticks: {
-                display: true,
-                font: {
-                    family: "CustomFont",
-                    size: 15,
-                },
-                color: "white",
-            },
-            grid: { drawOnChartArea: false }
-        },
-        y: {
-            min: 0,
-            ...(rankingMax > 0 && { max: rankingMax }),
-            ticks: {
-                display: true,
-                font: { family: "CustomFont", size: 10 },
-                color: "white",
-            },
-            grid: {
-                drawBorder: false,
-                color: "white",
-                drawTicks: false,
-                drawOnChartArea: true,
-                lineWidth: function (context) {
-                    const index = context.index;
-                    return index === 0;
-                },
-            },
-        }
-    },
-    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankingMax }) }
-});
-
-
-
 
 export const snapshotItems = {
     indexAxis: "y",

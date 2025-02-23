@@ -3,28 +3,6 @@ const isDev = false;
 
 const apiBaseUrl = 'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
-const factions = ["terminid", "automaton", "illuminate"];
-
-const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
-
-const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
-
-const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
-
-const weaponCategories = ["Primary", "Secondary", "Throwable"];
-
-const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
-
-const strategemCount = [
-    
-    {"Eagle/Orbital": 19, "Support": 30, "Defensive": 14},
-    {"Eagle/Orbital": 19, "Support": 29, "Defensive": 14},
-    {"Eagle/Orbital": 19, "Support": 26, "Defensive": 12},
-    {"Eagle/Orbital": 18, "Support": 24, "Defensive": 11}
-]
-
-const missionTypes = ["Short", "Long"];
-
 const navRoutes = [
     {
         name: "Strategem",
@@ -43,6 +21,31 @@ const navRoutes = [
         route: "about"
     }
 ];
+
+const factions = ["terminid", "automaton", "illuminate"];
+
+const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
+
+const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
+
+const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
+
+const strategemCount = [
+    {"Eagle/Orbital": 19, "Support": 30, "Defensive": 14},
+    {"Eagle/Orbital": 19, "Support": 29, "Defensive": 14},
+    {"Eagle/Orbital": 19, "Support": 26, "Defensive": 12},
+    {"Eagle/Orbital": 18, "Support": 24, "Defensive": 11}
+]
+
+const weaponCategories = ["Primary", "Secondary", "Throwable"];
+
+const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
+
+const weaponCount = [
+    {"Primary": 34, "Secondary": 14, "Throwable": 12}
+]
+
+const missionTypes = ["Short", "Long"];
 
 const patchPeriods = [
     { id: 0, name: "Servants of Freedom", start: "02/08/2025", end: "Present" },
@@ -266,5 +269,6 @@ export {
     factionColors,
     missionTypes,
     weaponCategoryColors,
-    strategemCount
+    strategemCount,
+    weaponCount
 };

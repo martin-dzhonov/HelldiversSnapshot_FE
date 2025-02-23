@@ -7,7 +7,8 @@ import {
     weaponsDict,
     weaponCategoryColors,
     weaponCategories,
-    strategemCount
+    strategemCount,
+    weaponCount
 } from "./constants";
 
 const getItemId = (name) => {
@@ -16,11 +17,10 @@ const getItemId = (name) => {
 };
 
 const getItemColor = (item) => {
-    return itemCategoryColors[itemCategories.indexOf(strategemsDict[item].category)];
-};
-
-const getWeaponColor = (item) => {
-    return weaponCategoryColors[weaponCategories.indexOf(weaponsDict[item].category)];
+    const allDict = { ...strategemsDict, ...weaponsDict };
+    const index = itemCategories.concat(weaponCategories).indexOf(allDict[item].category);
+    const allColors = itemCategoryColors.concat(weaponCategoryColors);
+    return allColors[index];
 };
 
 const getItemsByCategory = (category) => {
@@ -47,9 +47,9 @@ const getCountingSuffix = (number) => {
     const v = number % 100;
     return suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0];
 };
-const getMaxRounded = (dataset) => {
+const getMaxRounded = (dataset, factor) => {
     let maxRounded = Math.round(Math.max(...dataset.filter((item => isFinite(item)))));
-    return maxRounded < 2 ? 4 : maxRounded + 5;
+    return maxRounded < 3 ? maxRounded + factor : maxRounded + (factor*2);
 }
 function capitalizeFirstLetter(str) {
     if (str.length === 0) return str;
@@ -197,30 +197,42 @@ const getPercentage = (number1, number2, decimals = 1) => {
     return Number(percantageRaw.toFixed(decimals));
 };
 
-const getPatchStrategemCount = (itemID, filters) => {
+const getPatchItemCount = (itemID, filters, type = 'strategem') => {
     let count = 0;
+    const countArr = type === 'strategem' ? strategemCount : weaponCount;
+    const itemsDict = { ...strategemsDict, ...weaponsDict };
     if (filters.format === 'rank_all') {
-        count = Object.values(strategemCount[filters.patch.id]).reduce((acc, num) => acc + num, 0);
+        count = Object.values(countArr[filters.patch.id]).reduce((acc, num) => acc + num, 0);
     }
     if (filters.format === 'rank_category') {
-        count = strategemCount[filters.patch.id][strategemsDict[itemID].category];
+        count = countArr[filters.patch.id][itemsDict[itemID].category];
     }
     return count;
 }
 
-const getRankDatasetValue = (item, itemID, data, rankMax, format) => {
-    if (!item || !data || !format) {
+
+const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
+    if (!itemID || !data) {
         return 0;
     }
+    if (!data[type][itemID]) {
+        return 0;
+    }
+    const item = data[type][itemID];
+
+    const rankCategory = type === 'strategems' ?
+        getStrategemRank(data, itemID, true) :
+        getWeaponRank(data, itemID, true);
+
     switch (format) {
         case 'rank_all':
-            return rankMax - getStrategemRank(data, itemID) + 1
+            return rankMax - getStrategemRank(data, itemID) -3
         case 'rank_category':
-            return rankMax - getStrategemRank(data, itemID, true) + 1
+            return rankMax - rankCategory - 3
         case 'pick_rate':
-            return getPercentage(item.loadouts, data.totalLoadouts)
+            return getPercentage(item?.loadouts, data.totalLoadouts)
         case 'game_rate':
-            return getPercentage(item.games, data.totalGames);
+            return getPercentage(item?.games, data.totalGames);
         default:
             return 0;
     }
@@ -268,8 +280,7 @@ export {
     strategemsByCategory,
     weaponsByCategory,
     getWeaponRank,
-    getWeaponColor,
-    getPatchStrategemCount,
+    getPatchItemCount,
     getRankDatasetValue,
     getCompanionChartData,
     getDatasetByKey

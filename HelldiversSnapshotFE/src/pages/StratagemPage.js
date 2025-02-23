@@ -24,10 +24,11 @@ import {
     getPercentage,
     capitalizeFirstLetter,
     getStrategemRank,
-    getPatchStrategemCount,
+    getPatchItemCount,
     getCompanionChartData,
     getRankDatasetValue,
-    getDatasetByKey
+    getDatasetByKey,
+    getMaxRounded
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -59,17 +60,16 @@ function StratagemPage() {
 
     useEffect(() => {
         if (fetchData && itemID) {
-            const rankMax = getPatchStrategemCount(itemID, filters);
+            const rankMax = getPatchItemCount(itemID, filters);
 
             const factionsDataset = factions.map((factionName) => {
                 const patchData = fetchData[factionName][filters.patch.id];
-                const itemData = patchData?.strategems[itemID];
                 return getRankDatasetValue(
-                    itemData,
                     itemID,
                     patchData,
                     rankMax,
-                    filters.format);
+                    filters.format,
+                    'strategems');
             })
 
             setFactionChart({
@@ -78,24 +78,23 @@ function StratagemPage() {
                     data: factionsDataset,
                     backgroundColor: factionColors,
                     barThickness: 24
-                }],
-                options: chartsSettings.factionChart({ rankingMax: rankMax }),
+                }], 
+                options: chartsSettings.factionChart({ percentMax: getMaxRounded(factionsDataset, 5), rankingMax: rankMax }),
             });
 
             const factionData = fetchData[filters.faction];
             const patchDataset = factionData.map((patchData) => {
-                const itemData = patchData?.strategems[itemID];
                 return getRankDatasetValue(
-                    itemData,
                     itemID,
                     patchData,
                     rankMax,
-                    filters.format);
+                    filters.format,
+                    'strategems');
             });
 
             setPatchChart({
                 data: patchDataset,
-                options: chartsSettings.patchChart({ rankingMax: rankMax })
+                options: chartsSettings.patchChart({ percentMax: getMaxRounded(patchDataset, 5), rankingMax: rankMax })
             });
         }
     }, [itemID, fetchData, filters]);

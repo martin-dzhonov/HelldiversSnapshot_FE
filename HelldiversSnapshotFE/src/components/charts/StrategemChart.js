@@ -13,7 +13,7 @@ import {
     Tooltip,
 } from "chart.js";
 import { isDev, weaponsDict, strategemsDict } from "../../constants";
-import { getItemColor, getWeaponColor } from "../../utils";
+import { getItemColor } from "../../utils";
 import useMobile from "../../hooks/useMobile";
 
 ChartJS.register(
@@ -54,13 +54,13 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
 
     const chartData = useMemo(() => {
         if (data) {
-            const weapons = { ...strategemsDict, ...weaponsDict }
+            const allItems = { ...strategemsDict, ...weaponsDict }
             return {
-                labels: Object.keys(data).map((item) => weapons[item].name),
+                labels: Object.keys(data).map((item) => allItems[item].name),
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.value),
-                        backgroundColor:  Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getWeaponColor(item)),
+                        backgroundColor:  Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getItemColor(item)),
                         total: Object.values(data).map((item) => item?.loadouts),
                         currValue: Object.values(data).map((item) => item?.currValue),
                         pastValue: Object.values(data).map((item) => item?.pastValue),

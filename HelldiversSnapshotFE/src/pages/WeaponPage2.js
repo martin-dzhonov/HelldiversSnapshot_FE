@@ -1,6 +1,10 @@
 import "../styles/App.css";
+import "../styles/WeaponPage.css";
 import "../styles/StrategemPage.css";
+
 import { useEffect, useState, useMemo } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import { useParams } from "react-router-dom";
 import * as chartsSettings from "../settings/chartSettings";
 import StratagemRank from "../components/StratagemRank";
@@ -12,128 +16,132 @@ import Loader from "../components/Loader";
 import {
     apiBaseUrl,
     patchPeriods,
-    strategemsDict,
     missionTypes,
     factions,
     factionColors,
     itemCategories,
     difficultiesNamesShort,
+    weaponsDict,
+
 } from "../constants";
 import {
-    getItemColor,
     getPercentage,
     capitalizeFirstLetter,
-    getStrategemRank,
-    getPatchStrategemCount,
-    getCompanionChartData,
-    getRankDatasetValue,
-    getDatasetByKey
+    getMaxRounded,
+    getWeaponRank,
+    getWeaponColor
 } from "../utils";
-import ItemFilters from "../components/ItemFilters";
-import PatchChart from "../components/charts/PatchChart";
 
 function WeaponPage2() {
     let { itemID, factionID } = useParams();
     const { isMobile } = useMobile();
 
     const [fetchData, setFetchData] = useState();
-    const [factionChart, setFactionChart] = useState(null);
-    const [patchChart, setPatchChart] = useState(null);
-    const [companionCharts, setCompanionCharts] = useState(null);
-    const [diffChart, setDiffChart] = useState(null);
-    const [missionChart, setMissionChart] = useState(null);
+    const [diffGraph, setDiffGraph] = useState(null);
+    const [missionGraph, setMissionGraph] = useState(null);
+    const [factionGraph, setFactionGraph] = useState(null);
+    const [companionGraphs, setCompanionGraphs] = useState(null);
 
     const [filters, setFilters] = useState({
         faction: factionID,
-        format: 'pick_rate',
         patch: { ...patchPeriods[0] }
     });
+
+    const [show, setShow] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => setShow(true), 75);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
             .then((response) => response.json());
+
         fetchStratagem.then((res) => {
             setFetchData(res);
         });
     }, []);
 
-    useEffect(() => {
-        if (fetchData && itemID) {
-            const rankMax = getPatchStrategemCount(itemID, filters);
-
-            const factionsDataset = factions.map((factionName) => {
-                const patchData = fetchData[factionName][filters.patch.id];
-                const itemData = patchData?.strategems[itemID];
-                return getRankDatasetValue(
-                    itemData,
-                    itemID,
-                    patchData,
-                    rankMax,
-                    filters.format);
-            })
-
-            setFactionChart({
-                labels: factions.map((item) => capitalizeFirstLetter(item)),
-                datasets: [{
-                    data: factionsDataset,
-                    backgroundColor: factionColors,
-                    barThickness: 24
-                }],
-                options: chartsSettings.factionChart({ rankingMax: rankMax }),
-            });
-
-            const factionData = fetchData[filters.faction];
-            const patchDataset = factionData.map((patchData) => {
-                const itemData = patchData?.strategems[itemID];
-                return getRankDatasetValue(
-                    itemData,
-                    itemID,
-                    patchData,
-                    rankMax,
-                    filters.format);
-            });
-
-            setPatchChart({
-                data: patchDataset,
-                options: chartsSettings.patchChart({ rankingMax: rankMax })
-            });
-        }
-    }, [itemID, fetchData, filters]);
-
-    const dataFilter = useMemo(() => {
+    const data = useMemo(() => {
         if (fetchData && filters) {
             const filtered = fetchData[filters.faction][filters.patch.id];
             return filtered;
         }
     }, [fetchData, filters]);
 
-    const strategemData = useMemo(() => {
-        if (dataFilter) {
-            if (!dataFilter.strategems[itemID]) {
-                return { loadouts: 0 }
-            }
-            return dataFilter.strategems[itemID];
+    const weaponData = useMemo(() => {
+        if (data) {
+            return data.weapons[itemID];
         }
-    }, [dataFilter, itemID]);
+    }, [data, itemID]);
 
     useEffect(() => {
-        if (strategemData && strategemData.loadouts > 0) {
-
-            const diffsDataset = getDatasetByKey(itemID, strategemData, dataFilter, 'diffs');
-            setDiffChart({
+        if (weaponData) {
+            setDiffGraph({
                 labels: difficultiesNamesShort,
-                datasets: diffsDataset
-            });
-            
-            const missionsDataset = getDatasetByKey(itemID, strategemData, dataFilter, 'missions');
-            setMissionChart({
-                labels: missionTypes,
-                datasets: missionsDataset
+                datasets: [
+                    {
+                        data: Object.keys(weaponData.diffs).map(key =>
+                            getPercentage(weaponData.diffs[key], data.diffs[key])),
+                        backgroundColor: getWeaponColor(itemID),
+                        barThickness: 24
+                    }
+                ]
             });
 
-            setCompanionCharts(getCompanionChartData(strategemData));
+            setMissionGraph({
+                labels: missionTypes,
+                datasets: [
+                    {
+                        data: Object.keys(weaponData.missions).map(key =>
+                            getPercentage(weaponData.missions[key], data.missions[key])),
+                        backgroundColor: getWeaponColor(itemID),
+                        barThickness: 24
+                    }
+                ]
+            });
+
+            const companionsArray = Object.keys(weaponData.companions).map(category => {
+                return weaponData.companions[category].map(item => {
+                    return {
+                        ...item,
+                        value: getPercentage(item.total, weaponData.loadouts)
+                    };
+                }).reduce((acc, item) => {
+                    const { name, ...rest } = item;
+                    acc[name] = rest;
+                    return acc;
+                }, {});
+            });
+
+            setCompanionGraphs(companionsArray);
         }
-    }, [strategemData]);
+    }, [weaponData]);
+
+    useEffect(() => {
+        if (fetchData) {
+            const dataset = factions.map((factionName) => {
+                const patchData = fetchData[factionName][filters.patch.id];
+                return patchData?.weapons[itemID] ?
+                    getPercentage(patchData.weapons[itemID].loadouts, patchData.totalLoadouts) : 0;
+            })
+
+            setFactionGraph({
+                labels: factions.map((item) => capitalizeFirstLetter(item)),
+                datasets: [
+                    {
+                        data: dataset,
+                        backgroundColor: factionColors,
+                        barThickness: 24
+                    }
+                ],
+                chartsSettings: chartsSettings.getSettingsWithMax(
+                    chartsSettings.strategemFaction,
+                    getMaxRounded(dataset)
+                )
+            });
+        }
+    }, [fetchData, filters, itemID]);
 
     const onFactionClick = (element) => {
         if (element) {
@@ -145,130 +153,199 @@ function WeaponPage2() {
         <div className="content-wrapper">
             <div className="row">
                 <div className="col-lg-6 col-md-12 col-sm-12">
-                    <div className="stratagem-title">
-                        <div className="stratagem-title-img">
-                            <img src={strategemsDict[itemID].image} alt=""></img>
-                        </div>
-                        <div className="stratagem-title-text">
-                            {strategemsDict[itemID].nameFull}
+                    <div className="weapon-title">
+                        {itemID &&
+                            <div className={`${weaponsDict[itemID].category === "Throwable" ? 'weapon-title-img-small' : 'weapon-title-img'}`}>
+                                <img src={weaponsDict[itemID].image} alt=""></img>
+                            </div>}
+
+                        <div className="weapon-title-text">
+                            {weaponsDict[itemID].nameFull}
                         </div>
                     </div>
                 </div>
-                <ItemFilters filters={filters} setFilters={setFilters} />
+                <div className="d-flex flex-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="row mt-auto ">
+                        <div className="col-6 col-lg-6 col-md-3 col-sm-6 ">
+                            <div className="stratagem-filter-container">
+                                <DropdownButton
+                                    className="dropdown-button"
+                                    title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
+                                    {factions.map((factionName) => (
+                                        <Dropdown.Item
+                                            as="button"
+                                            onClick={() => { setFilters({ ...filters, faction: factionName }); }}>
+                                            {capitalizeFirstLetter(factionName)}
+                                        </Dropdown.Item>
+                                    ))}
+                                </DropdownButton>
+                            </div>
+                        </div>
+                        <div className="col-6 col-lg-6 col-md-3 col-sm-6">
+                            <div className="stratagem-filter-container">
+                                <DropdownButton
+                                    className="dropdown-button"
+                                    title={`${!isMobile ? "Patch: " : ''} ${filters.patch.name}`} >
+                                    {patchPeriods.map((patchPeriod, index) => (
+                                        <Dropdown.Item
+                                            as="button"
+                                            disabled={index > 0}
+                                            onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
+                                            {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                                        </Dropdown.Item>
+                                    ))}
+                                </DropdownButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="strategem-divider"></div>
-            <Loader loading={!strategemData || !companionCharts}>
-                {strategemData?.loadouts < 5 ?
-                    <div className="empty-chart-text-wrapper">
-                        <div className="empty-chart-text">
-                            Insufficient Data
-                        </div>
-                    </div> :
-                    <>
-                        <div className="row">
-                            <div className="col-lg-6 col-sm-12">
-                                {strategemData &&
-                                    <div className="row">
-                                        <div className="col-12 col-lg-6 col-sm-6">
-                                            <StratagemRank
-                                                text={["pick ", "rate"]}
-                                                value={getPercentage(strategemData?.loadouts, dataFilter?.totalLoadouts)}
-                                                onClick={() => setFilters({ ...filters, format: "pick_rate" })}
-                                                color={getItemColor(itemID)}
-                                                active={filters.format === "pick_rate"}
-                                                percent />
-                                            <StratagemRank
-                                                text={["of", "games"]}
-                                                value={getPercentage(strategemData?.games, dataFilter?.totalGames)}
-                                                onClick={() => setFilters({ ...filters, format: "game_rate" })}
-                                                color={getItemColor(itemID)}
-                                                active={filters.format === "game_rate"}
-                                                percent />
-                                        </div>
-                                        <div className="col-12 col-lg-6 col-sm-6">
-                                            <StratagemRank
-                                                text={["in", strategemsDict[itemID].category]}
-                                                value={getStrategemRank(dataFilter, itemID, true)}
-                                                onClick={() => setFilters({ ...filters, format: "rank_category" })}
-                                                color={getItemColor(itemID)}
-                                                active={filters.format === "rank_category"}
-                                                suffix />
-                                            <StratagemRank
-                                                text={["in", "All Stratagem"]}
-                                                value={getStrategemRank(dataFilter, itemID)}
-                                                onClick={() => setFilters({ ...filters, format: "rank_all" })}
-                                                color={getItemColor(itemID)}
-                                                active={filters.format === "rank_all"}
-                                                suffix />
-                                        </div>
-                                    </div>}
-                            </div>
-                            <div className="col-lg-3 col-sm-12">
-                                {factionChart && (
-                                    <div className="stratagem-graph-wrapper-faction">
-                                        <BarChart
-                                            data={factionChart}
-                                            options={factionChart.options}
-                                            onBarClick={onFactionClick}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="col-lg-3 col-sm-12">
-                                {patchChart &&
-                                    <div className="stratagem-graph-wrapper-patch">
-                                        <PatchChart
-                                            data={patchChart.data}
-                                            itemID={itemID}
-                                            options={patchChart.options}
-                                        />
-                                    </div>}
-                            </div>
-                        </div>
-                        {companionCharts && <>
-                            <div className="stratagem-graphs-title">Companion Picks</div>
-                            <div className="strategem-divider"></div>
+            <Loader loading={!weaponData}>
+                <div className="row">
+                    <div className="col-lg-6 col-sm-12">
+                        {weaponData &&
                             <div className="row">
-                                {itemCategories.map((category, index) => {
-                                    return <div className="col-lg-3 col-md-3 col-sm-6 col-12">
-                                        <div className="companion-chart-wrapper">
-                                            <div className="stratagem-loadouts-title">{category}</div>
-                                            <StrategemChart
-                                                barData={companionCharts[index]}
-                                                filters={filters}
-                                                options={chartsSettings.strategemCompanions}
-                                            />
-                                        </div>
+                                <div className="row">
+
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["pick ", "rate"]}
+                                            value={getPercentage(weaponData?.loadouts, data?.totalLoadouts)}
+                                            color={getWeaponColor(itemID)}
+                                            percent />
                                     </div>
-                                })}
-                            </div>
-                        </>}
-                        {diffChart && missionChart && <>
-                            <div className="stratagem-graphs-title">Other</div>
-                            <div className="strategem-divider"></div>
-                            <div className="row">
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <div className="stratagem-other-graph-wrapper">
-                                        <div className="stratagem-other-title">Difficulty</div>
-                                        <BarChart
-                                            data={diffChart}
-                                            options={chartsSettings.strategemOther}
-                                        />
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["in", weaponsDict[itemID].category]}
+                                            value={getWeaponRank(data, itemID, true)}
+                                            color={getWeaponColor(itemID)}
+                                            suffix />
                                     </div>
                                 </div>
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                                    <div className="stratagem-mission-graph-wrapper">
-                                        <div className="stratagem-other-title">Mission Length</div>
-                                        <BarChart
-                                            data={missionChart}
-                                            options={chartsSettings.strategemOther}
-                                        />
+                                <div className="row">
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["of", "games"]}
+                                            value={getPercentage(weaponData?.games, data?.totalGames)}
+                                            color={getWeaponColor(itemID)}
+                                            percent />
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["times", "played"]}
+                                            value={weaponData?.loadouts}
+                                            color={getWeaponColor(itemID)}
+                                             />
                                     </div>
                                 </div>
+
+
+                            </div>}
+                    </div>
+                    <div className="col-lg-3 col-sm-12">
+                        {factionGraph && (
+                            <div className="stratagem-graph-wrapper-faction">
+                                <BarChart
+                                    data={factionGraph}
+                                    options={factionGraph.chartsSettings}
+                                    onBarClick={onFactionClick}
+                                />
                             </div>
-                        </>}
-                    </>}
+                        )}
+                    </div>
+                </div>
+
+                <div className="stratagem-graphs-title">Companion Picks</div>
+                <div className="strategem-divider"></div>
+
+                <div className="row">
+                    {!companionGraphs &&
+                        <div className="strategem-section-placeholder" />}
+                    {companionGraphs && itemCategories.map((category, index) => {
+                        return <div className="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div className="companion-chart-wrapper">
+                                <div className="stratagem-loadouts-title">{category}</div>
+                                <StrategemChart
+                                    barData={companionGraphs[index]}
+                                    filters={filters}
+                                    options={chartsSettings.strategemCompanions} />
+                            </div>
+                        </div>
+                    })}
+                </div>
+
+                <div className="stratagem-graphs-title">Other</div>
+                <div className="strategem-divider"></div>
+
+                <div className="row">
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                        {diffGraph &&
+                            <div className="stratagem-other-graph-wrapper">
+                                <div className="stratagem-other-title">Difficulty</div>
+                                <BarChart
+                                    data={diffGraph}
+                                    options={chartsSettings.strategemOther}
+                                />
+                            </div>}
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                        {missionGraph &&
+                            <div className="stratagem-mission-graph-wrapper">
+                                <div className="stratagem-other-title">Mission Length</div>
+                                <BarChart
+                                    data={missionGraph}
+                                    options={chartsSettings.strategemOther}
+                                />
+                            </div>}
+                    </div>
+                </div>
+
+                {/* <div className="stratagem-graphs-title">Companion Picks</div>
+                <div className="strategem-divider"></div>
+
+                <div className="row">
+                    {!companionGraphs &&
+                    <div className="strategem-section-placeholder"/>}
+                    {companionGraphs && itemCategories.map((category, index) => {
+                        return <div className="col-lg-3 col-md-3 col-sm-6 col-12">
+                            <div className="companion-chart-wrapper">
+                                <div className="stratagem-loadouts-title">{category}</div>
+                                <StrategemChart
+                                    barData={companionGraphs[index]}
+                                    filters={filters}
+                                    options={chartsSettings.strategemCompanions} />
+                            </div>
+                        </div>
+                    })}
+                </div>
+
+                <div className="stratagem-graphs-title">Other</div>
+                <div className="strategem-divider"></div>
+
+                <div className="row">
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                        {diffGraph &&
+                            <div className="stratagem-other-graph-wrapper">
+                                <div className="stratagem-other-title">Difficulty</div>
+                                <BarChart
+                                    data={diffGraph}
+                                    options={chartsSettings.strategemOther}
+                                />
+                            </div>}
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                        {missionGraph &&
+                            <div className="stratagem-mission-graph-wrapper">
+                                <div className="stratagem-other-title">Mission Length</div>
+                                <BarChart
+                                    data={missionGraph}
+                                    options={chartsSettings.strategemOther}
+                                />
+                            </div>}
+                    </div>
+                </div> */}
             </Loader>
         </div>
     );
