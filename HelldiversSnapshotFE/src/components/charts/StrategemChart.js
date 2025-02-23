@@ -12,8 +12,9 @@ import {
     Title,
     Tooltip,
 } from "chart.js";
-import { isDev, weaponsDict, strategems } from "../../constants";
+import { isDev, weaponsDict, strategemsDict } from "../../constants";
 import { getItemColor, getWeaponColor } from "../../utils";
+import useMobile from "../../hooks/useMobile";
 
 ChartJS.register(
     CategoryScale,
@@ -25,10 +26,12 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "strategem", expandable=false }) => {
+const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type = "strategem", expandable=false }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
+    const { isMobile } = useMobile();
 
+    const chartLoaded = { current: false };
     const [images, setImages] = useState({});
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [showFull, setShowFull] = useState(false);
@@ -51,8 +54,7 @@ const StrategemChart = ({ barData, filters, options, type = "strategem", expanda
 
     const chartData = useMemo(() => {
         if (data) {
-            console.log(data);
-            const weapons = { ...strategems, ...weaponsDict }
+            const weapons = { ...strategemsDict, ...weaponsDict }
             return {
                 labels: Object.keys(data).map((item) => weapons[item].name),
                 datasets: [
@@ -70,10 +72,10 @@ const StrategemChart = ({ barData, filters, options, type = "strategem", expanda
     }, [data]);
 
     useMemo(() => {
-        if (strategems && weaponsDict) {
+        if (strategemsDict && weaponsDict) {
             const images = {};
             let loadedCount = 0;
-            const allDict = { ...strategems, ...weaponsDict }
+            const allDict = { ...strategemsDict, ...weaponsDict }
             Object.keys(allDict).forEach((imageKey) => {
                 const image = new Image();
                 image.src = allDict[imageKey]?.image;
@@ -89,7 +91,7 @@ const StrategemChart = ({ barData, filters, options, type = "strategem", expanda
                 };
             });
         }
-    }, [strategems, weaponsDict]);
+    }, [strategemsDict, weaponsDict]);
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
@@ -106,10 +108,12 @@ const StrategemChart = ({ barData, filters, options, type = "strategem", expanda
             let imageX = 0;
             let imageW = options.imageWidth;
             let imageH = options.imageHeight;
-            if (type === "weapons" && filters.category === "Throwable") {
-                imageW = 60;
-                imageH = 60;
-                imageX = 60;
+            if (type === "weapons") {
+                if(filters.category === "Throwable"){
+                    imageW = 60;
+                    imageH = 60;
+                    imageX = 60;
+                }
             }
 
             if (image && !isDev) {
@@ -181,6 +185,12 @@ const StrategemChart = ({ barData, filters, options, type = "strategem", expanda
                                     plugins={[
                                         {
                                             beforeDraw: (chart) => handleDrawImage(chart),
+                                            afterDraw: (chart) => {
+                                                if (!chartLoaded.current) {
+                                                    chartLoaded.current = true;
+                                                    onChartLoad(chart); 
+                                                }
+                                            },
                                             resize: (chart) => handleDrawImage(chart),
                                         },
                                     ]}

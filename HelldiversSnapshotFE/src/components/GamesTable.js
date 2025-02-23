@@ -1,5 +1,5 @@
 import "../styles/App.css";
-import { strategems, weaponsDict } from "../constants";
+import { strategemsDict, weaponsDict } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";
 import { useState, useEffect } from "react";
@@ -122,7 +122,7 @@ function GamesTable({ filters }) {
                                                     <img
                                                         key={itemIndex}
                                                         className="table-img-wrapper"
-                                                        src={strategems[item]?.image}
+                                                        src={strategemsDict[item]?.image}
                                                         alt=""
                                                     />
                                                 ))}

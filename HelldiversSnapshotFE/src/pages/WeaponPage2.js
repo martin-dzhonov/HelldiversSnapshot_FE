@@ -32,7 +32,7 @@ import {
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
 
-function StratagemPage() {
+function WeaponPage2() {
     let { itemID, factionID } = useParams();
     const { isMobile } = useMobile();
 
@@ -274,4 +274,4 @@ function StratagemPage() {
     );
 }
 
-export default StratagemPage;
+export default WeaponPage2;

@@ -35,7 +35,7 @@ function AboutPage() {
                 &#8226; Sub 0.1% pick rate strategems may not have data for companions/dificulty/mission lenght charts
             </div>
             <div className="about-text">
-                &#8226; Data for difficulty 7 has a small number(3%) of diff 6 games
+                &#8226; Data for difficulty 7 before Servants of Freddom has a small number of diff 6 games
             </div>
             
             <div className="about-text-large">Contact</div>

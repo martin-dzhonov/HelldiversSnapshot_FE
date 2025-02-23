@@ -51,7 +51,7 @@ function WeaponPage() {
     useEffect(() => {
         const timer = setTimeout(() => setShow(true), 75);
         return () => clearTimeout(timer);
-      }, []);
+    }, []);
 
     useEffect(() => {
         const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
@@ -207,60 +207,41 @@ function WeaponPage() {
                     <div className="col-lg-6 col-sm-12">
                         {weaponData &&
                             <div className="row">
-                                <div className="col-12 col-lg-6 col-sm-6">
-                                    {isMobile ?
-                                        <>
-                                            <StratagemRank
-                                                text={["in", weaponsDict[itemID].category]}
-                                                value={getWeaponRank(data, itemID, true)}
-                                                color={getWeaponColor(itemID)}
-                                                suffix />
-                                            <StratagemRank
-                                                text={["in", "All Stratagem"]}
-                                                value={getWeaponRank(data, itemID)}
-                                                color={getWeaponColor(itemID)}
-                                                suffix />
-                                        </> :
-                                        <>
-                                            <StratagemRank
-                                                text={["in", weaponsDict[itemID].category]}
-                                                value={getWeaponRank(data, itemID)}
-                                                color={getWeaponColor(itemID)}
-                                                suffix />
-                                            <StratagemRank
-                                                text={["of", "games"]}
-                                                value={getPercentage(weaponData?.games, data?.totalGames)}
-                                                color={getWeaponColor(itemID)}
-                                                percent />
-                                        </>}
+                                <div className="row">
+
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["pick ", "rate"]}
+                                            value={getPercentage(weaponData?.loadouts, data?.totalLoadouts)}
+                                            color={getWeaponColor(itemID)}
+                                            percent />
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["in", weaponsDict[itemID].category]}
+                                            value={getWeaponRank(data, itemID, true)}
+                                            color={getWeaponColor(itemID)}
+                                            suffix />
+                                    </div>
                                 </div>
-                                <div className="col-12 col-lg-6 col-sm-6">
-                                    {isMobile ?
-                                        <>
-                                            <StratagemRank
-                                                text={["pick ", "rate"]}
-                                                value={getPercentage(weaponData?.loadouts, data?.totalLoadouts)}
-                                                color={getWeaponColor(itemID)}
-                                                percent />
-                                            <StratagemRank
-                                                text={["of", "games"]}
-                                                value={getPercentage(weaponData?.games, data?.totalGames)}
-                                                color={getWeaponColor(itemID)}
-                                                percent />
-                                        </> :
-                                        <>
-                                            <StratagemRank
-                                                text={["in", weaponsDict[itemID].category]}
-                                                value={getWeaponRank(data, itemID)}
-                                                color={getWeaponColor(itemID)}
-                                                suffix />
-                                            <StratagemRank
-                                                text={["pick ", "rate"]}
-                                                value={getPercentage(weaponData?.loadouts, data?.totalLoadouts)}
-                                                color={getWeaponColor(itemID)}
-                                                percent />
-                                        </>}
+                                <div className="row">
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["of", "games"]}
+                                            value={getPercentage(weaponData?.games, data?.totalGames)}
+                                            color={getWeaponColor(itemID)}
+                                            percent />
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-sm-12">
+                                        <StratagemRank
+                                            text={["times", "played"]}
+                                            value={weaponData?.loadouts}
+                                            color={getWeaponColor(itemID)}
+                                             />
+                                    </div>
                                 </div>
+
+
                             </div>}
                     </div>
                     <div className="col-lg-3 col-sm-12">

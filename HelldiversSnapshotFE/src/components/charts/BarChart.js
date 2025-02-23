@@ -20,8 +20,10 @@ ChartJS.register(
     Legend
 );
 
-const BarChart = ({ data, options, onBarClick, redraw = false }) => {
+const BarChart = ({ data, options, onBarClick,  onChartLoad = ()=>{} }) => {
     const chartRef = useRef(null);
+    const chartLoaded = { current: false };
+
     const onClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
@@ -36,6 +38,16 @@ const BarChart = ({ data, options, onBarClick, redraw = false }) => {
             options={options}
             redraw={true}
             onClick={onClick}
+            plugins={[
+                {
+                    afterDraw: (chart) => {
+                        if (!chartLoaded.current) {
+                            chartLoaded.current = true;
+                            onChartLoad(chart); 
+                        }
+                    },
+                },
+            ]}
         />
     );
 };

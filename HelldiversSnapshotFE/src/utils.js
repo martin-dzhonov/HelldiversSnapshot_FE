@@ -3,27 +3,20 @@ import {
     missionNames,
     itemCategoryColors,
     itemCategories,
-    strategems,
+    strategemsDict,
     weaponsDict,
     weaponCategoryColors,
-    weaponCategories
+    weaponCategories,
+    strategemCount
 } from "./constants";
 
-const getStrategemByName = (name) => {
-    const result = Object.entries(strategems).find(([key, value]) => value.name === name);
-    return {
-        "id": result[0],
-        ...result[1]
-    };
-}
-
 const getItemId = (name) => {
-    const entry = Object.entries({ ...strategems, ...weaponsDict }).find(([key, value]) => value.name === name);
+    const entry = Object.entries({ ...strategemsDict, ...weaponsDict }).find(([key, value]) => value.name === name);
     return entry ? entry[0] : null;
 };
 
 const getItemColor = (item) => {
-    return itemCategoryColors[itemCategories.indexOf(strategems[item].category)];
+    return itemCategoryColors[itemCategories.indexOf(strategemsDict[item].category)];
 };
 
 const getWeaponColor = (item) => {
@@ -32,9 +25,9 @@ const getWeaponColor = (item) => {
 
 const getItemsByCategory = (category) => {
     if (category === "All") {
-        return Object.values(strategems);
+        return Object.values(strategemsDict);
     }
-    const result = Object.values(strategems).filter((item) => item.category === category);
+    const result = Object.values(strategemsDict).filter((item) => item.category === category);
     return result;
 };
 
@@ -86,8 +79,8 @@ const getChartGradient = (context, itemColor) => {
 const getStrategemRank = (data, strategemName, category) => {
     const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].loadouts - a[1].loadouts);
     if (category) {
-        const strategemCategory = strategems[strategemName].category;
-        const categoryRank = sorted.filter((item) => strategems[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
+        const strategemCategory = strategemsDict[strategemName].category;
+        const categoryRank = sorted.filter((item) => strategemsDict[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
         return categoryRank + 1;
     } else {
         const rankAll = sorted.findIndex(item => item[0] === strategemName);
@@ -139,7 +132,7 @@ const printDiffs = (startPatch, endPatch) => {
             const loadouts = endPatch[key].loadouts;
 
             const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, loadouts }
+            diffsObj[key] = { currValue, pastValue, diff, name: strategemsDict[key].name, startRank, endRank, loadouts }
         } else if (isDev) {
             const pastValue = 0;
             const currValue = endPatch[key].value;
@@ -148,9 +141,8 @@ const printDiffs = (startPatch, endPatch) => {
             const loadouts = endPatch[key].loadouts;
 
             const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategems[key].name, startRank, endRank, loadouts }
+            diffsObj[key] = { currValue, pastValue, diff, name: strategemsDict[key].name, startRank, endRank, loadouts }
         }
-
     });
 
     console.log(diffsObj);
@@ -158,7 +150,7 @@ const printDiffs = (startPatch, endPatch) => {
     const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
 
     const byCategory = itemCategories.slice(1, 4).map((category) => {
-        const filtered = all.filter(([key, value]) => strategems[key].category === category).slice(0, category !== "Defensive" ? 10 : 5);
+        const filtered = all.filter(([key, value]) => strategemsDict[key].category === category).slice(0, category !== "Defensive" ? 10 : 5);
         return Object.values(Object.fromEntries(filtered));
     })
 
@@ -173,10 +165,7 @@ const strategemsByCategory = (gamesData, category, full) => {
     let strategemsCategory = category === "All" ?
         Object.entries(gamesData.strategems) :
         Object.entries(gamesData.strategems).filter(([key, value]) =>
-            strategems[key].category === category);
-
-    //if (!full) { strategemsCategory = strategemsCategory.slice(0, !isDev ? 15 : category === "Defensive" ? 5 : 10); }
-
+            strategemsDict[key].category === category);
     strategemsCategory.forEach(([key, value]) => {
         result[key] = {
             loadouts: value.loadouts,
@@ -208,6 +197,59 @@ const getPercentage = (number1, number2, decimals = 1) => {
     return Number(percantageRaw.toFixed(decimals));
 };
 
+const getPatchStrategemCount = (itemID, filters) => {
+    let count = 0;
+    if (filters.format === 'rank_all') {
+        count = Object.values(strategemCount[filters.patch.id]).reduce((acc, num) => acc + num, 0);
+    }
+    if (filters.format === 'rank_category') {
+        count = strategemCount[filters.patch.id][strategemsDict[itemID].category];
+    }
+    return count;
+}
+
+const getRankDatasetValue = (item, itemID, data, rankMax, format) => {
+    if (!item || !data || !format) {
+        return 0;
+    }
+    switch (format) {
+        case 'rank_all':
+            return rankMax - getStrategemRank(data, itemID) + 1
+        case 'rank_category':
+            return rankMax - getStrategemRank(data, itemID, true) + 1
+        case 'pick_rate':
+            return getPercentage(item.loadouts, data.totalLoadouts)
+        case 'game_rate':
+            return getPercentage(item.games, data.totalGames);
+        default:
+            return 0;
+    }
+}
+
+const getCompanionChartData = (strategemData) => {
+    return Object.values(strategemData.companions).map(category => {
+        return category.map(item => {
+            return {
+                ...item,
+                value: getPercentage(item.total, strategemData.loadouts)
+            };
+        }).reduce((acc, item) => {
+            const { name, ...rest } = item;
+            acc[name] = rest;
+            return acc;
+        }, {});
+    })
+}
+
+const getDatasetByKey = (itemID, itemData, patchData, key) => {
+    return [{
+        data: Object.keys(itemData[key]).map(subKey =>
+            getPercentage(itemData[key][subKey], patchData[key][subKey])),
+        backgroundColor: getItemColor(itemID),
+        barThickness: 24
+    }]
+}
+
 export {
     getMissionsByLength,
     getMissionLength,
@@ -217,7 +259,6 @@ export {
     capitalizeFirstLetter,
     getPercentage,
     getItemId,
-    getStrategemByName,
     getStrategemRank,
     hexToRgbA,
     getMaxRounded,
@@ -227,7 +268,11 @@ export {
     strategemsByCategory,
     weaponsByCategory,
     getWeaponRank,
-    getWeaponColor
+    getWeaponColor,
+    getPatchStrategemCount,
+    getRankDatasetValue,
+    getCompanionChartData,
+    getDatasetByKey
 };
 
 // const isDateBetween = (targetDate, startDate, endDate) => {

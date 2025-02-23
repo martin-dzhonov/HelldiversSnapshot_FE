@@ -1,4 +1,5 @@
-import { isDev } from "../constants";
+import { isDev, patchPeriods } from "../constants";
+import { getCountingSuffix } from "../utils";
 
 export const getSettingsWithMax = (settings, maxY) => {
     settings.scales.y.max = maxY;
@@ -13,19 +14,87 @@ const formatters = {
     trends2: (value) => value > 0 ? `+${value}%` : `-${value}%`
 };
 
-const datalabelsSettings = ({ color = "white", fontSize = 15, formatter } = {}) => {
+const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankingMax } = {}) => {
     return {
         color: color,
-        anchor: 'end',
-        align: 'end',
+        anchor: anchor,
+        align: align,
         font: {
             family: "CustomFont",
             weight: 'bold',
             size: fontSize,
         },
-        formatter: (value) => formatter ? formatter(value) : value + "%",
+        formatter: (value) => {
+            if(!value){
+                return '';
+            }
+            const rankingValue = rankingMax - value + 1;
+            return rankingMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
+        }
     }
 }
+
+export const patchChart = ({
+    rankingMax,
+} = {}) => ({
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+        padding: { top: 35, right: 25 }
+    },
+    scales: {
+        x: {
+            ticks: {
+                minRotation: 0,
+                maxRotation: 10,
+                autoSkip: false,
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 14,
+                },
+                color: "white",
+                callback: (value, index, values) => {
+                    const labels = [
+                      "Classic",
+                      "Escalation of Freedom",
+                      "Omens of Tyranny",
+                      "Servants of Freedom",
+                    ];
+                    
+                    if (index === 0 || index === values.length - 1) {
+                      return labels[index];
+                    }
+                    return "";
+                  },
+            },
+            grid: {
+                drawOnChartArea: false
+            }
+        },
+        y: {
+            ticks: {
+                display: false,
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    return index > 0 ? 0 : 1;
+                },
+            },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        datalabels: datalabelsSettings({ align: 'top', fontSize: 15, rankingMax }),
+    }
+});
 
 const tooltipSettings = (formatter) => {
     return {
@@ -52,6 +121,64 @@ const pickratePlugins = {
         display: false
     }
 };
+
+
+export const factionChart = ({
+    rankingMax,
+} = {}) => ({
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    onHover: (event, chartElement) => {
+        if (chartElement.length) {
+            event.native.target.style.cursor = 'pointer';
+        } else {
+            event.native.target.style.cursor = 'default';
+        }
+    },
+    elements: {
+        bar: { borderWidth: 2 }
+    },
+    layout: {
+        padding: { top: 30 },
+    },
+    scales: {
+        x: {
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 15,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            min: 0,
+            ...(rankingMax > 0 && { max: rankingMax }),
+            ticks: {
+                display: true,
+                font: { family: "CustomFont", size: 10 },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    return index === 0;
+                },
+            },
+        }
+    },
+    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankingMax }) }
+});
+
+
+
 
 export const snapshotItems = {
     indexAxis: "y",
@@ -85,7 +212,7 @@ export const snapshotItems = {
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 17}),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 17 }),
     }
 };
 
@@ -119,7 +246,7 @@ export const snapshotWeapons = {
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({fontSize: isDev ? 40 : 17}),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 17 }),
     }
 };
 
@@ -220,7 +347,7 @@ export const strategemCompanions = {
     plugins: {
         ...pickratePlugins,
         tooltip: tooltipSettings(formatters.companions),
-        datalabels: datalabelsSettings({ fontSize: 14 })
+        datalabels: datalabelsSettings({ fontSize: 15 })
     }
 };
 
@@ -247,9 +374,8 @@ export const strategemFaction = {
             grid: { drawOnChartArea: false }
         },
         y: {
-            min: 0,
             ticks: {
-                display: false,
+                display: true,
                 font: { family: "CustomFont", size: 10 },
                 color: "white",
                 maxTicksLimit: 4,
@@ -269,10 +395,9 @@ export const strategemFaction = {
                     return index === 0;
                 },
             },
-            beginAtZero: true
         }
     },
-    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 12 }) }
+    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16 }) }
 };
 
 export const strategemPatch = {
@@ -280,34 +405,20 @@ export const strategemPatch = {
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 35 }
+        padding: { top: 35, right: 25 }
     },
     scales: {
         x: {
             ticks: {
                 minRotation: 0,
                 maxRotation: 10,
-                autoSkip: false, 
+                autoSkip: false,
                 display: true,
                 font: {
                     family: "CustomFont",
                     size: 14,
                 },
                 color: "white",
-                callback: (value, index, values) => {
-                    const labels = [
-                      "Classic",
-                      "Escalation of Freedom",
-                      "Omens of Tyranny",
-                      "Servants of Freedom",
-                    ];
-                    
-                    if (index === 0 || index === values.length - 1) {
-                      return labels[index]; // Use predefined labels instead of numbers
-                    }
-                    return "";
-                  },
-                
             },
             grid: {
                 drawOnChartArea: false
@@ -324,14 +435,16 @@ export const strategemPatch = {
                 drawOnChartArea: true,
                 lineWidth: function (context) {
                     const index = context.index;
-                    //const ticksLength = context.scale.ticks.length;
                     return index > 0 ? 0 : 1;
                 },
             },
             beginAtZero: true
         }
     },
-    plugins: pickratePlugins
+    plugins: {
+        ...pickratePlugins,
+        datalabels: datalabelsSettings({ align: 'top', fontSize: 15 }),
+    }
 };
 
 export const strategemOther = {
@@ -364,7 +477,7 @@ export const strategemOther = {
     },
     plugins: {
         ...pickratePlugins,
-        datalabels: datalabelsSettings({ fontSize: 14 })
+        datalabels: datalabelsSettings({ fontSize: 15 })
     },
 };
 
@@ -455,6 +568,6 @@ export const trendsMultiLine = {
             beginAtZero: true
         }
     },
-    plugins: { ...pickratePlugins, datalabels: datalabelsSettings2({ fontSize: 14 }), }
+    plugins: { ...pickratePlugins, datalabels: datalabelsSettings2({ fontSize: 15 }), }
 };
 

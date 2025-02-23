@@ -212,7 +212,6 @@ h1 {
     background-color: #2c3e50 !important;
     padding: 10px 30px 10px 30px;
     font-family: "CustomFont";
-    font-size: 17px;
     border: none !important;
     flex-basis: 80% !important;
 }
@@ -235,6 +234,14 @@ h1 {
 
 .dropdown-menu button {
     padding: 10px 70px 10px 30px;
+    font-size: 17px;
+
+}
+
+@media only screen and (max-width: 900px) {
+    .dropdown-button button {
+        font-size: 13px !important;
+    }
 }
 
 .dropdown-menu {
@@ -306,6 +313,13 @@ h1 {
     font-size: 30px;
     padding-left: 15px;
     padding-top: 10px;
+    cursor: pointer;
+}
+
+.strategem-rankings-underline{
+  position: relative;
+  top: -20px; 
+  border: 2px solid white;
 }
 
 .stratagem-rankings-number {

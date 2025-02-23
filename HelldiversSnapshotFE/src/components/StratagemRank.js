@@ -3,11 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getCountingSuffix } from "../utils";
 import useMobile from "../hooks/useMobile";
 
-const StratagemRank = ({ value, text, color, suffix = false, percent = false }) => {
+const StratagemRank = ({ value, text, color, suffix = false, percent = false, active = false, onClick}) => {
     const { isMobile } = useMobile();
     return (
-        <div className="stratagem-rankings-item">
-            <div className="stratagem-rankings-number" style={{ color }}>
+        <div className="stratagem-rankings-item" onClick={()=> onClick()}>
+            <div className="stratagem-rankings-number" style={{ color: active ? "rgb(255,182,0)" : color }}>
                 {value}
                 {suffix && (
                     <span className="stratagem-rankings-number-small">
@@ -19,6 +19,7 @@ const StratagemRank = ({ value, text, color, suffix = false, percent = false }) 
                         %
                     </span>
                 )}
+                {active && <div className="strategem-rankings-underline"></div>} 
             </div>
             <div className="stratagem-rankings-text-wrapper">
                 {isMobile ? 

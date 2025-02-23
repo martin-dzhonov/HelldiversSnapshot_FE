@@ -20,6 +20,17 @@
   cursor: pointer;
 }
 
+@media only screen and (max-width: 900px) {
+  .type-buttons-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px 0px 10px 0px;
+    cursor: pointer;
+  }
+}
+
 .snapshot-type-button{
   border: 2px solid white;
   border-radius: 10px;
@@ -38,6 +49,18 @@
   color: black;
   text-align: center;
   background-color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .snapshot-type-button{
+    font-size: 14px;
+    width: 130px;
+  }
+  .snapshot-type-button-active{
+    font-size: 14px;
+    width: 130px;
+
+  }
 }
 
 .snapshot-type-button:hover{

@@ -1,7 +1,7 @@
 
 const isDev = false; 
 
-const apiBaseUrl = "http://localhost:8080";//`https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+const apiBaseUrl = 'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
 const factions = ["terminid", "automaton", "illuminate"];
 
@@ -14,6 +14,14 @@ const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
 const weaponCategories = ["Primary", "Secondary", "Throwable"];
 
 const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
+
+const strategemCount = [
+    
+    {"Eagle/Orbital": 19, "Support": 30, "Defensive": 14},
+    {"Eagle/Orbital": 19, "Support": 29, "Defensive": 14},
+    {"Eagle/Orbital": 19, "Support": 26, "Defensive": 12},
+    {"Eagle/Orbital": 18, "Support": 24, "Defensive": 11}
+]
 
 const missionTypes = ["Short", "Long"];
 
@@ -75,7 +83,12 @@ const missionNames = [
         "EVACUATE COLONISTS",
         "RETRIEVE RECON CRAFT INTEL",
         "NEUTRALIZE ORBITAL DEFENSES",
-        "ENABLE OIL EXTRACTION"
+        "ENABLE OIL EXTRACTION",
+        "COLLECT METEOROLOGICAL DATA",
+        "COLLECT GLOOM SPORE READINGS",
+        "EXTRACT RESEARCH PROBE DATA",
+        "COLLECT GLOOM-INFUSED OIL",
+        "CHART TERMINID TUNNELS"
     ],
     [
         "ERADICATE TERMINID SWARM",
@@ -84,7 +97,8 @@ const missionNames = [
         "BLITZ: DESTROY ILLUMINATE WARP SHIPS",
         "EVACUATE HIGH-VALUE ASSETS",
         "DEFEND EVACUATION SITE",
-        "RETRIEVE ESSENTIAL PERSONNEL"
+        "RETRIEVE ESSENTIAL PERSONNEL",
+        "BLITZ: SECURE RESEARCH SITE"
     ],
 ];
 
@@ -107,7 +121,7 @@ const createStrategem = (baseName, fullName, category, ext = "svg") => ({
     category,
 });
 
-const strategems = {
+const strategemsDict = {
     backpack_ballistic: createStrategem("Ballistic Shield Backpack", "SH-20 Ballistic Shield Backpack", "Support"),
     backpack_jump: createStrategem("Jump Pack", "LIFT-850 Jump Pack", "Support"),
     backpack_shield: createStrategem("Shield Generator Pack", "SH-20 Shield Generator Pack", "Support"),
@@ -237,7 +251,7 @@ const weaponsDict = {
 
 export { 
     isDev,
-    strategems,
+    strategemsDict,
     weaponsDict,
     apiBaseUrl,
     navRoutes,
@@ -251,5 +265,6 @@ export {
     factions,
     factionColors,
     missionTypes,
-    weaponCategoryColors
+    weaponCategoryColors,
+    strategemCount
 };
