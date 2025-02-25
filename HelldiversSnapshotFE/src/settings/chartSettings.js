@@ -228,15 +228,15 @@ export const snapshotWeapons = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
-    barSize: 34,
+    barSize: isDev ? 36 : 34,
     imageWidth: 134,
     imageHeight: 60,
-    sectionSize: 67,
+    sectionSize: isDev ? 251 : 67,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 10 },
+        padding: { right: isDev ? 270: 10 },
     },
     scales: {
         x: {
@@ -254,7 +254,7 @@ export const snapshotWeapons = {
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 17 }),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 47 : 17 }),
     }
 };
 

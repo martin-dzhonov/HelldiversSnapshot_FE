@@ -12,6 +12,8 @@ import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
+    printDiffs,
+    printWeapons,
     weaponsByCategory
 } from '../utils';
 
@@ -55,6 +57,9 @@ function WeaponsPage() {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
             setWeaponsGraphData(weaponsByCategory(patchData, filters.category));
+            if(isDev){
+                printWeapons(weaponsByCategory(patchData, filters.category));
+            }
             if (patchData) {
                 setFilterResults({
                     matchCount: patchData.totalGames,

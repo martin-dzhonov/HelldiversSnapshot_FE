@@ -157,6 +157,16 @@ const printDiffs = (startPatch, endPatch) => {
     console.log(byCategory);
 }
 
+const printWeapons = (data) => {
+    const entries = Object.entries(data).map(([key, value]) => {
+        return {
+            name: weaponsDict[key].name,
+            total: value.loadouts
+        }
+    })
+    console.log(entries.slice(0, 10));
+}
+
 const strategemsByCategory = (gamesData, category, full) => {
     if (!gamesData) {
         return {};
@@ -309,7 +319,8 @@ export {
     getRankDatasetValue,
     getRankMin,
     getCompanionChartData,
-    getDatasetByKey
+    getDatasetByKey,
+    printWeapons
 };
 
 // const isDateBetween = (targetDate, startDate, endDate) => {
