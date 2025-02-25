@@ -28,7 +28,8 @@ import {
     getCompanionChartData,
     getRankDatasetValue,
     getDatasetByKey,
-    getMaxRounded
+    getMaxRounded,
+    getRankMin
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -70,7 +71,7 @@ function StratagemPage() {
                     rankMax,
                     filters.format,
                     'strategems');
-            })
+            });
 
             setFactionChart({
                 labels: factions.map((item) => capitalizeFirstLetter(item)),
@@ -79,7 +80,9 @@ function StratagemPage() {
                     backgroundColor: factionColors,
                     barThickness: 24
                 }], 
-                options: chartsSettings.factionChart({ percentMax: getMaxRounded(factionsDataset, 5), rankingMax: rankMax }),
+                options: chartsSettings.factionChart({ 
+                    percentMax: getMaxRounded(factionsDataset, 5), 
+                    rankMax: rankMax ? rankMax + 2 : rankMax}),
             });
 
             const factionData = fetchData[filters.faction];
@@ -94,7 +97,10 @@ function StratagemPage() {
 
             setPatchChart({
                 data: patchDataset,
-                options: chartsSettings.patchChart({ percentMax: getMaxRounded(patchDataset, 5), rankingMax: rankMax })
+                options: chartsSettings.patchChart({ 
+                    min: getRankMin(filters.format, getMaxRounded(patchDataset, 5)),
+                    percentMax: getMaxRounded(patchDataset, 5), 
+                    rankMax: rankMax ? rankMax + 2 : rankMax})
             });
         }
     }, [itemID, fetchData, filters]);

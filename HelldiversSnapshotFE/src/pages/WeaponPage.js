@@ -30,7 +30,8 @@ import {
     getPatchItemCount,
     getCompanionChartData,
     getRankDatasetValue,
-    getDatasetByKey
+    getDatasetByKey,
+    getMaxRounded
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -79,7 +80,9 @@ function WeaponPage() {
                     backgroundColor: factionColors,
                     barThickness: 24
                 }],
-                options: chartsSettings.factionChart({ rankingMax: rankMax }),
+                options: chartsSettings.factionChart({ 
+                    percentMax: getMaxRounded(factionsDataset, 5), 
+                    rankMax: rankMax ? rankMax + 2 : rankMax}),
             });
         }
     }, [itemID, fetchData, filters]);
@@ -144,7 +147,7 @@ function WeaponPage() {
 
             <div className="strategem-divider"></div>
             <Loader loading={!weaponData || !companionCharts}>
-                {weaponData?.loadouts < 5 ?
+                {weaponData?.loadouts < 3 ?
                     <div className="empty-chart-text-wrapper">
                         <div className="empty-chart-text">
                             Insufficient Data
@@ -183,7 +186,7 @@ function WeaponPage() {
                                             <StratagemRank
                                                 text={["times", "played"]}
                                                 value={weaponData?.loadouts}
-                                                onClick={() => {}}
+                                                onClick={() => { }}
                                                 color={getItemColor(itemID)}
                                             />
                                         </div>
@@ -199,6 +202,13 @@ function WeaponPage() {
                                         />
                                     </div>
                                 )}
+                            </div>
+                            <div className="col-lg-3 col-sm-12">
+                                <div className="empty-chart-text-wrapper">
+                                    <div className="empty-chart-text">
+                                        Data Pending
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {companionCharts && <>

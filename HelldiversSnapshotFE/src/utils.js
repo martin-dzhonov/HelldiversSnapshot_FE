@@ -49,7 +49,7 @@ const getCountingSuffix = (number) => {
 };
 const getMaxRounded = (dataset, factor) => {
     let maxRounded = Math.round(Math.max(...dataset.filter((item => isFinite(item)))));
-    return maxRounded < 3 ? maxRounded + factor : maxRounded + (factor*2);
+    return maxRounded < 3 ? maxRounded + factor : maxRounded + (factor * 2);
 }
 function capitalizeFirstLetter(str) {
     if (str.length === 0) return str;
@@ -212,12 +212,10 @@ const getPatchItemCount = (itemID, filters, type = 'strategem') => {
 
 
 const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
-    if (!itemID || !data) {
-        return 0;
+    if (!data) {
+        return -1;
     }
-    if (!data[type][itemID]) {
-        return 0;
-    }
+
     const item = data[type][itemID];
 
     const rankCategory = type === 'strategems' ?
@@ -226,13 +224,40 @@ const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
 
     switch (format) {
         case 'rank_all':
-            return rankMax - getStrategemRank(data, itemID) -3
+            if (!item) {
+                return -1;
+            }
+            return rankMax - getStrategemRank(data, itemID)
         case 'rank_category':
-            return rankMax - rankCategory - 3
+            if (!item) {
+                return -1;
+            }
+            return rankMax - rankCategory
         case 'pick_rate':
+            if (!item) {
+                return -0.1;
+            }
             return getPercentage(item?.loadouts, data.totalLoadouts)
         case 'game_rate':
+            if (!item) {
+                return -0.1;
+            }
             return getPercentage(item?.games, data.totalGames);
+        default:
+            return 0;
+    }
+}
+
+const getRankMin = (format, value) => {
+    switch (format) {
+        case 'rank_all':
+            return -(value / 10);
+        case 'rank_category':
+            return -(value / 10);
+        case 'pick_rate':
+            return -(value / 12);
+        case 'game_rate':
+            return -(value / 10);
         default:
             return 0;
     }
@@ -282,6 +307,7 @@ export {
     getWeaponRank,
     getPatchItemCount,
     getRankDatasetValue,
+    getRankMin,
     getCompanionChartData,
     getDatasetByKey
 };

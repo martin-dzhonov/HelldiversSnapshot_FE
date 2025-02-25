@@ -26,7 +26,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type = "strategem", expandable=false }) => {
+const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, type = "strategem", expandable = false }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -60,7 +60,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.value),
-                        backgroundColor:  Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getItemColor(item)),
+                        backgroundColor: Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getItemColor(item)),
                         total: Object.values(data).map((item) => item?.loadouts),
                         currValue: Object.values(data).map((item) => item?.currValue),
                         pastValue: Object.values(data).map((item) => item?.pastValue),
@@ -109,7 +109,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
             let imageW = options.imageWidth;
             let imageH = options.imageHeight;
             if (type === "weapons") {
-                if(filters.category === "Throwable"){
+                if (filters.category === "Throwable") {
                     imageW = 60;
                     imageH = 60;
                     imageX = 60;
@@ -165,6 +165,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
                     Download
                 </div>
             )}
+        
             {chartData ? (
                 chartData.labels.length === 0 ? (
                     <div className="empty-chart-text-wrapper">
@@ -188,7 +189,6 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
                                             afterDraw: (chart) => {
                                                 if (!chartLoaded.current) {
                                                     chartLoaded.current = true;
-                                                    onChartLoad(chart); 
                                                 }
                                             },
                                             resize: (chart) => handleDrawImage(chart),
@@ -207,6 +207,6 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = ()=>{}, type 
             ) : null}
         </>
     );
- };
+};
 
 export default StrategemChart;

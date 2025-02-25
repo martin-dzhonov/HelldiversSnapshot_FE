@@ -14,7 +14,7 @@ const formatters = {
     trends2: (value) => value > 0 ? `+${value}%` : `-${value}%`
 };
 
-const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankingMax } = {}) => {
+const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankMax } = {}) => {
     return {
         color: color,
         anchor: anchor,
@@ -25,11 +25,12 @@ const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fo
             size: fontSize,
         },
         formatter: (value) => {
-            if(!value){
+            if(value < 0){
                 return '';
             }
-            const rankingValue = rankingMax - value - 3;
-            return rankingMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
+            
+            const rankingValue = rankMax - value - 2;
+            return rankMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
         }
     }
 }
@@ -62,8 +63,9 @@ const pickratePlugins = {
 
 
 export const factionChart = ({
+    min,
     percentMax,
-    rankingMax,
+    rankMax,
 } = {}) => ({
     indexAxis: "x",
     responsive: true,
@@ -79,7 +81,7 @@ export const factionChart = ({
         bar: { borderWidth: 2 }
     },
     layout: {
-        padding: { top: 40 },
+        padding: { top: 25 },
     },
     scales: {
         x: {
@@ -94,9 +96,9 @@ export const factionChart = ({
             grid: { drawOnChartArea: false }
         },
         y: {
-            min: 0,
+            min: min ? min : 0,
             ...(percentMax && { max: percentMax }),
-            ...(rankingMax > 0 && { max: rankingMax }),
+            ...(rankMax > 0 && { max: rankMax }),
             ticks: {
                 display: false,
                 font: { family: "CustomFont", size: 10 },
@@ -114,13 +116,14 @@ export const factionChart = ({
             },
         }
     },
-    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankingMax }) }
+    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankMax }) }
 });
 
 
 export const patchChart = ({
+    min,
     percentMax,
-    rankingMax,
+    rankMax,
 } = {}) => ({
     indexAxis: "x",
     responsive: true,
@@ -160,9 +163,9 @@ export const patchChart = ({
         },
         y: {
             offset: false,
-            min: 0,
+            min: min ? min : 0,
             ...(percentMax && { max: percentMax }),
-            ...(rankingMax > 0 && { max: rankingMax }),
+            ...(rankMax > 0 && { max: rankMax }),
             ticks: {
                 display: false,
             },
@@ -181,7 +184,7 @@ export const patchChart = ({
     },
     plugins: {
         ...pickratePlugins,
-        datalabels: datalabelsSettings({ align: 'top', fontSize: 15, rankingMax }),
+        datalabels: datalabelsSettings({ align: 'top', fontSize: 15, rankMax }),
     }
 });
 
@@ -226,14 +229,14 @@ export const snapshotWeapons = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: 34,
-    imageWidth: 125,
-    imageHeight: 58,
+    imageWidth: 134,
+    imageHeight: 60,
     sectionSize: 67,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 50 },
+        padding: { right: 10 },
     },
     scales: {
         x: {

@@ -40,13 +40,13 @@ const PatchChart = ({ data, itemID, options }) => {
                 datasets: [
                     {
                         data: data.reverse(),
-                        fill: 'origin',
                         pointRadius: 6,
                         pointHoverRadius: 12,
                         borderColor: itemColor,
                         pointBackgroundColor: itemColor,
                         pointBorderColor: itemColor,
-                        backgroundColor: (context) => getChartGradient(context, itemColor),
+                        fill: "start",
+                        backgroundColor: (context) =>  getChartGradient(context, itemColor),
                     }
                 ],
                 chartsSettings: chartsSettings.strategemPatch
