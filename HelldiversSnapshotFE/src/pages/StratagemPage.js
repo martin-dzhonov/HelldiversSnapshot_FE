@@ -33,6 +33,7 @@ import {
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
+import { dataDummy } from "../dataDummy";
 
 function StratagemPage() {
     let { itemID, factionID } = useParams();
@@ -52,11 +53,12 @@ function StratagemPage() {
     });
 
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-            .then((response) => response.json());
-        fetchStratagem.then((res) => {
-            setFetchData(res);
-        });
+        setFetchData(dataDummy);
+        // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+        //     .then((response) => response.json());
+        // fetchStratagem.then((res) => {
+        //     setFetchData(dataDummy);
+        // });
     }, []);
 
     useEffect(() => {
@@ -71,8 +73,7 @@ function StratagemPage() {
                     rankMax,
                     filters.format,
                     'strategems');
-            });
-
+            }); 
             setFactionChart({
                 labels: factions.map((item) => capitalizeFirstLetter(item)),
                 datasets: [{
@@ -122,7 +123,7 @@ function StratagemPage() {
     }, [dataFilter, itemID]);
 
     useEffect(() => {
-        if (strategemData && strategemData.loadouts > 0) {
+        if (strategemData && strategemData.total.loadouts > 0) {
 
             const diffsDataset = getDatasetByKey(itemID, strategemData, dataFilter, 'diffs');
             setDiffChart({
@@ -164,7 +165,7 @@ function StratagemPage() {
 
             <div className="strategem-divider"></div>
             <Loader loading={!strategemData || !companionCharts}>
-                {strategemData?.loadouts < 5 ?
+                {strategemData?.loadouts < 3 ?
                     <div className="empty-chart-text-wrapper">
                         <div className="empty-chart-text">
                             Insufficient Data
@@ -178,14 +179,14 @@ function StratagemPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["pick ", "rate"]}
-                                                value={getPercentage(strategemData?.loadouts, dataFilter?.totalLoadouts)}
+                                                value={getPercentage(strategemData?.total.loadouts, dataFilter?.total.loadouts)}
                                                 onClick={() => setFilters({ ...filters, format: "pick_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "pick_rate"}
                                                 percent />
                                             <StratagemRank
                                                 text={["of", "games"]}
-                                                value={getPercentage(strategemData?.games, dataFilter?.totalGames)}
+                                                value={getPercentage(strategemData?.total.games, dataFilter?.total.games)}
                                                 onClick={() => setFilters({ ...filters, format: "game_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "game_rate"}

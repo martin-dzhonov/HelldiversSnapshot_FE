@@ -77,7 +77,7 @@ const getChartGradient = (context, itemColor) => {
 };
 
 const getStrategemRank = (data, strategemName, category) => {
-    const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].loadouts - a[1].loadouts);
+    const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
     if (category) {
         const strategemCategory = strategemsDict[strategemName].category;
         const categoryRank = sorted.filter((item) => strategemsDict[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
@@ -147,6 +147,7 @@ const printDiffs = (startPatch, endPatch) => {
 
     console.log(diffsObj);
 
+
     const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
 
     const byCategory = itemCategories.slice(1, 4).map((category) => {
@@ -164,42 +165,68 @@ const printWeapons = (data) => {
             total: value.loadouts
         }
     })
-    console.log(entries.slice(0, 10));
 }
 
-const strategemsByCategory = (gamesData, category, full) => {
+const getFieldByFilters = (data, filters) => {
+    let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
+    if(filters.difficulty !== 0){
+        return data[field][filters.difficulty];
+    } 
+    if(filters.mission !== 'All'){
+        return data[field][filters.mission.toLowerCase()];
+    }
+    return data[field];
+}
+
+const strategemsByCategory = (gamesData, filters) => {
     if (!gamesData) {
         return {};
     }
     const result = {};
-    let strategemsCategory = category === "All" ?
+    let strategemsCategory = filters.category === "All" ?
         Object.entries(gamesData.strategems) :
         Object.entries(gamesData.strategems).filter(([key, value]) =>
-            strategemsDict[key].category === category);
+            strategemsDict[key].category === filters.category);
+
     strategemsCategory.forEach(([key, value]) => {
+        let item = getFieldByFilters(value, filters);
+        let totals = getFieldByFilters(gamesData, filters);
+
         result[key] = {
-            loadouts: value.loadouts,
-            value: getPercentage(value.loadouts, gamesData.totalLoadouts),
-            rank: getStrategemRank(gamesData, key, true),
+            loadouts: item.loadouts,
+            value: getPercentage(item.loadouts, totals.loadouts),
+            games: item.games,
         };
-    })
-    return result;
+    });
+
+    return Object.fromEntries(Object.entries(result)
+        .sort((a, b) => b[1].loadouts - a[1].loadouts));
 }
 
-const weaponsByCategory = (gamesData, category, full) => {
+const weaponsByCategory = (gamesData, filters) => {
     if (!gamesData) {
         return {};
     }
+
     const weaponsData = gamesData?.weapons;
     const transformedData = Object.keys(weaponsData).reduce((acc, key) => {
-        const loadouts = weaponsData[key].loadouts;
-        acc[key] = { loadouts, value: getPercentage(loadouts, gamesData.totalLoadouts) };
+        let item = getFieldByFilters(weaponsData[key], filters);
+        let totals = getFieldByFilters(gamesData, filters);
+
+        acc[key] = { 
+            loadouts: item.loadouts,
+            value: getPercentage(item.loadouts, totals.loadouts),
+            games: item.games,
+        };
         return acc;
     }, {});
+
     const weaponsFiltered = Object.fromEntries(Object.entries(transformedData).filter(([key, value]) =>
-        weaponsDict[key].category === category
+        weaponsDict[key].category === filters.category
     ));
-    return weaponsFiltered;
+    
+    return Object.fromEntries(Object.entries(weaponsFiltered)
+        .sort((a, b) => b[1].loadouts - a[1].loadouts));
 }
 
 const getPercentage = (number1, number2, decimals = 1) => {
@@ -227,11 +254,11 @@ const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
     }
 
     const item = data[type][itemID];
-
     const rankCategory = type === 'strategems' ?
         getStrategemRank(data, itemID, true) :
         getWeaponRank(data, itemID, true);
 
+    
     switch (format) {
         case 'rank_all':
             if (!item) {
@@ -247,12 +274,12 @@ const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
             if (!item) {
                 return -0.1;
             }
-            return getPercentage(item?.loadouts, data.totalLoadouts)
+            return getPercentage(item?.total.loadouts, data.total.loadouts)
         case 'game_rate':
             if (!item) {
                 return -0.1;
             }
-            return getPercentage(item?.games, data.totalGames);
+            return getPercentage(item?.total.games, data.total.games);
         default:
             return 0;
     }
@@ -278,7 +305,7 @@ const getCompanionChartData = (strategemData) => {
         return category.map(item => {
             return {
                 ...item,
-                value: getPercentage(item.total, strategemData.loadouts)
+                value: getPercentage(item.total, strategemData.total.loadouts)
             };
         }).reduce((acc, item) => {
             const { name, ...rest } = item;
@@ -291,7 +318,7 @@ const getCompanionChartData = (strategemData) => {
 const getDatasetByKey = (itemID, itemData, patchData, key) => {
     return [{
         data: Object.keys(itemData[key]).map(subKey =>
-            getPercentage(itemData[key][subKey], patchData[key][subKey])),
+            getPercentage(itemData[key][subKey].loadouts, patchData[key][subKey].loadouts)),
         backgroundColor: getItemColor(itemID),
         barThickness: 24
     }]
@@ -320,7 +347,8 @@ export {
     getRankMin,
     getCompanionChartData,
     getDatasetByKey,
-    printWeapons
+    printWeapons,
+    getFieldByFilters
 };
 
 // const isDateBetween = (targetDate, startDate, endDate) => {

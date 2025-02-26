@@ -1,7 +1,7 @@
 
 const isDev = false; 
 
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
+const apiBaseUrl = 'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
 const navRoutes = [
     {

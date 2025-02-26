@@ -12,10 +12,12 @@ import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
+    getFieldByFilters,
     printDiffs,
     printWeapons,
     weaponsByCategory
 } from '../utils';
+import { dataDummy } from '../dataDummy';
 
 function WeaponsPage() {
     const { isMobile } = useMobile()
@@ -34,37 +36,38 @@ function WeaponsPage() {
     });
 
     const [filterResults, setFilterResults] = useState({
-        matchCount: 0,
-        loadoutCount: 0
+        games: 0,
+        loadouts: 0
     });
 
     const fetchData = async (url) => {
-        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        const response = await fetchPromise.json();
-        setData(response);
+        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        // const response = await fetchPromise.json();
+        setData(dataDummy);
         setLoading(false);
     };
 
     useEffect(() => {
         if (filters.difficulty || filters.mission) {
             setLoading(true);
-            fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+            fetchData(`/report`);
+            // fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
         }
-    }, [filters.difficulty, filters.mission]);
+    }, []);
 
     useEffect(() => {
-        if ((tabIndex === 0 || tabIndex === 2) && data && filters) {
+        if (data && filters) {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
-            setWeaponsGraphData(weaponsByCategory(patchData, filters.category));
+
+            setWeaponsGraphData(weaponsByCategory(patchData, filters));
+
             if(isDev){
-                printWeapons(weaponsByCategory(patchData, filters.category));
+                printWeapons(weaponsByCategory(patchData, filters));
             }
+            
             if (patchData) {
-                setFilterResults({
-                    matchCount: patchData.totalGames,
-                    loadoutCount: patchData.totalLoadouts
-                });
+                setFilterResults(getFieldByFilters(patchData, filters));
             }
         }
     }, [data, filters, tabIndex]);
@@ -75,9 +78,9 @@ function WeaponsPage() {
             {isMobile && !loading &&
                 <div className="end-element">
                     <div className='filters-result-text'>
-                        Matches: {filterResults.matchCount}
+                        Matches: {filterResults.games}
                         &nbsp;&nbsp;&nbsp;
-                        Loadouts: {filterResults.loadoutCount}
+                        Loadouts: {filterResults.loadouts}
                     </div>
                 </div>
             }
@@ -91,9 +94,9 @@ function WeaponsPage() {
 
                     {!isMobile && !loading && <div className="end-element">
                         <div className='filters-result-text'>
-                            Matches: {filterResults.matchCount}
+                            Matches: {filterResults.games}
                             &nbsp;&nbsp;&nbsp;
-                            Loadouts: {filterResults.loadoutCount}
+                            Loadouts: {filterResults.loadouts}
                         </div>
                     </div>}
                 </div>

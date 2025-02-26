@@ -35,6 +35,7 @@ import {
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
+import { dataDummy } from "../dataDummy";
 
 function WeaponPage() {
     let { itemID, factionID } = useParams();
@@ -53,11 +54,12 @@ function WeaponPage() {
     });
 
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-            .then((response) => response.json());
-        fetchStratagem.then((res) => {
-            setFetchData(res);
-        });
+        setFetchData(dataDummy);
+        // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+        //     .then((response) => response.json());
+        // fetchStratagem.then((res) => {
+        //     setFetchData(res);
+        // });
     }, []);
 
     useEffect(() => {
@@ -104,7 +106,7 @@ function WeaponPage() {
     }, [dataFilter, itemID]);
 
     useEffect(() => {
-        if (weaponData && weaponData.loadouts > 0) {
+        if (weaponData && weaponData.total.loadouts > 0 > 0) {
             const diffsDataset = getDatasetByKey(itemID, weaponData, dataFilter, 'diffs');
             setDiffChart({
                 labels: difficultiesNamesShort,
@@ -161,14 +163,14 @@ function WeaponPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["pick ", "rate"]}
-                                                value={getPercentage(weaponData?.loadouts, dataFilter?.totalLoadouts)}
+                                                value={getPercentage(weaponData?.total.loadouts, dataFilter?.total.loadouts)}
                                                 onClick={() => setFilters({ ...filters, format: "pick_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "pick_rate"}
                                                 percent />
                                             <StratagemRank
                                                 text={["of", "games"]}
-                                                value={getPercentage(weaponData?.games, dataFilter?.totalGames)}
+                                                value={getPercentage(weaponData?.total.games, dataFilter?.total.games)}
                                                 onClick={() => setFilters({ ...filters, format: "game_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "game_rate"}
@@ -185,7 +187,7 @@ function WeaponPage() {
 
                                             <StratagemRank
                                                 text={["times", "played"]}
-                                                value={weaponData?.loadouts}
+                                                value={weaponData?.total.loadouts}
                                                 onClick={() => { }}
                                                 color={getItemColor(itemID)}
                                             />

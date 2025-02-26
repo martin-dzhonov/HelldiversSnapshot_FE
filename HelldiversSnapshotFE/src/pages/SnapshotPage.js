@@ -12,10 +12,12 @@ import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
+    getFieldByFilters,
     getPatchDiffs,
     printDiffs,
     strategemsByCategory,
 } from '../utils';
+import { dataDummy } from '../dataDummy';
 
 function SnapshotPage() {
     const { isMobile } = useMobile()
@@ -34,35 +36,29 @@ function SnapshotPage() {
         patchStart: patchPeriods[1]
     });
 
-    const [filterResults, setFilterResults] = useState({
-        matchCount: 0,
-        loadoutCount: 0
-    });
+    const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
 
     const fetchData = async (url) => {
-        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        const response = await fetchPromise.json();
-        setData(response);
+        //const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        //const response = await fetchPromise.json();//dataDummy
+        setData(dataDummy);
         setLoading(false);
     };
 
     useEffect(() => {
-        if (filters.difficulty || filters.mission) {
-            setLoading(true);
-            fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
-        }
-    }, [filters.difficulty, filters.mission]);
+        setLoading(true);
+        fetchData(`/report`);
+        //fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+    }, []);
 
     useEffect(() => {
-        if ((tabIndex === 0 || tabIndex === 2) && data && filters) {
+        if (data && filters) {
             const factionData = data[filters.faction];
             const patchData = factionData[filters.patch.id];
-            setStrategemGraphData(strategemsByCategory(patchData, filters.category));
+            const graphData = strategemsByCategory(patchData, filters);
+            setStrategemGraphData(graphData);
             if (patchData) {
-                setFilterResults({
-                    matchCount: patchData.totalGames,
-                    loadoutCount: patchData.totalLoadouts
-                });
+                setFilterResults(getFieldByFilters(patchData, filters));
             }
         }
     }, [data, filters, tabIndex]);
@@ -72,13 +68,13 @@ function SnapshotPage() {
             const factionData = data[filters.faction];
             const startPatchData = factionData[filters.patch.id];
             const endPatchData = factionData[filters.patchStart.id];
-            const endPatch = strategemsByCategory(startPatchData, filters.category, true);
-            const startPatch = strategemsByCategory(endPatchData, filters.category, true);
+            const endPatch = strategemsByCategory(startPatchData, filters);
+            const startPatch = strategemsByCategory(endPatchData, filters);
             const graphData = getPatchDiffs(startPatch, endPatch);
 
             setFilterResults({
-                matchCount: startPatchData.totalGames + endPatchData.totalGames,
-                loadoutCount: startPatchData.totalLoadouts + endPatchData.totalLoadouts
+                games: startPatchData.total.games + endPatchData.total.games,
+                loadouts: startPatchData.total.loadouts + endPatchData.total.loadouts
             });
             setTimelineGraphData(graphData);
             if (isDev) {
@@ -93,9 +89,9 @@ function SnapshotPage() {
             {isMobile && !loading &&
                 <div className="end-element">
                     <div className='filters-result-text'>
-                        Matches: {filterResults.matchCount}
+                        Matches: {filterResults.games}
                         &nbsp;&nbsp;&nbsp;
-                        Loadouts: {filterResults.loadoutCount}
+                        Loadouts: {filterResults.loadouts}
                     </div>
                 </div>
             }
@@ -113,14 +109,14 @@ function SnapshotPage() {
                             }}>
                             Trends
                         </Tab>
-                        <Tab>Games</Tab>
+                        <Tab >Games</Tab>
                     </TabList>
 
                     {!isMobile && !loading && <div className="end-element">
                         <div className='filters-result-text'>
-                            Matches: {filterResults.matchCount}
+                            Matches: {filterResults.games}
                             &nbsp;&nbsp;&nbsp;
-                            Loadouts: {filterResults.loadoutCount}
+                            Loadouts: {filterResults.loadouts}
                         </div>
                     </div>}
                 </div>

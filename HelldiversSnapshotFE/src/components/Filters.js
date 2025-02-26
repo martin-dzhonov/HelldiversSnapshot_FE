@@ -82,7 +82,7 @@ function Filters({ tab, filters, setFilters, type }) {
                 <div className="filter-container">
                     <DropdownButton
                         className="dropdown-button"
-                        disabled={tab === 2}
+                        disabled={tab === 2 || filters.mission !== 'All'}
                         title={
                             filters.difficulty === 0
                                 ? "Difficulty: All"
@@ -106,7 +106,7 @@ function Filters({ tab, filters, setFilters, type }) {
             {tab !== 1 &&
                 <div className="filter-container">
                     <DropdownButton
-                        disabled={tab === 2}
+                        disabled={tab === 2 || filters.difficulty !== 0}
                         className="dropdown-button"
                         title={"Mission Type: " + filters.mission}>
                         <Dropdown.Item

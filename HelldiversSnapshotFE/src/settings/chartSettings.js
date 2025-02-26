@@ -236,7 +236,7 @@ export const snapshotWeapons = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 270: 10 },
+        padding: { right: isDev ? 270: 50 },
     },
     scales: {
         x: {
