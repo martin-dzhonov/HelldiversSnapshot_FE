@@ -200,7 +200,7 @@ export const snapshotItems = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 50 },
+        padding: { right: 55 },
     },
     scales: {
         x: {

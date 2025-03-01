@@ -54,12 +54,11 @@ function WeaponPage() {
     });
 
     useEffect(() => {
-        setFetchData(dataDummy);
-        // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-        //     .then((response) => response.json());
-        // fetchStratagem.then((res) => {
-        //     setFetchData(res);
-        // });
+        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+            .then((response) => response.json());
+        fetchStratagem.then((res) => {
+            setFetchData(res);
+        });
     }, []);
 
     useEffect(() => {

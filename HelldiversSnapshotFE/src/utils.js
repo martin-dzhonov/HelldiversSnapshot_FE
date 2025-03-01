@@ -123,7 +123,6 @@ const getPatchDiffs = (startPatch, endPatch) => {
 const printDiffs = (startPatch, endPatch) => {
     const diffsObj = {};
     Object.entries(endPatch).forEach(([key, value]) => {
-
         if (startPatch[key]) {
             const pastValue = startPatch[key].value;
             const currValue = endPatch[key].value;
@@ -146,7 +145,6 @@ const printDiffs = (startPatch, endPatch) => {
     });
 
     console.log(diffsObj);
-
 
     const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
 
@@ -192,10 +190,12 @@ const strategemsByCategory = (gamesData, filters) => {
         let item = getFieldByFilters(value, filters);
         let totals = getFieldByFilters(gamesData, filters);
 
+        console.log(value)
         result[key] = {
             loadouts: item.loadouts,
             value: getPercentage(item.loadouts, totals.loadouts),
             games: item.games,
+            rank: getStrategemRank(gamesData, key, true)
         };
     });
 

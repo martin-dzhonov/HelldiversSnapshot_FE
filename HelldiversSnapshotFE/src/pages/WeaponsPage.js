@@ -41,17 +41,17 @@ function WeaponsPage() {
     });
 
     const fetchData = async (url) => {
-        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        // const response = await fetchPromise.json();
-        setData(dataDummy);
+        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        const response = await fetchPromise.json();
+        setData(response);
         setLoading(false);
     };
 
     useEffect(() => {
         if (filters.difficulty || filters.mission) {
             setLoading(true);
-            fetchData(`/report`);
-            // fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+            // fetchData(`/report`);
+            fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
         }
     }, []);
 

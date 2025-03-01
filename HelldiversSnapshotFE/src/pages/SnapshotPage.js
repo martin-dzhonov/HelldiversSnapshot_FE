@@ -39,16 +39,16 @@ function SnapshotPage() {
     const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
 
     const fetchData = async (url) => {
-        //const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        //const response = await fetchPromise.json();//dataDummy
-        setData(dataDummy);
+        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        const response = await fetchPromise.json();//dataDummy
+        setData(response);
         setLoading(false);
     };
 
     useEffect(() => {
         setLoading(true);
-        fetchData(`/report`);
-        //fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
+        //fetchData(`/report`);
+        fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
     }, []);
 
     useEffect(() => {
