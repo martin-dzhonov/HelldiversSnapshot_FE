@@ -53,11 +53,12 @@ function StratagemPage() {
     });
 
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-            .then((response) => response.json());
-        fetchStratagem.then((res) => {
-            setFetchData(res);
-        });
+        setFetchData(dataDummy);
+        // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+        //     .then((response) => response.json());
+        // fetchStratagem.then((res) => {
+        //     setFetchData(res);
+        // });
     }, []);
 
     useEffect(() => {

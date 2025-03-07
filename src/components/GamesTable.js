@@ -14,13 +14,13 @@ function GamesTable({ filters }) {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-
     const fetchData = async (url) => {
         try {
             setLoading(true);
             const response = await fetch(`${apiBaseUrl}${url}`);
             const result = await response.json();
             const sorted = result.sort((a, b) => a.id - b.id)
+
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);

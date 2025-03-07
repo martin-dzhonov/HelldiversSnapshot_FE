@@ -13,6 +13,8 @@ import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getFieldByFilters,
+    getPatchDiffs1,
+    getWeaponRank,
     printDiffs,
     printWeapons,
     weaponsByCategory
@@ -41,9 +43,9 @@ function WeaponsPage() {
     });
 
     const fetchData = async (url) => {
-        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        const response = await fetchPromise.json();
-        setData(response);
+        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        // const response = await fetchPromise.json();
+        setData(dataDummy);
         setLoading(false);
     };
 
@@ -55,23 +57,82 @@ function WeaponsPage() {
         }
     }, []);
 
+
     useEffect(() => {
         if (data && filters) {
             const factionData = data[filters.faction];
-            const patchData = factionData[filters.patch.id];
 
-            setWeaponsGraphData(weaponsByCategory(patchData, filters));
-
-            if(isDev){
-                printWeapons(weaponsByCategory(patchData, filters));
-            }
+            const startPatchData = factionData[filters.patch.id];
+            const endPatchData = factionData[filters.patchStart.id];
+            const endPatch = weaponsByCategory(startPatchData, filters);
+            const startPatch = weaponsByCategory(endPatchData, filters);
+            const graphData = getPatchDiffs1(startPatch, endPatch);
             
-            if (patchData) {
-                setFilterResults(getFieldByFilters(patchData, filters));
-            }
+            setWeaponsGraphData(graphData);
+            setFilterResults({
+                games: startPatchData.total.games,
+                loadouts: startPatchData.total.loadouts
+            });
+
         }
     }, [data, filters, tabIndex]);
 
+
+    // useEffect(() => {
+    //     if (data && filters) {
+    //         const factionData = data[filters.faction];
+    //         const patchData = factionData[filters.patch.id];
+
+    //         setWeaponsGraphData(weaponsByCategory(patchData, filters));
+
+
+    //         if(isDev){
+    //             printWeapons(weaponsByCategory(patchData, filters));
+    //         }
+            
+    //         if (patchData) {
+    //             setFilterResults(getFieldByFilters(patchData, filters));
+    //         }
+    //     }
+    // }, [data, filters, tabIndex]);
+
+    function mergeAndSum(arrays) {
+        const merged = {};
+    
+        arrays.flat().forEach(({ name, rank }) => {
+            merged[name] = (merged[name] || 0) + rank;
+        });
+    
+        return Object.entries(merged).map(([name, rank]) => ({ name, rank }));
+    }
+       // const arr = Object.keys(weaponsByCategory(data['automaton'][filters.patch.id], filters)).map((item)=> {
+            //     return {
+            //         name: item,
+            //         rank: getWeaponRank(data['automaton'][filters.patch.id], item, true) 
+            //     }
+            // })
+
+            // const arr2 = Object.keys(weaponsByCategory(data['terminid'][filters.patch.id], filters)).map((item)=> {
+            //     return {
+            //         name: item,
+            //         rank: getWeaponRank(data['terminid'][filters.patch.id], item, true) 
+            //     }
+            // })
+
+            // const arr3 = Object.keys(weaponsByCategory(data['illuminate'][filters.patch.id], filters)).map((item)=> {
+            //     return {
+            //         name: item,
+            //         rank: getWeaponRank(data['illuminate'][filters.patch.id], item, true) 
+            //     }
+            // })
+            // console.log(arr);
+            // console.log(arr2);
+
+            // console.log(arr3);
+            
+            // console.log(mergeAndSum([arr, arr2, arr3]).sort((a,b)=> a.rank-b.rank))
+
+            
     return (
         <div className="content-wrapper">
             <Filters tab={tabIndex} filters={filters} type={1} setFilters={setFilters} />

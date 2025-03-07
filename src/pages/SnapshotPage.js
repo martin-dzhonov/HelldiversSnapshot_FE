@@ -14,6 +14,7 @@ import * as chartsSettings from "../settings/chartSettings";
 import {
     getFieldByFilters,
     getPatchDiffs,
+    getPatchDiffs1,
     printDiffs,
     strategemsByCategory,
 } from '../utils';
@@ -39,9 +40,9 @@ function SnapshotPage() {
     const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
 
     const fetchData = async (url) => {
-        const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        const response = await fetchPromise.json();//dataDummy
-        setData(response);
+       // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        //const response = await fetchPromise.json();//dataDummy
+        setData(dataDummy);
         setLoading(false);
     };
 
@@ -52,15 +53,15 @@ function SnapshotPage() {
     }, []);
 
     useEffect(() => {
-        if (data && filters) {
-            const factionData = data[filters.faction];
-            const patchData = factionData[filters.patch.id];
-            const graphData = strategemsByCategory(patchData, filters);
-            setStrategemGraphData(graphData);
-            if (patchData) {
-                setFilterResults(getFieldByFilters(patchData, filters));
-            }
-        }
+        // if (data && filters) {
+        //     const factionData = data[filters.faction];
+        //     const patchData = factionData[filters.patch.id];
+        //     const graphData = strategemsByCategory(patchData, filters);
+        //     setStrategemGraphData(graphData);
+        //     if (patchData) {
+        //         setFilterResults(getFieldByFilters(patchData, filters));
+        //     }
+        // }
     }, [data, filters, tabIndex]);
 
     useEffect(() => {
@@ -72,6 +73,9 @@ function SnapshotPage() {
             const startPatch = strategemsByCategory(endPatchData, filters);
             const graphData = getPatchDiffs(startPatch, endPatch);
 
+            printDiffs(startPatch, endPatch)
+
+
             setFilterResults({
                 games: startPatchData.total.games + endPatchData.total.games,
                 loadouts: startPatchData.total.loadouts + endPatchData.total.loadouts
@@ -80,6 +84,25 @@ function SnapshotPage() {
             if (isDev) {
                 printDiffs(startPatch, endPatch)
             }
+        }
+    }, [data, filters, tabIndex]);
+
+    useEffect(() => {
+        if (data && filters) {
+            const factionData = data[filters.faction];
+
+            const startPatchData = factionData[filters.patch.id];
+            const endPatchData = factionData[filters.patchStart.id];
+            const endPatch = strategemsByCategory(startPatchData, filters);
+            const startPatch = strategemsByCategory(endPatchData, filters);
+            const graphData = getPatchDiffs1(startPatch, endPatch);
+
+            setStrategemGraphData(graphData);
+            setFilterResults({
+                games: startPatchData.total.games,
+                loadouts: startPatchData.total.loadouts
+            });
+
         }
     }, [data, filters, tabIndex]);
 
@@ -109,7 +132,7 @@ function SnapshotPage() {
                             }}>
                             Trends
                         </Tab>
-                        <Tab >Games</Tab>
+                        <Tab>Games</Tab>
                     </TabList>
 
                     {!isMobile && !loading && <div className="end-element">
@@ -129,6 +152,7 @@ function SnapshotPage() {
                                 filters={filters}
                                 options={chartsSettings.snapshotItems}
                                 expandable
+                                type='strategem'
                             />
                         }
                     </TabPanel>

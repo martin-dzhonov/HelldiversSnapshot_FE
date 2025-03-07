@@ -54,11 +54,13 @@ function WeaponPage() {
     });
 
     useEffect(() => {
-        const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
-            .then((response) => response.json());
-        fetchStratagem.then((res) => {
-            setFetchData(res);
-        });
+        setFetchData(dataDummy);
+        
+        // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
+        //     .then((response) => response.json());
+        // fetchStratagem.then((res) => {
+        //     setFetchData(res);
+        // });
     }, []);
 
     useEffect(() => {
@@ -178,7 +180,7 @@ function WeaponPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["in", weaponsDict[itemID].category]}
-                                                value={getWeaponRank(dataFilter, itemID, true)}
+                                                value={getWeaponRank(dataFilter.weapons, itemID, true)}
                                                 onClick={() => setFilters({ ...filters, format: "rank_category" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_category"}

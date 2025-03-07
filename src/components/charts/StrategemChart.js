@@ -2,6 +2,10 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import trendUpIcon from "../../assets/icons/trendUp.svg";
+import trendDownIcon from "../../assets/icons/trendDown.svg";
+import rankIcon from "../../assets/icons/rank.svg";
+import playedIcon from "../../assets/icons/people.svg";
 
 import {
     BarElement,
@@ -26,7 +30,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, type = "strategem", expandable = false }) => {
+const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, type = "base", expandable = false }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -34,12 +38,16 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
     const chartLoaded = { current: false };
     const [images, setImages] = useState({});
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [icons, setIcons] = useState({});
+    const [iconsLoaded, setIconsLoaded] = useState(false);
     const [showFull, setShowFull] = useState(false);
+
 
     const data = useMemo(() => {
         if (barData) {
             if (expandable && !showFull) {
-                return Object.fromEntries(Object.entries(barData).slice(0, type === "strategem" ? 15 : 10));
+                const sliceIndex = type === "strategem" ? 15 : 10;
+                return Object.fromEntries(Object.entries(barData).slice(0, sliceIndex));
             } else {
                 return barData;
             }
@@ -59,11 +67,10 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
                 labels: Object.keys(data).map((item) => allItems[item].name),
                 datasets: [
                     {
-                        data: Object.values(data).map((item) => item?.value),
-                        backgroundColor: Object.keys(data).map((item) => type === "strategem" ? getItemColor(item) : getItemColor(item)),
-                        total: Object.values(data).map((item) => item?.loadouts),
-                        currValue: Object.values(data).map((item) => item?.currValue),
+                        data: Object.values(data).map((item) => item?.currValue ? item?.currValue : item?.value),
+                        total: Object.values(data).map((item) => item?.total),
                         pastValue: Object.values(data).map((item) => item?.pastValue),
+                        backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
                         barThickness: options.barSize,
                     },
                 ],
@@ -90,40 +97,104 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
                     }
                 };
             });
+
+            const trendUpImg = new Image();
+            trendUpImg.src = trendUpIcon;
+            const trendDownImg = new Image();
+            trendDownImg.src = trendDownIcon;
+            const rankImg = new Image();
+            rankImg.src = rankIcon;
+            const playedImg = new Image();
+            playedImg.src = playedIcon;
+            setIcons([playedImg, rankImg, trendUpImg, trendDownImg]);
+            setIconsLoaded(true);
         }
     }, [strategemsDict, weaponsDict]);
+
+    const getValueColor = (value) => {
+        if (typeof value === 'number') {
+            if (value > 0) return "#679552";
+            if (value < 0) return "#de7b6c";
+            return "#fff000";
+        }
+        return "#FFFFFF";
+    };
+
+    const getImageDimensions = () => {
+        let width = options.imageWidth;
+        let height = options.imageHeight;
+        let xOffset = 0;
+
+        if (type === "weapons" && filters.category === "Throwable") {
+            width = 60;
+            height = 60;
+            xOffset = 60;
+        }
+
+        return { width, height, xOffset };
+    };
+
+    const getFomattedValue = (value, j) => {
+        switch (j) {
+            case 0:
+                return value.toString()
+            case 1:
+                return `${value > 0 ? '+' : ''}${value}`
+            case 2:
+                return `${value > 0 ? '+' : ''}${value}%`
+            default:
+                break;
+        }
+    };
+
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
         const chartHeight = chart.chartArea?.height;
         const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
-        const yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
+        const yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2) + 10;
 
         ctx.save();
+        ctx.font = "16px CustomFont";
+        ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "left";
 
-        Object.keys(data).forEach((imageKey, i) => {
-            const imageY = i * (options.barSize + step) + yOffset;
-            const image = images[imageKey];
-            let imageX = 0;
-            let imageW = options.imageWidth;
-            let imageH = options.imageHeight;
-            if (type === "weapons") {
-                if (filters.category === "Throwable") {
-                    imageW = 60;
-                    imageH = 60;
-                    imageX = 60;
-                }
+        Object.keys(data).forEach((key, i) => {
+            const valuesRaw = data[key];
+            const values = [valuesRaw.total];
+            if (type === "strategem") {
+                values.push(valuesRaw.endRank - valuesRaw.startRank);
+                values.push(valuesRaw.diff);
             }
 
+            const image = images[key];
+            const { width, height, xOffset } = getImageDimensions();
+            const imageY = i * (options.barSize + step) + yOffset;
+
             if (image && !isDev) {
-                ctx.drawImage(
-                    image,
-                    imageX,
-                    imageY,
-                    imageW,
-                    imageH,
-                );
+                ctx.drawImage(image, xOffset, imageY, width, height);
+
+                if(type !== 'base'){
+                    const labelsXOffset = type === "weapons" ? 150 : 70;
+                    const labelsYOffset = type === "weapons" ? 50 : 40;
+    
+                    let currentX = xOffset + labelsXOffset;
+    
+                    values.forEach((value, j) => {
+                        const valueRaw = j === 0 ? value.toString() : value;
+                        let icon = icons[j];
+                        if (j === 2) {
+                            icon = value > 0 ? icons[j] : icons[j + 1];
+                        }
+                        ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
+                        currentX += 25;
+    
+                        ctx.fillStyle = getValueColor(valueRaw);
+                        ctx.fillText(getFomattedValue(valueRaw, j), currentX, imageY + labelsYOffset + 15);
+                        currentX += ctx.measureText(valueRaw).width + 15;
+                    });
+                }
             }
         });
 
@@ -154,7 +225,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
         document.body.removeChild(link);
     }
 
-    if (!imagesLoaded) {
+    if (!imagesLoaded || !iconsLoaded) {
         return null;
     }
 
@@ -165,7 +236,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
                     Download
                 </div>
             )}
-        
+
             {chartData ? (
                 chartData.labels.length === 0 ? (
                     <div className="empty-chart-text-wrapper">

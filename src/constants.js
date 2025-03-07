@@ -115,7 +115,7 @@ const missionModifiers = [
     "Atmospheric Interference"
 ];
 
-const imageModules = require.context('./assets/svgs', false, /\.(svg|png|webp)$/);
+const imageModules = require.context('./assets/chart_assets', false, /\.(svg|png|webp)$/);
 
 const createStrategem = (baseName, fullName, category, ext = "svg") => ({
     image: imageModules(`./${baseName}.${ext}`),
@@ -154,6 +154,7 @@ const strategemsDict = {
     mines_at: createStrategem("Anti-Tank Mines", "MD-17 Anti-Tank Mines", "Defensive"),
     mines_incendiary: createStrategem("Incendiary Mines", "MD-I4 Incendiary Mines", "Defensive"),
     mines_infantry: createStrategem("Anti-Personnel Minefield", "MD-6 Anti-Personnel Minefield", "Defensive"),
+    mines_gas: createStrategem("Gas Mines", "MD-8 Gas Mines", "Defensive"),
     orbital_airburst: createStrategem("Orbital Airburst Strike", "Orbital Airburst Strike", "Eagle/Orbital"),
     orbital_ems: createStrategem("Orbital EMS Strike", "Orbital EMS Strike", "Eagle/Orbital"),
     orbital_gas: createStrategem("Orbital Gas Strike", "Orbital Gas Strike", "Eagle/Orbital"),
