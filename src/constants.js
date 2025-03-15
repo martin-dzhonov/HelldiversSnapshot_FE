@@ -253,6 +253,8 @@ const weaponsDict = {
     throwing_knife: createStrategem("Throwing Knife", "K-2 Throwing Knife", "Throwable", 'webp'),
 };
 
+const itemsDict = {...strategemsDict, ...weaponsDict};
+
 export { 
     isDev,
     strategemsDict,
@@ -271,5 +273,6 @@ export {
     missionTypes,
     weaponCategoryColors,
     strategemCount,
-    weaponCount
+    weaponCount,
+    itemsDict
 };

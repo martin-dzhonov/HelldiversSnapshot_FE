@@ -21,6 +21,7 @@ import {
     factionColors,
     itemCategories,
     difficultiesNamesShort,
+    itemsDict,
 } from "../constants";
 import {
     getItemColor,
@@ -29,9 +30,12 @@ import {
     getWeaponRank,
     getPatchItemCount,
     getCompanionChartData,
-    getRankDatasetValue,
+    getDatasetValue,
     getDatasetByKey,
-    getMaxRounded
+    getMaxRounded,
+    getItemRank,
+    getItemsByCategory,
+    getFactionsMax
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -48,6 +52,7 @@ function WeaponPage() {
     const [missionChart, setMissionChart] = useState(null);
 
     const [filters, setFilters] = useState({
+        type: "weapons",
         faction: factionID,
         format: 'pick_rate',
         patch: { ...patchPeriods[0] }
@@ -55,40 +60,13 @@ function WeaponPage() {
 
     useEffect(() => {
         setFetchData(dataDummy);
-        
+
         // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
         //     .then((response) => response.json());
         // fetchStratagem.then((res) => {
         //     setFetchData(res);
         // });
     }, []);
-
-    useEffect(() => {
-        if (fetchData && itemID) {
-            const rankMax = getPatchItemCount(itemID, filters, 'weapons');
-            const factionsDataset = factions.map((factionName) => {
-                const patchData = fetchData[factionName][filters.patch.id];
-                return getRankDatasetValue(
-                    itemID,
-                    patchData,
-                    rankMax,
-                    filters.format,
-                    'weapons');
-            });
-
-            setFactionChart({
-                labels: factions.map((item) => capitalizeFirstLetter(item)),
-                datasets: [{
-                    data: factionsDataset,
-                    backgroundColor: factionColors,
-                    barThickness: 24
-                }],
-                options: chartsSettings.factionChart({ 
-                    percentMax: getMaxRounded(factionsDataset, 5), 
-                    rankMax: rankMax ? rankMax + 2 : rankMax}),
-            });
-        }
-    }, [itemID, fetchData, filters]);
 
     const dataFilter = useMemo(() => {
         if (fetchData && filters) {
@@ -105,6 +83,30 @@ function WeaponPage() {
             return dataFilter.weapons[itemID];
         }
     }, [dataFilter, itemID]);
+
+    useEffect(() => {
+        if (fetchData && itemID) {
+            const currData = fetchData[filters.faction][filters.patch.id];
+            const factionsData = factions.map((factionName) => {
+                const currPatchData = fetchData[factionName][filters.patch.id];
+                return getDatasetValue(itemID, currPatchData, filters);
+            });
+            const factionsMax = getFactionsMax(itemID, factionsData, currData, filters);
+
+            setFactionChart({
+                labels: factions.map((item) => capitalizeFirstLetter(item)),
+                datasets: [{
+                    data: factionsData,
+                    backgroundColor: factionColors,
+                    barThickness: 24
+                }],
+                options: chartsSettings.factionChart2({
+                    max: factionsMax,
+                    type: filters.format
+                }),
+            });
+        }
+    }, [itemID, fetchData, filters]);
 
     useEffect(() => {
         if (weaponData && weaponData.total.loadouts > 0 > 0) {
@@ -136,7 +138,8 @@ function WeaponPage() {
                 <div className="col-lg-6 col-md-12 col-sm-12">
                     <div className="weapon-title">
                         {itemID &&
-                            <div className={`${weaponsDict[itemID].category === "Throwable" ? 'weapon-title-img-small' : 'weapon-title-img'}`}>
+                            <div className={`${weaponsDict[itemID].category === "Throwable" ?
+                                'weapon-title-img-small' : 'weapon-title-img'}`}>
                                 <img src={weaponsDict[itemID].image} alt=""></img>
                             </div>}
 
@@ -180,12 +183,11 @@ function WeaponPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["in", weaponsDict[itemID].category]}
-                                                value={getWeaponRank(dataFilter.weapons, itemID, true)}
+                                                value={getItemRank(itemID, getItemsByCategory(dataFilter.weapons, itemsDict[itemID].category))}
                                                 onClick={() => setFilters({ ...filters, format: "rank_category" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_category"}
                                                 suffix />
-
                                             <StratagemRank
                                                 text={["times", "played"]}
                                                 value={weaponData?.total.loadouts}
@@ -226,6 +228,9 @@ function WeaponPage() {
                                                 barData={companionCharts[index]}
                                                 filters={filters}
                                                 options={chartsSettings.strategemCompanions}
+                                                type={"strategem"}
+                                                showDetails={false}
+                                                limit={null}
                                             />
                                         </div>
                                     </div>

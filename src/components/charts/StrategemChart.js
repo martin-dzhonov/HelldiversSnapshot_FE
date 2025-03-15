@@ -30,7 +30,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, type = "base", expandable = false }) => {
+const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = true }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -45,14 +45,14 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
 
     const data = useMemo(() => {
         if (barData) {
-            if (expandable && !showFull) {
-                const sliceIndex = type === "strategem" ? 15 : 10;
-                return Object.fromEntries(Object.entries(barData).slice(0, sliceIndex));
+            console.log(limit)
+            if (limit && !showFull) {
+                return Object.fromEntries(Object.entries(barData).slice(0, limit));
             } else {
                 return barData;
             }
         }
-    }, [barData, type, showFull]);
+    }, [barData, limit, showFull]);
 
     const chartHeight = useMemo(() => {
         if (data) {
@@ -67,9 +67,9 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
                 labels: Object.keys(data).map((item) => allItems[item].name),
                 datasets: [
                     {
-                        data: Object.values(data).map((item) => item?.currValue ? item?.currValue : item?.value),
-                        total: Object.values(data).map((item) => item?.total),
-                        pastValue: Object.values(data).map((item) => item?.pastValue),
+                        data: Object.values(data).map((item) => item?.values?.loadouts),
+                        total: Object.values(data).map((item) => item?.total?.loadouts),
+                        pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
                         backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
                         barThickness: options.barSize,
                     },
@@ -128,7 +128,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
         if (type === "weapons" && filters.category === "Throwable") {
             width = 60;
             height = 60;
-            xOffset = 60;
+            xOffset = 50;
         }
 
         return { width, height, xOffset };
@@ -153,8 +153,8 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
         const chartHeight = chart.chartArea?.height;
         const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
-        const yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2) + 10;
-
+        let yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
+       
         ctx.save();
         ctx.font = "16px CustomFont";
         ctx.fillStyle = "#ffffff";
@@ -162,12 +162,9 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
 
         Object.keys(data).forEach((key, i) => {
             const valuesRaw = data[key];
-            const values = [valuesRaw.total];
-            if (type === "strategem") {
-                values.push(valuesRaw.endRank - valuesRaw.startRank);
-                values.push(valuesRaw.diff);
-            }
-
+            
+            const values = [valuesRaw.total.loadouts];
+           
             const image = images[key];
             const { width, height, xOffset } = getImageDimensions();
             const imageY = i * (options.barSize + step) + yOffset;
@@ -175,9 +172,13 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
             if (image && !isDev) {
                 ctx.drawImage(image, xOffset, imageY, width, height);
 
-                if(type !== 'base'){
+                if(showDetails){
+                    if (type === "strategem") {
+                        values.push(valuesRaw.pastValues.rank - valuesRaw.values.rank);
+                        values.push(Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2)));
+                    }
                     const labelsXOffset = type === "weapons" ? 150 : 70;
-                    const labelsYOffset = type === "weapons" ? 50 : 40;
+                    const labelsYOffset = type === "weapons" ? 50 : 50;
     
                     let currentX = xOffset + labelsXOffset;
     
@@ -268,7 +269,7 @@ const StrategemChart = ({ barData, filters, options, onChartLoad = () => { }, ty
                                 />
                             </div>
                         </div>
-                        {expandable && <div
+                        {limit && <div
                             className="text-small text-faction-show-all"
                             onClick={() => setShowFull(!showFull)}>
                             Show {showFull ? "Less" : "All"}

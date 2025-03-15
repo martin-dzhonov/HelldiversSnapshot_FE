@@ -13,10 +13,9 @@ import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getFieldByFilters,
-    getPatchDiffs,
-    getPatchDiffs1,
-    printDiffs,
-    strategemsByCategory,
+    getFiltersCount,
+    getPatchDelta,
+    itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
 
@@ -40,7 +39,7 @@ function SnapshotPage() {
     const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
 
     const fetchData = async (url) => {
-       // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
+        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
         //const response = await fetchPromise.json();//dataDummy
         setData(dataDummy);
         setLoading(false);
@@ -48,94 +47,32 @@ function SnapshotPage() {
 
     useEffect(() => {
         setLoading(true);
-        //fetchData(`/report`);
         fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
     }, []);
 
     useEffect(() => {
-        // if (data && filters) {
-        //     const factionData = data[filters.faction];
-        //     const patchData = factionData[filters.patch.id];
-        //     const graphData = strategemsByCategory(patchData, filters);
-        //     setStrategemGraphData(graphData);
-        //     if (patchData) {
-        //         setFilterResults(getFieldByFilters(patchData, filters));
-        //     }
-        // }
-    }, [data, filters, tabIndex]);
-
-    useEffect(() => {
-        if (tabIndex === 1 && data && filters) {
-            const factionData = data[filters.faction];
-            const startPatchData = factionData[filters.patch.id];
-            const endPatchData = factionData[filters.patchStart.id];
-            const endPatch = strategemsByCategory(startPatchData, filters);
-            const startPatch = strategemsByCategory(endPatchData, filters);
-            const graphData = getPatchDiffs(startPatch, endPatch);
-
-            printDiffs(startPatch, endPatch)
-
-
-            setFilterResults({
-                games: startPatchData.total.games + endPatchData.total.games,
-                loadouts: startPatchData.total.loadouts + endPatchData.total.loadouts
-            });
-            setTimelineGraphData(graphData);
-            if (isDev) {
-                printDiffs(startPatch, endPatch)
-            }
-        }
-    }, [data, filters, tabIndex]);
-
-    useEffect(() => {
         if (data && filters) {
             const factionData = data[filters.faction];
-
-            const startPatchData = factionData[filters.patch.id];
-            const endPatchData = factionData[filters.patchStart.id];
-            const endPatch = strategemsByCategory(startPatchData, filters);
-            const startPatch = strategemsByCategory(endPatchData, filters);
-            const graphData = getPatchDiffs1(startPatch, endPatch);
+            const endPatch = itemsByCategory(factionData[filters.patch.id], filters, 'strategems')
+            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters, 'strategems')
+            const graphData = getPatchDelta(startPatch, endPatch);
 
             setStrategemGraphData(graphData);
-            setFilterResults({
-                games: startPatchData.total.games,
-                loadouts: startPatchData.total.loadouts
-            });
-
+            setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
         }
     }, [data, filters, tabIndex]);
 
     return (
         <div className="content-wrapper">
             <Filters tab={tabIndex} filters={filters} type={0} setFilters={setFilters} />
-            {isMobile && !loading &&
-                <div className="end-element">
-                    <div className='filters-result-text'>
-                        Matches: {filterResults.games}
-                        &nbsp;&nbsp;&nbsp;
-                        Loadouts: {filterResults.loadouts}
-                    </div>
-                </div>
-            }
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <div className="tabs-container">
                     <TabList className="custom-tab-list">
                         <Tab>Snapshot</Tab>
-                        <Tab
-                            onClick={() => {
-                                setFilters({
-                                    ...filters,
-                                    patchStart: patchPeriods[1],
-                                    patch: patchPeriods[0]
-                                });
-                            }}>
-                            Trends
-                        </Tab>
                         <Tab>Games</Tab>
                     </TabList>
 
-                    {!isMobile && !loading && <div className="end-element">
+                    {!loading && <div className="end-element">
                         <div className='filters-result-text'>
                             Matches: {filterResults.games}
                             &nbsp;&nbsp;&nbsp;
@@ -151,42 +88,9 @@ function SnapshotPage() {
                                 barData={strategemGraphData}
                                 filters={filters}
                                 options={chartsSettings.snapshotItems}
-                                expandable
+                                limit={15}
                                 type='strategem'
                             />
-                        }
-                    </TabPanel>
-                    <TabPanel>
-                        {timelineGraphData &&
-                            <div className='trends-container'>
-                                <div className='row'>
-                                    <div className='text-medium trends-title-patches'>
-                                        {filters.patchStart.name} ➜ {filters.patch.name}
-                                    </div>
-                                </div>
-                                <div className='row'>
-                                    <div className="col-lg-6 col-md-12">
-                                        <div className='text-small trends-title-up'>
-                                            Up
-                                        </div>
-                                        <StrategemChart
-                                            barData={timelineGraphData?.up}
-                                            filters={filters}
-                                            options={chartsSettings.snapshotTrendsUp}
-                                        />
-                                    </div>
-                                    <div className="col-lg-6 col-md-12">
-                                        <div className='text-small trends-title-down'>
-                                            Down
-                                        </div>
-                                        <StrategemChart
-                                            barData={timelineGraphData?.down}
-                                            filters={filters}
-                                            options={chartsSettings.snapshotTrendsDown}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
                         }
                     </TabPanel>
                     <TabPanel>
@@ -201,16 +105,3 @@ function SnapshotPage() {
 }
 
 export default SnapshotPage;
-
-/* <div className='row'>
-                                    <div className="col-lg-12 col-md-12">
-                                        <div className='text-small trends-title-up'>
-                                            Up
-                                        </div>
-                                        {timelineGraphData?.up && <MultiLineChart
-                                            data={timelineGraphData?.up}
-                                            filters={filters}
-                                            options={chartsSettings.trends}
-                                            type={1} />}
-                                    </div>
-                                </div>  */

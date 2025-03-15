@@ -23,13 +23,14 @@ import {
     getItemColor,
     getPercentage,
     capitalizeFirstLetter,
-    getStrategemRank,
-    getPatchItemCount,
     getCompanionChartData,
-    getRankDatasetValue,
+    getDatasetValue,
     getDatasetByKey,
-    getMaxRounded,
-    getRankMin
+    getRankMin,
+    getItemRank,
+    getItemsByCategory,
+    getFactionsMax,
+    getPatchesMax
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -47,6 +48,7 @@ function StratagemPage() {
     const [missionChart, setMissionChart] = useState(null);
 
     const [filters, setFilters] = useState({
+        type: "strategems",
         faction: factionID,
         format: 'pick_rate',
         patch: { ...patchPeriods[0] }
@@ -63,45 +65,39 @@ function StratagemPage() {
 
     useEffect(() => {
         if (fetchData && itemID) {
-            const rankMax = getPatchItemCount(itemID, filters);
+            const currData = fetchData[filters.faction][filters.patch.id];
+            const factionsData = factions.map((factionName) => {
+                const currPatchData = fetchData[factionName][filters.patch.id];
+                return getDatasetValue(itemID, currPatchData, filters);
+            });
+            const factionsMax = getFactionsMax(itemID, factionsData, currData, filters);
 
-            const factionsDataset = factions.map((factionName) => {
-                const patchData = fetchData[factionName][filters.patch.id];
-                return getRankDatasetValue(
-                    itemID,
-                    patchData,
-                    rankMax,
-                    filters.format,
-                    'strategems');
-            }); 
             setFactionChart({
                 labels: factions.map((item) => capitalizeFirstLetter(item)),
                 datasets: [{
-                    data: factionsDataset,
+                    data: factionsData,
                     backgroundColor: factionColors,
                     barThickness: 24
-                }], 
-                options: chartsSettings.factionChart({ 
-                    percentMax: getMaxRounded(factionsDataset, 5), 
-                    rankMax: rankMax ? rankMax + 2 : rankMax}),
+                }],
+                options: chartsSettings.factionChart2({
+                    max: factionsMax + 2,
+                    type: filters.format
+                }),
             });
 
-            const factionData = fetchData[filters.faction];
-            const patchDataset = factionData.map((patchData) => {
-                return getRankDatasetValue(
-                    itemID,
-                    patchData,
-                    rankMax,
-                    filters.format,
-                    'strategems');
+            const patches = fetchData[filters.faction];
+            const patchesData = patches.map((patchData) => {
+                return getDatasetValue(itemID, patchData, filters, true);
             });
-
+            const patchesMax = getPatchesMax(itemID, patchesData, currData, filters);
             setPatchChart({
-                data: patchDataset,
-                options: chartsSettings.patchChart({ 
-                    min: getRankMin(filters.format, getMaxRounded(patchDataset, 5)),
-                    percentMax: getMaxRounded(patchDataset, 5), 
-                    rankMax: rankMax ? rankMax + 2 : rankMax})
+                data: patchesData.map((item) => (filters.format === 'pick_rate' || filters.format === 'game_rate') ?
+                    item : item > 0 ? patchesMax - item : -1),
+                options: chartsSettings.patchChart2({
+                    min: getRankMin(filters.format, patchesMax),
+                    max: patchesMax + 2,
+                    type: filters.format
+                }),
             });
         }
     }, [itemID, fetchData, filters]);
@@ -123,14 +119,14 @@ function StratagemPage() {
     }, [dataFilter, itemID]);
 
     useEffect(() => {
-        if (strategemData && strategemData.total.loadouts > 0) {
+        if (strategemData && strategemData?.total?.loadouts > 0) {
 
             const diffsDataset = getDatasetByKey(itemID, strategemData, dataFilter, 'diffs');
             setDiffChart({
                 labels: difficultiesNamesShort,
                 datasets: diffsDataset
             });
-            
+
             const missionsDataset = getDatasetByKey(itemID, strategemData, dataFilter, 'missions');
             setMissionChart({
                 labels: missionTypes,
@@ -142,6 +138,7 @@ function StratagemPage() {
     }, [strategemData]);
 
     const onFactionClick = (element) => {
+
         if (element) {
             setFilters({ ...filters, faction: factions[element.index] });
         }
@@ -195,14 +192,14 @@ function StratagemPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["in", strategemsDict[itemID].category]}
-                                                value={getStrategemRank(dataFilter, itemID, true)}
+                                                value={getItemRank(itemID, getItemsByCategory(dataFilter?.strategems, strategemsDict[itemID].category))}
                                                 onClick={() => setFilters({ ...filters, format: "rank_category" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_category"}
                                                 suffix />
                                             <StratagemRank
                                                 text={["in", "All Stratagem"]}
-                                                value={getStrategemRank(dataFilter, itemID)}
+                                                value={getItemRank(itemID, dataFilter?.strategems)}
                                                 onClick={() => setFilters({ ...filters, format: "rank_all" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_all"}
@@ -244,6 +241,9 @@ function StratagemPage() {
                                                 barData={companionCharts[index]}
                                                 filters={filters}
                                                 options={chartsSettings.strategemCompanions}
+                                                type={"strategem"}
+                                                showDetails={false}
+                                                limit={null}
                                             />
                                         </div>
                                     </div>

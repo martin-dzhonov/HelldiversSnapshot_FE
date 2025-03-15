@@ -8,7 +8,8 @@ import {
     weaponCategoryColors,
     weaponCategories,
     strategemCount,
-    weaponCount
+    weaponCount,
+    itemsDict
 } from "./constants";
 
 const getItemId = (name) => {
@@ -21,14 +22,6 @@ const getItemColor = (item) => {
     const index = itemCategories.concat(weaponCategories).indexOf(allDict[item].category);
     const allColors = itemCategoryColors.concat(weaponCategoryColors);
     return allColors[index];
-};
-
-const getItemsByCategory = (category) => {
-    if (category === "All") {
-        return Object.values(strategemsDict);
-    }
-    const result = Object.values(strategemsDict).filter((item) => item.category === category);
-    return result;
 };
 
 const getMissionsByLength = (type) => {
@@ -47,14 +40,16 @@ const getCountingSuffix = (number) => {
     const v = number % 100;
     return suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0];
 };
+
 const getMaxRounded = (dataset, factor) => {
     let maxRounded = Math.round(Math.max(...dataset.filter((item => isFinite(item)))));
     return maxRounded < 3 ? maxRounded + factor : maxRounded + (factor * 2);
-}
+};
+
 function capitalizeFirstLetter(str) {
     if (str.length === 0) return str;
     return str.charAt(0).toUpperCase() + str.slice(1);
-}
+};
 
 const hexToRgbA = (hex, alpha) => {
     const r = parseInt(hex.slice(1, 3), 16);
@@ -76,119 +71,22 @@ const getChartGradient = (context, itemColor) => {
     return gradient;
 };
 
-const getStrategemRank = (data, strategemName, category) => {
-    const sorted = Object.entries(data?.strategems).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
-    if (category) {
-        const strategemCategory = strategemsDict[strategemName].category;
-        const categoryRank = sorted.filter((item) => strategemsDict[item[0]].category === strategemCategory).findIndex(item => item[0] === strategemName);
-        return categoryRank + 1;
-    } else {
-        const rankAll = sorted.findIndex(item => item[0] === strategemName);
-        return rankAll + 1;
-    }
+const getItemRank = (key, data) => {
+    const rankIndex = Object.entries(data).findIndex(item => item[0] === key);
+    return rankIndex + 1;
 }
 
-const getWeaponRank = (data, weaponName) => {
-    console.log(data);
-    const sorted = Object.entries(data).sort((a, b) => b.total - a.total);
-    const weaponCategory = weaponsDict[weaponName].category;
-    const categoryRank = sorted.filter((item) => weaponsDict[item[0]].category === weaponCategory).findIndex(item => item[0] === weaponName);
-    return categoryRank + 1;
+const getItemsByCategory = (data, category) => {
+    const filtered = Object.fromEntries(Object.entries(data).filter(([key, value]) =>
+        itemsDict[key].category === category
+    ));
+    return filtered;
 }
 
-const getPatchDiffs = (startPatch, endPatch) => {
-    const diffsObj = {};
-    Object.entries(endPatch).forEach(([key, value]) => {
-        if (startPatch[key]) {
-            const currValue = endPatch[key].value;
-            const pastValue = startPatch[key].value;
-            const diff = endPatch[key].value - startPatch[key].value;
-            if (Math.abs(diff) > 0.9) {
-                diffsObj[key] = { currValue, pastValue, value: diff }
-            }
-        }
-    });
-    const sortedEntries = Object.entries(diffsObj)
-        .sort(([, a], [, b]) => b.value - a.value);
-
-    const up = Object.fromEntries(sortedEntries.filter(([key, obj]) => obj.value > 0).map(([key, obj]) => [
-        key, { ...obj, value: Math.abs(obj.value).toFixed(1) }
-    ]));
-    const down = Object.fromEntries(sortedEntries.filter(([key, obj]) => obj.value < 0).map(([key, obj]) => [
-        key, { ...obj, value: Math.abs(obj.value).toFixed(1) }
-    ]).reverse());
-
-    return { up, down }
-}
-
-const printDiffs = (startPatch, endPatch) => {
-    const diffsObj = {};
-    Object.entries(endPatch).forEach(([key, value]) => {
-        if (startPatch[key]) {
-            const pastValue = startPatch[key].value;
-            const currValue = endPatch[key].value;
-            const startRank = startPatch[key].rank;
-            const endRank = endPatch[key].rank;
-            const loadouts = endPatch[key].loadouts;
-
-            const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategemsDict[key].name, startRank, endRank, loadouts }
-        } else if (isDev) {
-            const pastValue = 0;
-            const currValue = endPatch[key].value;
-            const startRank = endPatch[key].rank;
-            const endRank = endPatch[key].rank;
-            const loadouts = endPatch[key].loadouts;
-
-            const diff = Number((currValue - pastValue).toFixed(1));
-            diffsObj[key] = { currValue, pastValue, diff, name: strategemsDict[key].name, startRank, endRank, loadouts }
-        }
-    });
-
-    console.log(diffsObj);
-
-    const all = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue)
-
-    const byCategory = itemCategories.slice(1, 4).map((category) => {
-        const filtered = all.filter(([key, value]) => strategemsDict[key].category === category).slice(0, category !== "Defensive" ? 10 : 5);
-        return Object.values(Object.fromEntries(filtered));
-    })
-
-    console.log(byCategory);
-}
-
-const getPatchDiffs1 = (startPatch, endPatch) => {
-    const diffsObj = {};
-    const allDict = { ...strategemsDict, ...weaponsDict };
-
-    Object.entries(endPatch).forEach(([key, value]) => {
-        const currValue = endPatch[key].value;
-        const endRank = endPatch[key].rank;
-        const total = endPatch[key].total;
-        let pastValue = 0;
-        let startRank = endRank;
-
-        if (startPatch[key]) {
-            pastValue = startPatch[key].value;
-            startRank = startPatch[key].rank;
-        }
-        const diff = Number((currValue - pastValue).toFixed(1));
-        diffsObj[key] = { total, name: allDict[key].name, currValue, pastValue, diff, startRank, endRank }
-    });
-
-    const sorted = Object.entries(diffsObj).sort(([, a], [, b]) => b.currValue - a.currValue);
-    return Object.fromEntries(sorted);
-}
-
-const printWeapons = (data) => {
-    const entries = Object.entries(data).slice(0, 10).map(([key, value]) => {
-        return {
-            name: weaponsDict[key].name,
-            total: value.loadouts
-        }
-    })
-    console.log(entries)
-}
+const getPercentage = (number1, number2, decimals = 1) => {
+    const percantageRaw = (number1 / number2) * 100;
+    return Number(percantageRaw.toFixed(decimals));
+};
 
 const getFieldByFilters = (data, filters) => {
     let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
@@ -201,63 +99,60 @@ const getFieldByFilters = (data, filters) => {
     return data[field];
 }
 
-const strategemsByCategory = (gamesData, filters) => {
+const itemsByCategory = (gamesData, filters, collectionKey) => {
     if (!gamesData) {
         return {};
     }
 
     const result = {};
-    let strategemsCategory = filters.category === "All" ?
-        Object.entries(gamesData.strategems) :
-        Object.entries(gamesData.strategems).filter(([key, value]) =>
-            strategemsDict[key].category === filters.category);
+    const items = gamesData[collectionKey];
 
-    strategemsCategory.forEach(([key, value]) => {
-        let item = getFieldByFilters(value, filters);
-        let patch = getFieldByFilters(gamesData, filters);
+    let filtered = filters.category === "All" ?
+        Object.entries(items) :
+        Object.entries(items).filter(([key, value]) =>
+            itemsDict[key].category === filters.category);
+
+    const sorted = filtered.sort((a, b) => b[1].total - a[1].total);
+
+    sorted.forEach(([key, value]) => {
+        let itemData = getFieldByFilters(value, filters);
+        let totalsData = getFieldByFilters(gamesData, filters);
         result[key] = {
-            total: item.loadouts,
-            value: getPercentage(item.loadouts, patch.loadouts),
-            games: item.games,
-            rank: getStrategemRank(gamesData, key, true)
+            total: {
+                loadouts: itemData.loadouts,
+                games: itemData.games
+            },
+            values: {
+                loadouts: getPercentage(itemData.loadouts, totalsData.loadouts),
+                games: getPercentage(itemData.games, totalsData.games),
+                rank: getItemRank(key, Object.fromEntries(sorted))
+            }
         };
     });
-    const sorted = Object.fromEntries(Object.entries(result)
-        .sort((a, b) => b[1].total - a[1].total));
-    return sorted;
+
+    return result;
 }
 
-const weaponsByCategory = (gamesData, filters) => {
-    if (!gamesData) {
-        return {};
-    }
+const getPatchDelta = (startPatch, endPatch) => {
+    const result = {};
+    Object.entries(endPatch).map(([key, value]) => {
+        let pastValues = {
+            loadouts: 0,
+            games: 0,
+            rank: 0,
+        }
+        if (startPatch[key]) {
+            pastValues = { ...startPatch[key].values };
+        }
+        result[key] = {
+            ...value,
+            pastValues: pastValues
+        }
+    });
 
-    const weaponsData = gamesData?.weapons;
-    const transformedData = Object.keys(weaponsData).reduce((acc, key) => {
-        let item = getFieldByFilters(weaponsData[key], filters);
-        let patch = getFieldByFilters(gamesData, filters);
-
-        acc[key] = {
-            total: item.loadouts,
-            value: getPercentage(item.loadouts, patch.loadouts),
-            games: item.games,
-            rank: getWeaponRank(weaponsData, key)
-        };
-        return acc;
-    }, {});
-
-    const weaponsFiltered = Object.fromEntries(Object.entries(transformedData).filter(([key, value]) =>
-        weaponsDict[key].category === filters.category
-    ));
-
-    return Object.fromEntries(Object.entries(weaponsFiltered)
-        .sort((a, b) => b[1].loadouts - a[1].loadouts));
+    const sorted = Object.entries(result).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
+    return Object.fromEntries(sorted);
 }
-
-const getPercentage = (number1, number2, decimals = 1) => {
-    const percantageRaw = (number1 / number2) * 100;
-    return Number(percantageRaw.toFixed(decimals));
-};
 
 const getPatchItemCount = (itemID, filters, type = 'strategem') => {
     let count = 0;
@@ -271,43 +166,64 @@ const getPatchItemCount = (itemID, filters, type = 'strategem') => {
     }
     return count;
 }
-
-
-const getRankDatasetValue = (itemID, data, rankMax, format, type) => {
+ 
+const getDatasetValue = (itemID, data, filters, absolute = false) => {
     if (!data) {
         return -1;
     }
-
+   
+    const type = filters.type;
     const item = data[type][itemID];
-    const rankCategory = type === 'strategems' ?
-        getStrategemRank(data, itemID, true) :
-        getWeaponRank(data.weapons, itemID, true);
 
+    let values = {
+        'rank_all': !item ? -1 : Object.keys(data[type]).length - getItemRank(itemID, data[type]),
+        'rank_category': !item ? -1 : Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length - getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category)),
+        'pick_rate': !item ? -0.1 : getPercentage(item?.total.loadouts, data.total.loadouts),
+        'game_rate': !item ? -0.1 : getPercentage(item?.total.games, data.total.games),
+    };
 
-    switch (format) {
-        case 'rank_all':
-            if (!item) {
-                return -1;
-            }
-            return rankMax - getStrategemRank(data, itemID)
-        case 'rank_category':
-            if (!item) {
-                return -1;
-            }
-            return rankMax - rankCategory
-        case 'pick_rate':
-            if (!item) {
-                return -0.1;
-            }
-            return getPercentage(item?.total.loadouts, data.total.loadouts)
-        case 'game_rate':
-            if (!item) {
-                return -0.1;
-            }
-            return getPercentage(item?.total.games, data.total.games);
-        default:
-            return 0;
+    if(absolute) {
+        values.rank_all = getItemRank(itemID, data[type]);
+        values.rank_category = getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category));
     }
+
+    return values[filters.format];
+}
+
+const getFactionsMax = (itemID, dataset, data, filters) => {
+    if (!data) {
+        return 0;
+    }
+   
+    const type = filters.type;
+    const item = data[type][itemID];
+
+    const values = {
+        'rank_all': Object.keys(data[type]).length,
+        'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
+        'pick_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5,
+        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5 
+    };
+
+    return values[filters.format];
+}
+
+const getPatchesMax = (itemID, dataset, data, filters) => {
+    if (!data) {
+        return 0;
+    }
+   
+    const type = filters.type;
+    const item = data[type][itemID];
+
+    const values = {
+        'rank_all': Object.keys(data[type]).length,
+        'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
+        'pick_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5,
+        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5 
+    };
+
+    return values[filters.format];
 }
 
 const getRankMin = (format, value) => {
@@ -317,9 +233,9 @@ const getRankMin = (format, value) => {
         case 'rank_category':
             return -(value / 10);
         case 'pick_rate':
-            return -(value / 12);
+            return -(value / 12) - 1;
         case 'game_rate':
-            return -(value / 10);
+            return -(value / 10) - 1;
         default:
             return 0;
     }
@@ -330,7 +246,8 @@ const getCompanionChartData = (strategemData) => {
         return category.map(item => {
             return {
                 ...item,
-                value: getPercentage(item.total, strategemData.total.loadouts)
+                total: {loadouts: item.total},
+                values: {loadouts: getPercentage(item.total, strategemData.total.loadouts) }
             };
         }).reduce((acc, item) => {
             const { name, ...rest } = item;
@@ -349,102 +266,33 @@ const getDatasetByKey = (itemID, itemData, patchData, key) => {
     }]
 }
 
+const getFiltersCount = (data, filters) =>{
+   const asd = getFieldByFilters(data, filters);
+   console.log(asd);
+}
+
 export {
     getMissionsByLength,
     getMissionLength,
     getItemColor,
-    getItemsByCategory,
     getCountingSuffix,
     capitalizeFirstLetter,
     getPercentage,
     getItemId,
-    getStrategemRank,
+    getItemRank,
     hexToRgbA,
     getMaxRounded,
     getChartGradient,
-    getPatchDiffs,
-    printDiffs,
-    strategemsByCategory,
-    weaponsByCategory,
-    getWeaponRank,
     getPatchItemCount,
-    getRankDatasetValue,
+    getDatasetValue,
     getRankMin,
     getCompanionChartData,
     getDatasetByKey,
-    printWeapons,
     getFieldByFilters,
-    getPatchDiffs1
+    itemsByCategory,
+    getPatchDelta,
+    getItemsByCategory,
+    getFiltersCount,
+    getFactionsMax,
+    getPatchesMax
 };
-
-// const isDateBetween = (targetDate, startDate, endDate) => {
-//     const target = new Date(targetDate);
-//     const start = new Date(startDate);
-//     const end = endDate === "Present" ? new Date() : new Date(endDate);
-
-//     const targetTime = target.getTime();
-//     const startTime = start.getTime();
-//     const endTime = end.getTime();
-
-//     return targetTime >= startTime && targetTime <= endTime;
-// };
-
-// function isFiniteNumber(value) {
-//     return typeof value === 'number' && Number.isFinite(value);
-// }
-
-// const filterByPatch = (period, game) => {
-//     return period.id !== "All"
-//         ? isDateBetween(
-//             game.createdAt,
-//             period.start,
-//             period.end
-//         )
-//         : true;
-// };
-
-// const sortDictArray = (a, b) => {
-//     return b[1] - a[1];
-// };
-
-// function getItemDict(data, category) {
-//     const itemCount = {};
-//     let itemCountRanked = {};
-//     let loadoutsCount = 0;
-
-//     const categoryRankings = itemCategories.slice(1).reduce((acc, category) => {
-//         acc[category] = 1;
-//         return acc;
-//     }, {});
-
-//     data.forEach(mission => {
-//         const players = mission.players || [];
-//         loadoutsCount += players.length;
-//         players.forEach(playerList => {
-//             playerList.forEach(item => {
-//                 itemCount[item] = (itemCount[item] || 0) + 1;
-//             });
-//         });
-//     });
-
-//     Object.entries(itemCount)
-//         .sort(sortDictArray)
-//         .forEach((item, index) => {
-//             const itemCategory = strategems[item[0]].category;
-//             itemCountRanked[item[0]] = {
-//                 total: item[1],
-//                 rankTotal: index + 1,
-//                 rankCategory: categoryRankings[itemCategory],
-//                 value: getPercentage(item[1], loadoutsCount, 1)
-//             };
-//             categoryRankings[itemCategory]++;
-//         });
-
-//     const rankedByCategory = Object.fromEntries(
-//         Object.entries(itemCountRanked).filter(([key]) => {
-//             return category === "All" ? true : strategems[key]?.category === category
-//         })
-//     );
-
-//     return rankedByCategory;
-// }

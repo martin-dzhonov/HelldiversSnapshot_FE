@@ -24,10 +24,10 @@ const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fo
             size: fontSize,
         },
         formatter: (value) => {
-            if(value < 0){
+            if (value < 0) {
                 return '';
             }
-            
+
             const rankingValue = rankMax - value - 2;
             return rankMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
         }
@@ -59,6 +59,109 @@ const pickratePlugins = {
         display: false
     }
 };
+
+const pickratedatalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, rankMax } = {}) => {
+    return {
+        color: color,
+        anchor: anchor,
+        align: align,
+        font: {
+            family: "CustomFont",
+            weight: 'bold',
+            size: fontSize,
+        },
+        formatter: (value) => {
+            if (value < 0) {
+                return '';
+            }
+
+            return  value + "%";
+        }
+    }
+}
+
+
+const rankdatalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankMax } = {}) => {
+    return {
+        color: color,
+        anchor: anchor,
+        align: align,
+        font: {
+            family: "CustomFont",
+            weight: 'bold',
+            size: fontSize,
+        },
+        formatter: (value) => {
+            const rankingValue = rankMax - value - 2;
+            if (value < 0) {
+                return '';
+            }
+            return rankingValue + getCountingSuffix(rankingValue);
+        }
+    }
+}
+
+
+export const factionChart2 = ({
+    min,
+    max,
+    type
+} = {}) => ({
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    onHover: (event, chartElement) => {
+        if (chartElement.length) {
+            event.native.target.style.cursor = 'pointer';
+        } else {
+            event.native.target.style.cursor = 'default';
+        }
+    },
+    elements: {
+        bar: { borderWidth: 2 }
+    },
+    layout: {
+        padding: { top: 25 },
+    },
+    scales: {
+        x: {
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 15,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            min: min ? min : 0,
+            max: max,
+            ticks: {
+                display: false,
+                font: { family: "CustomFont", size: 10 },
+                color: "white",
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    return index === 0;
+                },
+            },
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        datalabels: type === 'pick_rate' || type === 'game_rate' ?
+        pickratedatalabelsSettings({ fontSize: 16 }) : rankdatalabelsSettings({ fontSize: 16, rankMax: max })
+    }
+});
+
 
 
 export const factionChart = ({
@@ -115,10 +218,79 @@ export const factionChart = ({
             },
         }
     },
-    plugins: { ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankMax }) }
+    plugins: {
+        ...pickratePlugins, datalabels: datalabelsSettings({ fontSize: 16, rankMax })
+    }
 });
 
+export const patchChart2 = ({
+    min,
+    max,
+    type
+} = {}) => ({
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+        padding: { top: 30, right: 25 },
+    },
+    scales: {
+        x: {
+            ticks: {
+                minRotation: 0,
+                maxRotation: 10,
+                autoSkip: false,
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 14,
+                },
+                color: "white",
+                callback: (value, index, values) => {
+                    const labels = [
+                        "Classic",
+                        "Escalation of Freedom",
+                        "Omens of Tyranny",
+                        "Servants of Freedom",
+                    ];
 
+                    if (index === 0 || index === values.length - 1) {
+                        return labels[index];
+                    }
+                    return "";
+                },
+            },
+            grid: {
+                drawOnChartArea: false
+            }
+        },
+        y: {
+            offset: false,
+            min: min ? min : 0,
+            max: max,
+            ticks: {
+                display: false,
+            },
+            grid: {
+                drawBorder: false,
+                color: "white",
+                drawTicks: false,
+                drawOnChartArea: true,
+                lineWidth: function (context) {
+                    const index = context.index;
+                    return index > 0 ? 0 : 1;
+                },
+            },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        datalabels: type === 'pick_rate' || type === 'game_rate' ?
+        pickratedatalabelsSettings({ align: 'top', fontSize: 16 }) : rankdatalabelsSettings({ align: 'top', fontSize: 16, rankMax: max })
+    }
+});
+ 
 export const patchChart = ({
     min,
     percentMax,
@@ -144,17 +316,17 @@ export const patchChart = ({
                 color: "white",
                 callback: (value, index, values) => {
                     const labels = [
-                      "Classic",
-                      "Escalation of Freedom",
-                      "Omens of Tyranny",
-                      "Servants of Freedom",
+                        "Classic",
+                        "Escalation of Freedom",
+                        "Omens of Tyranny",
+                        "Servants of Freedom",
                     ];
-                    
+
                     if (index === 0 || index === values.length - 1) {
-                      return labels[index];
+                        return labels[index];
                     }
                     return "";
-                  },
+                },
             },
             grid: {
                 drawOnChartArea: false
@@ -235,7 +407,7 @@ export const snapshotWeapons = {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 320: 50 },
+        padding: { right: isDev ? 320 : 50 },
     },
     scales: {
         x: {
