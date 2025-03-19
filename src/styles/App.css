@@ -497,7 +497,6 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 5px;
 }
 
 .custom-tab-list{
@@ -525,7 +524,7 @@ h1 {
 }
 
 .react-tabs__tab-panel{
-    padding: 15px 0px 15px 0px !important;
+    padding: 5px 0px 15px 0px !important;
 }
 
 @media only screen and (max-width: 900px) {
@@ -546,3 +545,16 @@ h1 {
 #bmc-wbtn + div {
     transform: scale(0.85) !important;
 }
+
+.legend-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.legend-item-wrapper {
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+

@@ -242,7 +242,7 @@ const getRankMin = (format, value) => {
 }
 
 const getCompanionChartData = (strategemData) => {
-    return Object.values(strategemData.companions).map(category => {
+    return Object.values(strategemData.companions.strategem).map(category => {
         return category.map(item => {
             return {
                 ...item,
@@ -268,7 +268,6 @@ const getDatasetByKey = (itemID, itemData, patchData, key) => {
 
 const getFiltersCount = (data, filters) =>{
    const asd = getFieldByFilters(data, filters);
-   console.log(asd);
 }
 
 export {

@@ -79,7 +79,7 @@ function StratagemPage() {
                     backgroundColor: factionColors,
                     barThickness: 24
                 }],
-                options: chartsSettings.factionChart2({
+                options: chartsSettings.faction({
                     max: factionsMax + 2,
                     type: filters.format
                 }),
@@ -93,7 +93,7 @@ function StratagemPage() {
             setPatchChart({
                 data: patchesData.map((item) => (filters.format === 'pick_rate' || filters.format === 'game_rate') ?
                     item : item > 0 ? patchesMax - item : -1),
-                options: chartsSettings.patchChart2({
+                options: chartsSettings.patch({
                     min: getRankMin(filters.format, patchesMax),
                     max: patchesMax + 2,
                     type: filters.format
@@ -133,7 +133,8 @@ function StratagemPage() {
                 datasets: missionsDataset
             });
 
-            setCompanionCharts(getCompanionChartData(strategemData));
+            const companionsDataset = getCompanionChartData(strategemData);
+            setCompanionCharts(companionsDataset);
         }
     }, [strategemData]);
 
@@ -233,14 +234,17 @@ function StratagemPage() {
                             <div className="stratagem-graphs-title">Companion Picks</div>
                             <div className="strategem-divider"></div>
                             <div className="row">
-                                {itemCategories.map((category, index) => {
+                                {companionCharts.map((category, index) => {
                                     return <div className="col-lg-3 col-md-3 col-sm-6 col-12">
                                         <div className="companion-chart-wrapper">
-                                            <div className="stratagem-loadouts-title">{category}</div>
+                                            <div className="stratagem-loadouts-title">{itemCategories[index]}</div>
                                             <StrategemChart
                                                 barData={companionCharts[index]}
                                                 filters={filters}
-                                                options={chartsSettings.strategemCompanions}
+                                                options={chartsSettings.companions1}
+                                                // options={chartsSettings.companions({
+                                                //     max: Math.max(...Object.values(companionCharts[index]).map((item)=> item.values.loadouts)) + 10,
+                                                // })}
                                                 type={"strategem"}
                                                 showDetails={false}
                                                 limit={null}
@@ -259,7 +263,7 @@ function StratagemPage() {
                                         <div className="stratagem-other-title">Difficulty</div>
                                         <BarChart
                                             data={diffChart}
-                                            options={chartsSettings.strategemOther}
+                                            options={chartsSettings.detailsBase}
                                         />
                                     </div>
                                 </div>
@@ -268,7 +272,7 @@ function StratagemPage() {
                                         <div className="stratagem-other-title">Mission Length</div>
                                         <BarChart
                                             data={missionChart}
-                                            options={chartsSettings.strategemOther}
+                                            options={chartsSettings.detailsBase}
                                         />
                                     </div>
                                 </div>

@@ -100,7 +100,8 @@
 }
 
 .text-faction-show-all {
-  padding-left: 50px;
+  padding-left: 70px;
+  padding-top: 15px;
   font-size: 19px;
   text-decoration: underline;
   cursor: pointer;

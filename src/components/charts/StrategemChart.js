@@ -30,7 +30,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = true }) => {
+const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = true, showTrends = true }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -45,7 +45,6 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
 
     const data = useMemo(() => {
         if (barData) {
-            console.log(limit)
             if (limit && !showFull) {
                 return Object.fromEntries(Object.entries(barData).slice(0, limit));
             } else {
@@ -173,12 +172,12 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
                 ctx.drawImage(image, xOffset, imageY, width, height);
 
                 if(showDetails){
-                    if (type === "strategem") {
+                    if (type === "strategem" && showTrends) {
                         values.push(valuesRaw.pastValues.rank - valuesRaw.values.rank);
                         values.push(Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2)));
                     }
                     const labelsXOffset = type === "weapons" ? 150 : 70;
-                    const labelsYOffset = type === "weapons" ? 50 : 50;
+                    const labelsYOffset = type === "weapons" ? 50 : 42;
     
                     let currentX = xOffset + labelsXOffset;
     

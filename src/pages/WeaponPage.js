@@ -100,7 +100,7 @@ function WeaponPage() {
                     backgroundColor: factionColors,
                     barThickness: 24
                 }],
-                options: chartsSettings.factionChart2({
+                options: chartsSettings.faction({
                     max: factionsMax,
                     type: filters.format
                 }),
@@ -227,7 +227,9 @@ function WeaponPage() {
                                             <StrategemChart
                                                 barData={companionCharts[index]}
                                                 filters={filters}
-                                                options={chartsSettings.strategemCompanions}
+                                                options={chartsSettings.companions({
+                                                    max: Math.max(...Object.values(companionCharts[index]).map((item)=> item.values.loadouts)) + 10,
+                                                })}
                                                 type={"strategem"}
                                                 showDetails={false}
                                                 limit={null}
@@ -246,7 +248,7 @@ function WeaponPage() {
                                         <div className="stratagem-other-title">Difficulty</div>
                                         <BarChart
                                             data={diffChart}
-                                            options={chartsSettings.strategemOther}
+                                            options={chartsSettings.detailsBase}
                                         />
                                     </div>
                                 </div>
@@ -255,7 +257,7 @@ function WeaponPage() {
                                         <div className="stratagem-other-title">Mission Length</div>
                                         <BarChart
                                             data={missionChart}
-                                            options={chartsSettings.strategemOther}
+                                            options={chartsSettings.detailsBase}
                                         />
                                     </div>
                                 </div>

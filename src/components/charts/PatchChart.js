@@ -49,7 +49,6 @@ const PatchChart = ({ data, itemID, options }) => {
                         backgroundColor: (context) =>  getChartGradient(context, itemColor),
                     }
                 ],
-                chartsSettings: chartsSettings.strategemPatch
             };
         }
     }, [data, itemID]);

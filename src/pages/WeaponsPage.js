@@ -17,6 +17,7 @@ import {
     itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
+import ChartLegend from '../components/ChartLegend';
 
 function WeaponsPage() {
     const { isMobile } = useMobile()
@@ -75,7 +76,7 @@ function WeaponsPage() {
                         <Tab style={{ display: 'none' }}></Tab>
                         <Tab>Games</Tab>
                     </TabList>
-
+                    {tabIndex === 0 && <ChartLegend patchId={10}/>}
                     {!loading && <div className="end-element">
                         <div className='filters-result-text'>
                             Matches: {filterResults.games}

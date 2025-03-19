@@ -18,6 +18,7 @@ import {
     itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
+import ChartLegend from '../components/ChartLegend';
 
 function SnapshotPage() {
     const { isMobile } = useMobile()
@@ -71,7 +72,7 @@ function SnapshotPage() {
                         <Tab>Snapshot</Tab>
                         <Tab>Games</Tab>
                     </TabList>
-
+                    {tabIndex === 0 && <ChartLegend patchId={filters.patch.id + 1}/>}
                     {!loading && <div className="end-element">
                         <div className='filters-result-text'>
                             Matches: {filterResults.games}
@@ -87,9 +88,10 @@ function SnapshotPage() {
                             <StrategemChart
                                 barData={strategemGraphData}
                                 filters={filters}
-                                options={chartsSettings.snapshotItems}
-                                limit={15}
+                                options={chartsSettings.snapshotStrategem}
+                                limit={10}
                                 type='strategem'
+                                showTrends={filters.patch.name !== 'Classic'}
                             />
                         }
                     </TabPanel>
