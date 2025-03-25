@@ -7,20 +7,23 @@ import { useMobile } from '../hooks/useMobile';
 import { apiBaseUrl } from '../constants';
 import Loader from "./Loader";
 
-function GamesTable({ filters }) {
+function GamesTable({ filters, setFilterResults }) {
     const { isMobile } = useMobile();
-
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentPageData = data.slice(startIndex, startIndex + itemsPerPage);
+
     const fetchData = async (url) => {
         try {
             setLoading(true);
             const response = await fetch(`${apiBaseUrl}${url}`);
             const result = await response.json();
-            const sorted = result.sort((a, b) => a.id - b.id)
-
+            const sorted = result.sort((a, b) => a.id - b.id);
+            setFilterResults(sorted.length);
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -31,13 +34,9 @@ function GamesTable({ filters }) {
 
     useEffect(() => {
         if (filters) {
-            fetchData(`/games?faction=${filters.faction}&patch=${filters.patch.id}`);
+            fetchData(`/games?faction=${filters.faction}&patch=${filters.patch.id}&difficulty=${filters.difficulty}&mission=${filters.mission}`);
         }
     }, [filters]);
-
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentPageData = data.slice(startIndex, startIndex + itemsPerPage);
 
     const getPageNumbers = () => {
         const visiblePages = 5;
@@ -115,10 +114,17 @@ function GamesTable({ filters }) {
                                     <div>{new Date(game.createdAt).toLocaleTimeString()}</div>
                                 </td>
                                 <td className="text-small">
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((loadout, loadoutIndex) => (
+                                {/* <div className="table-loadout-row-wrapper">
+                                        {game.players.map((player, loadoutIndex) => (
                                             <div key={loadoutIndex} className="table-loadout-wrapper">
-                                                {loadout.map((item, itemIndex) => (
+                                                <div className="text-small">{player.level}</div>
+                                            </div>
+                                        ))}
+                                    </div> */}
+                                    <div className="table-loadout-row-wrapper">
+                                        {game.players.map((player, loadoutIndex) => (
+                                            <div key={loadoutIndex} className="table-loadout-wrapper">
+                                                {player?.strategem?.map((item, itemIndex) => (
                                                     <img
                                                         key={itemIndex}
                                                         className="table-img-wrapper"
@@ -130,9 +136,9 @@ function GamesTable({ filters }) {
                                         ))}
                                     </div>
                                     <div className="table-loadout-row-wrapper">
-                                        {game.weapons.map((loadout, loadoutIndex) => (
+                                        {game.players.map((player, loadoutIndex) => (
                                             <div key={loadoutIndex} className="table-loadout-wrapper">
-                                                {loadout.map((item, itemIndex) => (
+                                                {player?.weapons?.map((item, itemIndex) => (
                                                     <img
                                                         key={itemIndex}
                                                         className={`${itemIndex === 0 ?
@@ -159,6 +165,27 @@ function GamesTable({ filters }) {
                         ))}
                     </tbody>
                 </Table>
+                <div className="pagination">
+                    <button
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    {getPageNumbers().map((page, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handlePageChange(page)}
+                            className={currentPage === page ? "active" : ""}
+                            disabled={page === "..."}>
+                            {page}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
             </Loader>
         </div>
     );

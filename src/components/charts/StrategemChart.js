@@ -6,6 +6,7 @@ import trendUpIcon from "../../assets/icons/trendUp.svg";
 import trendDownIcon from "../../assets/icons/trendDown.svg";
 import rankIcon from "../../assets/icons/rank.svg";
 import playedIcon from "../../assets/icons/people.svg";
+import levelIcon from "../../assets/icons/level.svg";
 
 import {
     BarElement,
@@ -30,7 +31,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = true, showTrends = true }) => {
+const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = false, showTrends = false }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -41,7 +42,6 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
     const [icons, setIcons] = useState({});
     const [iconsLoaded, setIconsLoaded] = useState(false);
     const [showFull, setShowFull] = useState(false);
-
 
     const data = useMemo(() => {
         if (barData) {
@@ -97,15 +97,19 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
                 };
             });
 
-            const trendUpImg = new Image();
-            trendUpImg.src = trendUpIcon;
-            const trendDownImg = new Image();
-            trendDownImg.src = trendDownIcon;
-            const rankImg = new Image();
-            rankImg.src = rankIcon;
-            const playedImg = new Image();
-            playedImg.src = playedIcon;
-            setIcons([playedImg, rankImg, trendUpImg, trendDownImg]);
+            const iconsArr = [playedIcon, levelIcon, rankIcon, trendUpIcon, trendDownIcon];
+            const iconsKeys = ['loadouts', 'avg_lvl', 'trend_rank', 'trend_pick_rate', 'trend_pick_rate_down'];
+            const iconsAssets = iconsArr.map((icon) => {
+                const img = new Image();
+                img.src = icon;
+                return img;
+            });
+            const iconsObj = iconsKeys.reduce((acc, key, index) => {
+                acc[key] = iconsAssets[index];
+                return acc;
+            }, {})
+
+            setIcons(iconsObj);
             setIconsLoaded(true);
         }
     }, [strategemsDict, weaponsDict]);
@@ -113,6 +117,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
     const getValueColor = (value) => {
         if (typeof value === 'number') {
             if (value > 0) return "#679552";
+            if (value < -1000) { return "#fff000" }
             if (value < 0) return "#de7b6c";
             return "#fff000";
         }
@@ -127,20 +132,26 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
         if (type === "weapons" && filters.category === "Throwable") {
             width = 60;
             height = 60;
-            xOffset = 50;
         }
 
         return { width, height, xOffset };
     };
 
-    const getFomattedValue = (value, j) => {
-        switch (j) {
-            case 0:
-                return value.toString()
-            case 1:
-                return `${value > 0 ? '+' : ''}${value}`
-            case 2:
-                return `${value > 0 ? '+' : ''}${value}%`
+    const getFomattedValue = (value) => {
+        switch (value.name) {
+            case 'loadouts':
+                return value.value.toString()
+            case 'avg_lvl':
+                return value.value
+            case 'trend_rank':
+                if (value.value < -1000) {
+                    return 'New'
+                }
+                return `${value.value > 0 ? '+' : ''}${value.value}`
+            case 'trend_pick_rate':
+                return `${value.value > 0 ? '+' : ''}${value.value}%`
+            case 'trend_pick_rate_down':
+                return `${value.value > 0 ? '+' : ''}${value.value}%`
             default:
                 break;
         }
@@ -153,17 +164,39 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
         const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
         let yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
-       
+
         ctx.save();
         ctx.font = "16px CustomFont";
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
 
+        const labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
+        const labelsYOffset = type === "weapons" ? 50 : 42;
+
         Object.keys(data).forEach((key, i) => {
             const valuesRaw = data[key];
-            
-            const values = [valuesRaw.total.loadouts];
-           
+            const valuesObj = [{
+                name: 'loadouts',
+                value: valuesRaw.total.loadouts.toString()
+            }]
+            if (valuesRaw.values.avgLevel) {
+                valuesObj.push({
+                    name: 'avg_lvl',
+                    value: valuesRaw.values.avgLevel.toString()
+                })
+            }
+            if (showTrends) {
+                valuesObj.push({
+                    name: 'trend_rank',
+                    value: valuesRaw.pastValues.rank - valuesRaw.values.rank
+                })
+                const pickRateValue = Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
+                valuesObj.push({
+                    name: pickRateValue < 0 ? 'trend_pick_rate_down' : 'trend_pick_rate',
+                    value: pickRateValue
+                })
+            }
+
             const image = images[key];
             const { width, height, xOffset } = getImageDimensions();
             const imageY = i * (options.barSize + step) + yOffset;
@@ -171,29 +204,21 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
             if (image && !isDev) {
                 ctx.drawImage(image, xOffset, imageY, width, height);
 
-                if(showDetails){
-                    if (type === "strategem" && showTrends) {
-                        values.push(valuesRaw.pastValues.rank - valuesRaw.values.rank);
-                        values.push(Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2)));
-                    }
-                    const labelsXOffset = type === "weapons" ? 150 : 70;
-                    const labelsYOffset = type === "weapons" ? 50 : 42;
-    
+                if (showDetails) {
                     let currentX = xOffset + labelsXOffset;
-    
-                    values.forEach((value, j) => {
-                        const valueRaw = j === 0 ? value.toString() : value;
-                        let icon = icons[j];
-                        if (j === 2) {
-                            icon = value > 0 ? icons[j] : icons[j + 1];
-                        }
+
+                    valuesObj.forEach((value, j) => {
+                        let icon = icons[value.name];
                         ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
-                        currentX += 25;
-    
-                        ctx.fillStyle = getValueColor(valueRaw);
-                        ctx.fillText(getFomattedValue(valueRaw, j), currentX, imageY + labelsYOffset + 15);
-                        currentX += ctx.measureText(valueRaw).width + 15;
-                    });
+                        currentX += 22;
+                        if(value.name === 'trend_rank') {
+                            currentX += 3;
+                        }
+
+                        ctx.fillStyle = getValueColor(value.value);
+                        ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
+                        currentX += ctx.measureText(value.value).width + 15;
+                    })
                 }
             }
         });

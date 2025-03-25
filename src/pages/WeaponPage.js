@@ -50,6 +50,7 @@ function WeaponPage() {
     const [companionCharts, setCompanionCharts] = useState(null);
     const [diffChart, setDiffChart] = useState(null);
     const [missionChart, setMissionChart] = useState(null);
+    const [levelChart, setLevelChart] = useState(null);
 
     const [filters, setFilters] = useState({
         type: "weapons",
@@ -101,7 +102,7 @@ function WeaponPage() {
                     barThickness: 24
                 }],
                 options: chartsSettings.faction({
-                    max: factionsMax,
+                    max: factionsMax + 2,
                     type: filters.format
                 }),
             });
@@ -122,7 +123,18 @@ function WeaponPage() {
                 datasets: missionsDataset
             });
 
+            console.log(getCompanionChartData(weaponData))
             setCompanionCharts(getCompanionChartData(weaponData));
+
+            const levelDataset = {
+                labels: ['1-50', '50-100', '100+'],
+                datasets: [{
+                    data: Object.values(weaponData.levels).map(((item) => getPercentage(item, weaponData.total.loadouts))),
+                    backgroundColor: getItemColor(itemID),
+                    barThickness: 24
+                }]
+            }
+            setLevelChart(levelDataset);
         }
     }, [weaponData]);
 
@@ -225,11 +237,9 @@ function WeaponPage() {
                                         <div className="companion-chart-wrapper">
                                             <div className="stratagem-loadouts-title">{category}</div>
                                             <StrategemChart
-                                                barData={companionCharts[index]}
+                                                barData={companionCharts[index].data}
                                                 filters={filters}
-                                                options={chartsSettings.companions({
-                                                    max: Math.max(...Object.values(companionCharts[index]).map((item)=> item.values.loadouts)) + 10,
-                                                })}
+                                                options={companionCharts[index].options}                                                
                                                 type={"strategem"}
                                                 showDetails={false}
                                                 limit={null}
@@ -244,6 +254,15 @@ function WeaponPage() {
                             <div className="strategem-divider"></div>
                             <div className="row">
                                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div className="stratagem-level-graph-wrapper">
+                                        <div className="stratagem-other-title">Player Level</div>
+                                        <BarChart
+                                            data={levelChart}
+                                            options={chartsSettings.level}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-other-graph-wrapper">
                                         <div className="stratagem-other-title">Difficulty</div>
                                         <BarChart
@@ -254,13 +273,14 @@ function WeaponPage() {
                                 </div>
                                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-mission-graph-wrapper">
-                                        <div className="stratagem-other-title">Mission Length</div>
+                                        <div className="stratagem-other-title">Mission Type</div>
                                         <BarChart
                                             data={missionChart}
                                             options={chartsSettings.detailsBase}
                                         />
                                     </div>
                                 </div>
+
                             </div>
                         </>}
                     </>}

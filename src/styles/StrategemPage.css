@@ -102,6 +102,12 @@
     width: 100%;
 }
 
+.stratagem-level-graph-wrapper {
+    padding: 5px 10px !important;
+    height: 200px;
+    width: 100%;
+}
+
 .stratagem-graph-title {
     color: white;
     font-size: 22px;
@@ -129,6 +135,7 @@
 
 .stratagem-other-graph-wrapper {
     padding: 0px 10px !important;
+    margin-bottom: 20px;
     height: 160px;
     width: 100%;
 }

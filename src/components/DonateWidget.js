@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import '../styles/App.css';
+import useMobile from "../hooks/useMobile";
 
 function DonateWidget() {
+	const { isMobile } = useMobile()
     useEffect(() => {
 		const script = document.createElement("script");
 		const div = document.getElementById("supportByBMC");
@@ -15,8 +17,8 @@ function DonateWidget() {
 		);
 		script.setAttribute("data-color", "#FFDD00");
 		script.setAttribute("data-position", "Right");
-		script.setAttribute("data-x_margin", "50");
-		script.setAttribute("data-y_margin", "50");
+		script.setAttribute("data-x_margin", isMobile ? '10' : '40');
+		script.setAttribute("data-y_margin", isMobile ? '10' : '40');
 		script.async = true;
 		document.head.appendChild(script);
 		script.onload = function () {

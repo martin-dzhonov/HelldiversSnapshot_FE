@@ -9,8 +9,10 @@ export const getSettingsWithMax = (settings, maxY) => {
 const formatters = {
     trends: (item) => [`Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`],
     companions: (item) => [`Paired together ${item.raw}% of games`],
-    snapshot: (item) => { return [`Pick Rate: ${item.raw}%`, `${item.dataset.total[item.dataIndex]} times played`]; },
+    snapshot: (item) => { return [`Pick Rate: ${item.raw}%`]; },//, `${item.dataset.total[item.dataIndex]} times played`
     pickRate: (item) => `Pick Rate: ${item.raw}%`,
+    level: (item) => `${item.raw}% of players`,
+    rank: (item) => ``,
 };
 
 const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankMax } = {}) => {
@@ -75,7 +77,7 @@ const pickratedatalabelsSettings = ({ color = "white", anchor = 'end', align = '
                 return '';
             }
 
-            return  value + "%";
+            return value + "%";
         }
     }
 }
@@ -156,9 +158,11 @@ export const faction = ({
         }
     },
     plugins: {
-        ...pickratePlugins,
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(type === 'pick_rate' || type === 'game_rate' ? formatters.pickRate : formatters.rank),
         datalabels: type === 'pick_rate' || type === 'game_rate' ?
-        pickratedatalabelsSettings({ fontSize: 16 }) : rankdatalabelsSettings({ fontSize: 16, rankMax: max })
+            pickratedatalabelsSettings({ fontSize: 16 }) : rankdatalabelsSettings({ fontSize: 16, rankMax: max })
     }
 });
 
@@ -224,9 +228,11 @@ export const patch = ({
         }
     },
     plugins: {
-        ...pickratePlugins,
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(type === 'pick_rate' || type === 'game_rate' ? formatters.pickRate : formatters.rank),
         datalabels: type === 'pick_rate' || type === 'game_rate' ?
-        pickratedatalabelsSettings({ align: 'top', fontSize: 16 }) : rankdatalabelsSettings({ align: 'top', fontSize: 16, rankMax: max })
+            pickratedatalabelsSettings({ align: 'top', fontSize: 16 }) : rankdatalabelsSettings({ align: 'top', fontSize: 16, rankMax: max })
     }
 });
 
@@ -263,6 +269,42 @@ export const weapons = ({
         },
         tooltip: tooltipSettings(formatters.snapshot),
         datalabels: datalabelsSettings({ fontSize: isDev ? 47 : 17 }),
+    }
+});
+
+export const companions = ({
+    max,
+} = {}) => ({
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    barSize: 24,
+    imageWidth: 34,
+    imageHeight: 34,
+    sectionSize: 36,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 10 },
+    },
+    scales: {
+        x: {
+            max: max,
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        },
+        y: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false },
+            afterFit: (axis) => { axis.width = 50; }
+        }
+    },
+    plugins: {
+        ...pickratePlugins,
+        tooltip: tooltipSettings(formatters.companions),
+        datalabels: datalabelsSettings({ fontSize: 15 })
     }
 });
 
@@ -334,75 +376,6 @@ export const snapshotWeapons = {
     }
 };
 
-export const companions = ({
-    max,
-} = {}) => ({
-    indexAxis: "y",
-    responsive: true,
-    maintainAspectRatio: false,
-    barSize: 24,
-    imageWidth: 34,
-    imageHeight: 34,
-    sectionSize: 36,
-    elements: {
-        bar: { borderWidth: 4 }
-    },
-    layout: {
-        padding: { right: 30 },
-    },
-    scales: {
-        x: {
-            max: max,
-            ticks: { display: false },
-            grid: { drawOnChartArea: false },
-            beginAtZero: true
-        },
-        y: {
-            ticks: { display: false },
-            grid: { drawOnChartArea: false },
-            afterFit: (axis) => { axis.width = 50; }
-        }
-    },
-    plugins: {
-        ...pickratePlugins,
-        tooltip: tooltipSettings(formatters.companions),
-        datalabels: datalabelsSettings({ fontSize: 15 })
-    }
-});
-
-export const companions1 = {
-    indexAxis: "y",
-    responsive: true,
-    maintainAspectRatio: false,
-    barSize: 24,
-    imageWidth: 34,
-    imageHeight: 34,
-    sectionSize: 36,
-    elements: {
-        bar: { borderWidth: 4 }
-    },
-    layout: {
-        padding: { right: 30 },
-    },
-    scales: {
-        x: {
-            max: 60,
-            ticks: { display: false },
-            grid: { drawOnChartArea: false },
-            beginAtZero: true
-        },
-        y: {
-            ticks: { display: false },
-            grid: { drawOnChartArea: false },
-            afterFit: (axis) => { axis.width = 50; }
-        }
-    },
-    plugins: {
-        ...pickratePlugins,
-        tooltip: tooltipSettings(formatters.companions),
-        datalabels: datalabelsSettings({ fontSize: 15 })
-    }
-}
 
 export const detailsBase = {
     indexAxis: "y",
@@ -434,6 +407,42 @@ export const detailsBase = {
     },
     plugins: {
         ...pickratePlugins,
+        datalabels: datalabelsSettings({ fontSize: 15 })
+    },
+};
+
+export const level = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 50 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.level),
         datalabels: datalabelsSettings({ fontSize: 15 })
     },
 };

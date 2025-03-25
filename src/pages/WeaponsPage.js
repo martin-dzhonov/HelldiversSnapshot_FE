@@ -23,7 +23,6 @@ function WeaponsPage() {
     const { isMobile } = useMobile()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [tabIndex, setTabIndex] = useState(0);
     const [weaponsGraphData, setWeaponsGraphData] = useState(null);
 
     const [filters, setFilters] = useState({
@@ -60,52 +59,33 @@ function WeaponsPage() {
             const endPatch = itemsByCategory(factionData[filters.patch.id], filters, 'weapons')
             const startPatch = itemsByCategory(factionData[filters.patchStart.id], filters, 'weapons')
             const graphData = getPatchDelta(startPatch, endPatch)
-
-            setWeaponsGraphData(graphData);
+    
+            setWeaponsGraphData({
+                data :graphData, 
+                options: chartsSettings.weapons({
+                    axisWidth: filters.category === "Throwable" ? 90 : 150 
+                })
+            });
             setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
         }
-    }, [data, filters, tabIndex]);
+    }, [data, filters]);
  
     return (
         <div className="content-wrapper">
-            <Filters tab={tabIndex} filters={filters} type={1} setFilters={setFilters} />
-            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <div className="tabs-container">
-                    <TabList className="custom-tab-list">
-                        <Tab>Snapshot</Tab>
-                        <Tab style={{ display: 'none' }}></Tab>
-                        <Tab>Games</Tab>
-                    </TabList>
-                    {tabIndex === 0 && <ChartLegend patchId={10}/>}
-                    {!loading && <div className="end-element">
-                        <div className='filters-result-text'>
-                            Matches: {filterResults.games}
-                            &nbsp;&nbsp;&nbsp;
-                            Loadouts: {filterResults.loadouts}
-                        </div>
-                    </div>}
-                </div>
-
-                <Loader loading={loading}>
-                    <TabPanel>
-                        {weaponsGraphData &&
-                            <StrategemChart
-                                barData={weaponsGraphData}
-                                filters={filters}
-                                options={chartsSettings.snapshotWeapons}
-                                limit={10}
-                                type="weapons"
-                            />
-                        }
-                    </TabPanel>
-                    <TabPanel> </TabPanel>
-                    <TabPanel>
-                        <div className="show-games-table-wrapper">
-                            <GamesTable filters={filters} />
-                        </div>
-                    </TabPanel>
-                </Loader>
-            </Tabs>
+            <Filters filters={filters} type={1} setFilters={setFilters} />
+            <ChartLegend patchId={filters.patch.id + 1} showTrends={false} filterResults={filterResults} />
+            <Loader loading={loading}>
+                {weaponsGraphData &&
+                    <StrategemChart
+                        type="weapons"
+                        barData={weaponsGraphData.data}
+                        options={weaponsGraphData.options}
+                        filters={filters}
+                        showDetails
+                        showTrends={false}
+                        limit={10}
+                    />}
+            </Loader>
         </div >
     );
 }

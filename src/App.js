@@ -6,6 +6,7 @@ import StratagemPage from "./pages/StratagemPage";
 import AboutPage from "./pages/AboutPage";
 import WeaponsPage from "./pages/WeaponsPage";
 import WeaponPage from "./pages/WeaponPage";
+import GamesPage from "./pages/GamesPage";
 
 function App() {
     document.title = "Helldive.Live";
@@ -56,6 +57,14 @@ function App() {
                     }
                 />
                 <Route
+                    path="/games"
+                    element={
+                        <Layout>
+                            <GamesPage />
+                        </Layout>
+                    }
+                />
+                <Route
                     path="/about"
                     element={
                         <Layout>
@@ -69,3 +78,8 @@ function App() {
 }
 
 export default App;
+
+//fix tooltips
+//fix dynamic options passing/max
+//fix redirect on companions bar click
+//fix big chart labels

@@ -11,6 +11,7 @@ import {
     weaponCount,
     itemsDict
 } from "./constants";
+import * as chartsSettings from "./settings/chartSettings";
 
 const getItemId = (name) => {
     const entry = Object.entries({ ...strategemsDict, ...weaponsDict }).find(([key, value]) => value.name === name);
@@ -73,6 +74,7 @@ const getChartGradient = (context, itemColor) => {
 
 const getItemRank = (key, data) => {
     const rankIndex = Object.entries(data).findIndex(item => item[0] === key);
+
     return rankIndex + 1;
 }
 
@@ -96,7 +98,7 @@ const getFieldByFilters = (data, filters) => {
     if (filters.mission !== 'All') {
         return data[field][filters.mission.toLowerCase()];
     }
-    return data[field];
+    return data ? data[field] : {};
 }
 
 const itemsByCategory = (gamesData, filters, collectionKey) => {
@@ -125,7 +127,9 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
             values: {
                 loadouts: getPercentage(itemData.loadouts, totalsData.loadouts),
                 games: getPercentage(itemData.games, totalsData.games),
-                rank: getItemRank(key, Object.fromEntries(sorted))
+                rank: getItemRank(key, Object.fromEntries(sorted)),
+                avgLevel: Number((value.totallvl.acc / value.totallvl.count).toFixed(0))
+
             }
         };
     });
@@ -139,7 +143,7 @@ const getPatchDelta = (startPatch, endPatch) => {
         let pastValues = {
             loadouts: 0,
             games: 0,
-            rank: 0,
+            rank: -1000,
         }
         if (startPatch[key]) {
             pastValues = { ...startPatch[key].values };
@@ -151,6 +155,7 @@ const getPatchDelta = (startPatch, endPatch) => {
     });
 
     const sorted = Object.entries(result).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
+    
     return Object.fromEntries(sorted);
 }
 
@@ -197,7 +202,6 @@ const getFactionsMax = (itemID, dataset, data, filters) => {
    
     const type = filters.type;
     const item = data[type][itemID];
-
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
@@ -215,7 +219,6 @@ const getPatchesMax = (itemID, dataset, data, filters) => {
    
     const type = filters.type;
     const item = data[type][itemID];
-
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
@@ -242,19 +245,30 @@ const getRankMin = (format, value) => {
 }
 
 const getCompanionChartData = (strategemData) => {
-    return Object.values(strategemData.companions.strategem).map(category => {
-        return category.map(item => {
+    if(strategemData.companions.strategem) {
+        return Object.values(strategemData.companions.strategem).map(category => {
+            return category.map(item => {
+                return {
+                    ...item,
+                    total: {loadouts: item.total},
+                    values: {loadouts: getPercentage(item.total, strategemData.total.loadouts) }
+                };
+            })
+        }).map((item)=> {
+            const values = item.map((subItem)=> subItem.values.loadouts);
             return {
-                ...item,
-                total: {loadouts: item.total},
-                values: {loadouts: getPercentage(item.total, strategemData.total.loadouts) }
-            };
-        }).reduce((acc, item) => {
-            const { name, ...rest } = item;
-            acc[name] = rest;
-            return acc;
-        }, {});
-    })
+                data: item.reduce((acc, item) => {
+                    const { name, ...rest } = item;
+                    acc[name] = rest;
+                    return acc;
+                }, {}), 
+                options: chartsSettings.companions({
+                    max: Math.max(...values) + 15,
+                })
+            }
+        })
+    }
+    return {}
 }
 
 const getDatasetByKey = (itemID, itemData, patchData, key) => {

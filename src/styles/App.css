@@ -158,13 +158,13 @@ h1 {
     max-width: 500px;
 }
 
-@media (any-pointer: fine) {
+@media only screen and (min-width: 900px) {
     .hd-logo img {
         min-width: 380px;
     }
 }
 
-@media (any-pointer: coarse) {
+@media only screen and (max-width: 900px) {
     .hd-logo img {
         width: 90% !important;
     }
@@ -196,12 +196,6 @@ h1 {
 
 .menu a:hover {
     background-color: #49adc9;
-}
-
-@media (any-pointer: fine) {
-    .menu {
-        margin-right: 150px;
-    }
 }
 
 .menu-active {
@@ -512,7 +506,7 @@ h1 {
 
 .end-element {
     margin-left: auto;
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -542,19 +536,78 @@ h1 {
 }
 
 
-#bmc-wbtn + div {
+#bmc-wbtn {
     transform: scale(0.85) !important;
 }
 
-.legend-wrapper {
+#bmc-wbtn + div {
+    transform: scale(0.75) !important;
+}
+
+.legend-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .legend-wrapper {
+        flex-direction: column;
+    }
+  }
+
+
+.legend-items-wrapper {
     display: flex;
     flex-direction: row;
 }
 
 .legend-item-wrapper {
-    padding-left: 25px;
+    padding: 0px 20px 0px 10px;
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 6px;
 }
 
+@media only screen and (max-width: 700px) {
+    .legend-item-wrapper {
+        padding-bottom: 10px;
+    }
+  }
+
+.legend-icon{
+    width: 24px;
+    height: 24px;
+}
+
+@media only screen and (max-width: 700px) {
+    .legend-items-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+  }
+
+.legend-filter-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.legend-patch-name-wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+@media only screen and (max-width: 700px) {
+    .legend-patch-name-wrapper{
+        flex-direction: column;
+    }
+  }
+
+
+.legend-patch-name{
+    padding-left: 8px;
+    text-align: center;
+}

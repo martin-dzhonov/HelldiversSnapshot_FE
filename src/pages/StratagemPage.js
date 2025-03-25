@@ -46,15 +46,17 @@ function StratagemPage() {
     const [companionCharts, setCompanionCharts] = useState(null);
     const [diffChart, setDiffChart] = useState(null);
     const [missionChart, setMissionChart] = useState(null);
+    const [levelChart, setLevelChart] = useState(null);
 
     const [filters, setFilters] = useState({
-        type: "strategems",
+        type: "strategem",
         faction: factionID,
         format: 'pick_rate',
         patch: { ...patchPeriods[0] }
     });
 
     useEffect(() => {
+        console.log(dataDummy)
         setFetchData(dataDummy);
         // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
         //     .then((response) => response.json());
@@ -111,10 +113,10 @@ function StratagemPage() {
 
     const strategemData = useMemo(() => {
         if (dataFilter) {
-            if (!dataFilter.strategems[itemID]) {
+            if (!dataFilter.strategem[itemID]) {
                 return { loadouts: 0 }
             }
-            return dataFilter.strategems[itemID];
+            return dataFilter.strategem[itemID];
         }
     }, [dataFilter, itemID]);
 
@@ -132,9 +134,18 @@ function StratagemPage() {
                 labels: missionTypes,
                 datasets: missionsDataset
             });
-
             const companionsDataset = getCompanionChartData(strategemData);
             setCompanionCharts(companionsDataset);
+
+            const levelDataset = {
+                labels: Object.keys(strategemData.levels),
+                datasets: [{
+                    data: Object.values(strategemData.levels).map(((item) => getPercentage(item, strategemData.total.loadouts))),
+                    backgroundColor: getItemColor(itemID),
+                    barThickness: 24
+                }]
+            }
+            setLevelChart(levelDataset);
         }
     }, [strategemData]);
 
@@ -193,14 +204,14 @@ function StratagemPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["in", strategemsDict[itemID].category]}
-                                                value={getItemRank(itemID, getItemsByCategory(dataFilter?.strategems, strategemsDict[itemID].category))}
+                                                value={getItemRank(itemID, getItemsByCategory(dataFilter?.strategem, strategemsDict[itemID].category))}
                                                 onClick={() => setFilters({ ...filters, format: "rank_category" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_category"}
                                                 suffix />
                                             <StratagemRank
                                                 text={["in", "All Stratagem"]}
-                                                value={getItemRank(itemID, dataFilter?.strategems)}
+                                                value={getItemRank(itemID, dataFilter?.strategem)}
                                                 onClick={() => setFilters({ ...filters, format: "rank_all" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "rank_all"}
@@ -234,17 +245,14 @@ function StratagemPage() {
                             <div className="stratagem-graphs-title">Companion Picks</div>
                             <div className="strategem-divider"></div>
                             <div className="row">
-                                {companionCharts.map((category, index) => {
+                                {itemCategories.map((category, index) => {
                                     return <div className="col-lg-3 col-md-3 col-sm-6 col-12">
                                         <div className="companion-chart-wrapper">
-                                            <div className="stratagem-loadouts-title">{itemCategories[index]}</div>
+                                            <div className="stratagem-loadouts-title">{category}</div>
                                             <StrategemChart
-                                                barData={companionCharts[index]}
+                                                barData={companionCharts[index].data}
                                                 filters={filters}
-                                                options={chartsSettings.companions1}
-                                                // options={chartsSettings.companions({
-                                                //     max: Math.max(...Object.values(companionCharts[index]).map((item)=> item.values.loadouts)) + 10,
-                                                // })}
+                                                options={companionCharts[index].options}                                                
                                                 type={"strategem"}
                                                 showDetails={false}
                                                 limit={null}
@@ -259,6 +267,15 @@ function StratagemPage() {
                             <div className="strategem-divider"></div>
                             <div className="row">
                                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div className="stratagem-level-graph-wrapper">
+                                        <div className="stratagem-other-title">Player Level</div>
+                                        <BarChart
+                                            data={levelChart}
+                                            options={chartsSettings.level}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-other-graph-wrapper">
                                         <div className="stratagem-other-title">Difficulty</div>
                                         <BarChart
@@ -269,7 +286,7 @@ function StratagemPage() {
                                 </div>
                                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-mission-graph-wrapper">
-                                        <div className="stratagem-other-title">Mission Length</div>
+                                        <div className="stratagem-other-title">Mission Type</div>
                                         <BarChart
                                             data={missionChart}
                                             options={chartsSettings.detailsBase}
