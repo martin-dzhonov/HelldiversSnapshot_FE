@@ -11,7 +11,7 @@ import GamesFilters from '../components/GamesFilters';
 function GamesPage() {
     const { isMobile } = useMobile()
     const [filters, setFilters] = useState({
-        faction: "automaton",
+        faction: "terminid",
         patch: patchPeriods[0],
         difficulty: 0,
         mission: "All"

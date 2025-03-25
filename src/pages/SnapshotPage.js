@@ -20,15 +20,25 @@ import {
 import { dataDummy } from '../dataDummy';
 import ChartLegend from '../components/ChartLegend';
 
+import trendUpIcon from "../assets/icons/trendUp.svg";
+import trendDownIcon from "../assets/icons/trendDown.svg";
+import rankIcon from "../assets/icons/rank.svg";
+import playedIcon from "../assets/icons/people.svg";
+import levelIcon from "../assets/icons/level.svg";
+import useLegendItems from '../hooks/useLegendItems';
+
 function SnapshotPage() {
     const { isMobile } = useMobile()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [tabIndex, setTabIndex] = useState(0);
     const [strategemGraphData, setStrategemGraphData] = useState(null);
-    const [timelineGraphData, setTimelineGraphData] = useState(null);
 
+    const [filterResults, setFilterResults] = useState({
+        games: 0,
+        loadouts: 0
+    });
     const [filters, setFilters] = useState({
+        page: "strategem",
         faction: "terminid",
         category: "All",
         difficulty: 0,
@@ -36,12 +46,7 @@ function SnapshotPage() {
         patch: patchPeriods[0],
         patchStart: patchPeriods[1]
     });
-
-    const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
-
-    const showTrends = useMemo(() => {
-        return filters.faction !== 'illuminate' ? filters.patch.name !== 'Classic' : filters.patch.id < 1
-    }, [filters]);
+    const { legendItems, handleLegendCheck } = useLegendItems(setStrategemGraphData, filters);
 
     const fetchData = async (url) => {
         // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
@@ -58,28 +63,35 @@ function SnapshotPage() {
     useEffect(() => {
         if (data && filters) {
             const factionData = data[filters.faction];
-            const endPatch = itemsByCategory(factionData[filters.patch.id], filters, 'strategem')
-            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters, 'strategem')
+            const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
+            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters)
             const graphData = getPatchDelta(startPatch, endPatch);
-            
-            setStrategemGraphData(graphData);
+
+            setStrategemGraphData({
+                data :graphData, 
+                options: chartsSettings.strategem()
+            });
             setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
         }
-    }, [data, filters, tabIndex]);
+    }, [data, filters]);
 
     return (
         <div className="content-wrapper">
-            <Filters tab={tabIndex} filters={filters} type={0} setFilters={setFilters} />
-            <ChartLegend patchId={filters.patch.id + 1} showTrends={showTrends} filterResults={filterResults} />
+            <Filters filters={filters} type={0} setFilters={setFilters} />
+
+            <ChartLegend
+                items={legendItems}
+                onCheckChange={handleLegendCheck}
+                filterResults={filterResults} />
+
             <Loader loading={loading}>
                 {strategemGraphData &&
                     <StrategemChart
                         type='strategem'
-                        barData={strategemGraphData}
-                        options={chartsSettings.snapshotStrategem}
+                        barData={strategemGraphData.data}
+                        options={strategemGraphData.options}
                         filters={filters}
-                        showDetails
-                        showTrends={showTrends}
+                        legendItems={legendItems}
                         limit={10}
                     />
                 }

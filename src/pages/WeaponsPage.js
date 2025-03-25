@@ -18,6 +18,7 @@ import {
 } from '../utils';
 import { dataDummy } from '../dataDummy';
 import ChartLegend from '../components/ChartLegend';
+import useLegendItems from '../hooks/useLegendItems';
 
 function WeaponsPage() {
     const { isMobile } = useMobile()
@@ -25,7 +26,12 @@ function WeaponsPage() {
     const [loading, setLoading] = useState(false);
     const [weaponsGraphData, setWeaponsGraphData] = useState(null);
 
+    const [filterResults, setFilterResults] = useState({
+        games: 0,
+        loadouts: 0
+    });
     const [filters, setFilters] = useState({
+        page: "weapons",
         faction: "terminid",
         category: "Primary",
         difficulty: 0,
@@ -34,10 +40,7 @@ function WeaponsPage() {
         patchStart: patchPeriods[1]
     });
 
-    const [filterResults, setFilterResults] = useState({
-        games: 0,
-        loadouts: 0
-    });
+    const { legendItems, handleLegendCheck } = useLegendItems(setWeaponsGraphData, filters);
 
     const fetchData = async (url) => {
         // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
@@ -56,10 +59,10 @@ function WeaponsPage() {
     useEffect(() => {
         if (data && filters) {
             const factionData = data[filters.faction];
-            const endPatch = itemsByCategory(factionData[filters.patch.id], filters, 'weapons')
-            const startPatch = itemsByCategory(factionData[filters.patchStart.id], filters, 'weapons')
+            const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
+            const startPatch = itemsByCategory(factionData[filters.patchStart.id], filters)
             const graphData = getPatchDelta(startPatch, endPatch)
-    
+
             setWeaponsGraphData({
                 data :graphData, 
                 options: chartsSettings.weapons({
@@ -73,7 +76,10 @@ function WeaponsPage() {
     return (
         <div className="content-wrapper">
             <Filters filters={filters} type={1} setFilters={setFilters} />
-            <ChartLegend patchId={filters.patch.id + 1} showTrends={false} filterResults={filterResults} />
+            <ChartLegend
+                items={legendItems}
+                onCheckChange={handleLegendCheck}
+                filterResults={filterResults} />
             <Loader loading={loading}>
                 {weaponsGraphData &&
                     <StrategemChart
@@ -81,8 +87,7 @@ function WeaponsPage() {
                         barData={weaponsGraphData.data}
                         options={weaponsGraphData.options}
                         filters={filters}
-                        showDetails
-                        showTrends={false}
+                        legendItems={legendItems}
                         limit={10}
                     />}
             </Loader>

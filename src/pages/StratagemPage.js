@@ -254,7 +254,7 @@ function StratagemPage() {
                                                 filters={filters}
                                                 options={companionCharts[index].options}                                                
                                                 type={"strategem"}
-                                                showDetails={false}
+                                                legendItems={[]}
                                                 limit={null}
                                             />
                                         </div>

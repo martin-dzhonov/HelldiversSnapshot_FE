@@ -17,7 +17,7 @@ import {
     Title,
     Tooltip,
 } from "chart.js";
-import { isDev, weaponsDict, strategemsDict } from "../../constants";
+import { isDev, weaponsDict, strategemsDict, itemsDict } from "../../constants";
 import { getItemColor } from "../../utils";
 import useMobile from "../../hooks/useMobile";
 
@@ -31,16 +31,13 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, showDetails = false, showTrends = false }) => {
+const StrategemChart = ({ barData, filters, options, type = "base", legendItems, limit = 0}) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
 
-    const chartLoaded = { current: false };
     const [images, setImages] = useState({});
     const [imagesLoaded, setImagesLoaded] = useState(false);
-    const [icons, setIcons] = useState({});
-    const [iconsLoaded, setIconsLoaded] = useState(false);
     const [showFull, setShowFull] = useState(false);
 
     const data = useMemo(() => {
@@ -77,6 +74,8 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
         }
     }, [data]);
 
+
+
     useMemo(() => {
         if (strategemsDict && weaponsDict) {
             const images = {};
@@ -96,21 +95,6 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
                     }
                 };
             });
-
-            const iconsArr = [playedIcon, levelIcon, rankIcon, trendUpIcon, trendDownIcon];
-            const iconsKeys = ['loadouts', 'avg_lvl', 'trend_rank', 'trend_pick_rate', 'trend_pick_rate_down'];
-            const iconsAssets = iconsArr.map((icon) => {
-                const img = new Image();
-                img.src = icon;
-                return img;
-            });
-            const iconsObj = iconsKeys.reduce((acc, key, index) => {
-                acc[key] = iconsAssets[index];
-                return acc;
-            }, {})
-
-            setIcons(iconsObj);
-            setIconsLoaded(true);
         }
     }, [strategemsDict, weaponsDict]);
 
@@ -136,24 +120,30 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
 
         return { width, height, xOffset };
     };
-
-    const getFomattedValue = (value) => {
-        switch (value.name) {
-            case 'loadouts':
-                return value.value.toString()
-            case 'avg_lvl':
-                return value.value
-            case 'trend_rank':
-                if (value.value < -1000) {
-                    return 'New'
-                }
-                return `${value.value > 0 ? '+' : ''}${value.value}`
-            case 'trend_pick_rate':
-                return `${value.value > 0 ? '+' : ''}${value.value}%`
-            case 'trend_pick_rate_down':
-                return `${value.value > 0 ? '+' : ''}${value.value}%`
+    
+    const getValueRaw = (name, valuesRaw) => {
+        switch (name) {
+            case 'Times played':
+                return valuesRaw.total.loadouts.toString();
+            case 'Avg. Player Level':
+                return valuesRaw.values.avgLevel.toString()
+            case 'Rank Trend':
+                return valuesRaw.pastValues.rank - valuesRaw.values.rank
+            case 'Pick Rate Trend':
+                return Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2))
             default:
                 break;
+        }
+    };
+
+    const getValueFormatted = (name, value) => {
+        switch (name) {
+            case 'Rank Trend':
+                return `${value > 0 ? '+' : ''}${value}`
+            case 'Pick Rate Trend':
+                return `${value > 0 ? '+' : ''}${value}%`
+            default:
+                return value;
         }
     };
 
@@ -166,65 +156,91 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
         let yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
 
         ctx.save();
+
         ctx.font = "16px CustomFont";
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
 
-        const labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
-        const labelsYOffset = type === "weapons" ? 50 : 42;
+        let labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
+        let labelsYOffset = type === "weapons" ? 50 : 42;
 
         Object.keys(data).forEach((key, i) => {
-            const valuesRaw = data[key];
-            const valuesObj = [{
-                name: 'loadouts',
-                value: valuesRaw.total.loadouts.toString()
-            }]
-            if (valuesRaw.values.avgLevel) {
-                valuesObj.push({
-                    name: 'avg_lvl',
-                    value: valuesRaw.values.avgLevel.toString()
-                })
-            }
-            if (showTrends) {
-                valuesObj.push({
-                    name: 'trend_rank',
-                    value: valuesRaw.pastValues.rank - valuesRaw.values.rank
-                })
-                const pickRateValue = Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
-                valuesObj.push({
-                    name: pickRateValue < 0 ? 'trend_pick_rate_down' : 'trend_pick_rate',
-                    value: pickRateValue
-                })
-            }
-
             const image = images[key];
             const { width, height, xOffset } = getImageDimensions();
             const imageY = i * (options.barSize + step) + yOffset;
 
-            if (image && !isDev) {
+            if (image) {
                 ctx.drawImage(image, xOffset, imageY, width, height);
+            }
 
-                if (showDetails) {
-                    let currentX = xOffset + labelsXOffset;
-
-                    valuesObj.forEach((value, j) => {
-                        let icon = icons[value.name];
+            const valuesRaw = data[key];
+            let currentX = xOffset + labelsXOffset;
+            legendItems.forEach((item, j) => {                    
+                let valueRaw = getValueRaw(item.name, valuesRaw);
+                if(item.name === 'Name'){
+                    valueRaw = itemsDict[key].name;
+                }
+                
+                const valueFormatted = getValueFormatted(item.name, valueRaw);
+                if (item.check) {
+                    if(item.src){
+                        let icon = item.src;
+                        if(item.name === 'Pick Rate Trend'){
+                            if(valueRaw < 0){
+                                icon = item.altSrc
+                            } 
+                        }
                         ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
                         currentX += 22;
-                        if(value.name === 'trend_rank') {
-                            currentX += 3;
-                        }
-
-                        ctx.fillStyle = getValueColor(value.value);
-                        ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
-                        currentX += ctx.measureText(value.value).width + 15;
-                    })
+                    }
+                    
+                    ctx.fillStyle = getValueColor(valueRaw);
+                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);
+                    currentX += ctx.measureText(valueFormatted).width + 12;
                 }
-            }
+            })
         });
 
         ctx.restore();
     };
+    //labelsXOffset = labelsXOffset + 50;
+    //labelsYOffset = labelsYOffset + 40;
+    //     ctx.fillStyle = getValueColor(value.value);
+    //     ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
+    //     currentX += ctx.measureText(value.value).width + 15;
+    // })
+    // const valuesObj = []
+    // if (valuesRaw.values.avgLevel) {
+    //     valuesObj.push({
+    //         name: 'avg_lvl',
+    //         value: valuesRaw.values.avgLevel.toString()
+    //     })
+    // }
+    // if (showTrends) {
+    //     valuesObj.push({
+    //         name: 'trend_rank',
+    //         value: valuesRaw.pastValues.rank - valuesRaw.values.rank
+    //     })
+    //     const pickRateValue = Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
+    //     valuesObj.push({
+    //         name: pickRateValue < 0 ? 'trend_pick_rate_down' : 'trend_pick_rate',
+    //         value: pickRateValue
+    //     })
+    // }
+
+    // let currentX = xOffset + labelsXOffset;
+    // valuesObj.forEach((value, j) => {
+    //     let icon = icons[value.name];
+    //     ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
+    //     currentX += 22;
+    //     if (value.name === 'trend_rank') {
+    //         currentX += 3;
+    //     }
+
+    //     ctx.fillStyle = getValueColor(value.value);
+    //     ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
+    //     currentX += ctx.measureText(value.value).width + 15;
+    // })
 
     const onClick = (event) => {
         const { current: chart } = chartRef;
@@ -250,7 +266,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
         document.body.removeChild(link);
     }
 
-    if (!imagesLoaded || !iconsLoaded) {
+    if (!imagesLoaded || !legendItems) {
         return null;
     }
 
@@ -282,11 +298,6 @@ const StrategemChart = ({ barData, filters, options, type = "base", limit = 0, s
                                     plugins={[
                                         {
                                             beforeDraw: (chart) => handleDrawImage(chart),
-                                            afterDraw: (chart) => {
-                                                if (!chartLoaded.current) {
-                                                    chartLoaded.current = true;
-                                                }
-                                            },
                                             resize: (chart) => handleDrawImage(chart),
                                         },
                                     ]}
