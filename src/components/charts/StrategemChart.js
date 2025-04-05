@@ -31,7 +31,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "base", legendItems, limit = 0}) => {
+const StrategemChart = ({ barData, filters, options, type = "base", legendItems, limit = 0 }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -114,13 +114,13 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         let xOffset = 0;
 
         if (type === "weapons" && filters.category === "Throwable") {
-            width = 60;
-            height = 60;
+            width = isDev ? 200 : 60;
+            height = isDev ? 200 : 60;
         }
 
         return { width, height, xOffset };
     };
-    
+
     const getValueRaw = (name, valuesRaw) => {
         switch (name) {
             case 'Times played':
@@ -157,12 +157,20 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
 
         ctx.save();
 
-        ctx.font = "16px CustomFont";
+        ctx.font = `${isDev ? '42px' : '16px'} CustomFont`;
+
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
 
         let labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
         let labelsYOffset = type === "weapons" ? 50 : 42;
+
+        if (isDev) {
+            if (type === 'weapons') {
+                labelsXOffset = labelsXOffset + 350; //350  
+                labelsYOffset = labelsYOffset + 100;
+            }
+        }
 
         Object.keys(data).forEach((key, i) => {
             const image = images[key];
@@ -170,30 +178,30 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             const imageY = i * (options.barSize + step) + yOffset;
 
             if (image) {
-                ctx.drawImage(image, xOffset, imageY, width, height);
+                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 150
             }
 
             const valuesRaw = data[key];
             let currentX = xOffset + labelsXOffset;
-            legendItems.forEach((item, j) => {                    
+            legendItems.forEach((item, j) => {
                 let valueRaw = getValueRaw(item.name, valuesRaw);
-                if(item.name === 'Name'){
+                if (item.name === 'Name') {
                     valueRaw = itemsDict[key].name;
                 }
-                
+
                 const valueFormatted = getValueFormatted(item.name, valueRaw);
                 if (item.check) {
-                    if(item.src){
+                    if (item.src) {
                         let icon = item.src;
-                        if(item.name === 'Pick Rate Trend'){
-                            if(valueRaw < 0){
+                        if (item.name === 'Pick Rate Trend') {
+                            if (valueRaw < 0) {
                                 icon = item.altSrc
-                            } 
+                            }
                         }
                         ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
                         currentX += 22;
                     }
-                    
+
                     ctx.fillStyle = getValueColor(valueRaw);
                     ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);
                     currentX += ctx.measureText(valueFormatted).width + 12;

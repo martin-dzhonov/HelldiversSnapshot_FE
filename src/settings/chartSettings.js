@@ -242,15 +242,15 @@ export const weapons = ({
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
-    barSize: 34,
-    imageWidth: 134,
-    imageHeight: 60,
-    sectionSize: 75,
+    barSize: isDev ? 40 : 34,
+    imageWidth: isDev ? 420: 134,
+    imageHeight: isDev ? 200: 60,
+    sectionSize: isDev ? 260: 75,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 50 },
+        padding: { right: isDev ? 0: 50 },
     },
     scales: {
         x: {
@@ -260,7 +260,7 @@ export const weapons = ({
         y: {
             ticks: { display: false },
             grid: { display: false },
-            afterFit: (axis) => { axis.width = axisWidth; }
+            afterFit: (axis) => { axis.width = isDev ? 440 : axisWidth; } //440
         }
     },
     plugins: {
@@ -268,7 +268,7 @@ export const weapons = ({
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({ fontSize: 17 }),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 18 }),
     }
 });
 

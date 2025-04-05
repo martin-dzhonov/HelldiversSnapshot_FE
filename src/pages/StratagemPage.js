@@ -56,7 +56,6 @@ function StratagemPage() {
     });
 
     useEffect(() => {
-        console.log(dataDummy)
         setFetchData(dataDummy);
         // const fetchStratagem = fetch(apiBaseUrl + `/strategem`)
         //     .then((response) => response.json());
@@ -266,7 +265,7 @@ function StratagemPage() {
                             <div className="stratagem-graphs-title">Other</div>
                             <div className="strategem-divider"></div>
                             <div className="row">
-                                <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                                {filters.patch.id < 1 &&  <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-level-graph-wrapper">
                                         <div className="stratagem-other-title">Player Level</div>
                                         <BarChart
@@ -274,7 +273,8 @@ function StratagemPage() {
                                             options={chartsSettings.level}
                                         />
                                     </div>
-                                </div>
+                                </div>}
+                               
                                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                                     <div className="stratagem-other-graph-wrapper">
                                         <div className="stratagem-other-title">Difficulty</div>

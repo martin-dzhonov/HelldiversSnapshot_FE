@@ -24,6 +24,7 @@ function GamesTable({ filters, setFilterResults }) {
             const result = await response.json();
             const sorted = result.sort((a, b) => a.id - b.id);
             setFilterResults(sorted.length);
+            console.log(sorted);
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);

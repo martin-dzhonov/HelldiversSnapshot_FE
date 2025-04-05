@@ -4,14 +4,17 @@ import trendDownIcon from "../assets/icons/trendDown.svg";
 import rankIcon from "../assets/icons/rank.svg";
 import playedIcon from "../assets/icons/people.svg";
 import levelIcon from "../assets/icons/level.svg";
+import useMobile from "./useMobile";
 
 const useLegendItems = (setGraphData, filters) => {
+    const { isMobile } = useMobile()
+
     const showPlayerLvl = filters.patch.id < 1;
     const showTrends = filters.page === 'weapons' ? false : 
     filters.faction === 'illuminate' ? filters.patch.id < 1 : filters.patch.name !== 'Classic';
 
     const getLegendItems = () => [
-        { name: "Name", icon: null, check: true },
+        !isMobile &&{ name: "Name", icon: null, check: true },
         showPlayerLvl && { name: "Avg. Player Level", icon: levelIcon, check: true },
         showTrends && { name: "Pick Rate Trend", icon: trendUpIcon, iconAlt: trendDownIcon, check: true },
         showTrends && { name: "Rank Trend", icon: rankIcon, check: false },
