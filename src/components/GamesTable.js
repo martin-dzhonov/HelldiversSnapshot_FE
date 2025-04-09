@@ -24,7 +24,7 @@ function GamesTable({ filters, setFilterResults }) {
             const result = await response.json();
             const sorted = result.sort((a, b) => a.id - b.id);
             setFilterResults(sorted.length);
-            console.log(sorted);
+            //console.log(sorted);
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -93,6 +93,8 @@ function GamesTable({ filters, setFilterResults }) {
                 <Table striped bordered hover size="sm" variant="dark">
                     <thead>
                         <tr>
+                        <th>id</th>
+
                             <th>No</th>
                             <th>Date</th>
                             <th>Loadouts</th>
@@ -105,6 +107,7 @@ function GamesTable({ filters, setFilterResults }) {
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
+                                <td className="text-small">{game.id}</td>
                                 <td className="text-small">{(currentPage * 10) + index - 9}</td>
                                 <td className="text-small">
                                     <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
@@ -154,6 +157,10 @@ function GamesTable({ filters, setFilterResults }) {
                                             </div>
                                         ))}
                                     </div>
+                                    <div className="table-loadout-row-wrapper">
+                                        {JSON.stringify(game.players)}
+                                    </div>
+
                                     <ScreenshotToggle id={game.id} alt="" />
                                 </td>
                                 <td className="text-small">{game.planet}</td>

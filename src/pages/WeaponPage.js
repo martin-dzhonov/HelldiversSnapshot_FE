@@ -35,7 +35,9 @@ import {
     getMaxRounded,
     getItemRank,
     getItemsByCategory,
-    getFactionsMax
+    getFactionsMax,
+    getPatchesMax,
+    getRankMin
 } from "../utils";
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
@@ -47,6 +49,7 @@ function WeaponPage() {
 
     const [fetchData, setFetchData] = useState();
     const [factionChart, setFactionChart] = useState(null);
+    const [patchChart, setPatchChart] = useState(null);
     const [companionCharts, setCompanionCharts] = useState(null);
     const [diffChart, setDiffChart] = useState(null);
     const [missionChart, setMissionChart] = useState(null);
@@ -106,6 +109,24 @@ function WeaponPage() {
                     type: filters.format
                 }),
             });
+
+            const patches = fetchData[filters.faction];
+            console.log(patches)
+            const patchesData = patches.map((patchData) => {
+                return getDatasetValue(itemID, patchData, filters, true);
+            })
+
+
+            const patchesMax = getPatchesMax(itemID, patchesData, currData, filters);
+            setPatchChart({
+                data: patchesData.map((item) => (filters.format === 'pick_rate' || filters.format === 'game_rate') ?
+                    item : item > 0 ? patchesMax - item : -1),
+                options: chartsSettings.patch({
+                    min: getRankMin(filters.format, patchesMax),
+                    max: patchesMax + 2,
+                    type: filters.format
+                }),
+            });
         }
     }, [itemID, fetchData, filters]);
 
@@ -123,7 +144,6 @@ function WeaponPage() {
                 datasets: missionsDataset
             });
 
-            console.log(getCompanionChartData(weaponData))
             setCompanionCharts(getCompanionChartData(weaponData));
 
             const levelDataset = {
@@ -221,11 +241,14 @@ function WeaponPage() {
                                 )}
                             </div>
                             <div className="col-lg-3 col-sm-12">
-                                <div className="empty-chart-text-wrapper">
-                                    <div className="empty-chart-text">
-                                        Data Pending
-                                    </div>
-                                </div>
+                                {patchChart &&
+                                    <div className="stratagem-graph-wrapper-patch">
+                                        <PatchChart
+                                            data={patchChart.data}
+                                            itemID={itemID}
+                                            options={patchChart.options}
+                                        />
+                                    </div>}
                             </div>
                         </div>
                         {companionCharts && <>
@@ -239,7 +262,7 @@ function WeaponPage() {
                                             <StrategemChart
                                                 barData={companionCharts[index].data}
                                                 filters={filters}
-                                                options={companionCharts[index].options}                                                
+                                                options={companionCharts[index].options}
                                                 type={"strategem"}
                                                 legendItems={[]}
                                                 limit={null}

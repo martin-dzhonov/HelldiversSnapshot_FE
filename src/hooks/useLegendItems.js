@@ -5,13 +5,15 @@ import rankIcon from "../assets/icons/rank.svg";
 import playedIcon from "../assets/icons/people.svg";
 import levelIcon from "../assets/icons/level.svg";
 import useMobile from "./useMobile";
+import { getPatchId } from "../utils";
 
 const useLegendItems = (setGraphData, filters) => {
     const { isMobile } = useMobile()
 
-    const showPlayerLvl = filters.patch.id < 1;
-    const showTrends = filters.page === 'weapons' ? false : 
-    filters.faction === 'illuminate' ? filters.patch.id < 1 : filters.patch.name !== 'Classic';
+    const showPlayerLvl = filters.patch.id < getPatchId("Omens of Tyranny");
+    const trendsStart = filters.page === 'weapons' ? "Servants of Freedom" : 
+    filters.faction === 'illuminate' ? "Omens of Tyranny" : "Classic";
+    const showTrends =  filters.patch.id < getPatchId(trendsStart);
 
     const getLegendItems = () => [
         !isMobile &&{ name: "Name", icon: null, check: true },
@@ -44,9 +46,10 @@ const useLegendItems = (setGraphData, filters) => {
             prev.map((item, i) => (i === index ? { ...item, check: !item.check } : item))
         );
     
+        // Force redraw
         setGraphData((prev) => ({
             ...prev, 
-            data: {...prev.data} // Force a new reference
+            data: {...prev.data} 
         }));
     };
 

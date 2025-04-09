@@ -31,7 +31,6 @@ ChartJS.register(
 
 const PatchChart = ({ data, itemID, options }) => {
     const chartRef = useRef(null);
-
     const chartData = useMemo(() => {
         if (data && itemID) {
             const itemColor = getItemColor(itemID);

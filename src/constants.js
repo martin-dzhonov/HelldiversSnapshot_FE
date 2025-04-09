@@ -1,7 +1,7 @@
 
 const isDev = false; 
 
-const apiBaseUrl =  'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
+const apiBaseUrl =  `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
 
 const navRoutes = [
     {
@@ -52,10 +52,11 @@ const weaponCount = [
 const missionTypes = ["Short", "Long"];
 
 const patchPeriods = [
-    { id: 0, name: "Servants of Freedom", start: "02/08/2025", end: "Present" },
-    { id: 1, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
-    { id: 2, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: 3, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 0, name: "Borderline Justice", start: "03/19/2025", end: "Present" },
+    { id: 1, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
+    { id: 2, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
+    { id: 3, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 4, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
 ];
 
 const difficultiesNames = [
@@ -131,6 +132,7 @@ const createStrategem = (baseName, fullName, category, ext = "svg") => ({
 const strategemsDict = {
     backpack_ballistic: createStrategem("Ballistic Shield Backpack", "SH-20 Ballistic Shield Backpack", "Support"),
     backpack_jump: createStrategem("Jump Pack", "LIFT-850 Jump Pack", "Support"),
+    hover_pack: createStrategem("Hover Pack", "LIFT-860 Hover Pack", "Support"),
     backpack_shield: createStrategem("Shield Generator Pack", "SH-20 Shield Generator Pack", "Support"),
     backpack_shield_directional: createStrategem("Directional Shield", "SH-51 Directional Shield", "Support"),
     backpack_supply: createStrategem("Supply Pack", "B-1 Supply Pack", "Support"),
@@ -149,6 +151,7 @@ const strategemsDict = {
     eagle_strafe: createStrategem("Eagle Strafing Run", "Eagle Strafing Run", "Eagle/Orbital"),
     encampment_hmg: createStrategem("HMG Emplacement", "E/MG-101 HMG Emplacement", "Defensive"),
     encampment_at: createStrategem("Anti-Tank Emplacement", "E/AT-12 Anti-Tank Emplacement", "Defensive"),
+    grenade_encampment: createStrategem("Grenadier Battlement", "E/GL-21 Grenadier Battlement", "Defensive"),
     exo_emancipator: createStrategem("Emancipator Exosuit", "EXO-49 Emancipator Exosuit", "Support"),
     exo_patriot: createStrategem("Patriot Exosuit", "EXO-45 Patriot Exosuit", "Support"),
     frv: createStrategem("Fast Recon Vehicle", "M-102 Fast Recon Vehicle", "Support"),
@@ -255,6 +258,9 @@ const weaponsDict = {
     grenade_smoke: createStrategem("Smoke", "G-3 Smoke", "Throwable", 'webp'),
     grenade_termite: createStrategem("Thermite", "G-123 Thermite", "Throwable", 'webp'),
     throwing_knife: createStrategem("Throwing Knife", "K-2 Throwing Knife", "Throwable", 'webp'),
+    deadeye: createStrategem("Deadeye", "R-6 Deadeye", "Primary", 'webp'),
+    talon: createStrategem("Talon", "LAS-58 Talon", "Secondary", 'webp'),
+    dynamite: createStrategem("Dynamite", "TED-63 Dynamite", "Throwable", 'webp'),
 };
 
 const itemsDict = {...strategemsDict, ...weaponsDict};

@@ -9,7 +9,8 @@ import {
     weaponCategories,
     strategemCount,
     weaponCount,
-    itemsDict
+    itemsDict,
+    patchPeriods
 } from "./constants";
 import * as chartsSettings from "./settings/chartSettings";
 
@@ -119,13 +120,17 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     sorted.forEach(([key, value]) => {
         let itemData = getFieldByFilters(value, filters);
         let totalsData = getFieldByFilters(gamesData, filters);
+        const loadoutsPerc = getPercentage(itemData.loadouts, totalsData.loadouts) > 0 ?
+            getPercentage(itemData.loadouts, totalsData.loadouts) :
+            getPercentage(itemData.loadouts, totalsData.loadouts, 2);
+
         result[key] = {
             total: {
                 loadouts: itemData.loadouts,
                 games: itemData.games
             },
             values: {
-                loadouts: getPercentage(itemData.loadouts, totalsData.loadouts),
+                loadouts: loadoutsPerc,
                 games: getPercentage(itemData.games, totalsData.games),
                 rank: getItemRank(key, Object.fromEntries(sorted)),
                 avgLevel: Number((value.totallvl.acc / value.totallvl.count).toFixed(0))
@@ -137,6 +142,10 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     return result;
 }
 
+const getPatchId = (patchName) => {
+    const result = patchPeriods.find((patch) => patch.name === patchName).id || null;
+    return result;
+}
 const getPatchDelta = (startPatch, endPatch) => {
     const result = {};
     Object.entries(endPatch).map(([key, value]) => {
@@ -152,10 +161,11 @@ const getPatchDelta = (startPatch, endPatch) => {
             ...value,
             pastValues: pastValues
         }
-    });
+    })
+    const sorted = Object.entries(result).filter(([key, value]) =>
+        value?.total?.loadouts !== 0
+    ).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
 
-    const sorted = Object.entries(result).sort((a, b) => b[1].total.loadouts - a[1].total.loadouts);
-    
     return Object.fromEntries(sorted);
 }
 
@@ -171,12 +181,12 @@ const getPatchItemCount = (itemID, filters, type = 'strategem') => {
     }
     return count;
 }
- 
+
 const getDatasetValue = (itemID, data, filters, absolute = false) => {
     if (!data) {
         return -1;
     }
-   
+
     const type = filters.type;
     const item = data[type][itemID];
 
@@ -187,7 +197,7 @@ const getDatasetValue = (itemID, data, filters, absolute = false) => {
         'game_rate': !item ? -0.1 : getPercentage(item?.total.games, data.total.games),
     };
 
-    if(absolute) {
+    if (absolute) {
         values.rank_all = getItemRank(itemID, data[type]);
         values.rank_category = getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category));
     }
@@ -199,14 +209,14 @@ const getFactionsMax = (itemID, dataset, data, filters) => {
     if (!data) {
         return 0;
     }
-   
+
     const type = filters.type;
     const item = data[type][itemID];
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
         'pick_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5,
-        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5 
+        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5
     };
 
     return values[filters.format];
@@ -216,14 +226,14 @@ const getPatchesMax = (itemID, dataset, data, filters) => {
     if (!data) {
         return 0;
     }
-   
+
     const type = filters.type;
     const item = data[type][itemID];
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
         'pick_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5,
-        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5 
+        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5
     };
 
     return values[filters.format];
@@ -245,23 +255,23 @@ const getRankMin = (format, value) => {
 }
 
 const getCompanionChartData = (strategemData) => {
-    if(strategemData.companions.strategem) {
+    if (strategemData.companions.strategem) {
         return Object.values(strategemData.companions.strategem).map(category => {
             return category.map(item => {
                 return {
                     ...item,
-                    total: {loadouts: item.total},
-                    values: {loadouts: getPercentage(item.total, strategemData.total.loadouts) }
+                    total: { loadouts: item.total },
+                    values: { loadouts: getPercentage(item.total, strategemData.total.loadouts) }
                 };
             })
-        }).map((item)=> {
-            const values = item.map((subItem)=> subItem.values.loadouts);
+        }).map((item) => {
+            const values = item.map((subItem) => subItem.values.loadouts);
             return {
                 data: item.reduce((acc, item) => {
                     const { name, ...rest } = item;
                     acc[name] = rest;
                     return acc;
-                }, {}), 
+                }, {}),
                 options: chartsSettings.companions({
                     max: Math.max(...values) + 15,
                 })
@@ -280,8 +290,8 @@ const getDatasetByKey = (itemID, itemData, patchData, key) => {
     }]
 }
 
-const getFiltersCount = (data, filters) =>{
-   const asd = getFieldByFilters(data, filters);
+const getFiltersCount = (data, filters) => {
+    const asd = getFieldByFilters(data, filters);
 }
 
 export {
@@ -296,6 +306,7 @@ export {
     hexToRgbA,
     getMaxRounded,
     getChartGradient,
+    getPatchId,
     getPatchItemCount,
     getDatasetValue,
     getRankMin,

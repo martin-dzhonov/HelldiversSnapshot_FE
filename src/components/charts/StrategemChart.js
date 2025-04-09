@@ -105,6 +105,9 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             if (value < 0) return "#de7b6c";
             return "#fff000";
         }
+        if(value === 'New'){
+            return "#fff000";
+        }
         return "#FFFFFF";
     };
 
@@ -128,9 +131,9 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             case 'Avg. Player Level':
                 return valuesRaw.values.avgLevel.toString()
             case 'Rank Trend':
-                return valuesRaw.pastValues.rank - valuesRaw.values.rank
+                return valuesRaw.pastValues?.loadouts > 0 ? valuesRaw.pastValues.rank - valuesRaw.values.rank : 'New'
             case 'Pick Rate Trend':
-                return Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2))
+                return valuesRaw.pastValues?.loadouts > 0 ? Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2)) : 'New'
             default:
                 break;
         }
@@ -139,8 +142,14 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
     const getValueFormatted = (name, value) => {
         switch (name) {
             case 'Rank Trend':
+                if(value === 'New'){
+                    return value;
+                }
                 return `${value > 0 ? '+' : ''}${value}`
             case 'Pick Rate Trend':
+                if(value === 'New'){
+                    return value;
+                }
                 return `${value > 0 ? '+' : ''}${value}%`
             default:
                 return value;
@@ -183,8 +192,11 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
 
             const valuesRaw = data[key];
             let currentX = xOffset + labelsXOffset;
+            console.log(key);
             legendItems.forEach((item, j) => {
+                console.log(item.name);
                 let valueRaw = getValueRaw(item.name, valuesRaw);
+                console.log(valueRaw)
                 if (item.name === 'Name') {
                     valueRaw = itemsDict[key].name;
                 }

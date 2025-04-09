@@ -190,13 +190,14 @@ export const patch = ({
                 },
                 color: "white",
                 callback: (value, index, values) => {
-                    const labels = [
+                    let labels = [
                         "Classic",
                         "Escalation of Freedom",
                         "Omens of Tyranny",
                         "Servants of Freedom",
+                        "Borderline Justice"
                     ];
-
+                     
                     if (index === 0 || index === values.length - 1) {
                         return labels[index];
                     }
