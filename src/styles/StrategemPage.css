@@ -140,6 +140,12 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 900px) {
+    .stratagem-other-graph-wrapper {
+        margin-top: 20px;
+    }
+}
+
 .stratagem-loadouts-wrapper {
     display: flex;
     flex-direction: column;

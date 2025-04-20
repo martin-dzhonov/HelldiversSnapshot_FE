@@ -93,21 +93,18 @@ function GamesTable({ filters, setFilterResults }) {
                 <Table striped bordered hover size="sm" variant="dark">
                     <thead>
                         <tr>
-                        <th>id</th>
-
                             <th>No</th>
                             <th>Date</th>
                             <th>Loadouts</th>
                             <th>Planet</th>
                             <th>Mission</th>
-                            <th>Modifiers</th>
+                            {/* <th>Modifiers</th> */}
                             <th>Diff</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
-                                <td className="text-small">{game.id}</td>
                                 <td className="text-small">{(currentPage * 10) + index - 9}</td>
                                 <td className="text-small">
                                     <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
@@ -157,17 +154,14 @@ function GamesTable({ filters, setFilterResults }) {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="table-loadout-row-wrapper">
-                                        {JSON.stringify(game.players)}
-                                    </div>
 
                                     <ScreenshotToggle id={game.id} alt="" />
                                 </td>
                                 <td className="text-small">{game.planet}</td>
                                 <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                                <td className="text-small">
+                                {/* <td className="text-small">
                                     {game.modifiers.map((item, index) => <div key={index}>{item.toUpperCase()}</div>)}
-                                </td>
+                                </td> */}
                                 <td className="text-small">{game.difficulty}</td>
                             </tr>
                         ))}

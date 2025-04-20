@@ -17,6 +17,7 @@ function ChartLegend({ items, filterResults, onCheckChange }) {
             <div className='legend-items-wrapper'>
                 {items.map((item, index) =>
                     <div className='legend-item-wrapper'>
+                        <div className='legend-content'>
                         <Form>
                             <Form.Check.Input
                                 type="checkbox"
@@ -27,6 +28,7 @@ function ChartLegend({ items, filterResults, onCheckChange }) {
                         </Form>
                         {item.icon && <img className='legend-icon' src={item.icon} />}
                         <div className='text-small'>{item.name}</div>
+                        </div>
                     </div>
                 )}
             </div>

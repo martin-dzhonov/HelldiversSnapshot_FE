@@ -17,7 +17,7 @@ const useLegendItems = (setGraphData, filters) => {
 
     const getLegendItems = () => [
         !isMobile &&{ name: "Name", icon: null, check: true },
-        showPlayerLvl && { name: "Avg. Player Level", icon: levelIcon, check: true },
+        showPlayerLvl && { name: "Avg. Level", icon: levelIcon, check: true },
         showTrends && { name: "Pick Rate Trend", icon: trendUpIcon, iconAlt: trendDownIcon, check: true },
         showTrends && { name: "Rank Trend", icon: rankIcon, check: false },
         { name: "Times played", icon: playedIcon, check: false }

@@ -111,7 +111,6 @@ function WeaponPage() {
             });
 
             const patches = fetchData[filters.faction];
-            console.log(patches)
             const patchesData = patches.map((patchData) => {
                 return getDatasetValue(itemID, patchData, filters, true);
             })

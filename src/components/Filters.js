@@ -2,14 +2,18 @@ import '../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { itemCategories, weaponCategories, difficultiesNames, patchPeriods, factions } from '../constants';
 import { capitalizeFirstLetter } from '../utils';
+import { useMobile } from '../hooks/useMobile';
+
 
 function Filters({ filters, setFilters, type }) {
+    const { isMobile } = useMobile();
+
     return (
         <div className="filters-container">
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"
-                    title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
+                    title={`${isMobile ? '': 'Faction: '}${capitalizeFirstLetter(filters.faction)}`}>
                     {factions.map((factionName) => (
                         <Dropdown.Item
                             as="button"
@@ -18,6 +22,35 @@ function Filters({ filters, setFilters, type }) {
                         </Dropdown.Item>
                     ))}
                 </DropdownButton>
+            </div>
+
+            <div className="filter-container">
+                {type === 0 &&
+                    <DropdownButton
+                        className="dropdown-button"
+                        title={`${isMobile ? '': 'Patch: '}${filters.patch.name}`}>
+                        {patchPeriods.map((patchPeriod, index) => (
+                            <Dropdown.Item
+                                as="button"
+                                onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
+                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                            </Dropdown.Item>
+                        ))}
+                    </DropdownButton>}
+
+                {type === 1 &&
+                    <DropdownButton
+                        className="dropdown-button"
+                        title={`${isMobile ? '': 'Patch: '}${filters.patch.name}`}> 
+                        {patchPeriods.slice(0, patchPeriods.length - 3).map((patchPeriod, index) => (
+                            <Dropdown.Item
+                                as="button"
+                                onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
+                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                            </Dropdown.Item>
+                        ))}
+                    </DropdownButton>}
+
             </div>
 
             <div className="filter-container">
@@ -85,34 +118,7 @@ function Filters({ filters, setFilters, type }) {
                     </DropdownButton>
                 </div> */}
 
-            <div className="filter-container">
-                {type === 0 &&
-                    <DropdownButton
-                        className="dropdown-button"
-                        title={'Patch: ' + filters.patch.name}>
-                        {patchPeriods.map((patchPeriod, index) => (
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>}
-
-                {type === 1 &&
-                    <DropdownButton
-                        className="dropdown-button"
-                        title={'Patch: ' + filters.patch.name}>
-                        {patchPeriods.slice(0, patchPeriods.length - 3).map((patchPeriod, index) => (
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>}
-
-            </div>
+            
             <div className="filter-container">
                 <DropdownButton
                     disabled={filters.difficulty !== 0}

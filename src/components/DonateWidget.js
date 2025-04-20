@@ -11,10 +11,10 @@ function DonateWidget() {
 		script.src = "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js";
 		script.setAttribute("data-id", "helldive.live");
 		script.setAttribute("data-description", "Support me on Buy me a coffee!");
-		script.setAttribute(
-			"data-message",
-			"Servers ain't cheap, you know ✨",
-		);
+		// script.setAttribute(
+		// 	"data-message",
+		// 	"Servers ain't cheap, you know ✨",
+		// );
 		script.setAttribute("data-color", "#FFDD00");
 		script.setAttribute("data-position", "Right");
 		script.setAttribute("data-x_margin", isMobile ? '10' : '40');

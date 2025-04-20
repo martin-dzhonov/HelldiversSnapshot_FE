@@ -128,7 +128,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         switch (name) {
             case 'Times played':
                 return valuesRaw.total.loadouts.toString();
-            case 'Avg. Player Level':
+            case 'Avg. Level':
                 return valuesRaw.values.avgLevel.toString()
             case 'Rank Trend':
                 return valuesRaw.pastValues?.loadouts > 0 ? valuesRaw.pastValues.rank - valuesRaw.values.rank : 'New'
@@ -173,11 +173,20 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
 
         let labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
         let labelsYOffset = type === "weapons" ? 50 : 42;
+        let iconSize = isDev ? 42 : 20;
 
         if (isDev) {
             if (type === 'weapons') {
-                labelsXOffset = labelsXOffset + 350; //350  
                 labelsYOffset = labelsYOffset + 100;
+                if(filters.category === "Throwable"){
+                    labelsXOffset = labelsXOffset + 330;
+                } else {
+                    labelsXOffset = labelsXOffset + 260;  
+                }
+            }
+            if (type === 'strategem') {
+                labelsXOffset = labelsXOffset + 70;  
+                labelsYOffset = labelsYOffset + 50;
             }
         }
 
@@ -187,16 +196,13 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             const imageY = i * (options.barSize + step) + yOffset;
 
             if (image) {
-                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 150
+                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 130
             }
 
             const valuesRaw = data[key];
             let currentX = xOffset + labelsXOffset;
-            console.log(key);
             legendItems.forEach((item, j) => {
-                console.log(item.name);
                 let valueRaw = getValueRaw(item.name, valuesRaw);
-                console.log(valueRaw)
                 if (item.name === 'Name') {
                     valueRaw = itemsDict[key].name;
                 }
@@ -210,13 +216,13 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                                 icon = item.altSrc
                             }
                         }
-                        ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
+                        ctx.drawImage(icon, currentX, imageY + labelsYOffset, iconSize, iconSize);//imageY + labelsYOffset - iconSize/2
                         currentX += 22;
                     }
 
                     ctx.fillStyle = getValueColor(valueRaw);
-                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);
-                    currentX += ctx.measureText(valueFormatted).width + 12;
+                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);// + iconSize/2
+                    currentX += ctx.measureText(valueFormatted).width + 15;// + iconSize
                 }
             })
         });

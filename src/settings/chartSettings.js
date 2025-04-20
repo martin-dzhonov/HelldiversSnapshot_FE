@@ -251,7 +251,7 @@ export const weapons = ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 0: 50 },
+        padding: { right: isDev ? 110 : 55 },
     },
     scales: {
         x: {
@@ -286,7 +286,7 @@ export const strategem = ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: 55 },
+        padding: { right: isDev ? 120 : 55 },
     },
     scales: {
         x: {
