@@ -98,14 +98,14 @@ function GamesTable({ filters, setFilterResults }) {
                             <th>Loadouts</th>
                             <th>Planet</th>
                             <th>Mission</th>
-                            {/* <th>Modifiers</th> */}
+                            {/* <th>Modifiers</th> {(currentPage * 10) + index - 9} */ }
                             <th>Diff</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
-                                <td className="text-small">{(currentPage * 10) + index - 9}</td>
+                                <td className="text-small">{game.id}</td>
                                 <td className="text-small">
                                     <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
                                         day: '2-digit',

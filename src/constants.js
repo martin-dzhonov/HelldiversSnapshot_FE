@@ -1,7 +1,7 @@
 
 const isDev = false; 
 
-const apiBaseUrl =  `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
+const apiBaseUrl =  'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 
 const navRoutes = [
     {
@@ -11,6 +11,10 @@ const navRoutes = [
     {
         name: "Weapons",
         route: "weapons"
+    },
+    {
+        name: "Armors",
+        route: "armors"
     },
     {
         name: "Armory",
@@ -52,11 +56,12 @@ const weaponCount = [
 const missionTypes = ["Short", "Long"];
 
 const patchPeriods = [
-    { id: 0, name: "Borderline Justice", start: "03/19/2025", end: "Present" },
-    { id: 1, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
-    { id: 2, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
-    { id: 3, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: 4, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 0, name: "Masters Of Ceremony", start: "05/15/2025", end: "Present" },
+    { id: 1, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
+    { id: 2, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
+    { id: 3, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
+    { id: 4, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 5, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
 ];
 
 const difficultiesNames = [
@@ -196,6 +201,7 @@ const strategemsDict = {
     sup_stalwart: createStrategem("Stalwart", "M-105 Stalwart", "Support"),
     sup_sterilizer: createStrategem("Sterilizer", "TX-41 Sterilizer", "Support"),
     sup_wasp: createStrategem("Wasp", "StA-X3 W.A.S.P. Launcher", "Support"),
+    flag: createStrategem("One True Flag", "One True Flag", "Support"),
 };
 
 const weaponsDict = {
@@ -215,7 +221,7 @@ const weaponsDict = {
     reprimand: createStrategem("Reprimand", "SMG-32 Reprimand", "Primary", 'webp'),
     defender: createStrategem("Defender", "SMG-37 Defender", "Primary", 'webp'),
     pummeler: createStrategem("Pummeler", "SMG-72 Pummeler", "Primary", 'webp'),
-    punisher: createStrategem("Punisher", "MP-98 Punisher", "Primary", 'webp'),
+    punisher: createStrategem("Punisher", "SG-8 Punisher", "Primary", 'webp'),
     slugger: createStrategem("Slugger", "SG-8S Slugger", "Primary", 'webp'),
     halt: createStrategem("Halt", "SG-20 Halt", "Primary", 'webp'),
     cookout: createStrategem("Cookout", "SG-451 Cookout", "Primary", 'webp'),
@@ -261,6 +267,9 @@ const weaponsDict = {
     deadeye: createStrategem("Deadeye", "R-6 Deadeye", "Primary", 'webp'),
     talon: createStrategem("Talon", "LAS-58 Talon", "Secondary", 'webp'),
     dynamite: createStrategem("Dynamite", "TED-63 Dynamite", "Throwable", 'webp'),
+    amendment: createStrategem("Amendment", "R-2 Amendment", "Primary", 'webp'),
+    sabre: createStrategem("Saber", "CQC-2 Saber", "Secondary", 'webp'),
+    grenade_pyro: createStrategem("Pyrotech", "G-142 Pyrotech", "Throwable", 'webp'),
 };
 
 const itemsDict = {...strategemsDict, ...weaponsDict};

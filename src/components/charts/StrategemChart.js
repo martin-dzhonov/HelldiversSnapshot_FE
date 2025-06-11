@@ -2,11 +2,6 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import { useNavigate } from "react-router-dom";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import trendUpIcon from "../../assets/icons/trendUp.svg";
-import trendDownIcon from "../../assets/icons/trendDown.svg";
-import rankIcon from "../../assets/icons/rank.svg";
-import playedIcon from "../../assets/icons/people.svg";
-import levelIcon from "../../assets/icons/level.svg";
 
 import {
     BarElement,
@@ -60,13 +55,13 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         if (data) {
             const allItems = { ...strategemsDict, ...weaponsDict }
             return {
-                labels: Object.keys(data).map((item) => allItems[item].name),
+                labels: Object.keys(data).map((item) => allItems[item] ? allItems[item].name : item),
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.values?.loadouts),
                         total: Object.values(data).map((item) => item?.total?.loadouts),
                         pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
-                        backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
+                        backgroundColor: Object.keys(data).map((item) => type === "armors" ? 'yellow' :getItemColor(item)),
                         barThickness: options.barSize,
                     },
                 ],
@@ -177,11 +172,11 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
 
         if (isDev) {
             if (type === 'weapons') {
-                labelsYOffset = labelsYOffset + 100;
+                labelsYOffset = labelsYOffset + 95;
                 if(filters.category === "Throwable"){
                     labelsXOffset = labelsXOffset + 330;
                 } else {
-                    labelsXOffset = labelsXOffset + 260;  
+                    labelsXOffset = labelsXOffset + 270;  
                 }
             }
             if (type === 'strategem') {
@@ -189,14 +184,15 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 labelsYOffset = labelsYOffset + 50;
             }
         }
-
+        
+        if(type !== 'armors'){
         Object.keys(data).forEach((key, i) => {
             const image = images[key];
             const { width, height, xOffset } = getImageDimensions();
             const imageY = i * (options.barSize + step) + yOffset;
 
             if (image) {
-                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 130
+                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 100
             }
 
             const valuesRaw = data[key];
@@ -221,11 +217,11 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                     }
 
                     ctx.fillStyle = getValueColor(valueRaw);
-                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);// + iconSize/2
-                    currentX += ctx.measureText(valueFormatted).width + 15;// + iconSize
+                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);//currentX + iconSize/2
+                    currentX += ctx.measureText(valueFormatted).width + 15;// + 15 + iconSize
                 }
             })
-        });
+        });}
 
         ctx.restore();
     };

@@ -92,6 +92,8 @@ const getPercentage = (number1, number2, decimals = 1) => {
 };
 
 const getFieldByFilters = (data, filters) => {
+    console.log(filters);
+    console.log(data);
     let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
     if (filters.difficulty !== 0) {
         return data[field][filters.difficulty];
@@ -103,6 +105,7 @@ const getFieldByFilters = (data, filters) => {
 }
 
 const itemsByCategory = (gamesData, filters, collectionKey) => {
+
     if (!gamesData) {
         return {};
     }
@@ -115,9 +118,10 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
         Object.entries(items).filter(([key, value]) =>
             itemsDict[key].category === filters.category);
 
+
     const sorted = filtered.sort((a, b) => b[1].total - a[1].total);
 
-    sorted.forEach(([key, value]) => {
+    filtered.forEach(([key, value]) => {
         let itemData = getFieldByFilters(value, filters);
         let totalsData = getFieldByFilters(gamesData, filters);
         const loadoutsPerc = getPercentage(itemData.loadouts, totalsData.loadouts) > 0 ?
@@ -132,7 +136,7 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
             values: {
                 loadouts: loadoutsPerc,
                 games: getPercentage(itemData.games, totalsData.games),
-                rank: getItemRank(key, Object.fromEntries(sorted)),
+                rank: getItemRank(key, Object.fromEntries(filtered)),
                 avgLevel: Number((value.totallvl.acc / value.totallvl.count).toFixed(0))
 
             }
