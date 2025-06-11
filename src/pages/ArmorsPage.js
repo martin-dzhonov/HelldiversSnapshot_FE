@@ -15,6 +15,7 @@ import {
     getFieldByFilters,
     getFiltersCount,
     getPatchDelta,
+    getTotalsByFilters,
     itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
@@ -39,7 +40,7 @@ function ArmorsPage() {
         loadouts: 0
     });
     const [filters, setFilters] = useState({
-        page: "armors",
+        page: "armor",
         faction: "terminid",
         category: "All",
         difficulty: 0,
@@ -74,7 +75,7 @@ function ArmorsPage() {
                 data :graphData, 
                 options: chartsSettings.strategem()
             });
-            setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
+            setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
         }
     }, [data, filters]);
 
@@ -90,7 +91,7 @@ function ArmorsPage() {
             <Loader loading={loading}>
                 {strategemGraphData &&
                     <StrategemChart
-                        type='armors'
+                        type='armor'
                         barData={strategemGraphData.data}
                         options={strategemGraphData.options}
                         filters={filters}

@@ -61,7 +61,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                         data: Object.values(data).map((item) => item?.values?.loadouts),
                         total: Object.values(data).map((item) => item?.total?.loadouts),
                         pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
-                        backgroundColor: Object.keys(data).map((item) => type === "armors" ? 'yellow' :getItemColor(item)),
+                        backgroundColor: Object.keys(data).map((item) => type === "armor" ? '#ffe433' :getItemColor(item)),
                         barThickness: options.barSize,
                     },
                 ],
@@ -75,16 +75,16 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         if (strategemsDict && weaponsDict) {
             const images = {};
             let loadedCount = 0;
-            const allDict = { ...strategemsDict, ...weaponsDict }
-            Object.keys(allDict).forEach((imageKey) => {
+            
+            Object.keys(itemsDict).forEach((imageKey) => {
                 const image = new Image();
-                image.src = allDict[imageKey]?.image;
+                image.src = itemsDict[imageKey]?.image;
 
                 image.onload = () => {
                     images[imageKey] = image;
                     loadedCount += 1;
 
-                    if (loadedCount === Object.keys(allDict).length) {
+                    if (loadedCount === Object.keys(itemsDict).length) {
                         setImages(images);
                         setImagesLoaded(true);
                     }
@@ -184,25 +184,23 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 labelsYOffset = labelsYOffset + 50;
             }
         }
-        
-        if(type !== 'armors'){
         Object.keys(data).forEach((key, i) => {
             const image = images[key];
             const { width, height, xOffset } = getImageDimensions();
             const imageY = i * (options.barSize + step) + yOffset;
 
             if (image) {
-                ctx.drawImage(image, xOffset, imageY, width, height);//xOffset + 100
+                ctx.drawImage(image, xOffset, type !== 'armor' ? imageY : imageY + 8, width, height);//xOffset + 100
             }
 
             const valuesRaw = data[key];
             let currentX = xOffset + labelsXOffset;
             legendItems.forEach((item, j) => {
+
                 let valueRaw = getValueRaw(item.name, valuesRaw);
                 if (item.name === 'Name') {
                     valueRaw = itemsDict[key].name;
                 }
-
                 const valueFormatted = getValueFormatted(item.name, valueRaw);
                 if (item.check) {
                     if (item.src) {
@@ -221,7 +219,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                     currentX += ctx.measureText(valueFormatted).width + 15;// + 15 + iconSize
                 }
             })
-        });}
+        });
 
         ctx.restore();
     };
@@ -267,7 +265,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
     const onClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
-
+        if (type === 'armor') {return;}
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
             const itemId = Object.keys(data)[elementAtEvent[0].index];

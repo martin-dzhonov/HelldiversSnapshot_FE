@@ -51,7 +51,7 @@ function ItemFilters({ filters, setFilters }) {
                                 {patchPeriods.map((patchPeriod, index) => (
                                     <Dropdown.Item
                                         as="button"
-                                        disabled={(filters.faction === 'illuminate' && index > 1) || filters.type === "weapons"}
+                                        disabled={(filters.faction === 'illuminate' && index > 3) || filters.type === "weapons"}
                                         onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                                         {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                                     </Dropdown.Item>

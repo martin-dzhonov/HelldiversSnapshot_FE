@@ -1,5 +1,5 @@
 import '../styles/ArmoryPage.css';
-import { itemCategories, strategemsDict, weaponCategories, weaponsDict } from '../constants';
+import { armorsDict, itemCategories, strategemsDict, weaponCategories, weaponsDict } from '../constants';
 import { useNavigate } from "react-router-dom";
 import { getItemId } from '../utils';
 import { useEffect, useState } from 'react';
@@ -27,6 +27,11 @@ function ArmoryPage() {
                     onClick={() => { setType(1); }}>
                     WEAPONS
                 </div>
+                {/* <div
+                    className={`${type === 2 ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
+                    onClick={() => { setType(2); }}>
+                    ARMORS
+                </div> */}
             </div>
             {type === 0 &&
                 <div className="groups-wrapper" >
@@ -78,6 +83,24 @@ function ArmoryPage() {
                         </div>
                     ))}
                 </div>}
+                {type === 2 &&
+                <div className="groups-wrapper" >
+                    <div className="weapons-group-container">
+                                {Object.values(armorsDict).map((item) =>
+                                        <div
+                                            className={`armory-armor-wrapper`}
+                                            onClick={() => navigate(`/weapons/${getItemId(item.name)}/terminid`)} >
+                                            <div className="armory-weapons-img-wrapper">
+                                                <img src={item.image} alt="" loading="lazy" />
+                                            </div>
+                                            <div className="armory-item-name">
+                                                {item.name}
+                                            </div>
+                                        </div>
+                                    )}
+                            </div>
+                </div>}
+
         </div>
     );
 }

@@ -11,7 +11,7 @@ const useLegendItems = (setGraphData, filters) => {
     const { isMobile } = useMobile()
 
     const showPlayerLvl = filters.patch.id < getPatchId("Omens of Tyranny");
-    const trendsStart = filters.page === 'weapons' ? "Servants of Freedom" : 
+    const trendsStart = filters.page === 'armor' ? 'Masters Of Ceremony' : filters.page === 'weapons' ? "Servants of Freedom" : 
     filters.faction === 'illuminate' ? "Omens of Tyranny" : "Classic";
     const showTrends =  filters.patch.id < getPatchId(trendsStart);
 

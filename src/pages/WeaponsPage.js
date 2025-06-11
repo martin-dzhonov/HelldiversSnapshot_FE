@@ -14,6 +14,7 @@ import * as chartsSettings from "../settings/chartSettings";
 import {
     getFieldByFilters,
     getPatchDelta,
+    getTotalsByFilters,
     itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
@@ -60,7 +61,7 @@ function WeaponsPage() {
         if (data && filters) {
             const factionData = data[filters.faction];
             const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
-            const startPatch = itemsByCategory(factionData[filters.patchStart.id], filters)
+            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters)
             const graphData = getPatchDelta(startPatch, endPatch)
 
             setWeaponsGraphData({
@@ -69,7 +70,7 @@ function WeaponsPage() {
                     axisWidth: filters.category === "Throwable" ? 90 : 150 
                 })
             });
-            setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
+            setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
         }
     }, [data, filters]);
  

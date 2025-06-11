@@ -133,7 +133,7 @@ function StratagemPage() {
                 labels: missionTypes,
                 datasets: missionsDataset
             });
-            const companionsDataset = getCompanionChartData(strategemData);
+             const companionsDataset = getCompanionChartData(strategemData);
             setCompanionCharts(companionsDataset);
 
             const levelDataset = {
@@ -187,14 +187,14 @@ function StratagemPage() {
                                         <div className="col-12 col-lg-6 col-sm-6">
                                             <StratagemRank
                                                 text={["pick ", "rate"]}
-                                                value={getPercentage(strategemData?.total.loadouts, dataFilter?.total.loadouts)}
+                                                value={getPercentage(strategemData?.total.loadouts, dataFilter?.total[filters.type].loadouts)}
                                                 onClick={() => setFilters({ ...filters, format: "pick_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "pick_rate"}
                                                 percent />
                                             <StratagemRank
                                                 text={["of", "games"]}
-                                                value={getPercentage(strategemData?.total.games, dataFilter?.total.games)}
+                                                value={getPercentage(strategemData?.total.games, dataFilter?.total[filters.type].games)}
                                                 onClick={() => setFilters({ ...filters, format: "game_rate" })}
                                                 color={getItemColor(itemID)}
                                                 active={filters.format === "game_rate"}

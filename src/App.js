@@ -42,7 +42,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="armory"
+                    path="gallery"
                     element={
                         <Layout>
                             <ArmoryPage />

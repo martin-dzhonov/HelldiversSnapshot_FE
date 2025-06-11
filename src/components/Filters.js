@@ -52,8 +52,7 @@ function Filters({ filters, setFilters, type }) {
                     </DropdownButton>}
 
             </div>
-
-            <div className="filter-container">
+                      {filters.page !== 'armor' && <div className="filter-container">
                 {type === 0 &&
                     <DropdownButton
                         className="dropdown-button"
@@ -78,7 +77,8 @@ function Filters({ filters, setFilters, type }) {
                             </Dropdown.Item>
                         ))}
                     </DropdownButton>}
-            </div>
+            </div>}
+            
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"

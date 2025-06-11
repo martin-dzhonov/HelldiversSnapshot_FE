@@ -15,6 +15,7 @@ import {
     getFieldByFilters,
     getFiltersCount,
     getPatchDelta,
+    getTotalsByFilters,
     itemsByCategory,
 } from '../utils';
 import { dataDummy } from '../dataDummy';
@@ -66,12 +67,16 @@ function SnapshotPage() {
             const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
             const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters)
             const graphData = getPatchDelta(startPatch, endPatch);
+            console.log('---------');
+            console.log(endPatch);
+            console.log(startPatch);
+            console.log(graphData);
 
             setStrategemGraphData({
                 data :graphData, 
                 options: chartsSettings.strategem()
             });
-            setFilterResults(getFieldByFilters(factionData[filters.patch.id], filters))
+            setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
         }
     }, [data, filters]);
 

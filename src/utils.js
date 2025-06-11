@@ -92,8 +92,8 @@ const getPercentage = (number1, number2, decimals = 1) => {
 };
 
 const getFieldByFilters = (data, filters) => {
-    console.log(filters);
-    console.log(data);
+    
+    
     let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
     if (filters.difficulty !== 0) {
         return data[field][filters.difficulty];
@@ -102,6 +102,19 @@ const getFieldByFilters = (data, filters) => {
         return data[field][filters.mission.toLowerCase()];
     }
     return data ? data[field] : {};
+}
+
+
+
+const getTotalsByFilters = (data, filters) => {
+    let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
+    if (filters.difficulty !== 0) {
+        return data[field][filters.page][filters.difficulty];
+    }
+    if (filters.mission !== 'All') {
+        return data[field][filters.page][filters.mission.toLowerCase()];
+    }
+    return data ? data[field][filters.page] : {};
 }
 
 const itemsByCategory = (gamesData, filters, collectionKey) => {
@@ -113,6 +126,8 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     const result = {};
     const items = gamesData[filters.page];
 
+    console.log(gamesData);
+
     let filtered = filters.category === "All" ?
         Object.entries(items) :
         Object.entries(items).filter(([key, value]) =>
@@ -122,8 +137,12 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     const sorted = filtered.sort((a, b) => b[1].total - a[1].total);
 
     filtered.forEach(([key, value]) => {
+
         let itemData = getFieldByFilters(value, filters);
-        let totalsData = getFieldByFilters(gamesData, filters);
+      
+        let totalsData = getTotalsByFilters(gamesData, filters);
+
+  
         const loadoutsPerc = getPercentage(itemData.loadouts, totalsData.loadouts) > 0 ?
             getPercentage(itemData.loadouts, totalsData.loadouts) :
             getPercentage(itemData.loadouts, totalsData.loadouts, 2);
@@ -197,8 +216,8 @@ const getDatasetValue = (itemID, data, filters, absolute = false) => {
     let values = {
         'rank_all': !item ? -1 : Object.keys(data[type]).length - getItemRank(itemID, data[type]),
         'rank_category': !item ? -1 : Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length - getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category)),
-        'pick_rate': !item ? -0.1 : getPercentage(item?.total.loadouts, data.total.loadouts),
-        'game_rate': !item ? -0.1 : getPercentage(item?.total.games, data.total.games),
+        'pick_rate': !item ? -0.1 : data.total[filters.type].loadouts ? getPercentage(item?.total.loadouts, data.total[filters.type].loadouts) : -0.1,
+        'game_rate': !item ? -0.1 : data.total[filters.type].games ? getPercentage(item?.total.games, data.total[filters.type].games) : -0.1,
     };
 
     if (absolute) {
@@ -259,6 +278,7 @@ const getRankMin = (format, value) => {
 }
 
 const getCompanionChartData = (strategemData) => {
+    
     if (strategemData.companions.strategem) {
         return Object.values(strategemData.companions.strategem).map(category => {
             return category.map(item => {
@@ -285,10 +305,10 @@ const getCompanionChartData = (strategemData) => {
     return {}
 }
 
-const getDatasetByKey = (itemID, itemData, patchData, key) => {
+const getDatasetByKey = (itemID, itemData, patchData, key, type = 'strategem') => {
     return [{
         data: Object.keys(itemData[key]).map(subKey =>
-            getPercentage(itemData[key][subKey].loadouts, patchData[key][subKey].loadouts)),
+            getPercentage(itemData[key][subKey].loadouts, patchData[key][type][subKey].loadouts)),
         backgroundColor: getItemColor(itemID),
         barThickness: 24
     }]
@@ -322,5 +342,6 @@ export {
     getItemsByCategory,
     getFiltersCount,
     getFactionsMax,
-    getPatchesMax
+    getPatchesMax,
+    getTotalsByFilters
 };

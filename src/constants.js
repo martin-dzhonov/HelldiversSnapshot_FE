@@ -1,8 +1,7 @@
 
-const isDev = false; 
+const isDev = false;
 
-const apiBaseUrl =  'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
-
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
 const navRoutes = [
     {
         name: "Strategem",
@@ -17,8 +16,8 @@ const navRoutes = [
         route: "armors"
     },
     {
-        name: "Armory",
-        route: "armory"
+        name: "Gallery",
+        route: "gallery"
     },
     {
         name: "Games",
@@ -39,10 +38,10 @@ const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
 const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
 
 const strategemCount = [
-    {"Eagle/Orbital": 19, "Support": 30, "Defensive": 14},
-    {"Eagle/Orbital": 19, "Support": 29, "Defensive": 14},
-    {"Eagle/Orbital": 19, "Support": 26, "Defensive": 12},
-    {"Eagle/Orbital": 18, "Support": 24, "Defensive": 11}
+    { "Eagle/Orbital": 19, "Support": 30, "Defensive": 14 },
+    { "Eagle/Orbital": 19, "Support": 29, "Defensive": 14 },
+    { "Eagle/Orbital": 19, "Support": 26, "Defensive": 12 },
+    { "Eagle/Orbital": 18, "Support": 24, "Defensive": 11 }
 ]
 
 const weaponCategories = ["Primary", "Secondary", "Throwable"];
@@ -50,7 +49,7 @@ const weaponCategories = ["Primary", "Secondary", "Throwable"];
 const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
 
 const weaponCount = [
-    {"Primary": 34, "Secondary": 14, "Throwable": 12}
+    { "Primary": 34, "Secondary": 14, "Throwable": 12 }
 ]
 
 const missionTypes = ["Short", "Long"];
@@ -101,7 +100,10 @@ const missionNames = [
         "COLLECT GLOOM SPORE READINGS",
         "EXTRACT RESEARCH PROBE DATA",
         "COLLECT GLOOM-INFUSED OIL",
-        "CHART TERMINID TUNNELS"
+        "CHART TERMINID TUNNELS",
+        "FREE THE CITY",
+        "TAKE DOWN OVERSHIP",
+        "EVACUATE CITIZENS"
     ],
     [
         "ERADICATE TERMINID SWARM",
@@ -111,7 +113,8 @@ const missionNames = [
         "EVACUATE HIGH-VALUE ASSETS",
         "DEFEND EVACUATION SITE",
         "RETRIEVE ESSENTIAL PERSONNEL",
-        "BLITZ: SECURE RESEARCH SITE"
+        "BLITZ: SECURE RESEARCH SITE",
+        "REPEL INVASION FLEET"
     ],
 ];
 
@@ -133,6 +136,26 @@ const createStrategem = (baseName, fullName, category, ext = "svg") => ({
     nameFull: fullName,
     category,
 });
+
+const armorsDict = {
+    'SERVO-ASSISTED': createStrategem("Servo-Assisted", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'FORTIFIED': createStrategem("Fortified", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'EXTRA PADDING': createStrategem("Extra Padding", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'MED-KIT': createStrategem("Med-Kit", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'ENGINEERING KIT': createStrategem("Engineering Kit", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'INFLAMMABLE': createStrategem("Inflammable", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'ADVANCED FILTRATION': createStrategem("Advanced Filtration", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'SIEGE-READY': createStrategem("Siege-Ready", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'GUNSLINGER': createStrategem("Gunslinger", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'DEMOCRACY PROTECTS': createStrategem("Democracy Protects", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'SCOUT': createStrategem("Scout", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'ELECTRICAL CONDUIT': createStrategem("Electrical Conduit", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'UNFLINCHING': createStrategem("Unflinching", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'ACCLIMATED': createStrategem("Acclimated", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'INTEGRATED EXPLOSIVES': createStrategem("Integrated Explosives", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'REINFORCED EPAULETTES': createStrategem("Reinforced Epaulettes", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'PEAK PHYSIQUE': createStrategem("Peak Physique", "LIFT-850 Jump Pack", "Support", 'webp')
+};
 
 const strategemsDict = {
     backpack_ballistic: createStrategem("Ballistic Shield Backpack", "SH-20 Ballistic Shield Backpack", "Support"),
@@ -272,9 +295,9 @@ const weaponsDict = {
     grenade_pyro: createStrategem("Pyrotech", "G-142 Pyrotech", "Throwable", 'webp'),
 };
 
-const itemsDict = {...strategemsDict, ...weaponsDict};
+const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };
 
-export { 
+export {
     isDev,
     strategemsDict,
     weaponsDict,
@@ -293,5 +316,6 @@ export {
     weaponCategoryColors,
     strategemCount,
     weaponCount,
-    itemsDict
+    itemsDict,
+    armorsDict
 };

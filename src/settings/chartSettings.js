@@ -175,7 +175,7 @@ export const patch = ({
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 30, right: 25 },
+        padding: { top: 30, right: 25, bottom: 20 },
     },
     scales: {
         x: {
@@ -190,17 +190,17 @@ export const patch = ({
                 },
                 color: "white",
                 callback: (value, index, values) => {
-                    let labels = [
-                        "Classic",
-                        "Escalation of Freedom",
-                        "Omens of Tyranny",
-                        "Servants of Freedom",
-                        "Borderline Justice"
-                    ];
+                    // let labels = [
+                    //     "Classic",
+                    //     "Escalation of Freedom",
+                    //     "Omens of Tyranny",
+                    //     "Servants of Freedom",
+                    //     "Borderline Justice"
+                    // ];
                      
-                    if (index === 0 || index === values.length - 1) {
-                        return labels[index];
-                    }
+                    // if (index === 0 || index === values.length - 1) {
+                    //     return labels[index];
+                    // }
                     return "";
                 },
             },
