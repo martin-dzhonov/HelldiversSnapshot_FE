@@ -73,7 +73,7 @@ function ArmorsPage() {
             
             setStrategemGraphData({
                 data :graphData, 
-                options: chartsSettings.strategem()
+                options: chartsSettings.armor()
             });
             setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
         }

@@ -93,32 +93,6 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     }, [strategemsDict, weaponsDict]);
 
-    const getValueColor = (value) => {
-        if (typeof value === 'number') {
-            if (value > 0) return "#679552";
-            if (value < -1000) { return "#fff000" }
-            if (value < 0) return "#de7b6c";
-            return "#fff000";
-        }
-        if (value === 'New') {
-            return "#fff000";
-        }
-        return "#FFFFFF";
-    };
-
-    const getImageDimensions = () => {
-        let imageW = options.imageWidth;
-        let imageH = options.imageHeight;
-        let imageX = 0;
-        if (type === "weapons" && filters.category === "Throwable") {
-            imageW = isDev ? 200 : 70;
-            imageH = isDev ? 200 : 70;
-            imageX = isDev ? 160 : 10;
-        }
-
-        return { imageW, imageH, imageX };
-    };
-
     const getValueRaw = (name, valuesRaw) => {
         switch (name) {
             case 'Times played':
@@ -151,6 +125,35 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     };
 
+    const getValueColor = (value) => {
+        if (typeof value === 'number') {
+            if (value > 0) return "#679552";
+            if (value < -1000) { return "#fff000" }
+            if (value < 0) return "#de7b6c";
+            return "#fff000";
+        }
+        if (value === 'New') {
+            return "#fff000";
+        }
+        return "#FFFFFF";
+    };
+
+    const getImageDimensions = () => {
+        let imageW = options.imageWidth;
+        let imageH = options.imageHeight;
+        let imageX = 0;
+        if (type === "weapons" && filters.category === "Throwable") {
+            imageW = isDev ? 200 : 70;
+            imageH = isDev ? 200 : 70;
+            imageX = isDev ? 160 : 10;
+        }
+        if (type === "armor") {
+            imageX = isDev ? 205 : 0;
+        }
+
+        return { imageW, imageH, imageX };
+    };
+
     const getChartYOffset = () => {
         switch (filters.page) {
             case 'strategem':
@@ -158,7 +161,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             case 'weapons':
                 return isDev ? 140 : 50;
             case 'armor':
-                return isDev ? 500 : 42;
+                return isDev ? 80 : 42;
             default:
                 return 0;
         }
@@ -175,7 +178,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                     return isDev ? 440 : 150;
                 }
             case 'armor':
-                return isDev ? 500 : 70;
+                return isDev ? 235 : 70;
             default:
                 return 0;
         }

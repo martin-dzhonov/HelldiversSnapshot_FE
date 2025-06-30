@@ -308,6 +308,41 @@ export const strategem = ({
     }
 });
 
+export const armor = ({
+} = {}) => ({
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    barSize: isDev ? 40 : 30,
+    imageWidth: isDev ? 100 : 50,
+    imageHeight: isDev ? 100 : 50,
+    sectionSize: isDev ? 230 : 70,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: isDev ? 300 : 55 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: { display: false },
+            grid: { display: false },
+            afterFit: (axis) => { axis.width = isDev ? 440 : 70; }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltip: tooltipSettings(formatters.snapshot),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 18 }),
+    }
+});
+
 export const companions = ({
     max,
 } = {}) => ({
