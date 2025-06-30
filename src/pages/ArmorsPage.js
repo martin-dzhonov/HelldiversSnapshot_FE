@@ -4,7 +4,7 @@ import '../styles/SnapshotPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useMemo, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
-import { isDev, apiBaseUrl, patchPeriods } from '../constants';
+import { apiBaseUrl, patchPeriods } from '../constants';
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';

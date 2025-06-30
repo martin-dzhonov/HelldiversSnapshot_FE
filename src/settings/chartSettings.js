@@ -243,7 +243,7 @@ export const weapons = ({
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
-    barSize: isDev ? 40 : 34,
+    barSize: isDev ? 44 : 34,
     imageWidth: isDev ? 420: 134,
     imageHeight: isDev ? 200: 60,
     sectionSize: isDev ? 260: 75,
@@ -251,7 +251,7 @@ export const weapons = ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 110 : 55 },
+        padding: { right: isDev ? 150 : 55 },
     },
     scales: {
         x: {
@@ -269,7 +269,7 @@ export const weapons = ({
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 18 }),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 56 : 18 }),
     }
 });
 

@@ -61,7 +61,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                         data: Object.values(data).map((item) => item?.values?.loadouts),
                         total: Object.values(data).map((item) => item?.total?.loadouts),
                         pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
-                        backgroundColor: Object.keys(data).map((item) => type === "armor" ? '#ffe433' :getItemColor(item)),
+                        backgroundColor: Object.keys(data).map((item) => type === "armor" ? '#ffe433' : getItemColor(item)),
                         barThickness: options.barSize,
                     },
                 ],
@@ -75,7 +75,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         if (strategemsDict && weaponsDict) {
             const images = {};
             let loadedCount = 0;
-            
+
             Object.keys(itemsDict).forEach((imageKey) => {
                 const image = new Image();
                 image.src = itemsDict[imageKey]?.image;
@@ -100,23 +100,23 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             if (value < 0) return "#de7b6c";
             return "#fff000";
         }
-        if(value === 'New'){
+        if (value === 'New') {
             return "#fff000";
         }
         return "#FFFFFF";
     };
 
     const getImageDimensions = () => {
-        let width = options.imageWidth;
-        let height = options.imageHeight;
-        let xOffset = 0;
-
+        let imageW = options.imageWidth;
+        let imageH = options.imageHeight;
+        let imageX = 0;
         if (type === "weapons" && filters.category === "Throwable") {
-            width = isDev ? 200 : 60;
-            height = isDev ? 200 : 60;
+            imageW = isDev ? 200 : 70;
+            imageH = isDev ? 200 : 70;
+            imageX = isDev ? 160 : 10;
         }
 
-        return { width, height, xOffset };
+        return { imageW, imageH, imageX };
     };
 
     const getValueRaw = (name, valuesRaw) => {
@@ -137,12 +137,12 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
     const getValueFormatted = (name, value) => {
         switch (name) {
             case 'Rank Trend':
-                if(value === 'New'){
+                if (value === 'New') {
                     return value;
                 }
                 return `${value > 0 ? '+' : ''}${value}`
             case 'Pick Rate Trend':
-                if(value === 'New'){
+                if (value === 'New') {
                     return value;
                 }
                 return `${value > 0 ? '+' : ''}${value}%`
@@ -151,6 +151,35 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     };
 
+    const getChartYOffset = () => {
+        switch (filters.page) {
+            case 'strategem':
+                return isDev ? 80 : 45;
+            case 'weapons':
+                return isDev ? 140 : 50;
+            case 'armor':
+                return isDev ? 500 : 42;
+            default:
+                return 0;
+        }
+    };
+
+    const getChartXOffset = () => {
+        switch (filters.page) {
+            case 'strategem':
+                return isDev ? 135 : 70;
+            case 'weapons':
+                if (filters.category === "Throwable") {
+                    return isDev ? 280 : 80;
+                } else {
+                    return isDev ? 440 : 150;
+                }
+            case 'armor':
+                return isDev ? 500 : 70;
+            default:
+                return 0;
+        }
+    };
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
@@ -158,114 +187,62 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
         let yOffset = step / 2 + ((options.barSize - options.imageHeight) / 2);
-
+        ctx.textBaseline = "top";
         ctx.save();
 
-        ctx.font = `${isDev ? '42px' : '16px'} CustomFont`;
+        ctx.font = `${isDev ? '55px' : '16px'} CustomFont`;
+        let iconSize = isDev ? 55 : 20;
 
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
 
-        let labelsXOffset = type === "weapons" ? filters.category === "Throwable" ? 90 : 150 : 70;
-        let labelsYOffset = type === "weapons" ? 50 : 42;
-        let iconSize = isDev ? 42 : 20;
-
-        if (isDev) {
-            if (type === 'weapons') {
-                labelsYOffset = labelsYOffset + 95;
-                if(filters.category === "Throwable"){
-                    labelsXOffset = labelsXOffset + 330;
-                } else {
-                    labelsXOffset = labelsXOffset + 270;  
-                }
-            }
-            if (type === 'strategem') {
-                labelsXOffset = labelsXOffset + 70;  
-                labelsYOffset = labelsYOffset + 50;
-            }
-        }
         Object.keys(data).forEach((key, i) => {
             const image = images[key];
-            const { width, height, xOffset } = getImageDimensions();
-            const imageY = i * (options.barSize + step) + yOffset;
 
             if (image) {
-                ctx.drawImage(image, xOffset, type !== 'armor' ? imageY : imageY + 8, width, height);//xOffset + 100
-            }
+                const { imageW, imageH, imageX } = getImageDimensions();
+                let imageY = i * (options.barSize + step) + yOffset;
 
-            const valuesRaw = data[key];
-            let currentX = xOffset + labelsXOffset;
-            legendItems.forEach((item, j) => {
+                const labelsY = imageY + getChartYOffset();
+                let labelsX = imageX + getChartXOffset();
+                let labelsPadding = isDev ? 35: 15;
+                ctx.drawImage(image, imageX, imageY + 5, imageW, imageH);
 
-                let valueRaw = getValueRaw(item.name, valuesRaw);
-                if (item.name === 'Name') {
-                    valueRaw = itemsDict[key].name;
-                }
-                const valueFormatted = getValueFormatted(item.name, valueRaw);
-                if (item.check) {
-                    if (item.src) {
-                        let icon = item.src;
-                        if (item.name === 'Pick Rate Trend') {
-                            if (valueRaw < 0) {
-                                icon = item.altSrc
-                            }
-                        }
-                        ctx.drawImage(icon, currentX, imageY + labelsYOffset, iconSize, iconSize);//imageY + labelsYOffset - iconSize/2
-                        currentX += 22;
+                const valuesRaw = data[key];
+
+                legendItems.forEach((item, j) => {
+                    let valueRaw = getValueRaw(item.name, valuesRaw);
+                    if (item.name === 'Name') {
+                        valueRaw = itemsDict[key].name;
                     }
-
-                    ctx.fillStyle = getValueColor(valueRaw);
-                    ctx.fillText(valueFormatted, currentX, imageY + labelsYOffset + 15);//currentX + iconSize/2
-                    currentX += ctx.measureText(valueFormatted).width + 15;// + 15 + iconSize
-                }
-            })
+                    const valueFormatted = getValueFormatted(item.name, valueRaw);
+                    if (item.check) {
+                        if (item.src) {
+                            let icon = item.src;
+                            if (item.name === 'Pick Rate Trend') {
+                                if (valueRaw < 0) {
+                                    icon = item.altSrc;
+                                }
+                            }
+                            ctx.drawImage(icon, labelsX, labelsY - iconSize / 10, iconSize, iconSize);
+                            labelsX += iconSize + iconSize / 10;
+                        }
+    
+                        ctx.fillStyle = getValueColor(valueRaw);
+                        ctx.fillText(valueFormatted, labelsX, labelsY);
+                        labelsX += ctx.measureText(valueFormatted).width + labelsPadding;
+                    }
+                })
+            }
         });
 
         ctx.restore();
     };
-    //labelsXOffset = labelsXOffset + 50;
-    //labelsYOffset = labelsYOffset + 40;
-    //     ctx.fillStyle = getValueColor(value.value);
-    //     ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
-    //     currentX += ctx.measureText(value.value).width + 15;
-    // })
-    // const valuesObj = []
-    // if (valuesRaw.values.avgLevel) {
-    //     valuesObj.push({
-    //         name: 'avg_lvl',
-    //         value: valuesRaw.values.avgLevel.toString()
-    //     })
-    // }
-    // if (showTrends) {
-    //     valuesObj.push({
-    //         name: 'trend_rank',
-    //         value: valuesRaw.pastValues.rank - valuesRaw.values.rank
-    //     })
-    //     const pickRateValue = Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
-    //     valuesObj.push({
-    //         name: pickRateValue < 0 ? 'trend_pick_rate_down' : 'trend_pick_rate',
-    //         value: pickRateValue
-    //     })
-    // }
-
-    // let currentX = xOffset + labelsXOffset;
-    // valuesObj.forEach((value, j) => {
-    //     let icon = icons[value.name];
-    //     ctx.drawImage(icon, currentX, imageY + labelsYOffset, 20, 20);
-    //     currentX += 22;
-    //     if (value.name === 'trend_rank') {
-    //         currentX += 3;
-    //     }
-
-    //     ctx.fillStyle = getValueColor(value.value);
-    //     ctx.fillText(getFomattedValue(value), currentX, imageY + labelsYOffset + 15);
-    //     currentX += ctx.measureText(value.value).width + 15;
-    // })
 
     const onClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
-        if (type === 'armor') {return;}
+        if (type === 'armor') { return; }
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
             const itemId = Object.keys(data)[elementAtEvent[0].index];

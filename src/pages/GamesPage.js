@@ -4,7 +4,7 @@ import '../styles/SnapshotPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
-import { isDev, apiBaseUrl, patchPeriods } from '../constants';
+import { apiBaseUrl, patchPeriods } from '../constants';
 import GamesTable from '../components/GamesTable';
 import GamesFilters from '../components/GamesFilters';
 
