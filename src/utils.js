@@ -126,7 +126,6 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     const result = {};
     const items = gamesData[filters.page];
 
-    console.log(gamesData);
 
     let filtered = filters.category === "All" ?
         Object.entries(items) :

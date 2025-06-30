@@ -55,12 +55,13 @@ const weaponCount = [
 const missionTypes = ["Short", "Long"];
 
 const patchPeriods = [
-    { id: 0, name: "Masters Of Ceremony", start: "05/15/2025", end: "Present" },
-    { id: 1, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
-    { id: 2, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
-    { id: 3, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
-    { id: 4, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: 5, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 0, name: "Force Of Law", start: "06/12/2025", end: "Present" },
+    { id: 1, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
+    { id: 2, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
+    { id: 3, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
+    { id: 4, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
+    { id: 5, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 6, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
 ];
 
 const difficultiesNames = [
@@ -154,14 +155,15 @@ const armorsDict = {
     'ACCLIMATED': createStrategem("Acclimated", "LIFT-850 Jump Pack", "Support", 'webp'),
     'INTEGRATED EXPLOSIVES': createStrategem("Integrated Explosives", "LIFT-850 Jump Pack", "Support", 'webp'),
     'REINFORCED EPAULETTES': createStrategem("Reinforced Epaulettes", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'PEAK PHYSIQUE': createStrategem("Peak Physique", "LIFT-850 Jump Pack", "Support", 'webp')
+    'PEAK PHYSIQUE': createStrategem("Peak Physique", "LIFT-850 Jump Pack", "Support", 'webp'),
+    'BALLISTIC PADDING': createStrategem("Ballistic Padding", "LIFT-850 Jump Pack", "Support", 'webp'),
 };
 
 const strategemsDict = {
     backpack_ballistic: createStrategem("Ballistic Shield Backpack", "SH-20 Ballistic Shield Backpack", "Support"),
     backpack_jump: createStrategem("Jump Pack", "LIFT-850 Jump Pack", "Support"),
     hover_pack: createStrategem("Hover Pack", "LIFT-860 Hover Pack", "Support"),
-    backpack_shield: createStrategem("Shield Generator Pack", "SH-20 Shield Generator Pack", "Support"),
+    backpack_shield: createStrategem("Shield Generator Pack", "SH-32 Shield Generator Pack", "Support"),
     backpack_shield_directional: createStrategem("Directional Shield", "SH-51 Directional Shield", "Support"),
     backpack_supply: createStrategem("Supply Pack", "B-1 Supply Pack", "Support"),
     backpack_hellbomb: createStrategem("Portable Hellbomb", "B-100 Portable Hellbomb", "Support"),
@@ -186,6 +188,7 @@ const strategemsDict = {
     guard_breath: createStrategem("Guard Dog Breath", "AX/TX-13 Guard Dog Breath", "Support"),
     guard_dog: createStrategem("Guard Dog", "AD-334 Guard Dog", "Support"),
     guard_rover: createStrategem("Guard Dog Rover", "AX/LAS-5 Guard Dog Rover", "Support"),
+    guard_arc: createStrategem("Guard Dog Arc", "AX/ARC-3 Guard Dog K-9", "Support"),
     mines_at: createStrategem("Anti-Tank Mines", "MD-17 Anti-Tank Mines", "Defensive"),
     mines_incendiary: createStrategem("Incendiary Mines", "MD-I4 Incendiary Mines", "Defensive"),
     mines_infantry: createStrategem("Anti-Personnel Minefield", "MD-6 Anti-Personnel Minefield", "Defensive"),
@@ -225,6 +228,7 @@ const strategemsDict = {
     sup_sterilizer: createStrategem("Sterilizer", "TX-41 Sterilizer", "Support"),
     sup_wasp: createStrategem("Wasp", "StA-X3 W.A.S.P. Launcher", "Support"),
     flag: createStrategem("One True Flag", "One True Flag", "Support"),
+    sup_deescalator: createStrategem("De-Escalator", "GL-52 De-Escalator", "Support"),
 };
 
 const weaponsDict = {
@@ -293,6 +297,9 @@ const weaponsDict = {
     amendment: createStrategem("Amendment", "R-2 Amendment", "Primary", 'webp'),
     sabre: createStrategem("Saber", "CQC-2 Saber", "Secondary", 'webp'),
     grenade_pyro: createStrategem("Pyrotech", "G-142 Pyrotech", "Throwable", 'webp'),
+    pacifier: createStrategem("Pacifier", "AR-32 Pacifier", "Primary", 'webp'),
+    warrant: createStrategem("Warrant", "P-92 Warrant", "Secondary", 'webp'),
+    urchin: createStrategem("Urchin", "G-109 Urchin", "Throwable", 'webp'),
 };
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };

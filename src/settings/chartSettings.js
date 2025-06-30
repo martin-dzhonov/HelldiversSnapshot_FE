@@ -175,7 +175,7 @@ export const patch = ({
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 30, right: 25, bottom: 20 },
+        padding: { top: 30, right: 25, bottom: 20, left: 25 },
     },
     scales: {
         x: {
