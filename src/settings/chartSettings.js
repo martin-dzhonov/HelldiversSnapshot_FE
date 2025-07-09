@@ -95,6 +95,7 @@ const rankdatalabelsSettings = ({ color = "white", anchor = 'end', align = 'end'
         },
         formatter: (value) => {
             const rankingValue = rankMax - value - 2;
+            console.log(rankingValue);
             if (value < 0) {
                 return '';
             }
@@ -339,7 +340,7 @@ export const armor = ({
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 18 }),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 56 : 18 }),
     }
 });
 
