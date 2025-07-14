@@ -280,14 +280,14 @@ export const strategem = ({
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 40 : 30,
-    imageWidth: isDev ? 100 : 50,
-    imageHeight: isDev ? 100 : 50,
+    imageWidth: isDev ? 110 : 50,
+    imageHeight: isDev ? 110 : 50,
     sectionSize: isDev ? 140 : 70,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 120 : 55 },
+        padding: { right: isDev ? 130 : 55 },
     },
     scales: {
         x: {
@@ -305,7 +305,7 @@ export const strategem = ({
             display: false
         },
         tooltip: tooltipSettings(formatters.snapshot),
-        datalabels: datalabelsSettings({ fontSize: isDev ? 40 : 18 }),
+        datalabels: datalabelsSettings({ fontSize: isDev ? 55 : 18 }),
     }
 });
 

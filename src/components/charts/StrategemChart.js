@@ -157,7 +157,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
     const getChartYOffset = () => {
         switch (filters.page) {
             case 'strategem':
-                return isDev ? 80 : 45;
+                return isDev ? 85 : 45;
             case 'weapons':
                 return isDev ? 140 : 50;
             case 'armor':
@@ -193,8 +193,8 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         ctx.textBaseline = "top";
         ctx.save();
 
-        ctx.font = `${isDev ? '55px' : '16px'} CustomFont`;
-        let iconSize = isDev ? 55 : 20;
+        ctx.font = `${isDev ? '50px' : '16px'} CustomFont`;
+        let iconSize = isDev ? 50 : 20;
 
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
@@ -209,7 +209,8 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 const labelsY = imageY + getChartYOffset();
                 let labelsX = imageX + getChartXOffset();
                 let labelsPadding = isDev ? 35: 15;
-                ctx.drawImage(image, imageX, imageY + 5, imageW, imageH);
+                
+                ctx.drawImage(image, imageX, imageY + + (isDev ? 20 : 5), imageW, imageH);
 
                 const valuesRaw = data[key];
 
