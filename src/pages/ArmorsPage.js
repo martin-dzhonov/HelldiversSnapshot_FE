@@ -1,6 +1,6 @@
 
 import '../styles/App.css';
-import '../styles/SnapshotPage.css';
+import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useMemo, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
@@ -12,6 +12,7 @@ import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
+    getChartData,
     getFieldByFilters,
     getFiltersCount,
     getPatchDelta,
@@ -27,55 +28,36 @@ import rankIcon from "../assets/icons/rank.svg";
 import playedIcon from "../assets/icons/people.svg";
 import levelIcon from "../assets/icons/level.svg";
 import useLegendItems from '../hooks/useLegendItems';
+import useFilter from '../hooks/useFilter';
+import { useReports } from '../hooks/useReports';
+
+const defaultFilters = {
+    page: "armor",
+    faction: "terminid",
+    category: "All",
+    difficulty: 0,
+    mission: "All",
+    patch: patchPeriods[patchPeriods.length - 1],
+};
 
 function ArmorsPage() {
-    const { isMobile } = useMobile()
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [strategemGraphData, setStrategemGraphData] = useState(null);
-    const [asd, setasd] = useState(null);
-
+    const [filters, setFilters] = useFilter('armor', defaultFilters);
     const [filterResults, setFilterResults] = useState({
         games: 0,
         loadouts: 0
     });
-    const [filters, setFilters] = useState({
-        page: "armor",
-        faction: "terminid",
-        category: "All",
-        difficulty: 0,
-        mission: "All",
-        patch: patchPeriods[0],
-        patchStart: patchPeriods[1]
-    });
-    const { legendItems, handleLegendCheck } = useLegendItems(setStrategemGraphData, filters);
-
-    const fetchData = async (url) => {
-        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        //const response = await fetchPromise.json();//dataDummy
-        setData(dataDummy);
-        setLoading(false);
-    };
+    const { data, isLoading } = useReports(filters);
+    const [chartData, setChartData] = useState(null);
+    const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
     useEffect(() => {
-        setLoading(true);
-        fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
-    }, []);
-
-    useEffect(() => {
-        if (data && filters) {
-            const factionData = data[filters.faction];
-            const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
-            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters)
-            const graphData = getPatchDelta(startPatch, endPatch);
-
-            //console.log(graphData);
-            
-            setStrategemGraphData({
-                data :graphData, 
+        if (data) {
+            const { chartData, totals } = getChartData(data, filters);
+            setChartData({
+                data: chartData,
                 options: chartsSettings.armor()
             });
-            setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
+            setFilterResults(totals);
         }
     }, [data, filters]);
 
@@ -88,12 +70,12 @@ function ArmorsPage() {
                 onCheckChange={handleLegendCheck}
                 filterResults={filterResults} />
 
-            <Loader loading={loading}>
-                {strategemGraphData &&
+            <Loader loading={isLoading}>
+                {chartData &&
                     <StrategemChart
                         type='armor'
-                        barData={strategemGraphData.data}
-                        options={strategemGraphData.options}
+                        barData={chartData.data}
+                        options={chartData.options}
                         filters={filters}
                         legendItems={legendItems}
                         limit={10}

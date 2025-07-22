@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import ArmoryPage from "./pages/ArmoryPage";
-import SnapshotPage from "./pages/SnapshotPage";
+import StrategemsPage from "./pages/StrategemsPage";
 import StratagemPage from "./pages/StratagemPage";
 import AboutPage from "./pages/AboutPage";
 import WeaponsPage from "./pages/WeaponsPage";
@@ -21,7 +21,7 @@ function App() {
                     path="/strategem"
                     element={
                         <Layout>
-                            <SnapshotPage />
+                            <StrategemsPage />
                         </Layout>
                     }
                 />
@@ -50,7 +50,7 @@ function App() {
                     }
                 ></Route>
                 <Route
-                    path="/strategem/:itemID/:factionID"
+                    path="/strategem/:id"
                     element={
                         <Layout>
                             <StratagemPage />
@@ -58,7 +58,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/weapons/:itemID/:factionID"
+                    path="/weapons/:id/:factionID"
                     element={
                         <Layout>
                             <WeaponPage />

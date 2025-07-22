@@ -10,7 +10,7 @@ const formatters = {
     trends: (item) => [`Pick Rate: ${item.dataset.pastValue[item.dataIndex]}% ➜ ${item.dataset.currValue[item.dataIndex]}%`],
     companions: (item) => [`Paired together ${item.raw}% of games`],
     snapshot: (item) => { return [`Pick Rate: ${item.raw}%`]; },//, `${item.dataset.total[item.dataIndex]} times played`
-    pickRate: (item) => `Pick Rate: ${item.raw}%`,
+    pickRate: (item) => item.raw >= 0 ? `Pick Rate: ${item.raw}%` : 'No data',
     level: (item) => `${item.raw}% of players`,
     rank: (item) => ``,
 };
@@ -95,7 +95,6 @@ const rankdatalabelsSettings = ({ color = "white", anchor = 'end', align = 'end'
         },
         formatter: (value) => {
             const rankingValue = rankMax - value - 2;
-            console.log(rankingValue);
             if (value < 0) {
                 return '';
             }

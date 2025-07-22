@@ -1,79 +1,53 @@
 
 import '../styles/App.css';
-import '../styles/SnapshotPage.css';
+import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
-import { useMobile } from '../hooks/useMobile';
-import { apiBaseUrl, patchPeriods } from '../constants';
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import { patchPeriods } from '../constants';
 import Filters from '../components/Filters';
 import Loader from '../components/Loader';
-import GamesTable from '../components/GamesTable';
 import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
-    getFieldByFilters,
-    getPatchDelta,
-    getTotalsByFilters,
-    itemsByCategory,
+    getChartData,
 } from '../utils';
-import { dataDummy } from '../dataDummy';
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
+import useFilter from '../hooks/useFilter';
+import { useReports } from '../hooks/useReports';
+
+const defaultFilters = {
+    page: "weapons",
+    faction: "terminid",
+    category: "Primary",
+    difficulty: 0,
+    mission: "All",
+    patch: patchPeriods[patchPeriods.length - 1],
+};
 
 function WeaponsPage() {
-    const { isMobile } = useMobile()
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [weaponsGraphData, setWeaponsGraphData] = useState(null);
-
+    const [filters, setFilters] = useFilter('weapons', defaultFilters);
     const [filterResults, setFilterResults] = useState({
         games: 0,
         loadouts: 0
     });
-    const [filters, setFilters] = useState({
-        page: "weapons",
-        faction: "terminid",
-        category: "Primary",
-        difficulty: 0,
-        mission: "All",
-        patch: patchPeriods[0],
-        patchStart: patchPeriods[1]
-    });
-
-    const { legendItems, handleLegendCheck } = useLegendItems(setWeaponsGraphData, filters);
-
-    const fetchData = async (url) => {
-        // const fetchPromise = await fetch(`${apiBaseUrl}${url}`);
-        // const response = await fetchPromise.json();
-        setData(dataDummy);
-        setLoading(false);
-    };
+    const { data, isLoading } = useReports(filters);
+    const [chartData, setChartData] = useState(null);
+    const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
     useEffect(() => {
-        if (filters.difficulty || filters.mission) {
-            setLoading(true);
-            fetchData(`/strategem?diff=${filters.difficulty}&mission=${filters.mission}`);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (data && filters) {
-            const factionData = data[filters.faction];
-            const endPatch = itemsByCategory(factionData[filters.patch.id], filters)
-            const startPatch = itemsByCategory(factionData[filters.patch.id + 1], filters)
-            const graphData = getPatchDelta(startPatch, endPatch)
-
-            setWeaponsGraphData({
-                data :graphData, 
+        if (data) {
+            const { chartData, totals } = getChartData(data, filters);
+            setChartData({
+                data: chartData,
                 options: chartsSettings.weapons({
-                    axisWidth: filters.category === "Throwable" ? 90 : 150 
+                    axisWidth: filters.category === "Throwable" ? 90 : 150
                 })
             });
-            setFilterResults(getTotalsByFilters(factionData[filters.patch.id], filters))
+            setFilterResults(totals);
         }
     }, [data, filters]);
- 
+
     return (
         <div className="content-wrapper">
             <Filters filters={filters} type={1} setFilters={setFilters} />
@@ -81,12 +55,12 @@ function WeaponsPage() {
                 items={legendItems}
                 onCheckChange={handleLegendCheck}
                 filterResults={filterResults} />
-            <Loader loading={loading}>
-                {weaponsGraphData &&
+            <Loader loading={isLoading}>
+                {chartData &&
                     <StrategemChart
                         type="weapons"
-                        barData={weaponsGraphData.data}
-                        options={weaponsGraphData.options}
+                        barData={chartData.data}
+                        options={chartData.options}
                         filters={filters}
                         legendItems={legendItems}
                         limit={10}
@@ -97,39 +71,3 @@ function WeaponsPage() {
 }
 
 export default WeaponsPage;
-
-   // function mergeAndSum(arrays) {
-    //     const merged = {};
-
-    //     arrays.flat().forEach(({ name, rank }) => {
-    //         merged[name] = (merged[name] || 0) + rank;
-    //     });
-
-    //     return Object.entries(merged).map(([name, rank]) => ({ name, rank }));
-    // }
-    // const arr = Object.keys(weaponsByCategory(data['automaton'][filters.patch.id], filters)).map((item)=> {
-    //     return {
-    //         name: item,
-    //         rank: getWeaponRank(data['automaton'][filters.patch.id], item, true) 
-    //     }
-    // })
-
-    // const arr2 = Object.keys(weaponsByCategory(data['terminid'][filters.patch.id], filters)).map((item)=> {
-    //     return {
-    //         name: item,
-    //         rank: getWeaponRank(data['terminid'][filters.patch.id], item, true) 
-    //     }
-    // })
-
-    // const arr3 = Object.keys(weaponsByCategory(data['illuminate'][filters.patch.id], filters)).map((item)=> {
-    //     return {
-    //         name: item,
-    //         rank: getWeaponRank(data['illuminate'][filters.patch.id], item, true) 
-    //     }
-    // })u
-    // console.log(arr);
-    // console.log(arr2);
-
-    // console.log(arr3);
-
-    // console.log(mergeAndSum([arr, arr2, arr3]).sort((a,b)=> a.rank-b.rank))

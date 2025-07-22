@@ -1,7 +1,7 @@
 
 const isDev = false;
 
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
+const apiBaseUrl = 'http://localhost:8080'//`https://utm7j5pjvi.us-east-1.awsapprunner.com`
 const navRoutes = [
     {
         name: "Strategem",
@@ -55,13 +55,13 @@ const weaponCount = [
 const missionTypes = ["Short", "Long"];
 
 const patchPeriods = [
-    { id: 0, name: "Force Of Law", start: "06/12/2025", end: "Present" },
-    { id: 1, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
-    { id: 2, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
+    { id: 0, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
+    { id: 2, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
     { id: 3, name: "Servants of Freedom", start: "02/08/2025", end: "03/19/2025" },
-    { id: 4, name: "Omens of Tyranny", start: "12/12/2024", end: "02/08/2025" },
-    { id: 5, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
-    { id: 6, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
+    { id: 4, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
+    { id: 5, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
+    { id: 6, name: "Force Of Law", start: "06/12/2025", end: "Present" },
 ];
 
 const difficultiesNames = [

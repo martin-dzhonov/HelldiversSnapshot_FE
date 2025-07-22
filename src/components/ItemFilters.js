@@ -22,7 +22,7 @@ function ItemFilters({ filters, setFilters }) {
                                         setFilters({
                                             ...filters,
                                             faction: factionName,
-                                            ...(factionName === 'illuminate' && filters.patch.id > 1 && { patch: patchPeriods[0] }),
+                                            ...(factionName === 'illuminate' && filters.patch.id > 1 && { patch: patchPeriods[patchPeriods.length - 1] }),
                                         });
                                     }}>
                                     {capitalizeFirstLetter(factionName)}
@@ -48,10 +48,10 @@ function ItemFilters({ filters, setFilters }) {
                             <DropdownButton
                                 className="dropdown-button"
                                 title={`${!isMobile ? "Patch: " : ''} ${filters.patch.name}`} >
-                                {patchPeriods.map((patchPeriod, index) => (
+                                {patchPeriods.slice().reverse().map((patchPeriod, index) => (
                                     <Dropdown.Item
                                         as="button"
-                                        disabled={(filters.faction === 'illuminate' && index > 3) || filters.type === "weapons"}
+                                        disabled={(filters.faction === 'illuminate' && index > 4) || filters.type === "weapons"}
                                         onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                                         {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                                     </Dropdown.Item>

@@ -35,10 +35,10 @@ const PatchChart = ({ data, itemID, options }) => {
         if (data && itemID) {
             const itemColor = getItemColor(itemID);
             return {
-                labels: patchPeriods.map((item) => item.name).reverse(),
+                labels: patchPeriods.map((item) => item.name),
                 datasets: [
                     {
-                        data: data.reverse(),
+                        data: data,
                         pointRadius: 6,
                         pointHoverRadius: 12,
                         borderColor: itemColor,

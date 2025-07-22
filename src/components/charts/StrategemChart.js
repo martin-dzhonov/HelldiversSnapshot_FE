@@ -45,17 +45,10 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     }, [barData, limit, showFull]);
 
-    const chartHeight = useMemo(() => {
-        if (data) {
-            return Object.keys(data).length * options.sectionSize;
-        }
-    }, [data]);
-
     const chartData = useMemo(() => {
         if (data) {
-            const allItems = { ...strategemsDict, ...weaponsDict }
             return {
-                labels: Object.keys(data).map((item) => allItems[item] ? allItems[item].name : item),
+                labels: Object.keys(data).map((item) => itemsDict[item] ? itemsDict[item].name : item),
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.values?.loadouts),
@@ -69,21 +62,22 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     }, [data]);
 
-
+    const chartHeight = useMemo(() => {
+        if (data) {
+            return Object.keys(data).length * options.sectionSize;
+        }
+    }, [data]);
 
     useMemo(() => {
-        if (strategemsDict && weaponsDict) {
+        if (itemsDict) {
             const images = {};
             let loadedCount = 0;
-
             Object.keys(itemsDict).forEach((imageKey) => {
                 const image = new Image();
                 image.src = itemsDict[imageKey]?.image;
-
                 image.onload = () => {
                     images[imageKey] = image;
                     loadedCount += 1;
-
                     if (loadedCount === Object.keys(itemsDict).length) {
                         setImages(images);
                         setImagesLoaded(true);
@@ -91,7 +85,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 };
             });
         }
-    }, [strategemsDict, weaponsDict]);
+    }, [itemsDict]);
 
     const getValueRaw = (name, valuesRaw) => {
         switch (name) {
@@ -100,9 +94,9 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
             case 'Avg. Level':
                 return valuesRaw.values.avgLevel.toString()
             case 'Rank Trend':
-                return valuesRaw.pastValues?.loadouts > 0 ? valuesRaw.pastValues.rank - valuesRaw.values.rank : 'New'
+                return valuesRaw.values.isNew ? 'New' : valuesRaw.pastValues.rank - valuesRaw.values.rank
             case 'Pick Rate Trend':
-                return valuesRaw.pastValues?.loadouts > 0 ? Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2)) : 'New'
+                return valuesRaw.values.isNew ? 'New' :  Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2))
             default:
                 break;
         }
@@ -250,7 +244,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
             const itemId = Object.keys(data)[elementAtEvent[0].index];
-            navigate(`/${type}/${itemId}/${filters.faction}`);
+            navigate(`/${type}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
             window.scrollTo(0, 0);
         }
     }

@@ -92,8 +92,8 @@ const getPercentage = (number1, number2, decimals = 1) => {
 };
 
 const getFieldByFilters = (data, filters) => {
-    
-    
+
+
     let field = filters.difficulty !== 0 ? 'diffs' : filters.mission !== 'All' ? 'missions' : 'total';
     if (filters.difficulty !== 0) {
         return data[field][filters.difficulty];
@@ -138,10 +138,10 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
     filtered.forEach(([key, value]) => {
 
         let itemData = getFieldByFilters(value, filters);
-      
+
         let totalsData = getTotalsByFilters(gamesData, filters);
 
-  
+
         const loadoutsPerc = getPercentage(itemData.loadouts, totalsData.loadouts) > 0 ?
             getPercentage(itemData.loadouts, totalsData.loadouts) :
             getPercentage(itemData.loadouts, totalsData.loadouts, 2);
@@ -204,25 +204,73 @@ const getPatchItemCount = (itemID, filters, type = 'strategem') => {
     return count;
 }
 
-const getDatasetValue = (itemID, data, filters, absolute = false) => {
+const getDatasetValue = (data, filters, ranks, itemId) => {
     if (!data) {
         return -1;
     }
 
-    const type = filters.type;
-    const item = data[type][itemID];
+    const  values = data.values[patchPeriods.length - 1 - filters.patch.id];
+    const itemCategory = itemsDict[itemId].category;
 
-    let values = {
-        'rank_all': !item ? -1 : Object.keys(data[type]).length - getItemRank(itemID, data[type]),
-        'rank_category': !item ? -1 : Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length - getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category)),
-        'pick_rate': !item ? -0.1 : data.total[filters.type].loadouts ? getPercentage(item?.total.loadouts, data.total[filters.type].loadouts) : -0.1,
-        'game_rate': !item ? -0.1 : data.total[filters.type].games ? getPercentage(item?.total.games, data.total[filters.type].games) : -0.1,
+    let filterKeys = {
+        'rank_all': values.rank > 0 ? ranks.all - values.rank : ranks.all,
+        'rank_category': values.rank_category > 0 ? ranks[itemCategory] - values.rank_category : ranks[itemCategory],
+        'pick_rate': values.loadouts,
+        'game_rate': values.games,
     };
 
-    if (absolute) {
-        values.rank_all = getItemRank(itemID, data[type]);
-        values.rank_category = getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category));
+    return filterKeys[filters.format];
+}
+
+const getPatchesValues = (data, filters, ranks, itemId) => {
+    if (!data) {
+        return -1;
     }
+    const itemCategory = itemsDict[itemId].category;
+
+    let filterKeys = {
+        'rank_all': data.rank >= 0 ? ranks.all - data.rank :  -0.1,
+        'rank_category': data.rank_category >= 0 ? ranks[itemCategory] - data.rank_category : -0.1,
+        'pick_rate': data.loadouts >= 0 ? data.loadouts : -0.1,
+        'game_rate': data.games >= 0 ? data.games : -0.1,
+    };
+
+    return filterKeys[filters.format];
+}
+
+// const getDatasetValue = (itemID, data, filters, absolute = false) => {
+//     if (!data) {
+//         return -1;
+//     }
+
+//     const type = filters.type;
+//     const item = data[type][itemID];
+
+//     let values = {
+//         'rank_all': !item ? -1 : Object.keys(data[type]).length - getItemRank(itemID, data[type]),
+//         'rank_category': !item ? -1 : Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length - getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category)),
+//         'pick_rate': !item ? -0.1 : data.total[filters.type].loadouts ? getPercentage(item?.total.loadouts, data.total[filters.type].loadouts) : -0.1,
+//         'game_rate': !item ? -0.1 : data.total[filters.type].games ? getPercentage(item?.total.games, data.total[filters.type].games) : -0.1,
+//     };
+
+//     if (absolute) {
+//         values.rank_all = getItemRank(itemID, data[type]);
+//         values.rank_category = getItemRank(itemID, getItemsByCategory(data[type], itemsDict[itemID].category));
+//     }
+
+//     return values[filters.format];
+// }
+
+
+
+const getRankMax = (dataset, filters, ranks, itemId, category = false) => {
+
+    const values = {
+        'rank_all': ranks.all + 2,
+        'rank_category': ranks[itemsDict[itemId].category] + 2,
+        'pick_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5,
+        'game_rate': Math.max(...dataset.filter((item => isFinite(item)))) + 5
+    };
 
     return values[filters.format];
 }
@@ -277,7 +325,7 @@ const getRankMin = (format, value) => {
 }
 
 const getCompanionChartData = (strategemData) => {
-    
+
     if (strategemData.companions.strategem) {
         return Object.values(strategemData.companions.strategem).map(category => {
             return category.map(item => {
@@ -317,6 +365,42 @@ const getFiltersCount = (data, filters) => {
     const asd = getFieldByFilters(data, filters);
 }
 
+const getChartDataset = ({data, color, barSize = 24}) => {
+    return [{
+        data: data,
+        backgroundColor: color,
+        barThickness: barSize
+    }];
+}
+
+const getChartData = (data, filters) => {
+    const { faction, page, patch, category } = filters;
+    const patchIndex = patchPeriods.length - patch.id -1;
+    const entries = Object.entries(data[faction].items);
+
+    const pickStats = obj => {
+        if (!obj) return { loadouts: null, games: null, rank: null, avgLevel: null };
+        const { loadouts, games, rank, avgLevel, isNew } = obj;
+        return { loadouts, games, rank, avgLevel, ...(isNew && { isNew }) };
+      };
+
+    const chartData = Object.fromEntries(
+        entries.map(([key, item]) => [key, {
+            total: {loadouts: item.values?.[patchIndex].loadouts_total, games: 500},
+            values: pickStats(item.values?.[patchIndex]),
+            pastValues: pickStats(item.values?.[patchIndex + 1]),
+        }])
+            .filter(([, item]) => item.values.loadouts > 0)
+            .filter(([key]) => category === "All" || itemsDict[key].category === category)
+            .sort(([, a], [, b]) => b.values.loadouts - a.values.loadouts)
+    );
+
+    return {
+        chartData,
+        totals: data[faction].totals[patchIndex]
+    };
+};
+
 export {
     getMissionsByLength,
     getMissionLength,
@@ -342,5 +426,9 @@ export {
     getFiltersCount,
     getFactionsMax,
     getPatchesMax,
-    getTotalsByFilters
+    getTotalsByFilters,
+    getChartData,
+    getPatchesValues,
+    getRankMax,
+    getChartDataset
 };

@@ -13,7 +13,7 @@ function Filters({ filters, setFilters, type }) {
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"
-                    title={`${isMobile ? '': 'Faction: '}${capitalizeFirstLetter(filters.faction)}`}>
+                    title={`${isMobile ? '' : 'Faction: '}${capitalizeFirstLetter(filters.faction)}`}>
                     {factions.map((factionName) => (
                         <Dropdown.Item
                             as="button"
@@ -25,60 +25,74 @@ function Filters({ filters, setFilters, type }) {
             </div>
 
             <div className="filter-container">
-                {type === 0 &&
+                {filters.page === "strategem" &&
                     <DropdownButton
                         className="dropdown-button"
-                        title={`${isMobile ? '': 'Patch: '}${filters.patch.name}`}>
+                        title={`${isMobile ? '' : 'Patch: '}${filters.patch.name}`}>
                         {patchPeriods.map((patchPeriod, index) => (
                             <Dropdown.Item
                                 as="button"
                                 onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                                 {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                             </Dropdown.Item>
-                        ))}
+                        )).reverse()}
                     </DropdownButton>}
 
-                {type === 1 &&
+                {filters.page === "weapons" &&
                     <DropdownButton
                         className="dropdown-button"
-                        title={`${isMobile ? '': 'Patch: '}${filters.patch.name}`}> 
-                        {patchPeriods.slice(0, patchPeriods.length - 3).map((patchPeriod, index) => (
+                        title={`${isMobile ? '' : 'Patch: '}${filters.patch.name}`}>
+                        {patchPeriods.slice(3, patchPeriods.length).map((patchPeriod, index) => (
                             <Dropdown.Item
                                 as="button"
                                 onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                                 {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                             </Dropdown.Item>
-                        ))}
+                        )).reverse()}
+                    </DropdownButton>}
+
+                {filters.page === "armor" &&
+                    <DropdownButton
+                        className="dropdown-button"
+                        title={`${isMobile ? '' : 'Patch: '}${filters.patch.name}`}>
+                        {patchPeriods.slice(5, patchPeriods.length).map((patchPeriod, index) => (
+                            <Dropdown.Item
+                                as="button"
+                                onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
+                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                            </Dropdown.Item>
+                        )).reverse()}
                     </DropdownButton>}
 
             </div>
-                      {filters.page !== 'armor' && <div className="filter-container">
-                {type === 0 &&
-                    <DropdownButton
-                        className="dropdown-button"
-                        title={"Category: " + filters.category}>
-                        {itemCategories.map((category, index) => (
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => { setFilters({ ...filters, category: category }); }}>
-                                {category}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>}
-                {type === 1 &&
-                    <DropdownButton
-                        className="dropdown-button"
-                        title={"Category: " + filters.category}>
-                        {weaponCategories.map((category, index) => (
-                            <Dropdown.Item
-                                as="button"
-                                onClick={() => { setFilters({ ...filters, category: category }); }}>
-                                {category}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>}
-            </div>}
-            
+            {filters.page !== 'armor' &&
+                <div className="filter-container">
+                    {type === 0 &&
+                        <DropdownButton
+                            className="dropdown-button"
+                            title={"Category: " + filters.category}>
+                            {itemCategories.map((category, index) => (
+                                <Dropdown.Item
+                                    as="button"
+                                    onClick={() => { setFilters({ ...filters, category: category }); }}>
+                                    {category}
+                                </Dropdown.Item>
+                            ))}
+                        </DropdownButton>}
+                    {type === 1 &&
+                        <DropdownButton
+                            className="dropdown-button"
+                            title={"Category: " + filters.category}>
+                            {weaponCategories.map((category, index) => (
+                                <Dropdown.Item
+                                    as="button"
+                                    onClick={() => { setFilters({ ...filters, category: category }); }}>
+                                    {category}
+                                </Dropdown.Item>
+                            ))}
+                        </DropdownButton>}
+                </div>}
+
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"
@@ -103,22 +117,6 @@ function Filters({ filters, setFilters, type }) {
                 </DropdownButton>
             </div>
 
-            {/* <div className="filter-container">
-                    <DropdownButton
-                        className="dropdown-button"
-                        title={`Start: ` + filters.patchStart.name}>
-                        {patchPeriods.slice(1, patchPeriods.length).map((patchPeriod, index) => (
-                            <Dropdown.Item
-                                as="button"
-                                disabled={index + 1 === filters.patch.id}
-                                onClick={() => { setFilters({ ...filters, patchStart: patchPeriod }); }}>
-                                {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
-                            </Dropdown.Item>
-                        ))}
-                    </DropdownButton>
-                </div> */}
-
-            
             <div className="filter-container">
                 <DropdownButton
                     disabled={filters.difficulty !== 0}

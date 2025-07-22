@@ -1,6 +1,6 @@
 
 import '../styles/App.css';
-import '../styles/SnapshotPage.css';
+import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
 import { useMobile } from '../hooks/useMobile';
