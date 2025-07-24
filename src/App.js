@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import ArmoryPage from "./pages/ArmoryPage";
 import StrategemsPage from "./pages/StrategemsPage";
-import StratagemPage from "./pages/StratagemPage";
+import StrategemDetailsPage from "./pages/StrategemDetailsPage";
 import AboutPage from "./pages/AboutPage";
 import WeaponsPage from "./pages/WeaponsPage";
-import WeaponPage from "./pages/WeaponPage";
+import WeaponDetailsPage from "./pages/WeaponDetailsPage";
 import GamesPage from "./pages/GamesPage";
 import ArmorsPage from "./pages/ArmorsPage";
 
@@ -53,18 +53,20 @@ function App() {
                     path="/strategem/:id"
                     element={
                         <Layout>
-                            <StratagemPage />
+                            <StrategemDetailsPage />
                         </Layout>
                     }
                 />
+
                 <Route
-                    path="/weapons/:id/:factionID"
+                    path="/weapons/:id"
                     element={
                         <Layout>
-                            <WeaponPage />
+                            <WeaponDetailsPage />
                         </Layout>
                     }
                 />
+
                 <Route
                     path="/games"
                     element={

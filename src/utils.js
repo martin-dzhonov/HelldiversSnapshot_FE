@@ -7,10 +7,12 @@ import {
     weaponsDict,
     weaponCategoryColors,
     weaponCategories,
-    strategemCount,
-    weaponCount,
     itemsDict,
-    patchPeriods
+    patchPeriods,
+    difficultiesNamesShort,
+    missionTypes,
+    factions,
+    factionColors
 } from "./constants";
 import * as chartsSettings from "./settings/chartSettings";
 
@@ -191,17 +193,89 @@ const getPatchDelta = (startPatch, endPatch) => {
     return Object.fromEntries(sorted);
 }
 
-const getPatchItemCount = (itemID, filters, type = 'strategem') => {
-    let count = 0;
-    const countArr = type === 'strategem' ? strategemCount : weaponCount;
-    const itemsDict = { ...strategemsDict, ...weaponsDict };
-    if (filters.format === 'rank_all') {
-        count = Object.values(countArr[filters.patch.id]).reduce((acc, num) => acc + num, 0);
+function getTrendCharts(data, filters, id) {
+    if (!data) return { faction: null, patch: null };
+    const strategemData = data[filters.faction];
+    if (!strategemData) return { faction: null, patch: null };
+
+    const ranks = strategemData.ranks;
+
+    const factionsDataset = factions.map((faction) =>
+        getDatasetValue(data[faction], filters, ranks, id)
+    );
+
+    const factionChart = {
+        labels: factions.map((item) => capitalizeFirstLetter(item)),
+        datasets: getChartDataset({ data: factionsDataset, color: factionColors }),
+        options: chartsSettings.faction({
+            min: 0,
+            max: getRankMax(factionsDataset, filters, ranks, id),
+            type: filters.format,
+        }),
+    };
+
+    let patchesValues = data[filters.faction].values;
+    let patchesLabels = patchPeriods.map((item) => item.name);
+    if(filters.page === "weapon_details"){
+        patchesValues = patchesValues.slice(0, patchesValues.length - 3);
+        patchesLabels = patchesLabels.slice(patchesLabels.length - 4, patchesLabels.length);
     }
-    if (filters.format === 'rank_category') {
-        count = countArr[filters.patch.id][itemsDict[itemID].category];
+    const patchesDataset = patchesValues
+        .map((item) => getPatchesValues(item, filters, ranks, id))
+        .reverse();
+
+    const patchChart = {
+        labels: patchesLabels,
+        dataset: patchesDataset,
+        options: chartsSettings.patch({
+            min: -2,
+            max: getRankMax(patchesDataset, filters, ranks, id),
+            type: filters.format,
+        }),
+    };
+
+    return { faction: factionChart, patch: patchChart };
+}
+
+function getItemMiscCharts(strategemData, id) {
+    if (!strategemData?.total?.loadouts) return { diff: null, mission: null, level: null };
+
+    const chartConfigs = {
+        diff: {
+            key: 'diffs',
+            labels: difficultiesNamesShort,
+            transform: (item) => item.value,
+        },
+        mission: {
+            key: 'missions',
+            labels: missionTypes,
+            transform: (item) => item.value,
+        },
+        level: {
+            key: 'levels',
+            labels: strategemData.levels ? Object.keys(strategemData.levels) : [],
+            transform: (item) => getPercentage(item, strategemData.total.loadouts),
+        },
+    };
+
+    const charts = {};
+
+    for (const [name, config] of Object.entries(chartConfigs)) {
+        const dataSource = strategemData[config.key];
+        if (dataSource) {
+            charts[name] = {
+                labels: config.labels,
+                datasets: getChartDataset({
+                    data: Object.values(dataSource).map(config.transform),
+                    color: getItemColor(id),
+                }),
+            };
+        } else {
+            charts[name] = null;
+        }
     }
-    return count;
+
+    return charts;
 }
 
 const getDatasetValue = (data, filters, ranks, itemId) => {
@@ -394,7 +468,6 @@ const getChartData = (data, filters) => {
             .filter(([key]) => category === "All" || itemsDict[key].category === category)
             .sort(([, a], [, b]) => b.values.loadouts - a.values.loadouts)
     );
-
     return {
         chartData,
         totals: data[faction].totals[patchIndex]
@@ -414,7 +487,6 @@ export {
     getMaxRounded,
     getChartGradient,
     getPatchId,
-    getPatchItemCount,
     getDatasetValue,
     getRankMin,
     getCompanionChartData,
@@ -430,5 +502,7 @@ export {
     getChartData,
     getPatchesValues,
     getRankMax,
-    getChartDataset
+    getChartDataset,
+    getItemMiscCharts,
+    getTrendCharts
 };

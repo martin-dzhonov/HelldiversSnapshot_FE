@@ -45,7 +45,7 @@ function ArmoryPage() {
                                     .filter((item) => item.category === category).map((item) =>
                                         <div
                                             className="armory-item-wrapper"
-                                            onClick={() => navigate(`/strategem/${getItemId(item.name)}/terminid`)} >
+                                            onClick={() => navigate(`/strategem/${getItemId(item.name)}`)} >
                                             <div className="item-img-wrapper">
                                                 <img src={item.image} alt="" loading="lazy" />
                                             </div>
@@ -70,7 +70,7 @@ function ArmoryPage() {
                                     .filter((item) => item.category === category).map((item) =>
                                         <div
                                             className={`armory-weapons-wrapper armory-weapons-wrapper-${category}`}
-                                            onClick={() => navigate(`/weapons/${getItemId(item.name)}/terminid`)} >
+                                            onClick={() => navigate(`/weapons/${getItemId(item.name)}`)} >
                                             <div className="armory-weapons-img-wrapper">
                                                 <img src={item.image} alt="" loading="lazy" />
                                             </div>

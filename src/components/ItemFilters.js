@@ -15,17 +15,18 @@ function ItemFilters({ filters, setFilters }) {
                         <DropdownButton
                             className="dropdown-button"
                             title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
-                            {factions.map((factionName) => (
+                            {factions.map((faction) => (
                                 <Dropdown.Item
                                     as="button"
                                     onClick={() => {
                                         setFilters({
                                             ...filters,
-                                            faction: factionName,
-                                            ...(factionName === 'illuminate' && filters.patch.id > 1 && { patch: patchPeriods[patchPeriods.length - 1] }),
+                                            faction,
+                                            ...(faction === 'illuminate' && filters.patch.id > 1 &&
+                                                { patch: patchPeriods[patchPeriods.length - 1] }),
                                         });
                                     }}>
-                                    {capitalizeFirstLetter(factionName)}
+                                    {capitalizeFirstLetter(faction)}
                                 </Dropdown.Item>
                             ))}
                         </DropdownButton>
@@ -37,14 +38,14 @@ function ItemFilters({ filters, setFilters }) {
                             <DropdownButton
                                 className="dropdown-button"
                                 title={`${isMobile ? '' : 'Patch: '}${filters.patch.name}`}>
-                                {patchPeriods.slice(0, patchPeriods.length - 3).map((patchPeriod, index) => (
+                                {patchPeriods.slice(3, patchPeriods.length).reverse().map((patchPeriod, index) => (
                                     <Dropdown.Item
                                         as="button"
                                         onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
                                         {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
                                     </Dropdown.Item>
                                 ))}
-                            </DropdownButton> : 
+                            </DropdownButton> :
                             <DropdownButton
                                 className="dropdown-button"
                                 title={`${!isMobile ? "Patch: " : ''} ${filters.patch.name}`} >

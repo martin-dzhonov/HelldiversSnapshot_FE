@@ -12,9 +12,9 @@ function CompanionCharts({ charts, filters }) {
                         <div className="companion-chart-wrapper">
                             <div className="stratagem-loadouts-title">{category}</div>
                             <StrategemChart
-                                barData={charts.companion[index].data}
+                                barData={charts.companions[index].data}
                                 filters={filters}
-                                options={charts.companion[index].options}
+                                options={charts.companions[index].options}
                                 type="strategem"
                                 legendItems={[]}
                                 limit={null}

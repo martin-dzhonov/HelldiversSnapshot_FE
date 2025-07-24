@@ -29,16 +29,16 @@ ChartJS.register(
     Filler
 );
 
-const PatchChart = ({ data, itemID, options }) => {
+const PatchChart = ({ data, itemID }) => {
     const chartRef = useRef(null);
     const chartData = useMemo(() => {
         if (data && itemID) {
             const itemColor = getItemColor(itemID);
             return {
-                labels: patchPeriods.map((item) => item.name),
+                labels: data.labels,
                 datasets: [
                     {
-                        data: data,
+                        data: data.dataset,
                         pointRadius: 6,
                         pointHoverRadius: 12,
                         borderColor: itemColor,
@@ -57,7 +57,7 @@ const PatchChart = ({ data, itemID, options }) => {
             {chartData && <Line
                 ref={chartRef}
                 data={chartData}
-                options={options}
+                options={data.options}
                 redraw={false}
             />}
         </>

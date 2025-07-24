@@ -30,7 +30,6 @@ const BarChart = ({ data, options, onBarClick,  onChartLoad = ()=>{} }) => {
         const elementAtEvent = getElementAtEvent(chart, event);
         onBarClick && onBarClick(elementAtEvent[0]);
     }
-
     return (
         <Bar
             ref={chartRef}
