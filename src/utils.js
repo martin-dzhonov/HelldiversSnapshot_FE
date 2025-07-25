@@ -216,9 +216,10 @@ function getTrendCharts(data, filters, id) {
 
     let patchesValues = data[filters.faction].values;
     let patchesLabels = patchPeriods.map((item) => item.name);
-    if(filters.page === "weapon_details"){
+    
+    if (filters.page === "weapon_details") {
         patchesValues = patchesValues.slice(0, patchesValues.length - 3);
-        patchesLabels = patchesLabels.slice(patchesLabels.length - 4, patchesLabels.length);
+        patchesLabels = patchesLabels.slice(patchesLabels.length - 5, patchesLabels.length);
     }
     const patchesDataset = patchesValues
         .map((item) => getPatchesValues(item, filters, ranks, id))
@@ -283,7 +284,7 @@ const getDatasetValue = (data, filters, ranks, itemId) => {
         return -1;
     }
 
-    const  values = data.values[patchPeriods.length - 1 - filters.patch.id];
+    const values = data.values[patchPeriods.length - 1 - filters.patch.id];
     const itemCategory = itemsDict[itemId].category;
 
     let filterKeys = {
@@ -303,7 +304,7 @@ const getPatchesValues = (data, filters, ranks, itemId) => {
     const itemCategory = itemsDict[itemId].category;
 
     let filterKeys = {
-        'rank_all': data.rank >= 0 ? ranks.all - data.rank :  -0.1,
+        'rank_all': data.rank >= 0 ? ranks.all - data.rank : -0.1,
         'rank_category': data.rank_category >= 0 ? ranks[itemCategory] - data.rank_category : -0.1,
         'pick_rate': data.loadouts >= 0 ? data.loadouts : -0.1,
         'game_rate': data.games >= 0 ? data.games : -0.1,
@@ -439,7 +440,7 @@ const getFiltersCount = (data, filters) => {
     const asd = getFieldByFilters(data, filters);
 }
 
-const getChartDataset = ({data, color, barSize = 24}) => {
+const getChartDataset = ({ data, color, barSize = 24 }) => {
     return [{
         data: data,
         backgroundColor: color,
@@ -449,24 +450,24 @@ const getChartDataset = ({data, color, barSize = 24}) => {
 
 const getChartData = (data, filters) => {
     const { faction, page, patch, category } = filters;
-    const patchIndex = patchPeriods.length - patch.id -1;
+    const patchIndex = patchPeriods.length - patch.id - 1;
     const entries = Object.entries(data[faction].items);
-
+    console.log(entries)
     const pickStats = obj => {
-        if (!obj) return { loadouts: null, games: null, rank: null, avgLevel: null };
-        const { loadouts, games, rank, avgLevel, isNew } = obj;
-        return { loadouts, games, rank, avgLevel, ...(isNew && { isNew }) };
-      };
+        if (!obj) return { loadouts_total: null, loadouts: null, games: null, rank: null, rank_category: null, avgLevel: null };
+        const { loadouts_total, loadouts, games, rank, rank_category, avgLevel, isNew } = obj;
+        return { loadouts_total, loadouts, games, rank, rank_category, avgLevel, ...(isNew && { isNew }) };
+    };
 
     const chartData = Object.fromEntries(
         entries.map(([key, item]) => [key, {
-            total: {loadouts: item.values?.[patchIndex].loadouts_total, games: 500},
+            total: { loadouts: item.values?.[patchIndex].loadouts_total, games: 500 },
             values: pickStats(item.values?.[patchIndex]),
             pastValues: pickStats(item.values?.[patchIndex + 1]),
         }])
             .filter(([, item]) => item.values.loadouts > 0)
             .filter(([key]) => category === "All" || itemsDict[key].category === category)
-            .sort(([, a], [, b]) => b.values.loadouts - a.values.loadouts)
+            .sort(([, a], [, b]) => b.values.loadouts_total - a.values.loadouts_total)
     );
     return {
         chartData,

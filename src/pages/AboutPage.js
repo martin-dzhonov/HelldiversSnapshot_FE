@@ -10,7 +10,7 @@ function AboutPage() {
             </div>
             <div className="about-text">
                 This is a project aimed at bringing live, detailed player
-                loadout data for difficulties 7-10, in the name of Democracy,
+                loadout data for high difficulties(7-10), in the name of Democracy,
                 science and such.
             </div>
             <div className="about-text-large">Data Collection:</div>
@@ -26,13 +26,16 @@ function AboutPage() {
                 &#8226; Data is then visualized into hopefully easy-to-read graphs and trends
             </div>
             <div className="about-text-large">
-                Disclaimers and known issues:
+                Disclaimers:
             </div>
             <div className="about-text">
-                &#8226; No planet modifiers data before Patch 01.000.400 (June 13th 2024)
+                &#8226; Avg. player level and weapons data available from Servants of Freedom onwards
             </div>
             <div className="about-text">
-                &#8226; Sub 0.1% pick rate strategems may not have data for companions/dificulty/mission lenght charts
+                &#8226; Armor data available from Masters of Ceremony onwards
+            </div>
+            <div className="about-text">
+                &#8226; Sub 1% pick rate items may have incomplete data for companions/dificulty/mission lenght charts
             </div>
             <div className="about-text">
                 &#8226; Data for difficulty 7 before Servants of Freddom has a small number of diff 6 games

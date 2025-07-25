@@ -87,14 +87,22 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         }
     }, [itemsDict]);
 
-    const getValueRaw = (name, valuesRaw) => {
+    const getValueRaw = (value, valuesRaw) => {
+        const name = value.name;
+        const category = value.category;
+
         switch (name) {
             case 'Times played':
                 return valuesRaw.total.loadouts.toString();
             case 'Avg. Level':
-                return valuesRaw.values.avgLevel.toString()
+                const level = valuesRaw?.values?.avgLevel ? valuesRaw.values.avgLevel : '';
+                return level.toString()
             case 'Rank Trend':
-                return valuesRaw.values.isNew ? 'New' : valuesRaw.pastValues.rank - valuesRaw.values.rank
+                let rankvalue = valuesRaw.pastValues.rank - valuesRaw.values.rank;
+                if(category && category !== "All"){
+                    rankvalue = valuesRaw.pastValues.rank_category - valuesRaw.values.rank_category;
+                }
+                return valuesRaw.values.isNew ? 'New' : rankvalue;
             case 'Pick Rate Trend':
                 return valuesRaw.values.isNew ? 'New' :  Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2))
             default:
@@ -209,7 +217,8 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 const valuesRaw = data[key];
 
                 legendItems.forEach((item, j) => {
-                    let valueRaw = getValueRaw(item.name, valuesRaw);
+                    console.log(item);
+                    let valueRaw = getValueRaw(item, valuesRaw);
                     if (item.name === 'Name') {
                         valueRaw = itemsDict[key].name;
                     }

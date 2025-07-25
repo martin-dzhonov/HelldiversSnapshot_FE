@@ -24,7 +24,7 @@ function GamesFilters({ filters, setFilters }) {
                 <DropdownButton
                     className="dropdown-button"
                     title={'Patch: ' + filters.patch.name}>
-                    {patchPeriods.map((patchPeriod, index) => (
+                    {patchPeriods.slice().reverse().map((patchPeriod, index) => (
                         <Dropdown.Item
                             as="button"
                             onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>

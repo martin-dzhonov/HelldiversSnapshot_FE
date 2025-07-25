@@ -58,9 +58,9 @@ function WeaponDetailsPage() {
 
     useEffect(() => {
         if (data) {
-            console.log(data);
             const trendCharts = getTrendCharts(data, filters, id);
-            console.log(trendCharts)
+            console.log(trendCharts);
+
             setCharts((prev) => ({
                 ...prev,
                 ...trendCharts,

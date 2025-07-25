@@ -12,7 +12,7 @@ function GamesPage() {
     const { isMobile } = useMobile()
     const [filters, setFilters] = useState({
         faction: "terminid",
-        patch: patchPeriods[0],
+        patch: patchPeriods[patchPeriods.length - 1],
         difficulty: 0,
         mission: "All"
     });

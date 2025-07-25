@@ -10,16 +10,18 @@ import { getPatchId } from "../utils";
 const useLegendItems = (setGraphData, filters) => {
     const { isMobile } = useMobile()
     const showPlayerLvl = filters.patch.id > getPatchId("Omens of Tyranny");
+
     const trendsStart = filters.page === 'armor' ? 'Masters Of Ceremony' :
         filters.page === 'weapons' ? "Servants of Freedom" :
             filters.faction === 'illuminate' ? "Omens of Tyranny" : "Classic";
+
     const showTrends = filters.patch.id > getPatchId(trendsStart);
 
     const getLegendItems = () => [
         !isMobile && { name: "Name", icon: null, check: true },
         showPlayerLvl && { name: "Avg. Level", icon: levelIcon, check: true },
         showTrends && { name: "Pick Rate Trend", icon: trendUpIcon, iconAlt: trendDownIcon, check: true },
-        showTrends && { name: "Rank Trend", icon: rankIcon, check: false },
+        showTrends && { name: "Rank Trend", icon: rankIcon, check: false, category: filters.category },
         { name: "Times played", icon: playedIcon, check: false }
     ]
         .filter(Boolean) // Removes `null` or `false`
