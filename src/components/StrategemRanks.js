@@ -1,13 +1,13 @@
-import StratagemRank from "./StratagemRank";
+import StrategemRank from "./StrategemRank";
 import { getItemColor } from "../utils";
 import { itemsDict, patchPeriods, strategemsDict } from "../constants";
 
-function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
+function StrategemRanks({ strategemValues, id, filters, updateFilter }) {
     const data = strategemValues.values[patchPeriods.length - 1 - filters.patch.id];;
     return (
         <div className="row">
             <div className="col-12 col-lg-6 col-sm-6">
-                <StratagemRank
+                <StrategemRank
                     text={["pick ", "rate"]}
                     value={data.loadouts}
                     onClick={() => updateFilter("format", "pick_rate")}
@@ -15,7 +15,7 @@ function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
                     active={filters.format === "pick_rate"}
                     percent
                 />
-                <StratagemRank
+                <StrategemRank
                     text={["of", "games"]}
                     value={data.games}
                     onClick={() => updateFilter("format", "game_rate")}
@@ -25,7 +25,7 @@ function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
                 />
             </div>
             <div className="col-12 col-lg-6 col-sm-6">
-                <StratagemRank
+                <StrategemRank
                     text={["in", itemsDict[id].category]}
                     value={data.rank_category}
                     onClick={() => updateFilter("format", "rank_category")}
@@ -34,8 +34,8 @@ function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
                     suffix
                 />
                 {filters.page === 'strategem_details' &&
-                    <StratagemRank
-                        text={["in", "All Stratagem"]}
+                    <StrategemRank
+                        text={["in", "All Strategem"]}
                         value={data.rank}
                         onClick={() => updateFilter("format", "rank_all")}
                         color={getItemColor(id)}
@@ -44,7 +44,7 @@ function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
                     />
                 }
                 {filters.page === 'weapon_details' &&
-                    <StratagemRank
+                    <StrategemRank
                         text={["times", "played"]}
                         value={data.loadouts_total}
                         onClick={() => { }}
@@ -56,4 +56,4 @@ function StratagemRanks({ strategemValues, id, filters, updateFilter }) {
     );
 }
 
-export default StratagemRanks;
+export default StrategemRanks;

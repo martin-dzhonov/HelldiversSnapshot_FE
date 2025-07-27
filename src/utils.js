@@ -1,5 +1,4 @@
 import {
-    isDev,
     missionNames,
     itemCategoryColors,
     itemCategories,
@@ -134,9 +133,6 @@ const itemsByCategory = (gamesData, filters, collectionKey) => {
         Object.entries(items).filter(([key, value]) =>
             itemsDict[key].category === filters.category);
 
-
-    const sorted = filtered.sort((a, b) => b[1].total - a[1].total);
-
     filtered.forEach(([key, value]) => {
 
         let itemData = getFieldByFilters(value, filters);
@@ -193,7 +189,7 @@ const getPatchDelta = (startPatch, endPatch) => {
     return Object.fromEntries(sorted);
 }
 
-function getTrendCharts(data, filters, id) {
+function getTrendCharts(data, filters, id, isMobile = false) {
     if (!data) return { faction: null, patch: null };
     const strategemData = data[filters.faction];
     if (!strategemData) return { faction: null, patch: null };
@@ -215,36 +211,44 @@ function getTrendCharts(data, filters, id) {
     };
 
     let patchesValues = data[filters.faction].values;
-    let patchesLabels = patchPeriods.map((item) => item.name);
+    let patchesLabels = patchPeriods.slice().reverse().map((item) => item.name);
     
     if (filters.page === "weapon_details") {
         patchesValues = patchesValues.slice(0, patchesValues.length - 3);
-        patchesLabels = patchesLabels.slice(patchesLabels.length - 5, patchesLabels.length);
+        patchesLabels = patchesLabels.slice(0, patchesLabels.length - 3).slice().reverse();
+    }
+    if (filters.page === "strategem_details") {
+        patchesValues = patchesValues.slice(0, patchesValues.length - 2);
+        patchesLabels = patchesLabels.slice(0, patchesLabels.length - 2).slice().reverse();
     }
     const patchesDataset = patchesValues
         .map((item) => getPatchesValues(item, filters, ranks, id))
         .reverse();
+    
+    const max = getRankMax(patchesDataset, filters, ranks, id);
+    const min = getRankMin(filters.format, max)
 
     const patchChart = {
         labels: patchesLabels,
         dataset: patchesDataset,
         options: chartsSettings.patch({
-            min: -2,
-            max: getRankMax(patchesDataset, filters, ranks, id),
+            min,
+            max,
             type: filters.format,
+            isMobile
         }),
     };
 
     return { faction: factionChart, patch: patchChart };
 }
 
-function getItemMiscCharts(strategemData, id) {
+function getItemMiscCharts(strategemData, id, isMobile) {
     if (!strategemData?.total?.loadouts) return { diff: null, mission: null, level: null };
 
     const chartConfigs = {
         diff: {
             key: 'diffs',
-            labels: difficultiesNamesShort,
+            labels: isMobile ? difficultiesNamesShort.map((item, index) => 7 + index) : difficultiesNamesShort,
             transform: (item) => item.value,
         },
         mission: {
@@ -356,7 +360,6 @@ const getFactionsMax = (itemID, dataset, data, filters) => {
     }
 
     const type = filters.type;
-    const item = data[type][itemID];
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
@@ -373,7 +376,6 @@ const getPatchesMax = (itemID, dataset, data, filters) => {
     }
 
     const type = filters.type;
-    const item = data[type][itemID];
     const values = {
         'rank_all': Object.keys(data[type]).length,
         'rank_category': Object.keys(getItemsByCategory(data[type], itemsDict[itemID].category)).length,
@@ -436,10 +438,6 @@ const getDatasetByKey = (itemID, itemData, patchData, key, type = 'strategem') =
     }]
 }
 
-const getFiltersCount = (data, filters) => {
-    const asd = getFieldByFilters(data, filters);
-}
-
 const getChartDataset = ({ data, color, barSize = 24 }) => {
     return [{
         data: data,
@@ -449,10 +447,9 @@ const getChartDataset = ({ data, color, barSize = 24 }) => {
 }
 
 const getChartData = (data, filters) => {
-    const { faction, page, patch, category } = filters;
+    const { faction, patch, category } = filters;
     const patchIndex = patchPeriods.length - patch.id - 1;
     const entries = Object.entries(data[faction].items);
-    console.log(entries)
     const pickStats = obj => {
         if (!obj) return { loadouts_total: null, loadouts: null, games: null, rank: null, rank_category: null, avgLevel: null };
         const { loadouts_total, loadouts, games, rank, rank_category, avgLevel, isNew } = obj;
@@ -496,7 +493,6 @@ export {
     itemsByCategory,
     getPatchDelta,
     getItemsByCategory,
-    getFiltersCount,
     getFactionsMax,
     getPatchesMax,
     getTotalsByFilters,

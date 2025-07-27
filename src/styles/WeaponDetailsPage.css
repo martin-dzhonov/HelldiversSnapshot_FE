@@ -10,13 +10,20 @@
     padding-left: 20px;
     padding-bottom: 15px;
 }
-@media only screen and (max-width: 900px) {
-
+@media only screen and (max-width: 992px) {
     .weapon-title-img {
-        padding-left: 20px;
+        padding-left: 5px;
         padding-bottom: 15px;
+        width: 150px;
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .weapon-title {
+        justify-content: center;
+    }
+}
+
 .weapon-title-img-small {
     width: 140px;
     padding-left: 20px;
@@ -42,13 +49,11 @@
     padding: 0px 0px 5px 10px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .weapon-title-text {
         font-size: 20px;
-        width: 200px;
-        padding: 0px;
-        margin-left: 20px;
-
+        padding-bottom: 12px;
+        margin-left: 10px;
     }
 }
 .weapon-rankings-item{
@@ -62,7 +67,7 @@
     padding-top: 10px;
 }
 
-.stratagem-level-graph-wrapper {
+.strategem-level-graph-wrapper {
     padding: 5px 10px !important;
     height: 160px;
     width: 100%;

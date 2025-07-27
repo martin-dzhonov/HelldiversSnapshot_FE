@@ -1,6 +1,7 @@
 
 const isDev = false;
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`//'http://localhost:8080'
+//const apiBaseUrl = 'http://localhost:8080'
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
 
 const navRoutes = [
     {
@@ -16,15 +17,15 @@ const navRoutes = [
         route: "armors"
     },
     {
-        name: "Gallery",
-        route: "gallery"
-    },
-    {
         name: "Games",
         route: "games"
     },
     {
-        name: "The Project",
+        name: "Gallery",
+        route: "gallery"
+    },
+    {
+        name: "About",
         route: "about"
     }
 ];
@@ -47,7 +48,6 @@ const patchPeriods = [
     { id: 5, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
     { id: 6, name: "Force Of Law", start: "06/12/2025", end: "07/17/2025" },
     { id: 7, name: "Control Group", start: "07/17/2025", end: "Present" },
-
 ];
 
 const difficultiesNames = [
@@ -92,7 +92,8 @@ const missionNames = [
         "TAKE DOWN OVERSHIP",
         "EVACUATE CITIZENS",
         "RESTORE AIR QUALITY",
-        "SABOTAGE SUPPLY BASES"
+        "SABOTAGE SUPPLY BASES",
+        "CLEANSE INFESTED DISTRICT"
     ],
     [
         "ERADICATE TERMINID SWARM",

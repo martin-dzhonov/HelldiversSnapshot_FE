@@ -169,13 +169,14 @@ export const faction = ({
 export const patch = ({
     min,
     max,
-    type
+    type,
+    isMobile
 } = {}) => ({
     indexAxis: "x",
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 30, right: 25, bottom: 20, left: 25 },
+        padding: { top: 30, right: 25, bottom: isMobile ? 0: 20, left: isMobile ? 35 : 25 },
     },
     scales: {
         x: {
@@ -238,7 +239,7 @@ export const patch = ({
 });
 
 export const weapons = ({
-    axisWidth = 150
+    axisWidth = 140
 } = {}) => ({
     indexAxis: "y",
     responsive: true,
@@ -251,7 +252,7 @@ export const weapons = ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 150 : 55 },
+        padding: { right: isDev ? 150 : 50 },
     },
     scales: {
         x: {

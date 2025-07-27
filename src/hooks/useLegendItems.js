@@ -24,7 +24,7 @@ const useLegendItems = (setGraphData, filters) => {
         showTrends && { name: "Rank Trend", icon: rankIcon, check: false, category: filters.category },
         { name: "Times played", icon: playedIcon, check: false }
     ]
-        .filter(Boolean) // Removes `null` or `false`
+        .filter(Boolean) // Removes null or false
         .map((item) => {
             const img = new Image();
             img.src = item?.icon;
@@ -41,14 +41,13 @@ const useLegendItems = (setGraphData, filters) => {
 
     useEffect(() => {
         setLegendItems(getLegendItems());
-    }, [filters]);
+    }, [filters, isMobile]);
 
     const handleLegendCheck = (index) => {
         setLegendItems((prev) =>
             prev.map((item, i) => (i === index ? { ...item, check: !item.check } : item))
         );
 
-        // Force redraw
         setGraphData((prev) => ({
             ...prev,
             data: { ...prev.data }

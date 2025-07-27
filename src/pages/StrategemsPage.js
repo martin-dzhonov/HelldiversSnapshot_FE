@@ -38,7 +38,6 @@ function StrategemsPage() {
   useEffect(() => {
     if (data) {
       const { chartData, totals } = getChartData(data, filters);
-      console.log({ chartData, totals })
       setChartData({
         data: chartData,
         options: chartsSettings.strategem()

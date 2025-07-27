@@ -19,7 +19,6 @@ import {
     getTotalsByFilters,
     itemsByCategory,
 } from '../utils';
-import { dataDummy } from '../dataDummy';
 import ChartLegend from '../components/ChartLegend';
 
 import trendUpIcon from "../assets/icons/trendUp.svg";

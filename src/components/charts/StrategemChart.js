@@ -144,10 +144,15 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         let imageW = options.imageWidth;
         let imageH = options.imageHeight;
         let imageX = 0;
-        if (type === "weapons" && filters.category === "Throwable") {
-            imageW = isDev ? 200 : 70;
-            imageH = isDev ? 200 : 70;
-            imageX = isDev ? 160 : 10;
+        if (type === "weapons") {
+            if(isMobile){
+                imageX = -10;
+            }
+            if(filters.category === "Throwable"){
+                imageW = isDev ? 200 : 70;
+                imageH = isDev ? 200 : 70;
+                imageX = isDev ? 160 : isMobile ? 0 : 10;
+            }
         }
         if (type === "armor") {
             imageX = isDev ? 205 : 0;
@@ -210,14 +215,13 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
 
                 const labelsY = imageY + getChartYOffset();
                 let labelsX = imageX + getChartXOffset();
-                let labelsPadding = isDev ? 35: 15;
+                let labelsPadding = isDev ? 35: isMobile ? 8 : 15;
                 
                 ctx.drawImage(image, imageX, imageY + + (isDev ? 20 : 5), imageW, imageH);
 
                 const valuesRaw = data[key];
 
                 legendItems.forEach((item, j) => {
-                    console.log(item);
                     let valueRaw = getValueRaw(item, valuesRaw);
                     if (item.name === 'Name') {
                         valueRaw = itemsDict[key].name;

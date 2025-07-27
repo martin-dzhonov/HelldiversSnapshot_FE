@@ -8,13 +8,13 @@ function ItemFilters({ filters, setFilters }) {
     const { isMobile } = useMobile();
 
     return (
-        <div className="d-flex flex-column col-lg-6 col-md-12 col-sm-12">
-            <div className="row mt-auto ">
-                <div className="col-6 col-lg-6 col-md-3 col-sm-6 ">
-                    <div className="stratagem-filter-container">
+        <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex flex-column justify-content-end">
+            <div className="row py-1">
+                <div className="col-6 col-lg-6 col-md-6 col-sm-6 ">
+                    <div className="strategem-filter-container">
                         <DropdownButton
                             className="dropdown-button"
-                            title={"Faction: " + capitalizeFirstLetter(filters.faction)}>
+                            title={`${isMobile ? '' : 'Faction: '}${capitalizeFirstLetter(filters.faction)}`}>
                             {factions.map((faction) => (
                                 <Dropdown.Item
                                     as="button"
@@ -32,8 +32,8 @@ function ItemFilters({ filters, setFilters }) {
                         </DropdownButton>
                     </div>
                 </div>
-                <div className="col-6 col-lg-6 col-md-3 col-sm-6">
-                    <div className="stratagem-filter-container">
+                <div className="col-6 col-lg-6 col-md-6 col-sm-6">
+                    <div className="strategem-filter-container">
                         {filters.type === "weapons" ?
                             <DropdownButton
                                 className="dropdown-button"

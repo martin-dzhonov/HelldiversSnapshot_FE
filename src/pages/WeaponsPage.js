@@ -15,6 +15,7 @@ import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
+import useMobile from '../hooks/useMobile';
 
 const defaultFilters = {
     page: "weapons",
@@ -35,14 +36,17 @@ function WeaponsPage() {
     const [chartData, setChartData] = useState(null);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
+   
+
+
     useEffect(() => {
         if (data) {
             const { chartData, totals } = getChartData(data, filters);
+            let axisWidth = filters.category === "Throwable" ? 85 : 145;
+        
             setChartData({
                 data: chartData,
-                options: chartsSettings.weapons({
-                    axisWidth: filters.category === "Throwable" ? 90 : 150
-                })
+                options: chartsSettings.weapons({axisWidth})
             });
             setFilterResults(totals);
         }

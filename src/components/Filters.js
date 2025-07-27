@@ -5,7 +5,7 @@ import { capitalizeFirstLetter } from '../utils';
 import { useMobile } from '../hooks/useMobile';
 
 
-function Filters({ filters, setFilters, type }) {
+function Filters({ filters, setFilters }) {
     const { isMobile } = useMobile();
 
     return (
@@ -67,10 +67,10 @@ function Filters({ filters, setFilters, type }) {
             </div>
             {filters.page !== 'armor' &&
                 <div className="filter-container">
-                    {type === 0 &&
+                    {filters.page === "strategem" &&
                         <DropdownButton
                             className="dropdown-button"
-                            title={"Category: " + filters.category}>
+                            title={`${isMobile && filters.category !== 'All' ? '' : 'Category: '}${filters.category}`}>
                             {itemCategories.map((category, index) => (
                                 <Dropdown.Item
                                     as="button"
@@ -79,10 +79,10 @@ function Filters({ filters, setFilters, type }) {
                                 </Dropdown.Item>
                             ))}
                         </DropdownButton>}
-                    {type === 1 &&
+                    {filters.page === "weapons" &&
                         <DropdownButton
                             className="dropdown-button"
-                            title={"Category: " + filters.category}>
+                            title={`${isMobile ? '' : 'Category: '}${filters.category}`}>
                             {weaponCategories.map((category, index) => (
                                 <Dropdown.Item
                                     as="button"

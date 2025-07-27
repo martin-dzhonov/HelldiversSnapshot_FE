@@ -2,8 +2,10 @@ import '../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { itemCategories, weaponCategories, difficultiesNames, patchPeriods, factions } from '../constants';
 import { capitalizeFirstLetter } from '../utils';
+import useMobile from '../hooks/useMobile';
 
 function GamesFilters({ filters, setFilters }) {
+    
     return (
         <div className="filters-container">
             <div className="filter-container">

@@ -1,7 +1,7 @@
 import "../styles/App.css";
 import "../styles/StrategemPage.css";
 import { useEffect, useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
 import BarChart from "../components/charts/BarChart";
 import Loader from "../components/Loader";
@@ -18,7 +18,7 @@ import {
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
 import { useItemDetails } from "../hooks/useItemDetails";
-import StratagemRanks from "../components/StratagemRanks";
+import StrategemRanks from "../components/StrategemRanks";
 import CompanionCharts from "../components/CompanionCharts";
 import useItemFilter from "../hooks/useItemFilter";
 import ItemMiscCharts from "../components/ItemMiscCharts";
@@ -55,18 +55,17 @@ function StrategemDetailsPage() {
 
     useEffect(() => {
         if (data) {
-            const trendCharts = getTrendCharts(data, filters, id);
-            console.log(trendCharts)
+            const trendCharts = getTrendCharts(data, filters, id, isMobile);
             setCharts((prev) => ({
                 ...prev,
                 ...trendCharts,
             }));
         }
-    }, [data, filters]);
+    }, [data, filters, isMobile]);
 
     useEffect(() => {
         if (strategemData?.total?.loadouts > 0) {
-            const miscCharts = getItemMiscCharts(strategemData, id);
+            const miscCharts = getItemMiscCharts(strategemData, id, isMobile);
             const companions = getCompanionChartData(strategemData);
 
             setCharts((prev) => ({
@@ -75,7 +74,7 @@ function StrategemDetailsPage() {
                 companions,
             }));
         }
-    }, [strategemData]);
+    }, [strategemData, isMobile]);
 
     const updateFilter = (key, value) => {
         if (key === "patch") {
@@ -90,17 +89,20 @@ function StrategemDetailsPage() {
         <div className="content-wrapper">
             <div className="row">
                 <div className="col-lg-6 col-md-12 col-sm-12">
-                    <div className="stratagem-title">
-                        <div className="stratagem-title-img">
+                    <div className="strategem-title">
+                        <div className="strategem-title-img">
                             <img src={strategemsDict[id].image} alt="" />
                         </div>
-                        <div className="stratagem-title-text">{strategemsDict[id].nameFull}</div>
+                        <div className="strategem-title-text">{strategemsDict[id].nameFull}</div>
                     </div>
                 </div>
+                {isMobile && <div className="strategem-divider"></div>}
+
                 <ItemFilters filters={filters} setFilters={setFilters} />
+                <div className="strategem-divider"></div>
+
             </div>
 
-            <div className="strategem-divider"></div>
 
             <Loader loading={isLoading || !strategemData}>
                 <ItemErrorWrapper showErr={strategemData?.total?.loadouts < 5}>
@@ -108,7 +110,7 @@ function StrategemDetailsPage() {
                         <div className="row">
                             {strategemData && (
                                 <div className="col-lg-6 col-sm-12">
-                                    <StratagemRanks
+                                    <StrategemRanks
                                         strategemValues={strategemData}
                                         id={id}
                                         filters={filters}
@@ -119,7 +121,7 @@ function StrategemDetailsPage() {
 
                             {charts.faction && (
                                 <div className="col-lg-3 col-sm-12">
-                                    <div className="stratagem-graph-wrapper-faction">
+                                    <div className="strategem-graph-wrapper-faction">
                                         <BarChart
                                             data={charts.faction}
                                             options={charts.faction.options}
@@ -133,7 +135,7 @@ function StrategemDetailsPage() {
 
                             {charts.patch && (
                                 <div className="col-lg-3 col-sm-12">
-                                    <div className="stratagem-graph-wrapper-patch">
+                                    <div className="strategem-graph-wrapper-patch">
                                         <PatchChart
                                             data={charts.patch}
                                             itemID={id}

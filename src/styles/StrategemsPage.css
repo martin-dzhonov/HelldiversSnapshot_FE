@@ -5,7 +5,7 @@
   padding: 10px 0px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .filters-container {
     justify-content: center;
   }
@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .type-buttons-wrapper{
     display: flex;
     flex-direction: row;
@@ -51,7 +51,7 @@
   background-color: white;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .snapshot-type-button{
     font-size: 14px;
     width: 130px;
@@ -71,7 +71,7 @@
   padding: 10px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .filter-container {
     padding: 4px;
   }
@@ -107,7 +107,7 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .text-faction-show-all {
     padding-left: 40px;
     text-decoration: underline;
@@ -131,7 +131,7 @@
   padding-left: 40px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .trends-container {
     padding-left: 0px;
   }
@@ -141,7 +141,7 @@
   padding-top: 0px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .trends-title-patches {
     padding-top: 5px;
     display: flex;
@@ -155,4 +155,10 @@
   color: white;
   font-family: 'CustomFont';
   font-size: 17px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .filters-result-text {
+    padding-top: 12px;
+  }
 }

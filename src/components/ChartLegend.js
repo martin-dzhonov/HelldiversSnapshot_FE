@@ -10,9 +10,7 @@ import { useMemo, useState } from 'react';
 import { Form } from "react-bootstrap";
 
 function ChartLegend({ items, filterResults, onCheckChange }) {
-    const { isMobile } = useMobile();
     return (
-
         <div className='legend-wrapper'>
             <div className='legend-items-wrapper'>
                 {items.map((item, index) =>
@@ -31,6 +29,14 @@ function ChartLegend({ items, filterResults, onCheckChange }) {
                         </div>
                     </div>
                 )}
+                {items.length < 4 &&
+                    <div className='legend-item-wrapper'>
+                    <div className='legend-content'>
+                
+                    <div className='text-small'></div>
+                    </div>
+                </div>
+                }
             </div>
 
             {filterResults &&

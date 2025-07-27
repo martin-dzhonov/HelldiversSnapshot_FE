@@ -24,7 +24,6 @@ function GamesTable({ filters, setFilterResults }) {
             const result = await response.json();
             const sorted = result.sort((a, b) => a.id - b.id);
             setFilterResults(sorted.length);
-            //console.log(sorted);
             setData(sorted);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -40,21 +39,20 @@ function GamesTable({ filters, setFilterResults }) {
     }, [filters]);
 
     const getPageNumbers = () => {
-        const visiblePages = 5;
         const pages = [];
+        const total = totalPages;
 
-        if (totalPages <= visiblePages) {
-            for (let i = 1; i <= totalPages; i++) {
-                pages.push(i);
-            }
+        if (total <= 7) {
+            for (let i = 1; i <= total; i++) pages.push(i);
+            return pages;
+        }
+
+        if (currentPage <= 4) {
+            pages.push(1, 2, 3, 4, 5, "...", total);
+        } else if (currentPage >= total - 3) {
+            pages.push(1, "...", total - 4, total - 3, total - 2, total - 1, total);
         } else {
-            if (currentPage <= 3) {
-                pages.push(1, 2, 3, 4, "...", totalPages);
-            } else if (currentPage >= totalPages - 2) {
-                pages.push(1, "...", totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
-            } else {
-                pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
-            }
+            pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", total);
         }
 
         return pages;
@@ -65,6 +63,7 @@ function GamesTable({ filters, setFilterResults }) {
             setCurrentPage(newPage);
         }
     };
+    const INVALID_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
     return (
         <div>
@@ -73,7 +72,7 @@ function GamesTable({ filters, setFilterResults }) {
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}>
-                        Previous
+                        ←
                     </button>
                     {getPageNumbers().map((page, index) => (
                         <button
@@ -87,110 +86,183 @@ function GamesTable({ filters, setFilterResults }) {
                     <button
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}>
-                        Next
+                        →
                     </button>
                 </div>
-                <Table striped bordered hover size="sm" variant="dark">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Date</th>
-                            <th>Loadouts</th>
+
+                {!isMobile &&
+                    <Table striped bordered hover size="sm" variant="dark">
+                        <thead>
+                            <tr>
                             <th>Planet</th>
                             <th>Mission</th>
-                            {/* <th>Modifiers</th> {(currentPage * 10) + index - 9} */ }
-                            <th>Diff</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentPageData.map((game, index) => (
-                            <tr key={index}>
-                                <td className="text-small">{game.id}</td>
-                                <td className="text-small">
-                                    <div>{new Date(game.createdAt).toLocaleDateString('en-GB', {
-                                        day: '2-digit',
-                                        month: '2-digit',
-                                        year: '2-digit'
-                                    })}</div>
-                                    <div>{new Date(game.createdAt).toLocaleTimeString()}</div>
-                                </td>
-                                <td className="text-small">
-                                {/* <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, loadoutIndex) => (
-                                            <div key={loadoutIndex} className="table-loadout-wrapper">
-                                                <div className="text-small">{player.level}</div>
-                                            </div>
-                                        ))}
-                                    </div> */}
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, loadoutIndex) => (
-                                            <div key={loadoutIndex} className="table-loadout-wrapper">
-                                                {player?.strategem?.map((item, itemIndex) => (
-                                                    <img
-                                                        key={itemIndex}
-                                                        className="table-img-wrapper"
-                                                        src={strategemsDict[item]?.image}
-                                                        alt=""
-                                                    />
-                                                ))}
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, loadoutIndex) => (
-                                            <div key={loadoutIndex} className="table-loadout-wrapper">
-                                                {player?.weapons?.map((item, itemIndex) => (
-                                                    <img
-                                                        key={itemIndex}
-                                                        className={`${itemIndex === 0 ?
-                                                            'primary-img-wrapper' :
-                                                            itemIndex === 1 ? 'secondary-img-wrapper' :
-                                                                'throwable-img-wrapper'}`}
-                                                        src={weaponsDict[item]?.image}
-                                                        width={40}
-                                                        alt=""
-                                                    />
-                                                ))}
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <ScreenshotToggle id={game.id} alt="" />
-                                </td>
-                                <td className="text-small">{game.planet}</td>
-                                <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                                {/* <td className="text-small">
-                                    {game.modifiers.map((item, index) => <div key={index}>{item.toUpperCase()}</div>)}
-                                </td> */}
-                                <td className="text-small">{game.difficulty}</td>
+                                <th>Players</th>
+                                <th>Difficulty</th>
+                                <th>Date</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
-                <div className="pagination">
-                    <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}>
-                        Previous
-                    </button>
-                    {getPageNumbers().map((page, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handlePageChange(page)}
-                            className={currentPage === page ? "active" : ""}
-                            disabled={page === "..."}>
-                            {page}
-                        </button>
-                    ))}
-                    <button
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}>
-                        Next
-                    </button>
-                </div>
+                        </thead>
+                        <tbody>
+                            {currentPageData.map((game, index) => (
+                                <tr key={index}>
+                                     <td className="text-small">{game.planet}</td>
+                                    <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
+                                    <td className="text-small">
+
+                                        <div className="table-loadout-row-wrapper">
+                                            {game.players.map((player, loadoutIndex) => (
+                                                <div key={loadoutIndex} className="table-loadout-wrapper">
+                                                    {player?.strategem && player.strategem.length > 0 ? (
+                                                        player.strategem.map((item, itemIndex) => {
+                                                            const src = strategemsDict[item]?.image || INVALID_IMAGE;
+                                                            return (
+                                                                <img
+                                                                    key={itemIndex}
+                                                                    className="table-img-wrapper"
+                                                                    src={src}
+                                                                    alt=""
+                                                                    onError={(e) => {
+                                                                        e.target.onerror = null;
+                                                                        e.target.src = INVALID_IMAGE;
+                                                                    }}
+                                                                />
+                                                            );
+                                                        })
+                                                    ) : (
+                                                        <div className="table-empty-placeholder">No Strategem Data</div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="table-loadout-row-wrapper">
+                                            {game.players.map((player, loadoutIndex) => (
+                                                <div key={loadoutIndex} className="table-loadout-wrapper">
+                                                    {player?.weapons && player.weapons.length > 0 ? (
+                                                        player.weapons.map((item, itemIndex) => {
+                                                            const src = weaponsDict[item]?.image || INVALID_IMAGE;
+                                                            return (
+                                                                <img
+                                                                    key={itemIndex}
+                                                                    className={itemIndex === 0 ? 'primary-img-wrapper' :
+                                                                        itemIndex === 1 ? 'secondary-img-wrapper' :
+                                                                            'throwable-img-wrapper'}
+                                                                    src={src}
+                                                                    width={40}
+                                                                    alt=""
+                                                                    onError={(e) => {
+                                                                        e.target.onerror = null;
+                                                                        e.target.src = INVALID_IMAGE;
+                                                                    }}
+                                                                />
+                                                            );
+                                                        })
+                                                    ) : (
+                                                        <div className="table-empty-placeholder">No Weapon Data</div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <ScreenshotToggle id={game.id} alt="" />
+                                    </td>
+                                    <td className="text-small">{game.difficulty}</td>
+
+                                    <td className="text-small">
+                                        <div>{new Date(game.createdAt).toLocaleString('en-GB', {
+                                            day: '2-digit',
+                                            month: '2-digit',
+                                            year: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false
+                                        })}</div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>}
+
+                {isMobile &&
+                    <Table striped bordered hover size="sm" variant="dark">
+                        <tbody>
+                            {currentPageData.map((game, index) => (
+                                <tr key={index}>
+                                    <td className="text-small">
+                                        <div className="text-small table-text-mobile">Planet: {game.planet} </div>
+                                        <div className="text-small table-text-mobile">Mission: {game.mission}</div>
+                                        <div className="text-small table-text-mobile">Difficulty: {game.difficulty}</div>
+                                        <div className="text-small table-text-mobile">Recorded: {new Date(game.createdAt).toLocaleString('en-GB', {
+                                            day: '2-digit',
+                                            month: '2-digit',
+                                            year: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false
+                                        })}</div>
+
+                                        <div className="table-loadout-row-wrapper">
+                                            {game.players.map((player, loadoutIndex) => (
+                                                <>
+                                                    <div className="table-loadout-wrapper">
+                                                        {player?.strategem && player.strategem.length > 0 ? (
+                                                            player.strategem.map((item, itemIndex) => {
+                                                                const src = strategemsDict[item]?.image || INVALID_IMAGE;
+                                                                return (
+                                                                    <img
+                                                                        key={itemIndex}
+                                                                        className="table-img-wrapper"
+                                                                        src={src}
+                                                                        alt=""
+                                                                        onError={(e) => {
+                                                                            e.target.onerror = null;
+                                                                            e.target.src = INVALID_IMAGE;
+                                                                        }}
+                                                                    />
+                                                                );
+                                                            })
+                                                        ) : (
+                                                            <div className="table-empty-placeholder">No Strategem Data</div>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="table-loadout-wrapper">
+                                                        {player?.weapons && player.weapons.length > 0 ? (
+                                                            player.weapons.map((item, itemIndex) => {
+                                                                const src = weaponsDict[item]?.image || INVALID_IMAGE;
+                                                                return (
+                                                                    <img
+                                                                        key={itemIndex}
+                                                                        className={itemIndex === 0 ? 'primary-img-wrapper' : itemIndex === 1 ? 'secondary-img-wrapper' : 'throwable-img-wrapper'}
+                                                                        src={src}
+                                                                        width={40}
+                                                                        alt=""
+                                                                        onError={(e) => {
+                                                                            e.target.onerror = null;
+                                                                            e.target.src = INVALID_IMAGE;
+                                                                        }}
+                                                                    />
+                                                                );
+                                                            })
+                                                        ) : (
+                                                            <div className="table-empty-placeholder">No Weapon Data</div>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="table-divider" />
+                                                </>
+                                            ))}
+                                        </div>
+
+                                        <ScreenshotToggle id={game.id} alt="" />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>}
             </Loader>
         </div>
     );
+
 }
 
 export default GamesTable;

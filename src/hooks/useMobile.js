@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export const useMobile = () => {
     const sizes = {
-        mobile: 900
+        mobile: 992
     };
     const [screenSize, setScreenSize] = useState({width: window.innerWidth});
 

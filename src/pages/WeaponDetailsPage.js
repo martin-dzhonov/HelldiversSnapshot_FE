@@ -21,7 +21,7 @@ import {
 import ItemFilters from "../components/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
 import { useItemDetails } from "../hooks/useItemDetails";
-import StratagemRanks from "../components/StratagemRanks";
+import StrategemRanks from "../components/StrategemRanks";
 import CompanionCharts from "../components/CompanionCharts";
 import useItemFilter from "../hooks/useItemFilter";
 import ItemMiscCharts from "../components/ItemMiscCharts";
@@ -59,7 +59,6 @@ function WeaponDetailsPage() {
     useEffect(() => {
         if (data) {
             const trendCharts = getTrendCharts(data, filters, id);
-            console.log(trendCharts);
 
             setCharts((prev) => ({
                 ...prev,
@@ -70,7 +69,7 @@ function WeaponDetailsPage() {
 
     useEffect(() => {
         if (strategemData?.total?.loadouts > 0) {
-            const miscCharts = getItemMiscCharts(strategemData, id);
+            const miscCharts = getItemMiscCharts(strategemData, id, isMobile);
             const companions = getCompanionChartData(strategemData);
 
             setCharts((prev) => ({
@@ -79,7 +78,7 @@ function WeaponDetailsPage() {
                 companions,
             }));
         }
-    }, [strategemData]);
+    }, [strategemData, isMobile]);
 
     const updateFilter = (key, value) => {
         if (key === "patch") {
@@ -93,7 +92,7 @@ function WeaponDetailsPage() {
     return (
         <div className="content-wrapper">
             <div className="row">
-                <div className="col-lg-6 col-md-12 col-sm-12">
+                <div className="col-12 col-lg-6 col-md-12 col-sm-12">
                     <div className="weapon-title">
                         {id &&
                             <div className={`${weaponsDict[id].category === "Throwable" ?
@@ -106,6 +105,8 @@ function WeaponDetailsPage() {
                         </div>
                     </div>
                 </div>
+                {isMobile &&  <div className="strategem-divider"></div>}
+
                 <ItemFilters filters={filters} setFilters={setFilters} />
             </div>
 
@@ -117,7 +118,7 @@ function WeaponDetailsPage() {
                         <div className="row">
                             {strategemData && (
                                 <div className="col-lg-6 col-sm-12">
-                                    <StratagemRanks
+                                    <StrategemRanks
                                         strategemValues={strategemData}
                                         id={id}
                                         filters={filters}
@@ -128,7 +129,7 @@ function WeaponDetailsPage() {
 
                             {charts.faction && (
                                 <div className="col-lg-3 col-sm-12">
-                                    <div className="stratagem-graph-wrapper-faction">
+                                    <div className="strategem-graph-wrapper-faction">
                                         <BarChart
                                             data={charts.faction}
                                             options={charts.faction.options}
@@ -142,7 +143,7 @@ function WeaponDetailsPage() {
 
                             {charts.patch && (
                                 <div className="col-lg-3 col-sm-12">
-                                    <div className="stratagem-graph-wrapper-patch">
+                                    <div className="strategem-graph-wrapper-patch">
                                         <PatchChart
                                             data={charts.patch}
                                             itemID={id}

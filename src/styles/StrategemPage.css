@@ -6,34 +6,37 @@
     width: 100%;
 }
 
-.stratagem-title {
+.strategem-title {
     display: flex;
     flex-direction: row;
     width: 100%;
     margin-top: 15px;
+    padding-bottom: 12px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-title {
+@media only screen and (max-width: 992px) {
+    .strategem-title {
         display: flex;
         flex-direction: row;
         width: 100%;
-        justify-content: center;
-    }
-}
-@media only screen and (max-width: 900px) {
-    .stratagem-title {
         justify-content: center;
         font-size: 30px;
     }
 }
 
-.stratagem-title-img {
+.strategem-title-img {
     width: 100px;
     height: 100px;
 }
 
-.stratagem-title-text {
+@media only screen and (max-width: 992px) {
+    .strategem-title-img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.strategem-title-text {
     color: white;
     font-size: 32px;
     font-family: "CustomFont";
@@ -42,21 +45,24 @@
     padding: 0px 0px 5px 20px;
 }
 
-.stratagem-filters-container {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
+@media only screen and (max-width: 992px) {
+    .strategem-title-text {
+        align-items: flex-end;
+        font-size: 22px;
+        padding: 0px 0px 5px 0px;
+        margin-left: 10px;
+    }
 }
 
-.stratagem-filter-container {
+.strategem-filter-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px 0px 15px 15px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-filter-container {
+@media only screen and (max-width: 992px) {
+    .strategem-filter-container {
         justify-content: center;
         align-items: flex-start;
         padding: 0px 0px 10px 0px;
@@ -68,7 +74,7 @@
     border-top: 1px solid white;
 }
 
-.stratagem-graph-wrapper-faction {
+.strategem-graph-wrapper-faction {
     border-radius: 15px;
     height: 220px;
     width: 100%;
@@ -76,39 +82,40 @@
     margin-top: 5px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-graph-wrapper-faction {
+@media only screen and (max-width: 992px) {
+    .strategem-graph-wrapper-faction {
         margin-top: 20px;
+        padding: 0px 12px;
         height: 180px;
     }
 }
 
-.stratagem-graph-wrapper-patch {
+.strategem-graph-wrapper-patch {
     height: 240px;
     width: 100%;
     margin-top: 5px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-graph-wrapper-patch {
+@media only screen and (max-width: 992px) {
+    .strategem-graph-wrapper-patch {
         height: 200px;
         padding-right: 15px;
     }
 }
 
-.stratagem-mission-graph-wrapper {
+.strategem-mission-graph-wrapper {
     padding: 5px 10px !important;
     height: 100px;
     width: 100%;
 }
 
-.stratagem-level-graph-wrapper {
+.strategem-level-graph-wrapper {
     padding: 5px 10px !important;
     height: 200px;
     width: 100%;
 }
 
-.stratagem-graph-title {
+.strategem-graph-title {
     color: white;
     font-size: 22px;
     padding-top: 15px;
@@ -118,7 +125,7 @@
     font-family: "CustomFont";
 }
 
-.stratagem-graphs-title {
+.strategem-graphs-title {
     padding-top: 5px;
     padding-left: 16px;
     padding-bottom: 5px;
@@ -127,26 +134,26 @@
     font-family: "CustomFont";
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-graphs-title {
+@media only screen and (max-width: 992px) {
+    .strategem-graphs-title {
         padding-top: 20px;
     }
 }
 
-.stratagem-other-graph-wrapper {
+.strategem-other-graph-wrapper {
     padding: 0px 10px !important;
     margin-bottom: 20px;
     height: 160px;
     width: 100%;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-other-graph-wrapper {
+@media only screen and (max-width: 992px) {
+    .strategem-other-graph-wrapper {
         margin-top: 20px;
     }
 }
 
-.stratagem-loadouts-wrapper {
+.strategem-loadouts-wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -155,8 +162,8 @@
     padding-left: 15px;
 }
 
-@media only screen and (max-width: 900px) {
-    .stratagem-loadouts-wrapper {
+@media only screen and (max-width: 992px) {
+    .strategem-loadouts-wrapper {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -164,21 +171,21 @@
     }
 }
 
-.stratagem-loadouts-section-wrapper {
+.strategem-loadouts-section-wrapper {
     padding: 15px 0px 10px 0px;
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
-.stratagem-loadouts-title {
+.strategem-loadouts-title {
     font-family: "CustomFont", sans-serif;
     color: white;
     padding: 5px 5px 0px 5px;
     font-size: 19px;
 }
 
-.stratagem-other-title {
+.strategem-other-title {
     font-family: "CustomFont", sans-serif;
     color: white;
     padding: 10px 5px 0px 5px;
@@ -194,7 +201,7 @@
     margin-top: 100px;
 }
 
-.strategem-section-placeholder{
+.strategem-section-placeholder {
     width: 100%;
     height: 400px;
 }

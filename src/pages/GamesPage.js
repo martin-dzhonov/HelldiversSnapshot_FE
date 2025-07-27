@@ -22,11 +22,9 @@ function GamesPage() {
     return (
         <div className="content-wrapper">
             <GamesFilters filters={filters} setFilters={setFilters} />
-            <div className="tabs-container">
-                <div className="end-element">
-                    <div className='filters-result-text'>
-                        Games: {filterResults}
-                    </div>
+            <div className="games-filters-container">
+                <div className='filters-result-text'>
+                    Games: {filterResults}
                 </div>
             </div>
             <div className="show-games-table-wrapper">

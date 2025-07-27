@@ -21,7 +21,7 @@
     font-family: 'CustomFont';
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .groups-title-text-wrapper {
         color: white;
         font-size: 19px;
@@ -43,7 +43,7 @@
     gap: 6px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .group-container {
         justify-content: center;
     }
@@ -56,7 +56,7 @@
     width: 140px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .armory-item-wrapper{
         width: 100px;
     }
@@ -72,7 +72,7 @@
     font-family: 'CustomFont';
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .armory-item-name {
         width: 90px;
         font-size: 14px;
@@ -120,7 +120,7 @@
     gap: 32px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .weapons-group-container {
         justify-content: center;
     }
