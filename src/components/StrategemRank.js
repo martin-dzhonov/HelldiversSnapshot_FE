@@ -1,4 +1,6 @@
 import "../styles/App.css";
+import "../styles/StrategemRank.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getCountingSuffix } from "../utils";
 import useMobile from "../hooks/useMobile";

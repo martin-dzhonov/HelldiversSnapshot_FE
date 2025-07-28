@@ -1,0 +1,118 @@
+
+.table-loadout-wrapper {
+    display: flex;
+    direction: row;
+    gap: 12px;
+}
+
+.table-loadout-row-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    padding: 5px 20px;
+}
+
+@media only screen and (max-width: 992px) {
+    .table-loadout-row-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+    }
+}
+
+.table-text-mobile {
+    padding: 4px 10px;
+}
+
+.table-divider {
+    height: 12px;
+}
+
+.table-empty-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 260px;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+
+.screenshot-toggle-text {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0px 12px 12px 12px;
+}
+
+@media only screen and (max-width: 992px) {
+    .pagination {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding: 0px 12px 12px 12px;
+    }
+
+}
+
+.pagination button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: #373b3e;
+    color: white;
+    border: 1px solid #444;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination button.active {
+    background-color: #555;
+    font-weight: bold;
+}
+
+.pagination button:disabled {
+    background-color: #222;
+    cursor: not-allowed;
+}
+
+.games-filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.games-filters-result-text {
+    color: white;
+    font-family: 'CustomFont';
+    font-size: 17px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .games-filters-container {
+        justify-content: center;
+        padding: 0px 0px 20px 0px;
+    }
+}
+
+.table-img-wrapper {
+    height: 56px;
+    width: 56px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid white;
+}

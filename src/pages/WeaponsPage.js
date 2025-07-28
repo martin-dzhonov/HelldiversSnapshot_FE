@@ -26,18 +26,14 @@ const defaultFilters = {
     patch: patchPeriods[patchPeriods.length - 1],
 };
 
+const defaultFilterResults = {games: 0, loadouts: 0};
+
 function WeaponsPage() {
     const [filters, setFilters] = useFilter('weapons', defaultFilters);
-    const [filterResults, setFilterResults] = useState({
-        games: 0,
-        loadouts: 0
-    });
+    const [filterResults, setFilterResults] = useState(defaultFilterResults);
     const { data, isLoading } = useReports(filters);
     const [chartData, setChartData] = useState(null);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
-
-   
-
 
     useEffect(() => {
         if (data) {
@@ -54,15 +50,16 @@ function WeaponsPage() {
 
     return (
         <div className="content-wrapper">
-            <Filters filters={filters} type={1} setFilters={setFilters} />
+            <Filters filters={filters} setFilters={setFilters} />
+
             <ChartLegend
                 items={legendItems}
                 onCheckChange={handleLegendCheck}
                 filterResults={filterResults} />
+
             <Loader loading={isLoading}>
                 {chartData &&
                     <StrategemChart
-                        type="weapons"
                         barData={chartData.data}
                         options={chartData.options}
                         filters={filters}

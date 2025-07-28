@@ -1,0 +1,45 @@
+.about-wrapper {
+    min-height: 100vh;
+    height: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+    .about-wrapper  {
+        padding: 0px 15px;
+    }
+}
+
+.about-text-title {
+    font-size: 30px;
+    font-family: "CustomFont";
+    color: white;
+    padding-top: 30px;
+}
+
+.about-text {
+    font-family: "CustomFont";
+    color: white;
+    font-size: 22px;
+    padding: 12px 20px;
+}
+
+.about-text-title-highlight {
+    color: #e74c3c;
+}
+
+.about-text-padded {
+    padding-left: 20px;
+    padding-top: 0;
+}
+
+.about-text-large {
+    font-size: 26px;
+    font-family: "CustomFont";
+    color: white;
+    padding: 20px 0px 10px 0px;
+}
+
+.about-text-contact {
+    padding-left: 20px;
+    padding-top: 10px;
+}

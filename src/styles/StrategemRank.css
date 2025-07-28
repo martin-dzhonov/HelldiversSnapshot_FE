@@ -1,0 +1,78 @@
+
+.strategem-rankings-item {
+    color: white;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    font-size: 30px;
+    padding-left: 15px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.strategem-rankings-underline {
+    position: relative;
+    top: -20px;
+    border: 2px solid white;
+}
+
+.strategem-rankings-number {
+    font-family: "CustomFont";
+    font-size: 66px;
+}
+
+.strategem-rankings-number-small {
+    font-family: "CustomFont";
+    font-size: 30px;
+}
+
+.strategem-rankings-text-wrapper {
+    padding-top: 18px;
+    padding-left: 3px;
+}
+
+.strategem-rankings-text-small {
+    font-family: "CustomFont", sans-serif;
+    font-size: 19px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+}
+
+@media only screen and (max-width: 992px) {
+
+    .strategem-rankings-item {
+        height: 70px;
+        justify-content: center;
+        display: flex;
+    }
+
+    .strategem-rankings-number {
+        font-size: 50px;
+    }
+
+    .strategem-rankings-number-small {
+        font-family: "CustomFont";
+        font-size: 25px;
+    }
+
+    .strategem-rankings-text-small {
+        font-size: 18px;
+    }
+
+    .strategem-rankings-text-wrapper {
+        padding-top: 5px;
+    }
+}
+
+.strategem-rankings-text {
+    font-family: "CustomFont", sans-serif;
+    letter-spacing: 2px;
+    display: inline-block;
+    font-size: 32px;
+    transform-origin: 0 0;
+    margin-bottom: -50%;
+    font-size: 26px;
+    padding-left: 10px;
+    padding-bottom: 2px;
+}

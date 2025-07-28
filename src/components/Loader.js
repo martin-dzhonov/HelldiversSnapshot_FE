@@ -1,4 +1,5 @@
 import '../styles/App.css';
+import '../styles/Loader.css';
 
 function Loader({ loading = true, children }) {
 

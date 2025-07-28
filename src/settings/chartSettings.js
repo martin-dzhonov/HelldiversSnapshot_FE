@@ -191,14 +191,7 @@ export const patch = ({
                 },
                 color: "white",
                 callback: (value, index, values) => {
-                    // let labels = [
-                    //     "Classic",
-                    //     "Escalation of Freedom",
-                    //     "Omens of Tyranny",
-                    //     "Servants of Freedom",
-                    //     "Borderline Justice"
-                    // ];
-                     
+                    // let labels = patchNames;
                     // if (index === 0 || index === values.length - 1) {
                     //     return labels[index];
                     // }
@@ -252,7 +245,7 @@ export const weapons = ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 150 : 50 },
+        padding: { right: isDev ? 155 : 50 },
     },
     scales: {
         x: {

@@ -1,4 +1,7 @@
 import "../styles/App.css";
+import "../styles/GamesPage.css";
+
+
 import { strategemsDict, weaponsDict } from "../constants";
 import ScreenshotToggle from "./ScreenshotToggle";
 import Table from "react-bootstrap/Table";

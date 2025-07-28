@@ -26,7 +26,7 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const StrategemChart = ({ barData, filters, options, type = "base", legendItems, limit = 0 }) => {
+const StrategemChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
@@ -54,7 +54,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                         data: Object.values(data).map((item) => item?.values?.loadouts),
                         total: Object.values(data).map((item) => item?.total?.loadouts),
                         pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
-                        backgroundColor: Object.keys(data).map((item) => type === "armor" ? '#ffe433' : getItemColor(item)),
+                        backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
                         barThickness: options.barSize,
                     },
                 ],
@@ -144,7 +144,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
         let imageW = options.imageWidth;
         let imageH = options.imageHeight;
         let imageX = 0;
-        if (type === "weapons") {
+        if (filters.page === "weapons") {
             if(isMobile){
                 imageX = -10;
             }
@@ -154,7 +154,7 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
                 imageX = isDev ? 160 : isMobile ? 0 : 10;
             }
         }
-        if (type === "armor") {
+        if (filters.page === "armor") {
             imageX = isDev ? 205 : 0;
         }
 
@@ -253,11 +253,11 @@ const StrategemChart = ({ barData, filters, options, type = "base", legendItems,
     const onClick = (event) => {
         const { current: chart } = chartRef;
         if (!chart) { return; }
-        if (type === 'armor') { return; }
+        if (filters.page === 'armor') { return; }
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
             const itemId = Object.keys(data)[elementAtEvent[0].index];
-            navigate(`/${type}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
+            navigate(`/${filters.page}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
             window.scrollTo(0, 0);
         }
     }

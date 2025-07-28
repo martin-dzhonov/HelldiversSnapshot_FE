@@ -13,19 +13,10 @@ import StrategemChart from '../components/charts/StrategemChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
-    getFieldByFilters,
-    getFiltersCount,
-    getPatchDelta,
-    getTotalsByFilters,
-    itemsByCategory,
 } from '../utils';
 import ChartLegend from '../components/ChartLegend';
 
-import trendUpIcon from "../assets/icons/trendUp.svg";
-import trendDownIcon from "../assets/icons/trendDown.svg";
-import rankIcon from "../assets/icons/rank.svg";
-import playedIcon from "../assets/icons/people.svg";
-import levelIcon from "../assets/icons/level.svg";
+
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
@@ -72,7 +63,6 @@ function ArmorsPage() {
             <Loader loading={isLoading}>
                 {chartData &&
                     <StrategemChart
-                        type='armor'
                         barData={chartData.data}
                         options={chartData.options}
                         filters={filters}

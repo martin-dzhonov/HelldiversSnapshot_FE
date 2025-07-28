@@ -1,5 +1,7 @@
 import useMobile from '../hooks/useMobile';
 import '../styles/App.css';
+import '../styles/GamesPage.css';
+
 import React, { useState } from 'react';
 
 function ScreenshotToggle({ id }) {

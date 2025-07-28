@@ -1,4 +1,6 @@
 import "../styles/App.css";
+import "../styles/Navigation.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/ArmoryPage.css";
 

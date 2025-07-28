@@ -25,12 +25,11 @@ const defaultFilters = {
   patch: patchPeriods[patchPeriods.length - 1],
 };
 
+const defaultFilterResults = {games: 0, loadouts: 0};
+
 function StrategemsPage() {
   const [filters, setFilters] = useFilter('strategems', defaultFilters);
-  const [filterResults, setFilterResults] = useState({
-    games: 0,
-    loadouts: 0
-  });
+  const [filterResults, setFilterResults] = useState(defaultFilterResults);
   const { data, isLoading } = useReports(filters);
   const [chartData, setChartData] = useState(null);
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
@@ -58,7 +57,6 @@ function StrategemsPage() {
       <Loader loading={isLoading}>
         {chartData &&
           <StrategemChart
-            type='strategem'
             barData={chartData.data}
             options={chartData.options}
             filters={filters}

@@ -1,4 +1,5 @@
 import "../styles/App.css";
+import "../styles/AboutPage.css";
 
 function AboutPage() {
     return (
