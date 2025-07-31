@@ -1,4 +1,13 @@
 
+const imageModules = require.context('./assets/chart_assets', false, /\.(svg|png|webp)$/);
+
+const createItem = (baseName, fullName, category, ext = "svg") => ({
+    image: imageModules(`./${baseName}.${ext}`),
+    name: baseName,
+    nameFull: fullName,
+    category,
+});
+
 const isDev = false;
 //const apiBaseUrl = 'http://localhost:8080'
 const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
@@ -108,45 +117,26 @@ const missionNames = [
     ],
 ];
 
-const missionModifiers = [
-    "Complex Strategem Plotting",
-    "AA Defences",
-    "Orbital Fluctuations",
-    "Gunship Patrols",
-    "Atmospheric Spores",
-    "Roving Shriekers",
-    "Atmospheric Interference"
-];
-
-const imageModules = require.context('./assets/chart_assets', false, /\.(svg|png|webp)$/);
-
-const createItem = (baseName, fullName, category, ext = "svg") => ({
-    image: imageModules(`./${baseName}.${ext}`),
-    name: baseName,
-    nameFull: fullName,
-    category,
-});
-
 const armorsDict = {
-    'SERVO-ASSISTED': createItem("Servo-Assisted", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'FORTIFIED': createItem("Fortified", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'EXTRA PADDING': createItem("Extra Padding", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'MED-KIT': createItem("Med-Kit", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'ENGINEERING KIT': createItem("Engineering Kit", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'INFLAMMABLE': createItem("Inflammable", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'ADVANCED FILTRATION': createItem("Advanced Filtration", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'SIEGE-READY': createItem("Siege-Ready", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'GUNSLINGER': createItem("Gunslinger", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'DEMOCRACY PROTECTS': createItem("Democracy Protects", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'SCOUT': createItem("Scout", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'ELECTRICAL CONDUIT': createItem("Electrical Conduit", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'UNFLINCHING': createItem("Unflinching", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'ACCLIMATED': createItem("Acclimated", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'INTEGRATED EXPLOSIVES': createItem("Integrated Explosives", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'REINFORCED EPAULETTES': createItem("Reinforced Epaulettes", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'PEAK PHYSIQUE': createItem("Peak Physique", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'BALLISTIC PADDING': createItem("Ballistic Padding", "LIFT-850 Jump Pack", "Support", 'webp'),
-    'ADRENO-DEFIBRILLATOR': createItem('Adreno-Defibrillator', "LIFT-850 Jump Pack", "Support", 'webp'),
+    'SERVO-ASSISTED': createItem("Servo-Assisted", "", "", 'webp'),
+    'FORTIFIED': createItem("Fortified", "", "", 'webp'),
+    'EXTRA PADDING': createItem("Extra Padding", "", "", 'webp'),
+    'MED-KIT': createItem("Med-Kit", "", "", 'webp'),
+    'ENGINEERING KIT': createItem("Engineering Kit", "", "", 'webp'),
+    'INFLAMMABLE': createItem("Inflammable", "", "", 'webp'),
+    'ADVANCED FILTRATION': createItem("Advanced Filtration", "", "", 'webp'),
+    'SIEGE-READY': createItem("Siege-Ready", "", "", 'webp'),
+    'GUNSLINGER': createItem("Gunslinger", "", "", 'webp'),
+    'DEMOCRACY PROTECTS': createItem("Democracy Protects", "", "", 'webp'),
+    'SCOUT': createItem("Scout", "", "", 'webp'),
+    'ELECTRICAL CONDUIT': createItem("Electrical Conduit", "", "", 'webp'),
+    'UNFLINCHING': createItem("Unflinching", "", "", 'webp'),
+    'ACCLIMATED': createItem("Acclimated", "", "", 'webp'),
+    'INTEGRATED EXPLOSIVES': createItem("Integrated Explosives", "", "", 'webp'),
+    'REINFORCED EPAULETTES': createItem("Reinforced Epaulettes", "", "", 'webp'),
+    'PEAK PHYSIQUE': createItem("Peak Physique", "", "", 'webp'),
+    'BALLISTIC PADDING': createItem("Ballistic Padding", "", "", 'webp'),
+    'ADRENO-DEFIBRILLATOR': createItem('Adreno-Defibrillator', "", "", 'webp'),
 };
 
 const strategemsDict = {
@@ -233,7 +223,7 @@ const weaponsDict = {
     liberator_car: createItem("Liberator Carabine", "AR-23A Liberator Carabine", "Primary", 'webp'),
     sta_52: createItem("StA-52", "StA-52 Assault Rifle", "Primary", 'webp'),
     tenderizer: createItem("Tenderizer", "AR-61 Tenderizer", "Primary", 'webp'),
-    adjucator: createItem("Adjucator", "BR-14 Adjucator", "Primary", 'webp'),
+    adjucator: createItem("Adjudicator", "BR-14 Adjudicator", "Primary", 'webp'),
     constitution: createItem("Constitution", "R-2124 Constitution", "Primary", 'webp'),
     diligence: createItem("Diligence", "R-63 Diligence", "Primary", 'webp'),
     diligence_cs: createItem("Diligence Counter Sniper", "R-63CS Diligence Counter Sniper", "Primary", 'webp'),
@@ -303,6 +293,56 @@ const weaponsDict = {
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };
 
+const itemsChartConfig = {
+    imageDimensions: {
+        weapons: {
+            Primary: {
+                dev: { imageX: 0 },
+                mobile: { imageX: -10 },
+                prod: { imageX: 0 },
+            },
+            Secondary: {
+                dev: { imageX: 0 },
+                mobile: { imageX: -10 },
+                prod: { imageX: 0 },
+            },
+            Throwable: {
+                dev: { imageW: 200, imageH: 200, imageX: 160 },
+                mobile: { imageW: 70, imageH: 70, imageX: 0 },
+                prod: { imageW: 70, imageH: 70, imageX: 10 },
+            },
+        },
+        armor: {
+            dev: { imageX: 205 },
+            prod: { imageX: 0 },
+            mobile: { imageX: 0 },
+
+        },
+        strategem: {
+            dev: { imageX: 0 },
+            prod: { imageX: 0 },
+            mobile: { imageX: 0 },
+        },
+    },
+
+    chartYOffset: {
+        strategem: { dev: 85, prod: 45 },
+        weapons: { dev: 140, prod: 50 },
+        armor: { dev: 80, prod: 45 },
+    },
+
+    chartXOffset: {
+        strategem: { dev: 135, prod: 72 },
+        armor: { dev: 235, prod: 70 },
+        weapons: {
+            Primary: { dev: 440, prod: 145 },
+            Secondary: { dev: 440, prod: 145 },
+            Throwable: { dev: 280, prod: 75 },
+        },
+    },
+};
+
+
 export {
     isDev,
     strategemsDict,
@@ -321,5 +361,17 @@ export {
     missionTypes,
     weaponCategoryColors,
     itemsDict,
-    armorsDict
+    armorsDict,
+    itemsChartConfig
 };
+
+
+// const missionModifiers = [
+//     "Complex Strategem Plotting",
+//     "AA Defences",
+//     "Orbital Fluctuations",
+//     "Gunship Patrols",
+//     "Atmospheric Spores",
+//     "Roving Shriekers",
+//     "Atmospheric Interference"
+// ];

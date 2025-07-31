@@ -2,14 +2,12 @@
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
-import { useEffect, useState } from 'react'
-import { useMobile } from '../hooks/useMobile';
-import { apiBaseUrl, patchPeriods } from '../constants';
+import { useState } from 'react'
+import { patchPeriods } from '../constants';
 import GamesTable from '../components/GamesTable';
-import GamesFilters from '../components/GamesFilters';
+import GamesFilters from '../components/filters/GamesFilters';
 
 function GamesPage() {
-    const { isMobile } = useMobile()
     const [filters, setFilters] = useState({
         faction: "terminid",
         patch: patchPeriods[patchPeriods.length - 1],

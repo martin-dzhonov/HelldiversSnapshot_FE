@@ -1,8 +1,6 @@
 import "../styles/App.css";
 import "../styles/Navigation.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/ArmoryPage.css";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -10,7 +8,6 @@ import { navRoutes } from "../constants";
 import { useMobile } from "../hooks/useMobile";
 import hdlogo from "../assets/logos/hdlogo.svg";
 import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
 
 const containerVariants = {
   hidden: { opacity: 0 },

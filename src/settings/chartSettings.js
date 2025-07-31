@@ -1,4 +1,4 @@
-import { isDev, patchPeriods } from "../constants";
+import { isDev } from "../constants";
 import { getCountingSuffix } from "../utils";
 
 export const getSettingsWithMax = (settings, maxY) => {
@@ -238,8 +238,8 @@ export const weapons = ({
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 44 : 34,
-    imageWidth: isDev ? 420: 134,
-    imageHeight: isDev ? 200: 60,
+    imageW: isDev ? 420: 134,
+    imageH: isDev ? 200: 60,
     sectionSize: isDev ? 260: 75,
     elements: {
         bar: { borderWidth: 4 }
@@ -267,14 +267,13 @@ export const weapons = ({
     }
 });
 
-export const strategem = ({
-} = {}) => ({
+export const strategem = () => ({
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 40 : 30,
-    imageWidth: isDev ? 110 : 50,
-    imageHeight: isDev ? 110 : 50,
+    imageW: isDev ? 110 : 50,
+    imageH: isDev ? 110 : 50,
     sectionSize: isDev ? 140 : 70,
     elements: {
         bar: { borderWidth: 4 }
@@ -302,14 +301,13 @@ export const strategem = ({
     }
 });
 
-export const armor = ({
-} = {}) => ({
+export const armor = () => ({
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 40 : 30,
-    imageWidth: isDev ? 100 : 50,
-    imageHeight: isDev ? 100 : 50,
+    imageW: isDev ? 100 : 50,
+    imageH: isDev ? 100 : 50,
     sectionSize: isDev ? 230 : 70,
     elements: {
         bar: { borderWidth: 4 }
@@ -344,8 +342,8 @@ export const companions = ({
     responsive: true,
     maintainAspectRatio: false,
     barSize: 24,
-    imageWidth: 34,
-    imageHeight: 34,
+    imageW: 34,
+    imageH: 34,
     sectionSize: 36,
     elements: {
         bar: { borderWidth: 4 }
@@ -378,8 +376,8 @@ export const snapshotStrategem = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 40 : 30,
-    imageWidth: isDev ? 100 : 50,
-    imageHeight: isDev ? 100 : 50,
+    imageW: isDev ? 100 : 50,
+    imageH: isDev ? 100 : 50,
     sectionSize: isDev ? 140 : 70,
     elements: {
         bar: { borderWidth: 4 }
@@ -412,8 +410,8 @@ export const snapshotWeapons = {
     responsive: true,
     maintainAspectRatio: false,
     barSize: 34,
-    imageWidth: 134,
-    imageHeight: 60,
+    imageW: 134,
+    imageH: 60,
     sectionSize: 75,
     elements: {
         bar: { borderWidth: 4 }

@@ -9,27 +9,27 @@ function ChartLegend({ items, filterResults, onCheckChange }) {
                 {items.map((item, index) =>
                     <div className='legend-item-wrapper'>
                         <div className='legend-content'>
-                        <Form>
-                            <Form.Check.Input
-                                type="checkbox"
-                                className="round-checkbox"
-                                checked={item.check}
-                                onChange={() => onCheckChange(index)}
-                            />
-                        </Form>
-                        {item.icon && <img className='legend-icon' src={item.icon} />}
-                        <div className='text-small'>{item.name}</div>
+                            <Form>
+                                <Form.Check.Input
+                                    type="checkbox"
+                                    className="round-checkbox"
+                                    checked={item.check}
+                                    onChange={() => onCheckChange(index)}
+                                />
+                            </Form>
+                            {item.icon && <img className='legend-icon' src={item.icon} />}
+                            <div className='text-small'>{item.name}</div>
                         </div>
                     </div>
                 )}
+
+                {/* prevents layout breaking for legacy patches with no player level data */}
                 {items.length < 4 &&
                     <div className='legend-item-wrapper'>
-                    <div className='legend-content'>
-                
-                    <div className='text-small'></div>
-                    </div>
-                </div>
-                }
+                        <div className='legend-content'>
+                            <div className='text-small'></div>
+                        </div>
+                    </div>}
             </div>
 
             {filterResults &&

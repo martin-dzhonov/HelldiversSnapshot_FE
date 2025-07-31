@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function useFilter(key, initialValue) {
+export default function useFilter(initialValue) {
   const [state, setState] = useState(() => {
     try {
-      const stored = localStorage.getItem(key);
+      const stored = localStorage.getItem(initialValue.page);
       return stored ? JSON.parse(stored) : initialValue;
     } catch {
       return initialValue;
@@ -12,9 +12,9 @@ export default function useFilter(key, initialValue) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(key, JSON.stringify(state));
+      localStorage.setItem(initialValue.page, JSON.stringify(state));
     } catch {}
-  }, [key, state]);
+  }, [initialValue.page, state]);
 
   return [state, setState];
 }

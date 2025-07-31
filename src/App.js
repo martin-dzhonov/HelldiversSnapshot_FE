@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout";
-import ArmoryPage from "./pages/ArmoryPage";
+import GalleryPage from "./pages/GalleryPage";
 import StrategemsPage from "./pages/StrategemsPage";
 import StrategemDetailsPage from "./pages/StrategemDetailsPage";
 import AboutPage from "./pages/AboutPage";
@@ -45,7 +45,7 @@ function App() {
                     path="gallery"
                     element={
                         <Layout>
-                            <ArmoryPage />
+                            <GalleryPage />
                         </Layout>
                     }
                 ></Route>

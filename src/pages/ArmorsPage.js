@@ -2,21 +2,16 @@
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
-import { useEffect, useMemo, useState } from 'react'
-import { useMobile } from '../hooks/useMobile';
-import { apiBaseUrl, patchPeriods } from '../constants';
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import Filters from '../components/Filters';
+import { useEffect, useState } from 'react'
+import { patchPeriods } from '../constants';
+import Filters from '../components/filters/Filters';
 import Loader from '../components/Loader';
-import GamesTable from '../components/GamesTable';
-import StrategemChart from '../components/charts/StrategemChart';
+import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
 } from '../utils';
 import ChartLegend from '../components/ChartLegend';
-
-
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
@@ -31,11 +26,8 @@ const defaultFilters = {
 };
 
 function ArmorsPage() {
-    const [filters, setFilters] = useFilter('armor', defaultFilters);
-    const [filterResults, setFilterResults] = useState({
-        games: 0,
-        loadouts: 0
-    });
+    const [filters, setFilters] = useFilter(defaultFilters);
+    const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
     const { data, isLoading } = useReports(filters);
     const [chartData, setChartData] = useState(null);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
@@ -53,7 +45,7 @@ function ArmorsPage() {
 
     return (
         <div className="content-wrapper">
-            <Filters filters={filters} type={0} setFilters={setFilters} />
+            <Filters filters={filters} setFilters={setFilters} />
 
             <ChartLegend
                 items={legendItems}
@@ -62,7 +54,7 @@ function ArmorsPage() {
 
             <Loader loading={isLoading}>
                 {chartData &&
-                    <StrategemChart
+                    <ImageChart
                         barData={chartData.data}
                         options={chartData.options}
                         filters={filters}

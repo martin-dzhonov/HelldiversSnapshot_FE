@@ -16,7 +16,7 @@ export function useItemDetails({id, filters}) {
   return useQuery({
     queryKey,
     queryFn,
-    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+    staleTime: 20 * 60 * 1000, // 20 min
     refetchOnWindowFocus: false,
   });
 }

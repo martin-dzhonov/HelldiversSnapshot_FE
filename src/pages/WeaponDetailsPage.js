@@ -1,7 +1,6 @@
 import "../styles/App.css";
 import "../styles/WeaponDetailsPage.css";
 
-import "../styles/StrategemPage.css";
 import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
@@ -9,7 +8,6 @@ import BarChart from "../components/charts/BarChart";
 import Loader from "../components/Loader";
 import {
     patchPeriods,
-    strategemsDict,
     factions,
     weaponsDict,
 } from "../constants";
@@ -18,13 +16,13 @@ import {
     getItemMiscCharts,
     getTrendCharts
 } from "../utils";
-import ItemFilters from "../components/ItemFilters";
+import ItemFilters from "../components/filters/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
 import { useItemDetails } from "../hooks/useItemDetails";
-import StrategemRanks from "../components/StrategemRanks";
-import CompanionCharts from "../components/CompanionCharts";
+import ItemRankings from "../components/ItemRankings";
+import CompanionCharts from "../components/charts/CompanionCharts";
 import useItemFilter from "../hooks/useItemFilter";
-import ItemMiscCharts from "../components/ItemMiscCharts";
+import ItemMiscCharts from "../components/charts/ItemMiscCharts";
 import ItemErrorWrapper from "../components/ItemErrorWrapper";
 
 const defaultFilters = {
@@ -65,7 +63,7 @@ function WeaponDetailsPage() {
                 ...trendCharts,
             }));
         }
-    }, [data, filters]);
+    }, [data, id, filters]);
 
     useEffect(() => {
         if (strategemData?.total?.loadouts > 0) {
@@ -78,7 +76,7 @@ function WeaponDetailsPage() {
                 companions,
             }));
         }
-    }, [strategemData, isMobile]);
+    }, [strategemData, id, isMobile]);
 
     const updateFilter = (key, value) => {
         if (key === "patch") {
@@ -118,7 +116,7 @@ function WeaponDetailsPage() {
                         <div className="row">
                             {strategemData && (
                                 <div className="col-lg-6 col-sm-12">
-                                    <StrategemRanks
+                                    <ItemRankings
                                         strategemValues={strategemData}
                                         id={id}
                                         filters={filters}

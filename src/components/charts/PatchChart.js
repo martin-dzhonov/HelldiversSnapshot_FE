@@ -1,6 +1,6 @@
 import "../../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useMemo, useRef } from "react";
+import {  useMemo, useRef } from "react";
 
 import {
     Chart as ChartJS,
@@ -15,8 +15,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { getChartGradient, getItemColor } from "../../utils";
-import { patchPeriods } from "../../constants";
-import * as chartsSettings from "../../settings/chartSettings";
 
 ChartJS.register(
     CategoryScale,

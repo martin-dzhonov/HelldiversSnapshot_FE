@@ -4,9 +4,9 @@ import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
 import { patchPeriods } from '../constants';
-import Filters from '../components/Filters';
+import Filters from '../components/filters/Filters';
 import Loader from '../components/Loader';
-import StrategemChart from '../components/charts/StrategemChart';
+import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
   getChartData,
@@ -25,13 +25,13 @@ const defaultFilters = {
   patch: patchPeriods[patchPeriods.length - 1],
 };
 
-const defaultFilterResults = {games: 0, loadouts: 0};
-
 function StrategemsPage() {
-  const [filters, setFilters] = useFilter('strategems', defaultFilters);
-  const [filterResults, setFilterResults] = useState(defaultFilterResults);
+  const [filters, setFilters] = useFilter(defaultFilters);
+  const [filterResults, setFilterResults] = useState({games: 0, loadouts: 0});
   const { data, isLoading } = useReports(filters);
+
   const [chartData, setChartData] = useState(null);
+
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function StrategemsPage() {
 
   return (
     <div className="content-wrapper">
-      <Filters filters={filters} type={0} setFilters={setFilters} />
+      <Filters filters={filters} setFilters={setFilters} />
 
       <ChartLegend
         items={legendItems}
@@ -56,7 +56,7 @@ function StrategemsPage() {
 
       <Loader loading={isLoading}>
         {chartData &&
-          <StrategemChart
+          <ImageChart
             barData={chartData.data}
             options={chartData.options}
             filters={filters}

@@ -1,12 +1,13 @@
 
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
+
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
 import { patchPeriods } from '../constants';
-import Filters from '../components/Filters';
+import Filters from '../components/filters/Filters';
 import Loader from '../components/Loader';
-import StrategemChart from '../components/charts/StrategemChart';
+import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
@@ -15,7 +16,6 @@ import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
-import useMobile from '../hooks/useMobile';
 
 const defaultFilters = {
     page: "weapons",
@@ -29,7 +29,7 @@ const defaultFilters = {
 const defaultFilterResults = {games: 0, loadouts: 0};
 
 function WeaponsPage() {
-    const [filters, setFilters] = useFilter('weapons', defaultFilters);
+    const [filters, setFilters] = useFilter(defaultFilters);
     const [filterResults, setFilterResults] = useState(defaultFilterResults);
     const { data, isLoading } = useReports(filters);
     const [chartData, setChartData] = useState(null);
@@ -59,7 +59,7 @@ function WeaponsPage() {
 
             <Loader loading={isLoading}>
                 {chartData &&
-                    <StrategemChart
+                    <ImageChart
                         barData={chartData.data}
                         options={chartData.options}
                         filters={filters}
