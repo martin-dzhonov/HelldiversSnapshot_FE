@@ -89,8 +89,3 @@ function App() {
 }
 
 export default App;
-
-//fix tooltips
-//fix dynamic options passing/max
-//fix redirect on companions bar click
-//fix big chart labels

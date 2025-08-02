@@ -30,8 +30,3 @@ function DonateWidget() {
 }
 
 export default DonateWidget;
-
-// script.setAttribute(
-// 	"data-message",
-// 	"Popup message",
-// );

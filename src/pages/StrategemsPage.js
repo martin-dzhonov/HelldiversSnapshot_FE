@@ -15,6 +15,7 @@ import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import { useReports } from '../hooks/useReports';
 import useFilter from '../hooks/useFilter';
+import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
   page: "strategem",
@@ -65,6 +66,7 @@ function StrategemsPage() {
           />
         }
       </Loader>
+      <PartnerButton />
     </div >
   );
 }

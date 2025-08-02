@@ -1,9 +1,14 @@
 import "../styles/App.css";
 import "../styles/AboutPage.css";
+import DonateWidget from "../components/DonateWidget";
+import DonateButton from "../components/DonateButton";
 
 function AboutPage() {
     return (
         <div className="content-wrapper">
+            
+            <DonateButton />
+
             <div className="about-wrapper">
                 <div className="about-text-title">
                     Greetings Helldivers, and welcome to{" "}

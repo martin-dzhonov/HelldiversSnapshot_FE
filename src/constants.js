@@ -335,9 +335,9 @@ const itemsChartConfig = {
         strategem: { dev: 135, prod: 72 },
         armor: { dev: 235, prod: 70 },
         weapons: {
-            Primary: { dev: 440, prod: 145 },
-            Secondary: { dev: 440, prod: 145 },
-            Throwable: { dev: 280, prod: 75 },
+            Primary: { dev: 440, prod: 150 },
+            Secondary: { dev: 440, prod: 150 },
+            Throwable: { dev: 280, prod: 80 },
         },
     },
 };
