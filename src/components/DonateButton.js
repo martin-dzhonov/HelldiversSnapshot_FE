@@ -16,7 +16,7 @@ export default function DonateButton() {
     if (open && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
       setPosition({
-        top: rect.top - 600 + 20 - 80, // pushed way up to remove iframe margin space
+        top: rect.top - 600 + 20 - 80, 
         left: rect.left - 420 + 20,
       });
     }
@@ -62,7 +62,7 @@ export default function DonateButton() {
                 width: 420,
                 height: 630,
                 overflow: "hidden",
-                marginTop: "-20px", // crops top margin visually
+                marginTop: "-20px", 
                 borderRadius: 12,
                 boxShadow: "0 6px 30px rgba(0,0,0,0.25)",
                 background: "#fff",

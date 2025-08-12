@@ -2,7 +2,7 @@ import "../styles/App.css";
 import "../styles/ItemRank.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getCountingSuffix } from "../utils";
+import { getCountingSuffix } from "../utils/utils";
 import useMobile from "../hooks/useMobile";
 
 const ItemRank = ({ value, text, color, suffix = false, percent = false, active = false, onClick }) => {
@@ -17,9 +17,7 @@ const ItemRank = ({ value, text, color, suffix = false, percent = false, active 
                     </span>
                 )}
                 {percent && (
-                    <span className="strategem-rankings-number-small">
-                        %
-                    </span>
+                    <span className="strategem-rankings-number-small">%</span>
                 )}
                 {active && <div className="strategem-rankings-underline"></div>}
             </div>

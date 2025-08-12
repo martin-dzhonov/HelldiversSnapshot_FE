@@ -9,8 +9,7 @@ const createItem = (baseName, fullName, category, ext = "svg") => ({
 });
 
 const isDev = false;
-//const apiBaseUrl = 'http://localhost:8080'
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;//http://localhost:8080
 
 const navRoutes = [
     {
@@ -116,28 +115,6 @@ const missionNames = [
         "REPEL INVASION FLEET"
     ],
 ];
-
-const armorsDict = {
-    'SERVO-ASSISTED': createItem("Servo-Assisted", "", "", 'webp'),
-    'FORTIFIED': createItem("Fortified", "", "", 'webp'),
-    'EXTRA PADDING': createItem("Extra Padding", "", "", 'webp'),
-    'MED-KIT': createItem("Med-Kit", "", "", 'webp'),
-    'ENGINEERING KIT': createItem("Engineering Kit", "", "", 'webp'),
-    'INFLAMMABLE': createItem("Inflammable", "", "", 'webp'),
-    'ADVANCED FILTRATION': createItem("Advanced Filtration", "", "", 'webp'),
-    'SIEGE-READY': createItem("Siege-Ready", "", "", 'webp'),
-    'GUNSLINGER': createItem("Gunslinger", "", "", 'webp'),
-    'DEMOCRACY PROTECTS': createItem("Democracy Protects", "", "", 'webp'),
-    'SCOUT': createItem("Scout", "", "", 'webp'),
-    'ELECTRICAL CONDUIT': createItem("Electrical Conduit", "", "", 'webp'),
-    'UNFLINCHING': createItem("Unflinching", "", "", 'webp'),
-    'ACCLIMATED': createItem("Acclimated", "", "", 'webp'),
-    'INTEGRATED EXPLOSIVES': createItem("Integrated Explosives", "", "", 'webp'),
-    'REINFORCED EPAULETTES': createItem("Reinforced Epaulettes", "", "", 'webp'),
-    'PEAK PHYSIQUE': createItem("Peak Physique", "", "", 'webp'),
-    'BALLISTIC PADDING': createItem("Ballistic Padding", "", "", 'webp'),
-    'ADRENO-DEFIBRILLATOR': createItem('Adreno-Defibrillator', "", "", 'webp'),
-};
 
 const strategemsDict = {
     barrage_120: createItem("Orbital 120MM HE Barrage", "Orbital 120MM HE Barrage", "Eagle/Orbital"),
@@ -289,6 +266,28 @@ const weaponsDict = {
     grenade_pyro: createItem("Pyrotech", "G-142 Pyrotech", "Throwable", 'webp'),
     urchin: createItem("Urchin", "G-109 Urchin", "Throwable", 'webp'),
     grenade_arc: createItem("Arc", "G-31 Arc", "Throwable", 'webp'),
+};
+
+const armorsDict = {
+    'SERVO-ASSISTED': createItem("Servo-Assisted", "", "", 'webp'),
+    'FORTIFIED': createItem("Fortified", "", "", 'webp'),
+    'EXTRA PADDING': createItem("Extra Padding", "", "", 'webp'),
+    'MED-KIT': createItem("Med-Kit", "", "", 'webp'),
+    'ENGINEERING KIT': createItem("Engineering Kit", "", "", 'webp'),
+    'INFLAMMABLE': createItem("Inflammable", "", "", 'webp'),
+    'ADVANCED FILTRATION': createItem("Advanced Filtration", "", "", 'webp'),
+    'SIEGE-READY': createItem("Siege-Ready", "", "", 'webp'),
+    'GUNSLINGER': createItem("Gunslinger", "", "", 'webp'),
+    'DEMOCRACY PROTECTS': createItem("Democracy Protects", "", "", 'webp'),
+    'SCOUT': createItem("Scout", "", "", 'webp'),
+    'ELECTRICAL CONDUIT': createItem("Electrical Conduit", "", "", 'webp'),
+    'UNFLINCHING': createItem("Unflinching", "", "", 'webp'),
+    'ACCLIMATED': createItem("Acclimated", "", "", 'webp'),
+    'INTEGRATED EXPLOSIVES': createItem("Integrated Explosives", "", "", 'webp'),
+    'REINFORCED EPAULETTES': createItem("Reinforced Epaulettes", "", "", 'webp'),
+    'PEAK PHYSIQUE': createItem("Peak Physique", "", "", 'webp'),
+    'BALLISTIC PADDING': createItem("Ballistic Padding", "", "", 'webp'),
+    'ADRENO-DEFIBRILLATOR': createItem('Adreno-Defibrillator', "", "", 'webp'),
 };
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };

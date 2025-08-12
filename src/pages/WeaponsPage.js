@@ -11,11 +11,12 @@ import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
-} from '../utils';
+} from '../utils/utils';
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
+import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
     page: "weapons",
@@ -67,6 +68,8 @@ function WeaponsPage() {
                         limit={10}
                     />}
             </Loader>
+            <PartnerButton />
+
         </div >
     );
 }

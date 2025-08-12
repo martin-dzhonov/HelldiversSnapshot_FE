@@ -14,7 +14,7 @@ import {
     Filler
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { getChartGradient, getItemColor } from "../../utils";
+import { getChartGradient, getItemColor } from "../../utils/utils";
 
 ChartJS.register(
     CategoryScale,

@@ -5,17 +5,17 @@ import rankIcon from "../assets/icons/rank.svg";
 import playedIcon from "../assets/icons/people.svg";
 import levelIcon from "../assets/icons/level.svg";
 import useMobile from "./useMobile";
-import { getPatchId } from "../utils";
+import { getPatchId } from "../utils/utils";
 
-const useLegendItems = (setGraphData, filters) => {
+const useLegendItems = (setChartData, filters) => {
     const { isMobile } = useMobile()
-    const showPlayerLvl = filters.patch.id > getPatchId("Omens of Tyranny");
 
-    const trendsStart = filters.page === 'armor' ? 'Masters Of Ceremony' :
+    const trendStart = filters.page === 'armor' ? 'Masters Of Ceremony' :
         filters.page === 'weapons' ? "Servants of Freedom" :
             filters.faction === 'illuminate' ? "Omens of Tyranny" : "Classic";
-
-    const showTrends = filters.patch.id > getPatchId(trendsStart);
+            
+    const showTrends = filters.patch.id > getPatchId(trendStart);
+    const showPlayerLvl = filters.patch.id > getPatchId("Omens of Tyranny");
 
     const getLegendItems = () => [
         !isMobile && { name: "Name", icon: null, check: true },
@@ -44,11 +44,14 @@ const useLegendItems = (setGraphData, filters) => {
     }, [filters, isMobile]);
 
     const handleLegendCheck = (index) => {
+
         setLegendItems((prev) =>
-            prev.map((item, i) => (i === index ? { ...item, check: !item.check } : item))
+            prev.map((item, i) => 
+                (i === index ? { ...item, check: !item.check } : item))
         );
 
-        setGraphData((prev) => ({
+        //re-render chart
+        setChartData((prev) => ({
             ...prev,
             data: { ...prev.data }
         }));

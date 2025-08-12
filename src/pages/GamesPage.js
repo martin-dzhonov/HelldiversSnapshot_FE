@@ -7,14 +7,15 @@ import { patchPeriods } from '../constants';
 import GamesTable from '../components/GamesTable';
 import GamesFilters from '../components/filters/GamesFilters';
 
-function GamesPage() {
-    const [filters, setFilters] = useState({
-        faction: "terminid",
-        patch: patchPeriods[patchPeriods.length - 1],
-        difficulty: 0,
-        mission: "All"
-    });
+const defaultFilters = {
+    faction: "terminid",
+    patch: patchPeriods[patchPeriods.length - 1],
+    difficulty: 0,
+    mission: "All"
+};
 
+function GamesPage() {
+    const [filters, setFilters] = useState(defaultFilters);
     const [filterResults, setFilterResults] = useState(0);
 
     return (

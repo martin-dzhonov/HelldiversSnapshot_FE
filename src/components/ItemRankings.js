@@ -1,5 +1,5 @@
 import ItemRank from "./ItemRank";
-import { getItemColor } from "../utils";
+import { getItemColor } from "../utils/utils";
 import { itemsDict, patchPeriods } from "../constants";
 
 function ItemRankings({ strategemValues, id, filters, updateFilter }) {

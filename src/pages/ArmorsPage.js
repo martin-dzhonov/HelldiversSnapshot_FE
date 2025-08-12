@@ -10,11 +10,12 @@ import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
-} from '../utils';
+} from '../utils/utils';
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports } from '../hooks/useReports';
+import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
     page: "armor",
@@ -25,9 +26,11 @@ const defaultFilters = {
     patch: patchPeriods[patchPeriods.length - 1],
 };
 
+const defaultFilterResults = { games: 0, loadouts: 0 };
+
 function ArmorsPage() {
     const [filters, setFilters] = useFilter(defaultFilters);
-    const [filterResults, setFilterResults] = useState({ games: 0, loadouts: 0 });
+    const [filterResults, setFilterResults] = useState(defaultFilterResults);
     const { data, isLoading } = useReports(filters);
     const [chartData, setChartData] = useState(null);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
@@ -35,6 +38,7 @@ function ArmorsPage() {
     useEffect(() => {
         if (data) {
             const { chartData, totals } = getChartData(data, filters);
+
             setChartData({
                 data: chartData,
                 options: chartsSettings.armor()
@@ -63,6 +67,7 @@ function ArmorsPage() {
                     />
                 }
             </Loader>
+            <PartnerButton />
         </div >
     );
 }

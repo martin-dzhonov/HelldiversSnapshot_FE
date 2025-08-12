@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { patchPeriods } from "../constants";
 
 const paramMap = {
-  f: "faction",
   p: "patch",
+  f: "faction",
   fmt: "format",
 };
 

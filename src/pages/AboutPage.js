@@ -1,14 +1,10 @@
 import "../styles/App.css";
 import "../styles/AboutPage.css";
-import DonateWidget from "../components/DonateWidget";
 import DonateButton from "../components/DonateButton";
 
 function AboutPage() {
     return (
         <div className="content-wrapper">
-            
-            <DonateButton />
-
             <div className="about-wrapper">
                 <div className="about-text-title">
                     Greetings Helldivers, and welcome to{" "}
@@ -26,7 +22,7 @@ function AboutPage() {
                 </div>
                 <div className="about-text">
                     &#8226; Screenshot data is read by OCR scripts parsing
-                    player loadouts, mission difficulty, type, planet, faction, etc
+                    player loadouts, difficulty level, planet, faction, etc
                 </div>
                 <div className="about-text">
                     &#8226; Data is then visualized into hopefully easy-to-read graphs and trends
@@ -54,6 +50,8 @@ function AboutPage() {
                     message us on{" "}
                     <a href="https://www.reddit.com/user/Natural-Sympathyy">Reddit</a>.
                 </div>
+
+                <DonateButton />
             </div>
         </div>
     );

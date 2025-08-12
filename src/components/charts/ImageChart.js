@@ -13,7 +13,8 @@ import {
     Tooltip,
 } from "chart.js";
 import { isDev, itemsDict, itemsChartConfig as config } from "../../constants";
-import { getItemColor } from "../../utils";
+import { getItemColor } from "../../utils/utils";
+import { formatValue, getValueColor, getValueRaw } from "../../utils/chartUtils";
 import useMobile from "../../hooks/useMobile";
 
 ChartJS.register(
@@ -52,8 +53,8 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
                 datasets: [
                     {
                         data: Object.values(data).map((item) => item?.values?.loadouts),
-                        total: Object.values(data).map((item) => item?.total?.loadouts),
                         pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
+                        total: Object.values(data).map((item) => item?.total?.loadouts),
                         backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
                         barThickness: options.barSize,
                     },
@@ -87,48 +88,23 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
         }
     }, [itemsDict]);
 
-    const getValueRaw = (item, valuesRaw) => {
-        const { name, category } = item;
 
-        const map = {
-            'Times played': () => valuesRaw.total.loadouts.toString(),
-            'Avg. Level': () => {
-                const level = valuesRaw?.values?.avgLevel ?? '';
-                return level.toString();
-            },
-            'Rank Trend': () => {
-                let rankValue = valuesRaw.pastValues.rank - valuesRaw.values.rank;
-                if (category && category !== 'All') {
-                    rankValue = valuesRaw.pastValues.rank_category - valuesRaw.values.rank_category;
-                }
-                return valuesRaw.values.isNew ? 'New' : rankValue;
-            },
-            'Pick Rate Trend': () => {
-                return valuesRaw.values.isNew
-                    ? 'New'
-                    : Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
-            },
-        };
-
-        return map[name]?.();
+    const getChartYOffset = () => {
+        const offsets = config.chartYOffset[filters.page];
+        if (!offsets) return 0;
+        return isDev ? offsets.dev : offsets.prod;
     };
 
-    const formatValue = (name, value) => {
-        if (!Number.isFinite(value)) return value;
-        const sign = value > 0 ? '+' : '';
-        const isPercent = name === 'Pick Rate Trend';
-        return `${sign}${value}${isPercent ? '%' : ''}`;
-    };
+    const getChartXOffset = () => {
+        const { page, category } = filters;
+        const mode = isDev ? 'dev' : 'prod';
 
-    const getValueColor = (value) => {
-        if (typeof value === 'number') {
-            if (value > 0) return "#679552";
-            if (value < 0) return "#de7b6c";
-            return "#fff000";
+        let offsets = config.chartXOffset[page];
+        if (page === 'weapons') {
+            offsets = offsets[category]
         }
-        if (value === 'New') return "#fff000";
 
-        return "#FFFFFF";
+        return offsets ? offsets[mode] : 0;
     };
 
     const getImageDimensions = () => {
@@ -144,22 +120,18 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
         return { ...options, ...imgDim[mode] };
     };
 
-    const getChartYOffset = () => {
-        const offsets = config.chartYOffset[filters.page];
-        if (!offsets) return 0;
-        return isDev ? offsets.dev : offsets.prod;
-    };
+    const onClick = (event) => {
+        const { current: chart } = chartRef;
+        if (!chart) { return; }
+        if (filters.page === 'armor') { return; }
 
-    const getChartXOffset = () => {
-        const { page, category } = filters;
-        const mode = isDev ? 'dev' : 'prod';
-        let offsets = config.chartXOffset[page];
-        if (page === 'weapons') {
-            offsets = offsets[category]
+        const elementAtEvent = getElementAtEvent(chart, event);
+        if (elementAtEvent.length > 0) {
+            const itemId = Object.keys(data)[elementAtEvent[0].index];
+            navigate(`/${filters.page}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
+            window.scrollTo(0, 0);
         }
-
-        return offsets ? offsets[mode] : 0;
-    };
+    }
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
@@ -167,6 +139,7 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
         const dataLength = Object.keys(data).length;
         const step = (chartHeight - options.barSize * dataLength) / dataLength;
         let yOffset = step / 2 + ((options.barSize - options.imageH) / 2);
+
         ctx.textBaseline = "top";
         ctx.save();
 
@@ -192,11 +165,9 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
                 const valuesRaw = data[key];
 
                 legendItems.forEach((item, j) => {
-                    let valueRaw = getValueRaw(item, valuesRaw);
-                    if (item.name === 'Name') {
-                        valueRaw = itemsDict[key].name;
-                    }
+                    let valueRaw = getValueRaw(item, valuesRaw, key);
                     const valueFormatted = formatValue(item.name, valueRaw);
+                    
                     if (item.check) {
                         if (item.src) {
                             let icon = item.src;
@@ -217,18 +188,6 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
 
         ctx.restore();
     };
-
-    const onClick = (event) => {
-        const { current: chart } = chartRef;
-        if (!chart) { return; }
-        if (filters.page === 'armor') { return; }
-        const elementAtEvent = getElementAtEvent(chart, event);
-        if (elementAtEvent.length > 0) {
-            const itemId = Object.keys(data)[elementAtEvent[0].index];
-            navigate(`/${filters.page}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
-            window.scrollTo(0, 0);
-        }
-    }
 
     const downloadChart = (event) => {
         const { current: chart } = chartRef;

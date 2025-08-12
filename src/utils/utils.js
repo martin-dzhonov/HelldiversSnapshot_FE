@@ -11,8 +11,8 @@ import {
     missionTypes,
     factions,
     factionColors
-} from "./constants";
-import * as chartsSettings from "./settings/chartSettings";
+} from "../constants";
+import * as chartsSettings from "../settings/chartSettings";
 
 
 const getChartDataset = ({ data, color, barSize = 24 }) => {
@@ -261,28 +261,45 @@ const getCompanionChartData = (strategemData) => {
     return {}
 }
 
-const getChartData = (data, filters) => {
-    const { faction, patch, category } = filters;
-    const patchIndex = patchPeriods.length - patch.id - 1;
-    const entries = Object.entries(data[faction].items);
-    const pickStats = obj => {
-        if (!obj) return { loadouts_total: null, loadouts: null, games: null, rank: null, rank_category: null, avgLevel: null };
-        const { loadouts_total, loadouts, games, rank, rank_category, avgLevel, isNew } = obj;
-        return { loadouts_total, loadouts, games, rank, rank_category, avgLevel, ...(isNew && { isNew }) };
+const pickStats = (obj) => {
+    if (!obj) return {
+        loadouts_total: null,
+        loadouts: null,
+        games: null,
+        rank: null,
+        rank_category: null,
+        avgLevel: null
     };
 
-    const chartData = Object.fromEntries(
-        entries.map(([key, item]) => [key, {
-            total: { loadouts: item.values?.[patchIndex].loadouts_total, games: 0 },
-            values: pickStats(item.values?.[patchIndex]),
-            pastValues: pickStats(item.values?.[patchIndex + 1]),
-        }])
-            .filter(([, item]) => item.values.loadouts_total > 0)
-            .filter(([key]) => category === "All" || itemsDict[key].category === category)
-            .sort(([, a], [, b]) => b.values.loadouts_total - a.values.loadouts_total)
-    );
+    const { loadouts_total, loadouts, games, rank, rank_category, avgLevel, isNew } = obj;
+
     return {
-        chartData,
+        loadouts_total,
+        loadouts,
+        games,
+        rank,
+        rank_category,
+        avgLevel,
+        ...(isNew && { isNew })
+    };
+};
+
+const getChartData = (data, filters) => {
+    const { faction, patch, category } = filters;
+    const itemEntries = Object.entries(data[faction].items);
+    const patchIndex = patchPeriods.length - patch.id - 1;
+
+    const entriesFiltered = itemEntries.map(([key, item]) => [key, {
+        total: { loadouts: item.values?.[patchIndex].loadouts_total, games: 0 },
+        values: pickStats(item.values?.[patchIndex]),
+        pastValues: pickStats(item.values?.[patchIndex + 1]),
+    }])
+        .filter(([, item]) => item.values.loadouts_total > 0)
+        .filter(([key]) => category === "All" || itemsDict[key].category === category)
+        .sort(([, a], [, b]) => b.values.loadouts_total - a.values.loadouts_total)
+
+    return {
+        chartData: Object.fromEntries(entriesFiltered),
         totals: data[faction].totals[patchIndex]
     };
 };

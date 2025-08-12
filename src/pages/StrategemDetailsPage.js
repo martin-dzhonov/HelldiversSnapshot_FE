@@ -14,7 +14,7 @@ import {
     getCompanionChartData,
     getItemMiscCharts,
     getTrendCharts
-} from "../utils";
+} from "../utils/utils";
 import ItemFilters from "../components/filters/ItemFilters";
 import PatchChart from "../components/charts/PatchChart";
 import { useItemDetails } from "../hooks/useItemDetails";

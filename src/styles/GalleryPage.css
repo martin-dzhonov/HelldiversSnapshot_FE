@@ -72,6 +72,12 @@
     font-family: 'CustomFont';
 }
 
+.armory-item-name:hover {
+   cursor: pointer;
+   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+
+}
+
 @media only screen and (max-width: 992px) {
     .armory-item-name {
         width: 90px;
@@ -85,6 +91,11 @@
     padding: 5px;
     border-radius: 10px;
     border: 2px solid white;
+}
+
+.item-img-wrapper:hover {
+    cursor: pointer;
+    background-color: #30302f;
 }
 
 .primary-img-wrapper {
@@ -148,6 +159,12 @@
     border-radius: 10px;
     border: 2px solid white;
 }
+
+.armory-weapons-img-wrapper:hover{
+    cursor: pointer;
+    background-color: #30302f;
+}
+
 
 .armory-weapons-img-wrapper img {
     width: 100%;

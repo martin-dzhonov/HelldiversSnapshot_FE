@@ -10,7 +10,7 @@ import ImageChart from '../components/charts/ImageChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
   getChartData,
-} from '../utils';
+} from '../utils/utils';
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import { useReports } from '../hooks/useReports';
@@ -26,22 +26,24 @@ const defaultFilters = {
   patch: patchPeriods[patchPeriods.length - 1],
 };
 
+const defaultFilterResults = { games: 0, loadouts: 0 };
+
 function StrategemsPage() {
   const [filters, setFilters] = useFilter(defaultFilters);
-  const [filterResults, setFilterResults] = useState({games: 0, loadouts: 0});
+  const [filterResults, setFilterResults] = useState(defaultFilterResults);
   const { data, isLoading } = useReports(filters);
-
   const [chartData, setChartData] = useState(null);
-
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
   useEffect(() => {
     if (data) {
       const { chartData, totals } = getChartData(data, filters);
+
       setChartData({
         data: chartData,
         options: chartsSettings.strategem()
       });
+
       setFilterResults(totals);
     }
   }, [data, filters]);

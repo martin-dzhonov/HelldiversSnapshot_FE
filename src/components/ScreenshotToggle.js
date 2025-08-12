@@ -8,10 +8,13 @@ function ScreenshotToggle({ id }) {
     const { isMobile } = useMobile();
     const [show, setShow] = useState(false);
 
+    const getBucketUrl = (id)=>{
+        return `https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`
+    }
+
     const onClick = () => {
-        const url = `https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`;
         if (isMobile) {
-            window.location.href = url;
+            window.location.href = getBucketUrl(id);
         } else {
             setShow(!show);
         }
@@ -23,7 +26,7 @@ function ScreenshotToggle({ id }) {
                 Show Snapshot
             </div>
             {!isMobile && show && (
-                <img src={`https://s3.us-east-1.amazonaws.com/helldive.live.images/Screenshot+(${id}).png`} width={760} alt="" />
+                <img src={getBucketUrl(id)} width={760} alt="" />
             )}
         </div>
     );

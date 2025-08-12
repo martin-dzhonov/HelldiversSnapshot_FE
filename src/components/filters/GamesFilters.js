@@ -1,7 +1,7 @@
 import '../../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { difficultiesNames, patchPeriods, factions } from '../../constants';
-import { capitalizeFirstLetter } from '../../utils';
+import { capitalizeFirstLetter } from '../../utils/utils';
 
 function GamesFilters({ filters, setFilters }) {
     

@@ -6,7 +6,7 @@ import {
     weaponsDict
 } from '../constants';
 import { useNavigate } from 'react-router-dom';
-import { getItemId } from '../utils';
+import { getItemId } from '../utils/utils';
 import { useState } from 'react';
 
 function ItemGroup({ title, items, itemClassName, imgWrapperClass, onClick }) {

@@ -146,6 +146,30 @@ iframe+div {
     color: white;
 }
 
+
+.link-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+
+.partner-link {
+    font-family: "CustomFont";
+    color: red;
+    border: 2px solid red;
+    border-radius: 15px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: transparent;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.partner-link:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
 .partner-logo {
     position: fixed;
     bottom: 20px;
@@ -158,10 +182,10 @@ iframe+div {
 
 @media only screen and (max-width: 992px) {
     .partner-logo {
-        bottom: 10px;
-        right: 10px;
-        width: 60px;
-        height: 60px;
+        bottom: 15px;
+        right: 15px;
+        width: 70px;
+        height: 70px;
     }
 }
 
@@ -192,7 +216,7 @@ iframe+div {
 
 .popup-tab {
     position: absolute;
-    top: -35px;
+    top: -32px;
     left: -2px;
     background-color: #181818;
     color: white;
@@ -218,25 +242,12 @@ iframe+div {
     max-height: 80vh;
 }
 
-.link-row {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 10px;
-}
-
-.partner-link {
-    font-family: "CustomFont";
-    color: red;
-    border: 2px solid red;
-    border-radius: 15px;
-    padding: 5px 10px;
-    text-decoration: none;
-    background-color: transparent;
-    font-weight: bold;
-    transition: all 0.2s ease;
-}
-
-.partner-link:hover {
-    background-color: rgba(255, 0, 0, 0.2);
-}
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0); 
+    z-index: 999; 
+  }

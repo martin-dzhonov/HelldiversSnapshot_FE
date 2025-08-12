@@ -1,5 +1,5 @@
 import { isDev } from "../constants";
-import { getCountingSuffix } from "../utils";
+import { getCountingSuffix } from "../utils/utils";
 
 export const getSettingsWithMax = (settings, maxY) => {
     settings.scales.y.max = maxY;
@@ -14,27 +14,6 @@ const formatters = {
     level: (item) => `${item.raw}% of players`,
     rank: (item) => ``,
 };
-
-const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankMax } = {}) => {
-    return {
-        color: color,
-        anchor: anchor,
-        align: align,
-        font: {
-            family: "CustomFont",
-            weight: 'bold',
-            size: fontSize,
-        },
-        formatter: (value) => {
-            if (value < 0) {
-                return '';
-            }
-
-            const rankingValue = rankMax - value - 2;
-            return rankMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
-        }
-    }
-}
 
 const tooltipSettings = (formatter) => {
     return {
@@ -76,12 +55,31 @@ const pickratedatalabelsSettings = ({ color = "white", anchor = 'end', align = '
             if (value < 0) {
                 return '';
             }
-
             return value + "%";
         }
     }
 }
 
+const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, formatter, rankMax } = {}) => {
+    return {
+        color: color,
+        anchor: anchor,
+        align: align,
+        font: {
+            family: "CustomFont",
+            weight: 'bold',
+            size: fontSize,
+        },
+        formatter: (value) => {
+            if (value < 0) {
+                return '';
+            }
+
+            const rankingValue = rankMax - value - 2;
+            return rankMax ? rankingValue + getCountingSuffix(rankingValue) : value + "%";
+        }
+    }
+}
 
 const rankdatalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fontSize = 15, rankMax } = {}) => {
     return {
