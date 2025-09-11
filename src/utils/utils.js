@@ -304,6 +304,16 @@ const getChartData = (data, filters) => {
     };
 };
 
+const getDistChartData = (data) => {
+    const chart = {
+        labels: Object.keys(data),
+        datasets: getChartDataset({ data: Object.values(data), color: "#d55642" }),
+    };
+
+    return chart;
+};
+
+
 export {
     getItemColor,
     getCountingSuffix,
@@ -315,4 +325,5 @@ export {
     getChartData,
     getItemMiscCharts,
     getTrendCharts,
+    getDistChartData
 };

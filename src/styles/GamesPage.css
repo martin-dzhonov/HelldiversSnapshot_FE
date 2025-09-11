@@ -1,3 +1,8 @@
+.level-graph-wrapper {
+    padding: 5px 10px !important;
+    height: 250px;
+    width: 100%;
+}
 
 .table-loadout-wrapper {
     display: flex;

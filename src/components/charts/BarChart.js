@@ -21,6 +21,7 @@ ChartJS.register(
 );
 
 const BarChart = ({ data, options, onBarClick,  onChartLoad = ()=>{} }) => {
+    console.log(data);
     const chartRef = useRef(null);
     const chartLoaded = { current: false };
 

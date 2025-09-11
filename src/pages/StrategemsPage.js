@@ -31,6 +31,7 @@ const defaultFilterResults = { games: 0, loadouts: 0 };
 function StrategemsPage() {
   const [filters, setFilters] = useFilter(defaultFilters);
   const [filterResults, setFilterResults] = useState(defaultFilterResults);
+  
   const { data, isLoading } = useReports(filters);
   const [chartData, setChartData] = useState(null);
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);

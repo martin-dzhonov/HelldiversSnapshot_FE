@@ -1,3 +1,4 @@
+import { Fade } from "react-bootstrap";
 
 const imageModules = require.context('./assets/chart_assets', false, /\.(svg|png|webp)$/);
 
@@ -9,7 +10,8 @@ const createItem = (baseName, fullName, category, ext = "svg") => ({
 });
 
 const isDev = false;
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;//http://localhost:8080
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+//const apiBaseUrl = `http://localhost:8080`;
 
 const navRoutes = [
     {
@@ -55,7 +57,8 @@ const patchPeriods = [
     { id: 4, name: "Borderline Justice", start: "03/19/2025", end: "05/15/2025" },
     { id: 5, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
     { id: 6, name: "Force Of Law", start: "06/12/2025", end: "07/17/2025" },
-    { id: 7, name: "Control Group", start: "07/17/2025", end: "Present" },
+    { id: 7, name: "Control Group", start: "07/17/2025", end: "09/03/2025" },
+    { id: 8, name: "Into the Unjust", start: "09/04/2025", end: "Present" },
 ];
 
 const difficultiesNames = [
@@ -101,7 +104,11 @@ const missionNames = [
         "EVACUATE CITIZENS",
         "RESTORE AIR QUALITY",
         "SABOTAGE SUPPLY BASES",
-        "CLEANSE INFESTED DISTRICT"
+        "CLEANSE INFESTED DISTRICT",
+        "DESTROY SPORE LUNG",
+        "EXTRACT E-711",
+        "CONDUCT MOBILE E-711 EXTRACTION",
+        "RESTART PUMPS"
     ],
     [
         "ERADICATE TERMINID SWARM",
@@ -191,6 +198,11 @@ const strategemsDict = {
     exo_patriot: createItem("Patriot Exosuit", "EXO-45 Patriot Exosuit", "Support"),
     frv: createItem("Fast Recon Vehicle", "M-102 Fast Recon Vehicle", "Support"),
     flag: createItem("One True Flag", "One True Flag", "Support"),
+
+    sup_speargun: createItem("Speargun", "S-11 Speargun", "Support"),
+    sup_eat_700: createItem("Expendable Napalm", "EAT-700 Expendable Napalm", "Support"),
+    sup_solo_silo: createItem("Solo Silo", "MS-11 Solo Silo", "Support"),
+
 };
 
 const weaponsDict = {
@@ -232,6 +244,10 @@ const weaponsDict = {
     amendment: createItem("Amendment", "R-2 Amendment", "Primary", 'webp'),
     pacifier: createItem("Pacifier", "AR-32 Pacifier", "Primary", 'webp'),
     variable: createItem("Variable", "VG-70 Variable", "Primary", 'webp'),
+    coyote: createItem("Coyote", "AR-2 Coyote", "Primary", 'webp'),
+    m7s: createItem("M7S", "M7S SMG", "Primary", 'webp'),
+    m90a: createItem("M90A", "M90A Shotgun", "Primary", 'webp'),
+    ma5c: createItem("MA5C", "MA5C Assault Rifle", "Primary", 'webp'),
 
     peacemaker: createItem("Peacemaker", "P-2 Peacemaker", "Secondary", 'webp'),
     redeemer: createItem("Redeemer", "P-19 Redeemer", "Secondary", 'webp'),
@@ -250,6 +266,8 @@ const weaponsDict = {
     laser_pistol: createItem("Dagger", "LAS-7 Dagger", "Secondary", 'webp'),
     ultimatum: createItem("Ultimatum", "GP-31 Ultimatum", "Secondary", 'webp'),
     loyalist: createItem("Loyalist", "PLAS-15 Loyalist", "Secondary", 'webp'),
+    m6c: createItem("M6C", "M6C/SOCOM Pistol", "Secondary", 'webp'),
+    machete: createItem("Machete", "CQC-42 Machete", "Secondary", 'webp'),
 
     grenade_frag: createItem("Frag", "G-6 Frag", "Throwable", 'webp'),
     grenade_he: createItem("High Explosive", "G-12 High Explosive", "Throwable", 'webp'),
@@ -266,6 +284,7 @@ const weaponsDict = {
     grenade_pyro: createItem("Pyrotech", "G-142 Pyrotech", "Throwable", 'webp'),
     urchin: createItem("Urchin", "G-109 Urchin", "Throwable", 'webp'),
     grenade_arc: createItem("Arc", "G-31 Arc", "Throwable", 'webp'),
+    pineapple: createItem("Pineapple", "G-7 Pineapple", "Throwable", 'webp'),
 };
 
 const armorsDict = {
@@ -288,6 +307,8 @@ const armorsDict = {
     'PEAK PHYSIQUE': createItem("Peak Physique", "", "", 'webp'),
     'BALLISTIC PADDING': createItem("Ballistic Padding", "", "", 'webp'),
     'ADRENO-DEFIBRILLATOR': createItem('Adreno-Defibrillator', "", "", 'webp'),
+    'FEET FIRST': createItem('Feet First', "", "", 'webp'),
+    'DESERT STORMER': createItem('Desert Stormer', "", "", 'webp'),
 };
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };

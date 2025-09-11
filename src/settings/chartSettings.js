@@ -507,3 +507,75 @@ export const level = {
         datalabels: datalabelsSettings({ fontSize: 15 })
     },
 };
+
+export const level_dist = {
+    indexAxis: "x",
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { top: 50, bottom: 50 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                display: false,
+                font: {
+                    family: "CustomFont",
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.level),
+        datalabels: datalabelsSettings({ fontSize: 15 })
+    },
+};
+
+export const dist_y = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { top: 10, bottom: 10, right: 20 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                display: false,
+                font: {
+                    family: "CustomFont",
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.level),
+        datalabels: datalabelsSettings({ fontSize: 15 })
+    },
+};

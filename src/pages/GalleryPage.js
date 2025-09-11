@@ -31,11 +31,12 @@ function GalleryPage() {
     const navigate = useNavigate();
     const [type, setType] = useState(0);
     const strategemCategories = itemCategories.slice(1);
+    const galleryCategories = ["STRATEGEM", "WEAPONS"]
 
     return (
         <div className="content-wrapper">
             <div className="type-buttons-wrapper text-medium">
-                {["STRATEGEM", "WEAPONS"].map((label, index) => (
+                {galleryCategories.map((label, index) => (
                     <div
                         key={label}
                         className={`${type === index ? 'snapshot-type-button-active' : 'snapshot-type-button'} text-medium`}
