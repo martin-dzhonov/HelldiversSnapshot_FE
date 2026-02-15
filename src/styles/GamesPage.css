@@ -1,6 +1,6 @@
 .level-graph-wrapper {
     padding: 5px 10px !important;
-    height: 250px;
+    height: 850px;
     width: 100%;
 }
 
@@ -8,6 +8,7 @@
     display: flex;
     direction: row;
     gap: 12px;
+    margin-top: 10px;
 }
 
 .table-loadout-row-wrapper {
@@ -97,20 +98,20 @@
 .games-filters-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 20px;
+    justify-content: center;
+    padding: 15px;
 }
 
-.games-filters-result-text {
+.games-filters-text {
     color: white;
     font-family: 'CustomFont';
-    font-size: 17px;
+    font-size: 19px;
 }
 
 @media only screen and (max-width: 1200px) {
     .games-filters-container {
         justify-content: center;
-        padding: 0px 0px 20px 0px;
+        padding: 10px 0px 10px 0px;
     }
 }
 
@@ -120,4 +121,24 @@
     padding: 5px;
     border-radius: 10px;
     border: 2px solid white;
+}
+
+.chart-title {
+    font-family: "CustomFont", sans-serif;
+    color: white;
+    padding: 0px 0px 5px 0px;
+    font-size: 22px;
+    transform: translateY(10px);
+    text-decoration: underline;
+}
+
+.chart-wrapper {
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.chart-wrapper:hover {
+    background-color: #1f2123;
 }

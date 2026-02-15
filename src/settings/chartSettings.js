@@ -13,6 +13,8 @@ const formatters = {
     pickRate: (item) => item.raw >= 0 ? `Pick Rate: ${item.raw}%` : 'No data',
     level: (item) => `${item.raw}% of players`,
     rank: (item) => ``,
+    dates: (item) => `${item.raw} games`,
+    dist_games: (item) => `${item.raw}% of games`,
 };
 
 const tooltipSettings = (formatter) => {
@@ -71,6 +73,9 @@ const datalabelsSettings = ({ color = "white", anchor = 'end', align = 'end', fo
             size: fontSize,
         },
         formatter: (value) => {
+            if(formatter){
+                return formatter(value);
+            }
             if (value < 0) {
                 return '';
             }
@@ -174,7 +179,7 @@ export const patch = ({
     responsive: true,
     maintainAspectRatio: false,
     layout: {
-        padding: { top: 30, right: 25, bottom: isMobile ? 0: 20, left: isMobile ? 35 : 25 },
+        padding: { top: 30, right: 25, bottom: isMobile ? 0 : 20, left: isMobile ? 35 : 25 },
     },
     scales: {
         x: {
@@ -236,9 +241,9 @@ export const weapons = ({
     responsive: true,
     maintainAspectRatio: false,
     barSize: isDev ? 44 : 34,
-    imageW: isDev ? 420: 134,
-    imageH: isDev ? 200: 60,
-    sectionSize: isDev ? 260: 75,
+    imageW: isDev ? 420 : 134,
+    imageH: isDev ? 200 : 60,
+    sectionSize: isDev ? 260 : 75,
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -277,7 +282,7 @@ export const strategem = () => ({
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { right: isDev ? 130 : 55 },
+        padding: { right: isDev ? 155 : 55 },
     },
     scales: {
         x: {
@@ -442,6 +447,7 @@ export const detailsBase = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
+
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -476,6 +482,7 @@ export const level = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
+    barSize: 34,
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -509,9 +516,11 @@ export const level = {
 };
 
 export const level_dist = {
-    indexAxis: "x",
+    indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
+    barSize: 35,
+    sectionSize: 55,
     elements: {
         bar: { borderWidth: 4 }
     },
@@ -525,7 +534,7 @@ export const level_dist = {
         },
         y: {
             ticks: {
-                display: false,
+                display: true,
                 font: {
                     family: "CustomFont",
                     size: 13,
@@ -547,12 +556,14 @@ export const level_dist = {
 export const dist_y = {
     indexAxis: "y",
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, 
+    barSize: 35,
+    sectionSize: 55,
     elements: {
         bar: { borderWidth: 4 }
     },
     layout: {
-        padding: { top: 10, bottom: 10, right: 20 },
+        padding: { right: 50 },
     },
     scales: {
         x: {
@@ -561,10 +572,11 @@ export const dist_y = {
         },
         y: {
             ticks: {
-                display: false,
+                crossAlign: "far",
+                display: true,
                 font: {
                     family: "CustomFont",
-                    size: 13,
+                    size: 14,
                 },
                 color: "white",
             },
@@ -577,5 +589,83 @@ export const dist_y = {
         legend: { display: false },
         tooltip: tooltipSettings(formatters.level),
         datalabels: datalabelsSettings({ fontSize: 15 })
+    },
+};
+
+export const dist_dates = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false, 
+    barSize: 35,
+    sectionSize: 55,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 50 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                crossAlign: "far",
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 14,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.dates),
+        datalabels: datalabelsSettings({ fontSize: 15, formatter: (item) => `${item}`})
+    },
+};
+
+export const dist_games = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false, 
+    barSize: 35,
+    sectionSize: 55,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 50 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                crossAlign: "far",
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 14,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.dist_games),
+        datalabels: datalabelsSettings({ fontSize: 15})
     },
 };

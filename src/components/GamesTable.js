@@ -164,6 +164,19 @@ function GamesTable({ data }) {
                     </tbody>
                 </Table>
             )}
+             <div className="pagination">
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
+                {getPageNumbers().map((page, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageChange(page)}
+                        className={currentPage === page ? "active" : ""}
+                        disabled={page === "..."}>
+                        {page}
+                    </button>
+                ))}
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>→</button>
+            </div>
         </div>
     );
 }

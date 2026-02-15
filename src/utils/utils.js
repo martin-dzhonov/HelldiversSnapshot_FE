@@ -10,7 +10,8 @@ import {
     difficultiesNamesShort,
     missionTypes,
     factions,
-    factionColors
+    factionColors,
+    distChartColors
 } from "../constants";
 import * as chartsSettings from "../settings/chartSettings";
 
@@ -304,15 +305,18 @@ const getChartData = (data, filters) => {
     };
 };
 
-const getDistChartData = (data) => {
+const getDistChartData = (data, name) => {
+
+    const total = Object.values(data).reduce((sum, val) => sum + val, 0);
+    let datasetPercentage = name !== 'dates' ? Object.values(data).map(value => +(value / total * 100).toFixed(1)) : Object.values(data);
+
     const chart = {
         labels: Object.keys(data),
-        datasets: getChartDataset({ data: Object.values(data), color: "#d55642" }),
+        datasets: getChartDataset({ data: datasetPercentage, color: distChartColors[name] }),
     };
 
     return chart;
 };
-
 
 export {
     getItemColor,

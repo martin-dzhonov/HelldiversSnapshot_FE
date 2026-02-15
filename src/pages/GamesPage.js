@@ -1,6 +1,7 @@
 
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
+import '../styles/GamesPage.css';
 import "react-tabs/style/react-tabs.css";
 import { useEffect, useState } from 'react'
 import { apiBaseUrl, patchPeriods } from '../constants';
@@ -19,27 +20,35 @@ const defaultFilters = {
     mission: "All"
 };
 
+const defaultFilterResults = { games: 0, loadouts: 0 };
+
 function GamesPage() {
     const [filters, setFilters] = useState(defaultFilters);
-    const [filterResults, setFilterResults] = useState(0);
-    const [type, setType] = useState(1);
+    const [filterResults, setFilterResults] = useState(defaultFilterResults);
+    const [type, setType] = useState(0);
     const { data, isLoading } = useGames(filters);
     const [gamesData, setGamesData] = useState(null);
     const [charts, setCharts] = useState(null);
 
-    const galleryCategories = ["DISTRIBUTIONS", "GAMES"];
+    const galleryCategories = ["GAMES", "DISTRIBUTIONS"];
 
     useEffect(() => {
         if (data) {
             const { games, distributions } = data;
-            const gamesSorted = games.sort((a, b) => a.id - b.id);
+            const totalLoadouts = games.reduce((sum, game) => sum + game.players.length, 0);
+            const resultsCount = {
+                games: games.length,
+                loadouts: totalLoadouts
+            }
+            setFilterResults(resultsCount);
 
-            setFilterResults(gamesSorted.length);
+            const gamesSorted = games.sort((a, b) => a.id - b.id);
             setGamesData(gamesSorted);
 
             const distCharts = Object.fromEntries(
-                Object.entries(distributions).map(([k, v]) => [k, getDistChartData(v)])
+                Object.entries(distributions).map(([k, v]) => [k, getDistChartData(v, k)])
             );
+            console.log(distCharts)
 
             setCharts(distCharts);
         }
@@ -48,12 +57,8 @@ function GamesPage() {
     return (
         <div className="content-wrapper">
             <GamesFilters filters={filters} setFilters={setFilters} />
-            <div className="games-filters-container">
-                <div className='filters-result-text'>
-                    Games: {filterResults}
-                </div>
-            </div>
-            {/* <div className="type-buttons-wrapper text-medium">
+
+            <div className="type-buttons-wrapper text-medium">
                 {galleryCategories.map((label, index) => (
                     <div
                         key={label}
@@ -62,29 +67,60 @@ function GamesPage() {
                         {label}
                     </div>
                 ))}
-            </div> */}
+            </div>
+
+            <div className="games-filters-container">
+                <div className='games-filters-text'>
+                    Games: {filterResults.games}
+                    &nbsp;&nbsp;&nbsp;
+                    Loadouts: {filterResults.loadouts}
+                </div>
+            </div>
             <Loader loading={isLoading}>
-                {type === 0 && charts && (
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="level-graph-wrapper">
-                            <div className="strategem-other-title">Player Level</div>
-                            <BarChart data={charts.level} options={chartsSettings.level_dist} />
-                        </div>
-                        <div className="strategem-level-graph-wrapper">
-                            <div className="strategem-other-title">Difficulty</div>
-                            <BarChart data={charts.difficulty} options={chartsSettings.dist_y} />
-                        </div>
-                        <div className="strategem-level-graph-wrapper">
-                            <div className="strategem-other-title">Mission Type</div>
-                            <BarChart data={charts.mission} options={chartsSettings.dist_y} />
-                        </div>
-                    </div>
-                )}
-                {type === 1 && gamesData && (
+                {type === 0 && gamesData && (
                     <div className="show-games-table-wrapper">
                         <GamesTable data={gamesData} filters={filters} setFilterResults={setFilterResults} />
                     </div>
                 )}
+
+                {type === 1 && charts && (
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="row">
+                            <div className="col-xxl-6 col-12">
+                                <div className="chart-wrapper">
+                                    <div className="chart-title">Games Recorded</div>
+                                    <BarChart data={charts.dates} options={chartsSettings.dist_dates} />
+                                </div>
+                                <div className="chart-wrapper">
+                                    <div className="chart-title">Difficulty</div>
+                                    <BarChart data={charts.difficulty} options={chartsSettings.dist_games} />
+                                </div>
+                                <div className="chart-wrapper">
+
+                                    <div className="chart-title">Player Level</div>
+                                    <BarChart data={charts.level} options={chartsSettings.dist_y} />
+                                </div>
+
+                            </div>
+                            <div className="col-xxl-6 col-12">
+
+                                <div className="chart-wrapper">
+                                    <div className="chart-title">Planets</div>
+                                    <BarChart data={charts.planet} options={chartsSettings.dist_games} />
+                                </div>
+                                <div className="chart-wrapper">
+                                    <div className="chart-title">Missions</div>
+                                    <BarChart data={charts.mission} options={chartsSettings.dist_games} />
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                )}
+
             </Loader>
 
         </div >

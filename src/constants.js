@@ -1,5 +1,3 @@
-import { Fade } from "react-bootstrap";
-
 const imageModules = require.context('./assets/chart_assets', false, /\.(svg|png|webp)$/);
 
 const createItem = (baseName, fullName, category, ext = "svg") => ({
@@ -10,8 +8,8 @@ const createItem = (baseName, fullName, category, ext = "svg") => ({
 });
 
 const isDev = false;
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
-//const apiBaseUrl = `http://localhost:8080`;
+//const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+const apiBaseUrl = `http://localhost:8080`;
 
 const navRoutes = [
     {
@@ -27,7 +25,7 @@ const navRoutes = [
         route: "armors"
     },
     {
-        name: "Games",
+        name: "Data",
         route: "games"
     },
     {
@@ -49,6 +47,15 @@ const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
 const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
 const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
 
+const distChartColors = {
+    level: "#679552",
+    difficulty: "#49adc9",
+    mission: "#de7b6c",
+    planet: "#49adc9",
+    dates: "#679552"
+
+}
+
 const patchPeriods = [
     { id: 0, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
     { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
@@ -58,7 +65,8 @@ const patchPeriods = [
     { id: 5, name: "Masters Of Ceremony", start: "05/15/2025", end: "06/11/2025" },
     { id: 6, name: "Force Of Law", start: "06/12/2025", end: "07/17/2025" },
     { id: 7, name: "Control Group", start: "07/17/2025", end: "09/03/2025" },
-    { id: 8, name: "Into the Unjust", start: "09/04/2025", end: "Present" },
+    { id: 8, name: "Into the Unjust", start: "09/04/2025", end: "10/23/2025" },
+    { id: 9, name: "Into the Unjust 4.1", start: "10/23/2025", end: "Present" },
 ];
 
 const difficultiesNames = [
@@ -382,7 +390,8 @@ export {
     weaponCategoryColors,
     itemsDict,
     armorsDict,
-    itemsChartConfig
+    itemsChartConfig,
+    distChartColors
 };
 
 

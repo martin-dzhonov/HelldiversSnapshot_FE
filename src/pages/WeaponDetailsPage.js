@@ -131,6 +131,7 @@ function WeaponDetailsPage() {
                                         <BarChart
                                             data={charts.faction}
                                             options={charts.faction.options}
+                                            autoHeight={false}
                                             onBarClick={element => {
                                                 if (element) updateFilter("faction", factions[element.index]);
                                             }}

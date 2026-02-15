@@ -13,20 +13,20 @@ function ItemMiscCharts({ charts, filters }) {
                     <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div className="strategem-level-graph-wrapper">
                             <div className="strategem-other-title">Player Level</div>
-                            <BarChart data={charts.level} options={chartsSettings.level} />
+                            <BarChart data={charts.level} autoHeight={false} options={chartsSettings.level} />
                         </div>
                     </div>
                 )}
                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div className="strategem-other-graph-wrapper">
                         <div className="strategem-other-title">Difficulty</div>
-                        <BarChart data={charts.diff} options={chartsSettings.detailsBase} />
+                        <BarChart data={charts.diff} autoHeight={false} options={chartsSettings.detailsBase} />
                     </div>
                 </div>
                 <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div className="strategem-mission-graph-wrapper">
                         <div className="strategem-other-title">Mission Type</div>
-                        <BarChart data={charts.mission} options={chartsSettings.detailsBase} />
+                        <BarChart data={charts.mission} autoHeight={false} options={chartsSettings.detailsBase} />
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import "../../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -20,8 +20,7 @@ ChartJS.register(
     Legend
 );
 
-const BarChart = ({ data, options, onBarClick,  onChartLoad = ()=>{} }) => {
-    console.log(data);
+const BarChart = ({ data, options, onBarClick, autoHeight = true, onChartLoad = () => { } }) => {
     const chartRef = useRef(null);
     const chartLoaded = { current: false };
 
@@ -31,24 +30,47 @@ const BarChart = ({ data, options, onBarClick,  onChartLoad = ()=>{} }) => {
         const elementAtEvent = getElementAtEvent(chart, event);
         onBarClick && onBarClick(elementAtEvent[0]);
     }
+
+    const chartHeight = useMemo(() => {
+        if (data) {
+            return Object.keys(data.labels).length * options.sectionSize;
+        }
+    }, [data]);
+
     return (
-        <Bar
-            ref={chartRef}
-            data={data}
-            options={options}
-            redraw={true}
-            onClick={onClick}
-            plugins={[
-                {
-                    afterDraw: (chart) => {
-                        if (!chartLoaded.current) {
-                            chartLoaded.current = true;
-                            onChartLoad(chart); 
-                        }
-                    },
-                },
-            ]}
-        />
+        <>
+            {data ? (
+                data.labels.length === 0 ? (
+                    <div className="empty-chart-text-wrapper">
+                        <div className="empty-chart-text">
+                            No Data Available
+                        </div>
+                    </div>
+                ) : (
+                    <div style={{ width: "100%", height: autoHeight ? `${chartHeight}px` : '100%' }}>
+                        <div className="bar-chart-wrapper">
+                            <Bar
+                                ref={chartRef}
+                                data={data}
+                                options={options}
+                                redraw={true}
+                                onClick={onClick}
+                                plugins={[
+                                    {
+                                        afterDraw: (chart) => {
+                                            if (!chartLoaded.current) {
+                                                chartLoaded.current = true;
+                                                onChartLoad(chart);
+                                            }
+                                        },
+                                    },
+                                ]}
+                            />
+                        </div>
+                    </div>
+                )
+            ) : null}
+        </>
     );
 };
 
