@@ -105,6 +105,7 @@ function GamesTable({ data }) {
                 <Table striped bordered hover size="sm" variant="dark">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Planet</th>
                             <th>Mission</th>
                             <th>Players</th>
@@ -115,6 +116,8 @@ function GamesTable({ data }) {
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
+                                                                <td className="text-small">{game.id}</td>
+
                                 <td className="text-small">{game.planet}</td>
                                 <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
                                 <td className="text-small">
