@@ -1,15 +1,4 @@
-.filters-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px 0px;
-}
 
-@media only screen and (max-width: 992px) {
-  .filters-container {
-    justify-content: center;
-  }
-}
 
 .type-buttons-wrapper{
   display: flex;
@@ -67,15 +56,6 @@
   background-color: #56799c;
 }
 
-.filter-container {
-  padding: 10px;
-}
-
-@media only screen and (max-width: 992px) {
-  .filter-container {
-    padding: 4px;
-  }
-}
 
 
 .filter-results-container {

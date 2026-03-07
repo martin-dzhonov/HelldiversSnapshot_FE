@@ -67,7 +67,7 @@ function StrategemDetailsPage() {
         if (strategemData?.total?.loadouts > 0) {
             const miscCharts = getItemMiscCharts(strategemData, id, isMobile);
             const companions = getCompanionChartData(strategemData);
-
+            console.log(companions);
             setCharts((prev) => ({
                 ...prev,
                 ...miscCharts,

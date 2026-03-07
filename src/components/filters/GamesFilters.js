@@ -1,6 +1,6 @@
 import '../../styles/App.css';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { difficultiesNames, patchPeriods, factions } from '../../constants';
+import { difficultiesNames, patchPeriods, factions, modifierNames } from '../../constants';
 import { capitalizeFirstLetter } from '../../utils/utils';
 
 function GamesFilters({ filters, setFilters }) {
@@ -20,7 +20,19 @@ function GamesFilters({ filters, setFilters }) {
                     ))}
                 </DropdownButton>
             </div>
-
+            <div className="filter-container">
+                <DropdownButton
+                    className="dropdown-button"
+                    title={`${'Modifier: '}${capitalizeFirstLetter(filters.modifier)}`}>
+                    {modifierNames[filters.faction].map((modifierName) => (
+                        <Dropdown.Item
+                            as="button"
+                            onClick={() => { setFilters({ ...filters, modifier: modifierName }); }}>
+                            {modifierName}
+                        </Dropdown.Item>
+                    ))}
+                </DropdownButton>
+            </div>
             <div className="filter-container">
                 <DropdownButton
                     className="dropdown-button"

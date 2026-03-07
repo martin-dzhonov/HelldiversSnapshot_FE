@@ -39,7 +39,7 @@ const Navigation = () => {
   };
 
   const mainRoutes = navRoutes.slice(0, 3);
-  const otherRoutes = navRoutes.slice(3);
+  const secondaryRoutes = navRoutes.slice(3);
 
   return (
     <div className="nav-container">
@@ -95,7 +95,7 @@ const Navigation = () => {
                     <motion.div
                       className="nav-section-wrapper"
                       variants={containerVariants}>
-                      {otherRoutes.map((navRoute) => (
+                      {secondaryRoutes.map((navRoute) => (
                         <motion.div
                           key={navRoute.route}
                           className="mobile-menu-btn text-medium"
@@ -113,30 +113,50 @@ const Navigation = () => {
         </>
       )}
 
+      {/* <div className="hd-logo" onClick={() => navigate("/")}>
+              <img src={hdlogo} alt="" />
+            </div> */}
+
       {!isMobile && (
-        <>
+        <div className="menu-wrapper">
+          <div className="nav-group nav-left">
+            {mainRoutes.map((navRoute) => (
+              <Link
+                key={navRoute.route}
+                to={`/${navRoute.route}`}
+                
+              >
+                <span className={
+                  location.pathname.includes(navRoute.route)
+                    ? "corner custom-font menu-active"
+                    : "corner custom-font"
+                }> <span></span>{navRoute.name.toUpperCase()}</span>
+              </Link>
+            ))}
+          </div>
+
           <div className="logos-wrapper">
             <div className="app-logo" onClick={() => navigate("/")}>
               HELLDIVE.LIVE
             </div>
-            <div className="hd-logo" onClick={() => navigate("/")}>
-              <img src={hdlogo} alt="" />
-            </div>
           </div>
-          <div className="menu">
-            {navRoutes.map((navRoute) => (
+
+          <div className="nav-group nav-right">
+          {secondaryRoutes.map((navRoute) => (
               <Link
                 key={navRoute.route}
                 to={`/${navRoute.route}`}
-                className={
-                  location.pathname.includes(navRoute.route) ? "menu-active" : ""
-                }
+                
               >
-                <span className="custom-font">{navRoute.name}</span>
+                <span className={
+                  location.pathname.includes(navRoute.route)
+                    ? "corner custom-font menu-active"
+                    : "corner custom-font"
+                }> <span></span>{navRoute.name.toUpperCase()}</span>
               </Link>
             ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

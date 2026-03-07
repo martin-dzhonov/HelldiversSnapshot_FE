@@ -28,22 +28,18 @@ const getValueRaw = (item, valuesRaw, key) => {
     }
 
     const map = {
-        'Times played': () => valuesRaw.total.loadouts.toString(),
+        'Times played': () => valuesRaw?.loadouts_total.toString(),
         'Avg. Level': () => {
-            const level = valuesRaw?.values?.avgLevel ?? '';
+            const level = valuesRaw?.avg_level ?? '';
             return level.toString();
         },
         'Rank Trend': () => {
-            let rankValue = valuesRaw.pastValues.rank - valuesRaw.values.rank;
-            if (category && category !== 'All') {
-                rankValue = valuesRaw.pastValues.rank_category - valuesRaw.values.rank_category;
-            }
-            return valuesRaw.values.isNew ? 'New' : rankValue;
+            return 0;
         },
         'Pick Rate Trend': () => {
-            return valuesRaw.values.isNew
+            return valuesRaw?.isNew
                 ? 'New'
-                : Number((valuesRaw.values.loadouts - valuesRaw.pastValues.loadouts).toFixed(2));
+                : Number(valuesRaw?.change);
         },
     };
 

@@ -14,7 +14,7 @@ import {
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
-import { useReports } from '../hooks/useReports';
+import { useReports2 } from '../hooks/useReports2';
 import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
@@ -23,6 +23,7 @@ const defaultFilters = {
     category: "All",
     difficulty: 0,
     mission: "All",
+    modifier: "ALL",
     patch: patchPeriods[patchPeriods.length - 1],
 };
 
@@ -31,7 +32,7 @@ const defaultFilterResults = { games: 0, loadouts: 0 };
 function ArmorsPage() {
     const [filters, setFilters] = useFilter(defaultFilters);
     const [filterResults, setFilterResults] = useState(defaultFilterResults);
-    const { data, isLoading } = useReports(filters);
+    const { data, isLoading } = useReports2(filters);
     const [chartData, setChartData] = useState(null);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 

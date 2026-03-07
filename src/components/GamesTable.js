@@ -108,6 +108,7 @@ function GamesTable({ data }) {
                             <th>Id</th>
                             <th>Planet</th>
                             <th>Mission</th>
+                            <th>Modifiers</th>
                             <th>Players</th>
                             <th>Difficulty</th>
                             <th>Date</th>
@@ -120,6 +121,7 @@ function GamesTable({ data }) {
 
                                 <td className="text-small">{game.planet}</td>
                                 <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
+                                <td className="text-small" style={{ width: "180px" }}>{game.subfactions}</td>
                                 <td className="text-small">
                                     <div className="table-loadout-row-wrapper">
                                         {game.players.map((player, i) => (

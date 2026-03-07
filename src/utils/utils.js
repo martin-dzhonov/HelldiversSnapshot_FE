@@ -235,18 +235,18 @@ function getItemMiscCharts(strategemData, id, isMobile) {
 }
 
 const getCompanionChartData = (strategemData) => {
-
+    console.log(strategemData)
     if (strategemData.companions.strategem) {
         return Object.values(strategemData.companions.strategem).map(category => {
             return category.map(item => {
                 return {
                     ...item,
                     total: { loadouts: item.total },
-                    values: { loadouts: getPercentage(item.total, strategemData.total.loadouts) }
+                    loadouts_percentage: getPercentage(item.total, strategemData.total.loadouts)
                 };
             })
         }).map((item) => {
-            const values = item.map((subItem) => subItem.values.loadouts);
+            const values = item.map((subItem) => subItem.loadouts_percentage);
             return {
                 data: item.reduce((acc, item) => {
                     const { name, ...rest } = item;
@@ -286,22 +286,16 @@ const pickStats = (obj) => {
 };
 
 const getChartData = (data, filters) => {
-    const { faction, patch, category } = filters;
-    const itemEntries = Object.entries(data[faction].items);
-    const patchIndex = patchPeriods.length - patch.id - 1;
-
-    const entriesFiltered = itemEntries.map(([key, item]) => [key, {
-        total: { loadouts: item.values?.[patchIndex].loadouts_total, games: 0 },
-        values: pickStats(item.values?.[patchIndex]),
-        pastValues: pickStats(item.values?.[patchIndex + 1]),
-    }])
-        .filter(([, item]) => item.values.loadouts_total > 0)
+   const { faction, patch, category } = filters;
+    const itemEntries = Object.entries(data.items); 
+    // const patchIndex = patchPeriods.length - patch.id - 1;
+    const entriesFiltered = itemEntries
         .filter(([key]) => category === "All" || itemsDict[key].category === category)
-        .sort(([, a], [, b]) => b.values.loadouts_total - a.values.loadouts_total)
+        .sort(([, a], [, b]) => b.loadouts_percentage - a.loadouts_percentage)
 
     return {
         chartData: Object.fromEntries(entriesFiltered),
-        totals: data[faction].totals[patchIndex]
+        totals: data.total
     };
 };
 

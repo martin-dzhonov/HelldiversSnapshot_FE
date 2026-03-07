@@ -5,6 +5,16 @@ import DonateButton from "../components/DonateButton";
 function AboutPage() {
     return (
         <div className="content-wrapper">
+            <div className="window">
+      <div className="window-header">
+        <span>My Fancy Video</span>
+      </div>
+      <div className="window-content">
+        <video autoPlay loop muted className="video">
+          <source src="/test.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
             <div className="about-wrapper">
                 <div className="about-text-title">
                     Greetings Helldivers, and welcome to{" "}

@@ -14,6 +14,7 @@ import {
 import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import { useReports } from '../hooks/useReports';
+import { useReports2 } from '../hooks/useReports2';
 import useFilter from '../hooks/useFilter';
 import PartnerButton from '../components/PartnerButton';
 
@@ -23,6 +24,7 @@ const defaultFilters = {
   category: "All",
   difficulty: 0,
   mission: "All",
+  modifier: "ALL",
   patch: patchPeriods[patchPeriods.length - 1],
 };
 
@@ -32,7 +34,7 @@ function StrategemsPage() {
   const [filters, setFilters] = useFilter(defaultFilters);
   const [filterResults, setFilterResults] = useState(defaultFilterResults);
   
-  const { data, isLoading } = useReports(filters);
+  const { data, isLoading } = useReports2(filters);
   const [chartData, setChartData] = useState(null);
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
@@ -53,10 +55,7 @@ function StrategemsPage() {
     <div className="content-wrapper">
       <Filters filters={filters} setFilters={setFilters} />
 
-      <ChartLegend
-        items={legendItems}
-        onCheckChange={handleLegendCheck}
-        filterResults={filterResults} />
+
 
       <Loader loading={isLoading}>
         {chartData &&

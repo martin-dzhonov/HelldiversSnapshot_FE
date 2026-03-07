@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { apiBaseUrl } from '../constants';
 
 export function useGames(filters) {
-  const { faction, patch, difficulty, mission} = filters;
-  const queryKey = ['games', faction, patch, difficulty, mission];
+  const { faction, patch, difficulty, mission, modifier} = filters;
+  const queryKey = ['games', faction, patch, difficulty, mission, modifier];
 
   const queryFn = async () => {
-    const res = await fetch(`${apiBaseUrl}/games?faction=${faction}&patch=${patch.id}&difficulty=${difficulty}&mission=${mission}`);
+    const res = await fetch(`${apiBaseUrl}/games?faction=${faction}&patch=${patch.id}&difficulty=${difficulty}&mission=${mission}&modifier=${modifier}`);
     if (!res.ok) throw new Error('Network response error');
     return res.json();
   };

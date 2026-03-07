@@ -52,9 +52,9 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
                 labels: Object.keys(data).map((item) => itemsDict[item] ? itemsDict[item].name : item),
                 datasets: [
                     {
-                        data: Object.values(data).map((item) => item?.values?.loadouts),
-                        pastValue: Object.values(data).map((item) => item?.pastValues?.loadouts),
-                        total: Object.values(data).map((item) => item?.total?.loadouts),
+                        data: Object.values(data).map((item) => item?.loadouts_percentage),
+                        pastValue: Object.values(data).map((item) => item?.loadouts_percentage + item?.change),
+                        total: Object.values(data).map((item) => item?.loadouts_total),
                         backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
                         barThickness: options.barSize,
                     },
@@ -166,7 +166,8 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
 
                 legendItems.forEach((item, j) => {
                     let valueRaw = getValueRaw(item, valuesRaw, key);
-                    const valueFormatted = formatValue(item.name, valueRaw);
+
+                     const valueFormatted = formatValue(item.name, valueRaw);
                     
                     if (item.check) {
                         if (item.src) {

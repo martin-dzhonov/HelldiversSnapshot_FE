@@ -8,8 +8,8 @@ const createItem = (baseName, fullName, category, ext = "svg") => ({
 });
 
 const isDev = false;
-const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
-//const apiBaseUrl = `http://localhost:8080`;
+//const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+const apiBaseUrl = `http://localhost:8080`;
 
 const navRoutes = [
     {
@@ -24,6 +24,7 @@ const navRoutes = [
         name: "Armors",
         route: "armors"
     },
+    
     {
         name: "Data",
         route: "games"
@@ -38,24 +39,28 @@ const navRoutes = [
     }
 ];
 
-const factions = ["terminid", "automaton", "illuminate"];
-const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
-const weaponCategories = ["Primary", "Secondary", "Throwable"];
-const missionTypes = ["Short", "Long"];
+export const modifierNames = {
+    terminid: [
+        "ALL",
+        "RUPTURE STRAIN",
+        "PREDATOR STRAIN",
+        "HIVE LORDS",
+        "NONE",
+    ],
+    automaton: [
+        "ALL",
+        "THE INCENERATION CORPS",
+        "THE JET BRIGADE",
+        "CYBORGS",
+        "HEAVY ARMOR SURGE",
+        "HULK SURGE",
+        "NONE",
+    ],
+    illuminate: [
+        "NONE",
+    ]
 
-const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
-const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
-const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
-
-const distChartColors = {
-    level: "#679552",
-    difficulty: "#49adc9",
-    mission: "#de7b6c",
-    planet: "#49adc9",
-    dates: "#679552"
-
-}
-
+};
 const patchPeriods = [
     { id: 0, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
     { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
@@ -78,6 +83,26 @@ const difficultiesNames = [
     "9 - Helldive",
     "10 - Super Helldive"
 ];
+
+const factions = ["terminid", "automaton", "illuminate"];
+const missionTypes = ["Short", "Long"];
+const missionTypesAll = ["All", "Short", "Long"];
+const itemCategories = ["All", "Eagle/Orbital", "Support", "Defensive"];
+const weaponCategories = ["Primary", "Secondary", "Throwable"];
+
+
+const factionColors = ["rgb(255,182,0)", "#d55642", "rgb(107,58,186)"]
+const itemCategoryColors = ["#aaa", "#de7b6c", "#49adc9", "#679552"];
+const weaponCategoryColors = ["#49adc9", "#679552", "#de7b6c"];
+
+const distChartColors = {
+    level: "#679552",
+    difficulty: "#49adc9",
+    mission: "#de7b6c",
+    planet: "#49adc9",
+    dates: "#679552"
+
+}
 
 const difficultiesNamesShort = [
     "Suicide Mission",
@@ -413,7 +438,8 @@ export {
     itemsDict,
     armorsDict,
     itemsChartConfig,
-    distChartColors
+    distChartColors,
+    missionTypesAll
 };
 
 

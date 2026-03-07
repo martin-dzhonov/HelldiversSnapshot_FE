@@ -17,7 +17,8 @@ const defaultFilters = {
     faction: "terminid",
     patch: patchPeriods[patchPeriods.length - 1],
     difficulty: 0,
-    mission: "All"
+    mission: "All",
+    modifier: "ALL"
 };
 
 const defaultFilterResults = { games: 0, loadouts: 0 };
