@@ -1,4 +1,3 @@
-
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
@@ -31,15 +30,22 @@ const defaultFilters = {
 const defaultFilterResults = { games: 0, loadouts: 0 };
 
 function StrategemsPage() {
+
   const [filters, setFilters] = useFilter(defaultFilters);
   const [filterResults, setFilterResults] = useState(defaultFilterResults);
-  
+
   const { data, isLoading } = useReports2(filters);
   const [chartData, setChartData] = useState(null);
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
+  const resetFilters = () => {
+    setFilters({ ...defaultFilters });
+  };
+
   useEffect(() => {
+
     if (data) {
+
       const { chartData, totals } = getChartData(data, filters);
 
       setChartData({
@@ -49,27 +55,36 @@ function StrategemsPage() {
 
       setFilterResults(totals);
     }
+
   }, [data, filters]);
 
   return (
-    <div className="content-wrapper">
-      <Filters filters={filters} setFilters={setFilters} />
+    <>
+      <Filters
+        filters={filters}
+        totals={filterResults}
+        setFilters={setFilters}
+        resetFilters={resetFilters}
+      />
 
+      <div className="content-wrapper">
 
+        <Loader loading={isLoading}>
+          {chartData &&
+            <ImageChart
+              barData={chartData.data}
+              options={chartData.options}
+              filters={filters}
+              legendItems={legendItems}
+              limit={10}
+            />
+          }
+        </Loader>
 
-      <Loader loading={isLoading}>
-        {chartData &&
-          <ImageChart
-            barData={chartData.data}
-            options={chartData.options}
-            filters={filters}
-            legendItems={legendItems}
-            limit={10}
-          />
-        }
-      </Loader>
-      <PartnerButton />
-    </div >
+        <PartnerButton />
+
+      </div>
+    </>
   );
 }
 

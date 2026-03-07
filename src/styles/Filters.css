@@ -2,8 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px 0px;
-
+    padding: 15px 75px;
 }
 
 @media only screen and (max-width: 992px) {
@@ -12,7 +11,7 @@
     }
 }
 
-.filters-title{
+.filters-title {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -22,7 +21,7 @@
     font-size: 16px;
 }
 
-.filter-container{
+.filter-container {
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -61,7 +60,7 @@
 
 .dropdown-button .dropdown-toggle {
     background-color: transparent;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 30px;
     font-family: "CustomFont";
     border: none !important;
     flex-basis: 80% !important;
@@ -74,31 +73,39 @@
 
 .dropdown-button,
 .dropdown-button .dropdown-toggle {
-    width: auto !important; /* remove 100% */
-    min-width: 80px; /* optional: ensures tiny text doesn’t collapse */
+    width: auto !important;
+    min-width: 80px;
 }
 
 @media only screen and (max-width: 992px) {
     .dropdown-button .dropdown-toggle {
         margin-top: 4px;
-        padding: 8px 15px 8px 15px;
+        padding: 8px 15px;
         font-size: 15px;
     }
 }
+
 
 .dropdown-toggle::after {
     display: none !important;
 }
 
 .dropdown-toggle:hover {
-    background-color: transparent;
+    background: rgba(57, 57, 60, 0.5)
+
 }
 
+.dropdown-button .dropdown-toggle:active {
+    background-color: #56799c
+}
+
+
 .dropdown-menu button {
-    padding: 10px 30px;  /* equal left and right */
+    padding: 10px 30px;
     font-size: 17px;
     text-align: center;
 }
+
 @media only screen and (max-width: 992px) {
     .dropdown-button button {
         font-size: 13px !important;
@@ -107,21 +114,33 @@
 
 .dropdown-menu {
     position: absolute !important;
-    top: calc(100% + 5px) !important; /* place below button with 5px gap */
+    top: calc(100% + 5px) !important;
     left: 50% !important;             
     transform: translateX(-50%) !important; 
     min-width: 100%;                  
     background-color: transparent;
     font-family: "CustomFont";
+    border: none;
 }
 
 .dropdown-menu .dropdown-item {
-    background-color: #2c3e50 !important;
+    background-color: #181818 !important;
     color: white;
-    text-align: center;           /* center text horizontally */
+    text-align: center;
     display: flex;
-    justify-content: center;      /* center content horizontally */
-    align-items: center;          /* center content vertically */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu .dropdown-item:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.dropdown-menu .dropdown-item:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .dropdown-menu .dropdown-item:hover {
@@ -129,19 +148,70 @@
     color: white;
 }
 
+.filters-row-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .filters-row {
     display: flex;
-    justify-content: flex-start;
     gap: 20px;
-    width: auto; /* let it fit its content */
     flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 992px) {
-    .filters-row{
-        justify-content:center;
-        flex-wrap:wrap;
-    }
+.totals-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+/* ===== TOTALS DROPDOWN STYLE ===== */
+.totals-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    font-family: 'CustomFont';
+    color: white;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+    gap: 6px;
+}
+
+.totals-title {
+    font-size: 17px;
+    text-transform: uppercase;
+    width: 90px;
+    text-align: right;
+}
+
+.totals-value {
+    font-size: 17px;
+    text-align: right;
+    min-width: 40px;
+}
+
+.totals-separator {
+    width: 100%;
+    height: 2px;
+    margin: 4px 0;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255,255,255,0.4) 10%,
+        white 50%,
+        rgba(255,255,255,0.4) 90%,
+        transparent 100%
+    );
 }
 
 .filters-toggle{
@@ -158,4 +228,51 @@
     padding:6px 20px;
     font-family:"CustomFont";
     cursor:pointer;
+}
+
+
+.filters-locked {
+    position: sticky;
+    top: 80px;
+    z-index: 900;
+    background-color: rgba(24, 24, 24, 0.97);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.filters-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25px;
+    margin-bottom: 4px;
+    gap: 22px;
+}
+
+.filters-action-btn {
+    color: white;
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters-action-btn:hover {
+    color: yellow;
+}
+
+.filters-action-btn:focus {
+    outline: none;
+}
+
+.filters-action-btn svg {
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.custom-tooltip .tooltip-inner {
+    font-size: 16px; 
+    padding: 8px 12px; 
 }

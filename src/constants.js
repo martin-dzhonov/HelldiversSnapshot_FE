@@ -57,7 +57,7 @@ export const modifierNames = {
         "NONE",
     ],
     illuminate: [
-        "NONE",
+        "ALL",
     ]
 
 };

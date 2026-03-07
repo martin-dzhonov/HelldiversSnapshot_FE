@@ -113,10 +113,6 @@ const Navigation = () => {
         </>
       )}
 
-      {/* <div className="hd-logo" onClick={() => navigate("/")}>
-              <img src={hdlogo} alt="" />
-            </div> */}
-
       {!isMobile && (
         <div className="menu-wrapper">
           <div className="nav-group nav-left">
@@ -124,7 +120,7 @@ const Navigation = () => {
               <Link
                 key={navRoute.route}
                 to={`/${navRoute.route}`}
-                
+
               >
                 <span className={
                   location.pathname.includes(navRoute.route)
@@ -136,17 +132,21 @@ const Navigation = () => {
           </div>
 
           <div className="logos-wrapper">
-            <div className="app-logo" onClick={() => navigate("/")}>
+            <div className="logo-title" onClick={() => navigate("/")}>
               HELLDIVE.LIVE
             </div>
+            <div className="hd-logo" onClick={() => navigate("/")}>
+              <img src={hdlogo} alt="" />
+            </div>
+
           </div>
 
           <div className="nav-group nav-right">
-          {secondaryRoutes.map((navRoute) => (
+            {secondaryRoutes.map((navRoute) => (
               <Link
                 key={navRoute.route}
                 to={`/${navRoute.route}`}
-                
+
               >
                 <span className={
                   location.pathname.includes(navRoute.route)
