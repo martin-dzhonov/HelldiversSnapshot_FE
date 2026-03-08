@@ -132,10 +132,10 @@ const Navigation = () => {
           </div>
 
           <div className="logos-wrapper">
-            <div className="logo-title" onClick={() => navigate("/")}>
+            <div className="logo-title" onClick={() => navigate("/home")}>
               HELLDIVE.LIVE
             </div>
-            <div className="hd-logo" onClick={() => navigate("/")}>
+            <div className="hd-logo" onClick={() => navigate("/home")}>
               <img src={hdlogo} alt="" />
             </div>
 

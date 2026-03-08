@@ -57,8 +57,6 @@ function GamesPage() {
 
     return (
         <div className="content-wrapper">
-            <GamesFilters filters={filters} setFilters={setFilters} />
-
             <div className="type-buttons-wrapper text-medium">
                 {galleryCategories.map((label, index) => (
                     <div
@@ -69,6 +67,10 @@ function GamesPage() {
                     </div>
                 ))}
             </div>
+            
+            <GamesFilters filters={filters} setFilters={setFilters} />
+
+            
 
             <div className="games-filters-container">
                 <div className='games-filters-text'>

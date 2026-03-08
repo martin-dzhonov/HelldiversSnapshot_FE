@@ -7,16 +7,14 @@ import { useEffect, useState } from 'react'
 import { patchPeriods } from '../constants';
 import Filters from '../components/filters/Filters';
 import Loader from '../components/Loader';
-import ImageChart from '../components/charts/ImageChart';
+import ToggleableChart from '../components/charts/ToggleableChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
     getChartData,
 } from '../utils/utils';
-import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
 import useFilter from '../hooks/useFilter';
 import { useReports2 } from '../hooks/useReports2';
-import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
     page: "weapons",
@@ -28,50 +26,63 @@ const defaultFilters = {
     patch: patchPeriods[patchPeriods.length - 1],
 };
 
-const defaultFilterResults = {games: 0, loadouts: 0};
+const defaultFilterResults = { games: 0, loadouts: 0 };
 
 function WeaponsPage() {
+
     const [filters, setFilters] = useFilter(defaultFilters);
     const [filterResults, setFilterResults] = useState(defaultFilterResults);
     const { data, isLoading } = useReports2(filters);
     const [chartData, setChartData] = useState(null);
+
+    const [showFull, setShowFull] = useState(true);
     const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
+
+    const resetFilters = () => {
+        setFilters({ ...defaultFilters });
+    };
 
     useEffect(() => {
         if (data) {
             const { chartData, totals } = getChartData(data, filters);
             let axisWidth = filters.category === "Throwable" ? 85 : 145;
-        
+
             setChartData({
                 data: chartData,
-                options: chartsSettings.weapons({axisWidth})
+                options: chartsSettings.weapons({ axisWidth })
             });
+
             setFilterResults(totals);
         }
     }, [data, filters]);
 
+
+
+
     return (
-        <div className="content-wrapper">
-            <Filters filters={filters} setFilters={setFilters} />
+        <>
+            <Filters
+                filters={filters}
+                totals={filterResults}
+                setFilters={setFilters}
+                resetFilters={resetFilters}
+            />
+            <div className="content-wrapper">
+                <Loader loading={isLoading}>
+                    {chartData && (
+                        <ToggleableChart
+                            isLoading={isLoading}
+                            chartData={chartData}
+                            filters={filters}
+                            legendItems={legendItems}
+                            showFull={showFull}
+                            setShowFull={setShowFull}
+                        />
 
-            <ChartLegend
-                items={legendItems}
-                onCheckChange={handleLegendCheck}
-                filterResults={filterResults} />
-
-            <Loader loading={isLoading}>
-                {chartData &&
-                    <ImageChart
-                        barData={chartData.data}
-                        options={chartData.options}
-                        filters={filters}
-                        legendItems={legendItems}
-                        limit={10}
-                    />}
-            </Loader>
-            <PartnerButton />
-
-        </div >
+                    )}
+                </Loader>
+            </div>
+        </>
     );
 }
 

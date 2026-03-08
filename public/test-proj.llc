@@ -1,0 +1,10 @@
+{
+  version: 1,
+  mediaFileName: 'test.mp4',
+  cutSegments: [
+    {
+      start: 1.1058290865874363,
+      name: '',
+    },
+  ],
+}

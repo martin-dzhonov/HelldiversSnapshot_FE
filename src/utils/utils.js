@@ -90,6 +90,16 @@ const getRankMin = (format, value) => {
     }
 }
 
+const getDataCollectionColors = (value) => {
+   const valueNum = Number(value);
+   if(valueNum > 8000){
+    return '#228B22';
+   } else if(valueNum > 3000){
+    return '#FF8C00'
+   } 
+   else return '#DC143C'
+}
+
 const getPercentage = (number1, number2, decimals = 1) => {
     const percantageRaw = (number1 / number2) * 100;
     return Number(percantageRaw.toFixed(decimals));
@@ -323,5 +333,6 @@ export {
     getChartData,
     getItemMiscCharts,
     getTrendCharts,
-    getDistChartData
+    getDistChartData,
+    getDataCollectionColors
 };

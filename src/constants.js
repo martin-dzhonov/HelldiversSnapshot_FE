@@ -21,7 +21,7 @@ const navRoutes = [
         route: "weapons"
     },
     {
-        name: "Armors",
+        name: "Armor",
         route: "armors"
     },
     

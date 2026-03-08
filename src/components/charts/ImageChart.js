@@ -26,68 +26,61 @@ ChartJS.register(
     Legend,
     ChartDataLabels
 );
-
-const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
+const ImageChart = ({ barData, filters, options, legendItems, limit = 10, showFull }) => {
     const chartRef = useRef(null);
     const navigate = useNavigate();
     const { isMobile } = useMobile();
 
     const [images, setImages] = useState({});
     const [imagesLoaded, setImagesLoaded] = useState(false);
-    const [showFull, setShowFull] = useState(false);
 
     const data = useMemo(() => {
-        if (barData) {
-            if (limit && !showFull) {
-                return Object.fromEntries(Object.entries(barData).slice(0, limit));
-            } else {
-                return barData;
-            }
+        if (!barData) return null;
+        if (limit && !showFull) {
+            return Object.fromEntries(Object.entries(barData).slice(0, limit));
         }
+        return barData;
     }, [barData, limit, showFull]);
 
     const chartData = useMemo(() => {
-        if (data) {
-            return {
-                labels: Object.keys(data).map((item) => itemsDict[item] ? itemsDict[item].name : item),
-                datasets: [
-                    {
-                        data: Object.values(data).map((item) => item?.loadouts_percentage),
-                        pastValue: Object.values(data).map((item) => item?.loadouts_percentage + item?.change),
-                        total: Object.values(data).map((item) => item?.loadouts_total),
-                        backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
-                        barThickness: options.barSize,
-                    },
-                ],
-            };
-        }
+        if (!data) return null;
+
+        return {
+            labels: Object.keys(data).map((item) => itemsDict[item] ? itemsDict[item].name : item),
+            datasets: [
+                {
+                    data: Object.values(data).map((item) => item?.loadouts_percentage),
+                    pastValue: Object.values(data).map((item) => item?.loadouts_percentage + item?.change),
+                    total: Object.values(data).map((item) => item?.loadouts_total),
+                    backgroundColor: Object.keys(data).map((item) => getItemColor(item)),
+                    barThickness: options.barSize,
+                },
+            ],
+        };
     }, [data]);
 
     const chartHeight = useMemo(() => {
-        if (data) {
-            return Object.keys(data).length * options.sectionSize;
-        }
+        if (!data) return 0;
+        return Object.keys(data).length * options.sectionSize;
     }, [data]);
 
     useMemo(() => {
-        if (itemsDict) {
-            const images = {};
-            let loadedCount = 0;
-            Object.keys(itemsDict).forEach((imageKey) => {
-                const image = new Image();
-                image.src = itemsDict[imageKey]?.image;
-                image.onload = () => {
-                    images[imageKey] = image;
-                    loadedCount += 1;
-                    if (loadedCount === Object.keys(itemsDict).length) {
-                        setImages(images);
-                        setImagesLoaded(true);
-                    }
-                };
-            });
-        }
+        if (!itemsDict) return;
+        const images = {};
+        let loadedCount = 0;
+        Object.keys(itemsDict).forEach((key) => {
+            const image = new Image();
+            image.src = itemsDict[key]?.image;
+            image.onload = () => {
+                images[key] = image;
+                loadedCount += 1;
+                if (loadedCount === Object.keys(itemsDict).length) {
+                    setImages(images);
+                    setImagesLoaded(true);
+                }
+            };
+        });
     }, [itemsDict]);
-
 
     const getChartYOffset = () => {
         const offsets = config.chartYOffset[filters.page];
@@ -98,12 +91,8 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
     const getChartXOffset = () => {
         const { page, category } = filters;
         const mode = isDev ? 'dev' : 'prod';
-
         let offsets = config.chartXOffset[page];
-        if (page === 'weapons') {
-            offsets = offsets[category]
-        }
-
+        if (page === 'weapons') offsets = offsets[category];
         return offsets ? offsets[mode] : 0;
     };
 
@@ -111,19 +100,13 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
         const { page, category } = filters;
         const mode = isDev ? 'dev' : isMobile ? 'mobile' : 'prod';
         let imgDim = config.imageDimensions[page];
-
-        if (page === 'weapons') {
-            imgDim = imgDim[category];
-            return { ...options, ...imgDim[mode] };
-        }
-
+        if (page === 'weapons') imgDim = imgDim[category];
         return { ...options, ...imgDim[mode] };
     };
 
     const onClick = (event) => {
         const { current: chart } = chartRef;
-        if (!chart) { return; }
-        if (filters.page === 'armor') { return; }
+        if (!chart || filters.page === 'armor') return;
 
         const elementAtEvent = getElementAtEvent(chart, event);
         if (elementAtEvent.length > 0) {
@@ -131,7 +114,7 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
             navigate(`/${filters.page}/${itemId}?f=${filters.faction}&p=${filters.patch.id}`);
             window.scrollTo(0, 0);
         }
-    }
+    };
 
     const handleDrawImage = (chart) => {
         const { ctx } = chart;
@@ -142,57 +125,51 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
 
         ctx.textBaseline = "top";
         ctx.save();
-
         ctx.font = `${isDev ? '50px' : '16px'} CustomFont`;
-        let iconSize = isDev ? 50 : 20;
-
+        const iconSize = isDev ? 50 : 20;
         ctx.fillStyle = "#ffffff";
         ctx.textAlign = "left";
 
         Object.keys(data).forEach((key, i) => {
             const image = images[key];
+            if (!image) return;
 
-            if (image) {
-                const { imageW, imageH, imageX } = getImageDimensions();
-                let imageY = i * (options.barSize + step) + yOffset;
+            const { imageW, imageH, imageX } = getImageDimensions();
+            const imageY = i * (options.barSize + step) + yOffset;
 
-                const labelsY = imageY + getChartYOffset();
-                let labelsX = imageX + getChartXOffset();
-                let labelsPadding = isDev ? 35 : isMobile ? 8 : 15;
+            const labelsY = imageY + getChartYOffset();
+            let labelsX = imageX + getChartXOffset();
+            const labelsPadding = isDev ? 35 : isMobile ? 8 : 15;
 
-                ctx.drawImage(image, imageX, imageY + + (isDev ? 20 : 5), imageW, imageH);
+            ctx.drawImage(image, imageX, imageY + (isDev ? 20 : 5), imageW, imageH);
 
-                const valuesRaw = data[key];
+            const valuesRaw = data[key];
 
-                legendItems.forEach((item, j) => {
-                    let valueRaw = getValueRaw(item, valuesRaw, key);
+            legendItems.forEach((item) => {
+                const valueRaw = getValueRaw(item, valuesRaw, key);
+                const valueFormatted = formatValue(item.name, valueRaw);
 
-                     const valueFormatted = formatValue(item.name, valueRaw);
-                    
-                    if (item.check) {
-                        if (item.src) {
-                            let icon = item.src;
-                            if (item.name === 'Pick Rate Trend' && valueRaw < 0) {
-                                icon = item.altSrc;
-                            }
-                            ctx.drawImage(icon, labelsX, labelsY - iconSize / 10, iconSize, iconSize);
-                            labelsX += iconSize + iconSize / 10;
-                        }
+                if (!item.check) return;
 
-                        ctx.fillStyle = getValueColor(valueRaw);
-                        ctx.fillText(valueFormatted, labelsX, labelsY);
-                        labelsX += ctx.measureText(valueFormatted).width + labelsPadding;
-                    }
-                })
-            }
+                if (item.src) {
+                    let icon = item.src;
+                    if (item.name === 'Pick Rate Trend' && valueRaw < 0) icon = item.altSrc;
+                    ctx.drawImage(icon, labelsX, labelsY - iconSize / 10, iconSize, iconSize);
+                    labelsX += iconSize + iconSize / 10;
+                }
+
+                ctx.fillStyle = getValueColor(valueRaw);
+                ctx.fillText(valueFormatted, labelsX, labelsY);
+                labelsX += ctx.measureText(valueFormatted).width + labelsPadding;
+            });
         });
 
         ctx.restore();
     };
 
-    const downloadChart = (event) => {
+    const downloadChart = () => {
         const { current: chart } = chartRef;
-        if (!chart) { return; }
+        if (!chart) return;
         const url = chart.toBase64Image();
         const link = document.createElement("a");
         link.href = url;
@@ -200,52 +177,40 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 0 }) => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
+    };
 
-    if (!imagesLoaded || !legendItems) {
-        return null;
-    }
+    if (!imagesLoaded || !legendItems) return null;
 
     return (
         <>
             {isDev && (
-                <div className="text-small" onClick={() => downloadChart()}>
+                <div className="text-small" onClick={downloadChart}>
                     Download
                 </div>
             )}
-
             {chartData ? (
                 chartData.labels.length === 0 ? (
                     <div className="empty-chart-text-wrapper">
-                        <div className="empty-chart-text">
-                            No Data Available
-                        </div>
+                        <div className="empty-chart-text">No Data Available</div>
                     </div>
                 ) : (
-                    <>
-                        <div style={{ width: "100%", height: `${chartHeight}px` }}>
-                            <div className="bar-chart-wrapper">
-                                <Bar
-                                    ref={chartRef}
-                                    data={chartData}
-                                    options={options}
-                                    redraw={true}
-                                    onClick={onClick}
-                                    plugins={[
-                                        {
-                                            beforeDraw: (chart) => handleDrawImage(chart),
-                                            resize: (chart) => handleDrawImage(chart),
-                                        },
-                                    ]}
-                                />
-                            </div>
+                    <div style={{ width: "100%", height: `${chartHeight}px` }}>
+                        <div className="bar-chart-wrapper">
+                            <Bar
+                                ref={chartRef}
+                                data={chartData}
+                                options={options}
+                                redraw={true}
+                                onClick={onClick}
+                                plugins={[
+                                    {
+                                        beforeDraw: handleDrawImage,
+                                        resize: handleDrawImage,
+                                    },
+                                ]}
+                            />
                         </div>
-                        {limit && <div
-                            className="text-small text-faction-show-all"
-                            onClick={() => setShowFull(!showFull)}>
-                            Show {showFull ? "Less" : "All"}
-                        </div>}
-                    </>
+                    </div>
                 )
             ) : null}
         </>

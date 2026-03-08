@@ -99,7 +99,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 5px 0px 25px 0px;
 }
 
 .games-filters-text {

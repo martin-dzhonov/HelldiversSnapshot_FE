@@ -1,3 +1,4 @@
+
 import '../styles/App.css';
 import '../styles/StrategemsPage.css';
 import "react-tabs/style/react-tabs.css";
@@ -5,17 +6,14 @@ import { useEffect, useState } from 'react'
 import { patchPeriods } from '../constants';
 import Filters from '../components/filters/Filters';
 import Loader from '../components/Loader';
-import ImageChart from '../components/charts/ImageChart';
+import ToggleableChart from '../components/charts/ToggleableChart';
 import * as chartsSettings from "../settings/chartSettings";
 import {
   getChartData,
 } from '../utils/utils';
-import ChartLegend from '../components/ChartLegend';
 import useLegendItems from '../hooks/useLegendItems';
-import { useReports } from '../hooks/useReports';
 import { useReports2 } from '../hooks/useReports2';
 import useFilter from '../hooks/useFilter';
-import PartnerButton from '../components/PartnerButton';
 
 const defaultFilters = {
   page: "strategem",
@@ -27,25 +25,32 @@ const defaultFilters = {
   patch: patchPeriods[patchPeriods.length - 1],
 };
 
+
+//edit intro videos
+//mobile design
+//BE caching/stress test
+//fix data missmatches
+//fix mission filter
+//fix rock solid asset
+//edit games page
+//new spinner
+ 
 const defaultFilterResults = { games: 0, loadouts: 0 };
 
 function StrategemsPage() {
-
   const [filters, setFilters] = useFilter(defaultFilters);
   const [filterResults, setFilterResults] = useState(defaultFilterResults);
-
   const { data, isLoading } = useReports2(filters);
   const [chartData, setChartData] = useState(null);
+
+  const [showFull, setShowFull] = useState(true); 
   const { legendItems, handleLegendCheck } = useLegendItems(setChartData, filters);
 
   const resetFilters = () => {
     setFilters({ ...defaultFilters });
   };
-
   useEffect(() => {
-
     if (data) {
-
       const { chartData, totals } = getChartData(data, filters);
 
       setChartData({
@@ -55,7 +60,6 @@ function StrategemsPage() {
 
       setFilterResults(totals);
     }
-
   }, [data, filters]);
 
   return (
@@ -66,23 +70,20 @@ function StrategemsPage() {
         setFilters={setFilters}
         resetFilters={resetFilters}
       />
-
       <div className="content-wrapper">
-
         <Loader loading={isLoading}>
-          {chartData &&
-            <ImageChart
-              barData={chartData.data}
-              options={chartData.options}
-              filters={filters}
-              legendItems={legendItems}
-              limit={10}
-            />
-          }
+          {chartData && (
+            <ToggleableChart
+            isLoading={isLoading}
+            chartData={chartData}
+            filters={filters}
+            legendItems={legendItems}
+            showFull={showFull}
+            setShowFull={setShowFull}
+          />
+          
+          )}
         </Loader>
-
-        <PartnerButton />
-
       </div>
     </>
   );
