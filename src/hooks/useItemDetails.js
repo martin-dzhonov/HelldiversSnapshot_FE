@@ -8,7 +8,9 @@ export function useItemDetails({id, filters}) {
   const queryKey = [`${page}_${id}_${patch.id}`, id, patch.id];
 
   const queryFn = async () => {
-    const res = await fetch(`${apiBaseUrl}/${page}?id=${id}&patch_id=${patch.id}`);
+
+    const res = await fetch(`${apiBaseUrl}/${page}_2?id=${id}&patch_id=${patch.id}`);
+    //const res = await fetch(`${apiBaseUrl}/${page}?id=${id}&patch_id=${patch.id}`);
     if (!res.ok) throw new Error('Network response error');
     return res.json();
   };

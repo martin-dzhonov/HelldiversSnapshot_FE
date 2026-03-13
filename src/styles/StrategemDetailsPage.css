@@ -109,11 +109,6 @@
     width: 100%;
 }
 
-.strategem-level-graph-wrapper {
-    padding: 5px 10px !important;
-    height: 200px;
-    width: 100%;
-}
 
 .strategem-graph-title {
     color: white;
@@ -144,6 +139,18 @@
     padding: 0px 10px !important;
     margin-bottom: 20px;
     height: 160px;
+    width: 100%;
+}
+
+.strategem-level-graph-wrapper {
+    padding: 5px 10px !important;
+    height: 160px;
+    width: 100%;
+}
+
+.strategem-modifiers-graph-wrapper {
+    padding: 5px 10px !important;
+    height: 170px;
     width: 100%;
 }
 

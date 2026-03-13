@@ -22,18 +22,18 @@ const defaultFilters = {
   difficulty: 0,
   mission: "All",
   modifier: "ALL",
-  patch: patchPeriods[patchPeriods.length - 1],
+  patch: patchPeriods[patchPeriods.length - 1], 
 };
 
+//add hover tooltip for details and games too
+//hover patch tooltip flicker
 
-//edit intro videos
+//BE stress test
+
 //mobile design
-//BE caching/stress test
-//fix data missmatches
-//fix mission filter
-//fix rock solid asset
-//edit games page
-//new spinner
+//add wiki links
+
+
  
 const defaultFilterResults = { games: 0, loadouts: 0 };
 

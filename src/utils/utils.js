@@ -29,13 +29,13 @@ const getPatchesValues = (data, filters, ranks, itemId) => {
         return -1;
     }
     const itemCategory = itemsDict[itemId].category;
-
     let filterKeys = {
         'rank_all': data.rank >= 0 ? ranks.all - data.rank : -0.1,
         'rank_category': data.rank_category >= 0 ? ranks[itemCategory] - data.rank_category : -0.1,
         'pick_rate': data.loadouts >= 0 ? data.loadouts : -0.1,
         'game_rate': data.games >= 0 ? data.games : -0.1,
     };
+
 
     return filterKeys[filters.format];
 }
@@ -58,6 +58,7 @@ const getDatasetValue = (data, filters, ranks, itemId) => {
 
     const values = data.values[patchPeriods.length - 1 - filters.patch.id];
     const itemCategory = itemsDict[itemId].category;
+
     let filterKeys = {
         'rank_all': values.rank > 0 ? ranks.all - values.rank : ranks.all,
         'rank_category': values.rank_category > 0 ? ranks[itemCategory] - values.rank_category : ranks[itemCategory],
@@ -91,13 +92,13 @@ const getRankMin = (format, value) => {
 }
 
 const getDataCollectionColors = (value) => {
-   const valueNum = Number(value);
-   if(valueNum > 8000){
-    return '#228B22';
-   } else if(valueNum > 3000){
-    return '#FF8C00'
-   } 
-   else return '#DC143C'
+    const valueNum = Number(value);
+    if (valueNum > 8000) {
+        return '#228B22';
+    } else if (valueNum > 3000) {
+        return '#FF8C00'
+    }
+    else return '#DC143C'
 }
 
 const getPercentage = (number1, number2, decimals = 1) => {
@@ -157,8 +158,10 @@ function getTrendCharts(data, filters, id, isMobile = false) {
 
     const ranks = strategemData.ranks;
 
-    const factionsDataset = factions.map((faction) =>
-        getDatasetValue(data[faction], filters, ranks, id)
+    const factionsDataset = factions.map((faction) => {
+        if (data[faction].total.loadouts < 5) return -1;
+        return getDatasetValue(data[faction], filters, ranks, id);
+    }
     );
 
     const factionChart = {
@@ -172,19 +175,23 @@ function getTrendCharts(data, filters, id, isMobile = false) {
     };
 
     let patchesValues = data[filters.faction].values;
-    let patchesLabels = patchPeriods.slice().reverse().map((item) => item.name);
+    let patchesLabels = patchesValues.map((item, i) => patchPeriods[patchPeriods.length - i - 1].name)
 
-    if (filters.page === "weapon_details") {
-        patchesValues = patchesValues.slice(0, patchesValues.length - 3);
-        patchesLabels = patchesLabels.slice(0, patchesLabels.length - 3).slice().reverse();
+    let startIndex = patchesValues.length - filters.patch.id - 1;
+    let endIndex = startIndex + 8;
+
+    if(patchesValues.length - startIndex < 2){
+        startIndex += -1;
     }
-    if (filters.page === "strategem_details") {
-        patchesValues = patchesValues.slice(0, patchesValues.length - 2);
-        patchesLabels = patchesLabels.slice(0, patchesLabels.length - 2).slice().reverse();
-    }
+
+    patchesValues = patchesValues.slice(startIndex, endIndex)
+    patchesLabels = patchesLabels.slice(startIndex, endIndex)
+
+    patchesLabels = patchesLabels.reverse();
     const patchesDataset = patchesValues
         .map((item) => getPatchesValues(item, filters, ranks, id))
         .reverse();
+
 
     const max = getRankMax(patchesDataset, filters, ranks, id);
     const min = getRankMin(filters.format, max)
@@ -200,11 +207,12 @@ function getTrendCharts(data, filters, id, isMobile = false) {
         }),
     };
 
+
     return { faction: factionChart, patch: patchChart };
 }
 
 function getItemMiscCharts(strategemData, id, isMobile) {
-    if (!strategemData?.total?.loadouts) return { diff: null, mission: null, level: null };
+    if (!strategemData?.total?.loadouts) return { diff: null, mission: null, level: null, modifiers: null };
 
     const chartConfigs = {
         diff: {
@@ -222,6 +230,18 @@ function getItemMiscCharts(strategemData, id, isMobile) {
             labels: strategemData.levels ? Object.keys(strategemData.levels) : [],
             transform: (item) => getPercentage(item, strategemData.total.loadouts),
         },
+        modifiers: {
+            key: 'modifiers',
+            labels: strategemData.modifiers
+                ? Object.keys(strategemData.modifiers).filter(
+                    (key) =>
+                        key !== 'ALL' &&
+                        key !== 'NONE' &&
+                        strategemData.modifiers[key].loadouts > 0
+                )
+                : [],
+            transform: (item) => item.value,
+        },
     };
 
     const charts = {};
@@ -229,10 +249,19 @@ function getItemMiscCharts(strategemData, id, isMobile) {
     for (const [name, config] of Object.entries(chartConfigs)) {
         const dataSource = strategemData[config.key];
         if (dataSource) {
+            let filteredData = dataSource;
+            if (name === 'modifiers') {
+                filteredData = Object.fromEntries(
+                    Object.entries(dataSource).filter(
+                        ([key, val]) => key !== 'ALL' && key !== 'NONE' && val.loadouts > 0
+                    )
+                );
+            }
+
             charts[name] = {
                 labels: config.labels,
                 datasets: getChartDataset({
-                    data: Object.values(dataSource).map(config.transform),
+                    data: Object.values(filteredData).map(config.transform),
                     color: getItemColor(id),
                 }),
             };
@@ -240,12 +269,10 @@ function getItemMiscCharts(strategemData, id, isMobile) {
             charts[name] = null;
         }
     }
-
     return charts;
 }
 
 const getCompanionChartData = (strategemData) => {
-    console.log(strategemData)
     if (strategemData.companions.strategem) {
         return Object.values(strategemData.companions.strategem).map(category => {
             return category.map(item => {
@@ -296,8 +323,8 @@ const pickStats = (obj) => {
 };
 
 const getChartData = (data, filters) => {
-   const { faction, patch, category } = filters;
-    const itemEntries = Object.entries(data.items); 
+    const { faction, patch, category } = filters;
+    const itemEntries = Object.entries(data.items);
     // const patchIndex = patchPeriods.length - patch.id - 1;
     const entriesFiltered = itemEntries
         .filter(([key]) => category === "All" || itemsDict[key].category === category)

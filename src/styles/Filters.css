@@ -275,4 +275,6 @@
 .custom-tooltip .tooltip-inner {
     font-size: 16px; 
     padding: 8px 12px; 
+    white-space: nowrap;
+    max-width: none;
 }

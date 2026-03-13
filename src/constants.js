@@ -363,7 +363,7 @@ const armorsDict = {
     'DESERT STORMER': createItem('Desert Stormer', "", "", 'webp'),
     'REDUCED SIGNATURE': createItem('Reduced Signature', "", "", 'webp'),
     'SUPPLEMENTARY ADRENALINE': createItem('Supplementary Adrenaline', "", "", 'webp'),
-    //'Rock Solid': createItem('Feet First', "", "", 'webp'),
+    'ROCK SOLID': createItem('Rock Solid', "", "", 'svg'),
 };
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };

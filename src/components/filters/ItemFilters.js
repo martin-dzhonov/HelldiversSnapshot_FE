@@ -42,21 +42,21 @@ function ItemFilters({ filters, setFilters }) {
                                     <Dropdown.Item
                                         as="button"
                                         onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                                        {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                                        {`${patchPeriod.name}`}
                                     </Dropdown.Item>
                                 ))}
                             </DropdownButton> :
                             <DropdownButton
                                 className="dropdown-button"
                                 title={`${!isMobile ? "Patch: " : ''} ${filters.patch.name}`} >
-                                {patchPeriods.slice().reverse().map((patchPeriod, index) => (
+                                {patchPeriods.slice().map((patchPeriod, index) => (
                                     <Dropdown.Item
                                         as="button"
-                                        disabled={(filters.faction === 'illuminate' && index > 4) || filters.type === "weapons"}
+                                        disabled={(filters.faction === 'illuminate' && index < 2 ) || filters.type === "weapons"}
                                         onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                                        {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                                        {`${patchPeriod.name}`}
                                     </Dropdown.Item>
-                                ))}
+                                )).reverse()}
                             </DropdownButton>}
 
                     </div>

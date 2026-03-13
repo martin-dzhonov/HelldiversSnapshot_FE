@@ -1,6 +1,6 @@
 import "../../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {  useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import {
     Chart as ChartJS,
@@ -43,21 +43,22 @@ const PatchChart = ({ data, itemID }) => {
                         pointBackgroundColor: itemColor,
                         pointBorderColor: itemColor,
                         fill: "start",
-                        backgroundColor: (context) =>  getChartGradient(context, itemColor),
+                        backgroundColor: (context) => getChartGradient(context, itemColor),
                     }
                 ],
             };
         }
     }, [data, itemID]);
-
+    
     return (
         <>
-            {chartData && <Line
-                ref={chartRef}
-                data={chartData}
-                options={data.options}
-                redraw={false}
-            />}
+            {chartData && chartData.labels.length > 0 &&
+                <Line
+                    ref={chartRef}
+                    data={chartData}
+                    options={data.options}
+                    redraw={false}
+                />}
         </>
     );
 };

@@ -14,7 +14,7 @@ function GamesFilters({ filters, setFilters }) {
                     {factions.map((factionName) => (
                         <Dropdown.Item
                             as="button"
-                            onClick={() => { setFilters({ ...filters, faction: factionName }); }}>
+                            onClick={() => {  setFilters({ ...filters, faction: factionName , modifier: "ALL" }); }}>
                             {capitalizeFirstLetter(factionName)}
                         </Dropdown.Item>
                     ))}
@@ -41,7 +41,7 @@ function GamesFilters({ filters, setFilters }) {
                         <Dropdown.Item
                             as="button"
                             onClick={() => { setFilters({ ...filters, patch: patchPeriod }); }}>
-                            {`${patchPeriod.name} : ${patchPeriod.start} - ${patchPeriod.end}`}
+                            {`${patchPeriod.name}`}
                         </Dropdown.Item>
                     ))}
                 </DropdownButton>

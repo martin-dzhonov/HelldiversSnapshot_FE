@@ -117,12 +117,14 @@ function GamesTable({ data }) {
                     <tbody>
                         {currentPageData.map((game, index) => (
                             <tr key={index}>
-                                                                <td className="text-small">{game.id}</td>
-
+                                <td className="text-small">{game.id}</td>
                                 <td className="text-small">{game.planet}</td>
                                 <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                                <td className="text-small" style={{ width: "180px" }}>{game.subfactions}</td>
-                                <td className="text-small">
+                                <td className="text-small" style={{ width: "180px" }}>
+                                    {game.subfactions?.map((sub, i) => (
+                                        <div key={i}>{sub}</div>
+                                    ))}
+                                </td>                                <td className="text-small">
                                     <div className="table-loadout-row-wrapper">
                                         {game.players.map((player, i) => (
                                             <div key={i} className="table-loadout-wrapper">{renderStrategems(player)}</div>
@@ -152,6 +154,9 @@ function GamesTable({ data }) {
                                     <div className="table-text-mobile">Planet: {game.planet}</div>
                                     <div className="table-text-mobile">Mission: {game.mission}</div>
                                     <div className="table-text-mobile">Difficulty: {game.difficulty}</div>
+                                    {game.subfactions && game.subfactions.length > 0 &&
+                                        <div className="table-text-mobile">Modifiers: {game.subfactions?.join(', ')}</div>
+                                    }
                                     <div className="table-text-mobile">Recorded: {formatDate(game.createdAt)}</div>
                                     <div className="table-loadout-row-wrapper">
                                         {game.players.map((player, i) => (
@@ -169,7 +174,7 @@ function GamesTable({ data }) {
                     </tbody>
                 </Table>
             )}
-             <div className="pagination">
+            <div className="pagination">
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
                 {getPageNumbers().map((page, index) => (
                     <button

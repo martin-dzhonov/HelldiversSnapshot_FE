@@ -447,6 +447,7 @@ export const detailsBase = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
+    sectionSize: 40,
 
     elements: {
         bar: { borderWidth: 4 }
@@ -482,6 +483,7 @@ export const level = {
     indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
+    sectionSize: 40,
     barSize: 34,
     elements: {
         bar: { borderWidth: 4 }
@@ -514,6 +516,46 @@ export const level = {
         datalabels: datalabelsSettings({ fontSize: 15 })
     },
 };
+
+
+export const modifiers = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    sectionSize: 38,
+    barSize: 34,
+    elements: {
+        bar: { borderWidth: 4 }
+    },
+    layout: {
+        padding: { right: 50 },
+    },
+    scales: {
+        x: {
+            ticks: { display: false },
+            grid: { drawOnChartArea: false }
+        },
+        y: {
+            ticks: {
+                display: true,
+                font: {
+                    family: "CustomFont",
+                    size: 13,
+                },
+                color: "white",
+            },
+            grid: { drawOnChartArea: false },
+            beginAtZero: true
+        }
+    },
+    plugins: {
+        title: { display: false },
+        legend: { display: false },
+        tooltip: tooltipSettings(formatters.level),
+        datalabels: datalabelsSettings({ fontSize: 15 })
+    },
+};
+
 
 export const level_dist = {
     indexAxis: "y",

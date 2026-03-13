@@ -8,7 +8,7 @@ export function useReports2(filters) {
   const queryKey = ['reports', faction, patchId, difficulty, mission, page, modifier];
 
   const queryFn = async () => {
-    const res = await fetch(`${apiBaseUrl}/item_stats?faction=${faction}&patch_id=${patchId}&difficulty=${difficulty}&mission=${mission}&modifier=${modifier}&type=${page}`);
+    const res = await fetch(`${apiBaseUrl}/items_stats?faction=${faction}&patch_id=${patchId}&difficulty=${difficulty}&mission=${mission}&modifier=${modifier}&type=${page}`);
     if (!res.ok) throw new Error('Network response error');
     return res.json();
   };

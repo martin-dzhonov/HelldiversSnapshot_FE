@@ -98,20 +98,26 @@ function WeaponDetailsPage() {
                                 <img src={weaponsDict[id].image} alt=""></img>
                             </div>}
 
+                        <div className="weapon-title-text-wrapper">
                         <div className="weapon-title-text">
-                            {weaponsDict[id].nameFull}
+                        {weaponsDict[id].nameFull}
+
+                            </div>
+                            <a className="weapon-title-wiki" href={`https://helldivers.wiki.gg/wiki/${weaponsDict[id].wikiId}`} target="_blank">
+                                See Wiki
+                            </a>
                         </div>
                     </div>
                 </div>
-                {isMobile &&  <div className="strategem-divider"></div>}
+                {isMobile && <div className="strategem-divider"></div>}
 
                 <ItemFilters filters={filters} setFilters={setFilters} />
             </div>
 
             <div className="strategem-divider"></div>
 
-            <Loader loading={isLoading || !strategemData}>
-                <ItemErrorWrapper showErr={strategemData?.total?.loadouts < 5}>
+            <Loader loading={isLoading}>
+                <ItemErrorWrapper showErr={!strategemData || strategemData?.total?.loadouts < 5}>
                     <div>
                         <div className="row">
                             {strategemData && (

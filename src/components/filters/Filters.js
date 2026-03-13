@@ -16,15 +16,32 @@ import {
 } from '../../constants';
 import { capitalizeFirstLetter } from '../../utils/utils';
 
-const FilterDropdown = ({ title, value, options, onSelect, renderLabel = (o) => o }) => (
+const FilterDropdown = ({ title, value, options, onSelect, renderLabel = (o) => o, renderTooltip }) => (
     <div className="filter-container">
         <div className="filters-title">{title}</div>
         <DropdownButton className="dropdown-button" title={value}>
-            {options.map((option, index) => (
-                <Dropdown.Item key={index} as="button" onClick={() => onSelect(option, index)}>
-                    {renderLabel(option)}
-                </Dropdown.Item>
-            ))}
+            {options.map((option, index) => {
+                const item = (
+                    <Dropdown.Item as="button" onClick={() => onSelect(option, index)}>
+                        {renderLabel(option)}
+                    </Dropdown.Item>
+                );
+
+                if (!renderTooltip) return <div key={index}>{item}</div>;
+
+                return (
+                    <OverlayTrigger
+                        key={index}
+                        placement="right"
+                        overlay={
+                            <Tooltip id={`tooltip-${title}-${index}`} className="custom-tooltip">
+                                {renderTooltip(option)}
+                            </Tooltip>}>
+
+                        <div>{item}</div>
+                    </OverlayTrigger>
+                );
+            })}
         </DropdownButton>
     </div>
 );
@@ -52,7 +69,7 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
             title: "FACTION",
             value: filters.faction.toUpperCase(),
             options: factions,
-            onSelect: (faction) => setFilters({ ...filters, faction }),
+            onSelect: (faction) => setFilters({ ...filters, faction, modifier: "ALL" }),
             renderLabel: (f) => f.toUpperCase(),
         },
         filters.page !== "armor" && {
@@ -66,8 +83,14 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
             title: "PATCH",
             value: filters.patch.name.toUpperCase(),
             options: getPatchOptions(),
-            onSelect: (patch) => setFilters({ ...filters, patch }),
+            onSelect: (patch) =>
+                setFilters({
+                    ...filters,
+                    patch,
+                    modifier: patch.id < 10 ? "ALL" : filters.modifier
+                }),
             renderLabel: (p) => p.name.toUpperCase(),
+            renderTooltip: (p) => `${p.start} - ${p.end}`
         },
         {
             title: "MODIFIERS",
@@ -124,8 +147,8 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
                                 placement="top"
                                 overlay={
                                     <Tooltip id="lock-tooltip" className="custom-tooltip">
-                                    {locked ? "Unlock" : "Always On Top" }
-                                </Tooltip>
+                                        {locked ? "Unlock" : "Always On Top"}
+                                    </Tooltip>
                                 }>
                                 <button
                                     className="filters-action-btn"

@@ -49,7 +49,6 @@ function GamesPage() {
             const distCharts = Object.fromEntries(
                 Object.entries(distributions).map(([k, v]) => [k, getDistChartData(v, k)])
             );
-            console.log(distCharts)
 
             setCharts(distCharts);
         }

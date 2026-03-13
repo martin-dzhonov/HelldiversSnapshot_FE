@@ -40,7 +40,9 @@ iframe+div {
 }
 
 .content-wrapper {
+    position: relative;
     padding: 10px 4% 20px 4%;
+    min-height: 50vh;
 }
 
 @media only screen and (max-width: 992px) {
@@ -221,9 +223,10 @@ iframe+div {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 24%;
+    width: 23%;
     height: 90%;
     margin-top: 40px;
+    min-width: 370px;
 }
 
 .box1 {
@@ -320,6 +323,7 @@ iframe+div {
     width: 14%;
     height: 100%;
     margin-top: 40px;
+    min-width: 260px;
 }
 
 .box3 {
@@ -333,6 +337,8 @@ iframe+div {
     padding: 10px 15px;
     overflow-y: auto;
     align-items: center;
+    position: relative;
+
 }
 
 .box-title-center{
