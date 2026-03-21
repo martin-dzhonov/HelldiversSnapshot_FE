@@ -9,24 +9,30 @@ import WeaponDetailsPage from "./pages/WeaponDetailsPage";
 import GamesPage from "./pages/GamesPage";
 import ArmorsPage from "./pages/ArmorsPage";
 import HomePage from "./pages/HomePage";
+import { useMobile } from './hooks/useMobile';
 
 function App() {
+    const { isMobile } = useMobile();
     document.title = "Helldive.Live";
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to="/home" />}></Route>
-
                 <Route
-                    path="/home"
-                    element={
-                        <Layout>
-                            <HomePage />
-                        </Layout>
-                    }
+                    path="/"
+                    element={<Navigate to={isMobile ? "/strategem" : "/home"} />}
                 />
 
+                {!isMobile && (
+                    <Route
+                        path="/home"
+                        element={
+                            <Layout>
+                                <HomePage />
+                            </Layout>
+                        }
+                    />
+                )}
                 <Route
                     path="/strategem"
                     element={

@@ -8,6 +8,7 @@
 @media only screen and (max-width: 992px) {
     .filters-container {
         justify-content: center;
+        padding: 0px 15px 10px 15px;
     }
 }
 
@@ -21,10 +22,28 @@
     font-size: 16px;
 }
 
+@media only screen and (max-width: 1300px) {
+    .filters-title {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 998px) {
+    .filters-title {
+        font-size: 11px;
+    }
+}
+
 .filter-container {
     display:flex;
     flex-direction:column;
     align-items:center;
+}
+
+@media only screen and (max-width: 992px) {
+    .filter-container {
+        padding: 8px 0px;
+    }
 }
 
 .dropdown-button {
@@ -79,9 +98,8 @@
 
 @media only screen and (max-width: 992px) {
     .dropdown-button .dropdown-toggle {
-        margin-top: 4px;
-        padding: 8px 15px;
-        font-size: 15px;
+        padding: 8px 4px;
+        font-size: 14px;
     }
 }
 
@@ -108,7 +126,8 @@
 
 @media only screen and (max-width: 992px) {
     .dropdown-button button {
-        font-size: 13px !important;
+        font-size: 11px !important;
+        padding: 10px;
     }
 }
 
@@ -156,16 +175,49 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 1300px) {
+    .filters-row-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 .filters-row {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
 
+
+@media only screen and (max-width: 992px) {
+    .filters-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
 .totals-wrapper {
     display: flex;
     justify-content: flex-end;
     flex-shrink: 0;
+}
+
+@media only screen and (max-width: 1300px) {
+    .totals-wrapper {
+        flex-direction: column;
+        width: auto;
+        padding-top: 15px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .totals-wrapper {
+        flex-direction: row;
+        width: auto;
+        padding-top: 10px;
+    }
 }
 
 /* ===== TOTALS DROPDOWN STYLE ===== */
@@ -178,6 +230,14 @@
     color: white;
 }
 
+@media only screen and (max-width: 1300px) {
+    .totals-dropdown {
+        flex-direction: row;
+        width: auto;
+        gap: 10px;
+    }
+}
+
 .totals-row {
     display: flex;
     justify-content: flex-end;
@@ -186,6 +246,7 @@
     padding: 5px 0;
     gap: 6px;
 }
+
 
 .totals-title {
     font-size: 17px;
@@ -198,6 +259,19 @@
     font-size: 17px;
     text-align: right;
     min-width: 40px;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .totals-title {
+        text-align: center;
+        width: auto;
+        font-size: 16px;
+    }
+    .totals-value {
+        font-size: 16px;
+    }
+    
 }
 
 .totals-separator {
@@ -248,6 +322,16 @@
     gap: 22px;
 }
 
+@media only screen and (max-width: 1300px) {
+    .filters-actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-left: 25px;
+    }
+}
+
+
 .filters-action-btn {
     color: white;
     background: none;
@@ -272,9 +356,20 @@
     pointer-events: none;
 }
 
+
+@media only screen and (max-width: 992px) {
+    
+.filters-action-btn svg {
+    font-size: 17px;
+    pointer-events: none;
+}
+
+}
+
 .custom-tooltip .tooltip-inner {
     font-size: 16px; 
     padding: 8px 12px; 
     white-space: nowrap;
     max-width: none;
 }
+

@@ -93,9 +93,9 @@ const getRankMin = (format, value) => {
 
 const getDataCollectionColors = (value) => {
     const valueNum = Number(value);
-    if (valueNum > 8000) {
+    if (valueNum > 3000) {
         return '#228B22';
-    } else if (valueNum > 3000) {
+    } else if (valueNum > 1000) {
         return '#FF8C00'
     }
     else return '#DC143C'
@@ -157,8 +157,9 @@ function getTrendCharts(data, filters, id, isMobile = false) {
     if (!strategemData) return { faction: null, patch: null };
 
     const ranks = strategemData.ranks;
-
+    
     const factionsDataset = factions.map((faction) => {
+        if(!data[faction]) return -1;
         if (data[faction].total.loadouts < 5) return -1;
         return getDatasetValue(data[faction], filters, ranks, id);
     }

@@ -99,11 +99,10 @@ function WeaponDetailsPage() {
                             </div>}
 
                         <div className="weapon-title-text-wrapper">
-                        <div className="weapon-title-text">
-                        {weaponsDict[id].nameFull}
-
+                            <div className="weapon-title-text">
+                                {weaponsDict[id].nameFull}
                             </div>
-                            <a className="weapon-title-wiki" href={`https://helldivers.wiki.gg/wiki/${weaponsDict[id].wikiId}`} target="_blank">
+                            <a className="weapon-title-wiki" href={`https://helldivers.wiki.gg/wiki/${encodeURIComponent(weaponsDict[id].nameFull.split(' ').join('_'))}`} target="_blank">
                                 See Wiki
                             </a>
                         </div>

@@ -15,6 +15,7 @@ import {
     missionTypesAll
 } from '../../constants';
 import { capitalizeFirstLetter } from '../../utils/utils';
+import { useMobile } from '../../hooks/useMobile';
 
 const FilterDropdown = ({ title, value, options, onSelect, renderLabel = (o) => o, renderTooltip }) => (
     <div className="filter-container">
@@ -47,7 +48,7 @@ const FilterDropdown = ({ title, value, options, onSelect, renderLabel = (o) => 
 );
 
 function Filters({ filters, totals, setFilters, resetFilters }) {
-
+    const { isMobile } = useMobile();
     const [locked, setLocked] = useState(true);
 
     const patchOptionsMap = {
@@ -72,13 +73,7 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
             onSelect: (faction) => setFilters({ ...filters, faction, modifier: "ALL" }),
             renderLabel: (f) => f.toUpperCase(),
         },
-        filters.page !== "armor" && {
-            title: "CATEGORY",
-            value: filters.category.toUpperCase(),
-            options: getCategoryOptions(),
-            onSelect: (category) => setFilters({ ...filters, category }),
-            renderLabel: (c) => c.toUpperCase(),
-        },
+
         {
             title: "PATCH",
             value: filters.patch.name.toUpperCase(),
@@ -91,6 +86,13 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
                 }),
             renderLabel: (p) => p.name.toUpperCase(),
             renderTooltip: (p) => `${p.start} - ${p.end}`
+        },
+        filters.page !== "armor" && {
+            title: "CATEGORY",
+            value: filters.category.toUpperCase(),
+            options: getCategoryOptions(),
+            onSelect: (category) => setFilters({ ...filters, category }),
+            renderLabel: (c) => c.toUpperCase(),
         },
         {
             title: "MODIFIERS",
@@ -122,9 +124,23 @@ function Filters({ filters, totals, setFilters, resetFilters }) {
     return (
         <div className={`filters-container ${locked ? "filters-locked" : ""}`}>
             <div className="filters-row-wrapper">
-                <div className="filters-row">
-                    {dropdowns.map((d, idx) => <FilterDropdown key={idx} {...d} />)}
-                </div>
+                {isMobile ? (
+                    <>
+                        <div className="filters-row">
+                            {dropdowns.slice(0, Math.ceil(dropdowns.length / 2))
+                                .map((d, idx) => <FilterDropdown key={idx} {...d} />)}
+                        </div>
+
+                        <div className="filters-row">
+                            {dropdowns.slice(Math.ceil(dropdowns.length / 2))
+                                .map((d, idx) => <FilterDropdown key={idx} {...d} />)}
+                        </div>
+                    </>
+                ) : (
+                    <div className="filters-row">
+                        {dropdowns.map((d, idx) => <FilterDropdown key={idx} {...d} />)}
+                    </div>
+                )}
 
                 {totals && (
                     <div className="totals-wrapper">

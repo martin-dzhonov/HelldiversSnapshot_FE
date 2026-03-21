@@ -7,9 +7,10 @@ const createItem = (baseName, fullName, category, ext = "svg") => ({
     category,
 });
 
+const version = 1.5;
 const isDev = false;
-//const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
-const apiBaseUrl = `http://localhost:8080`;
+const apiBaseUrl = `https://utm7j5pjvi.us-east-1.awsapprunner.com`;
+//const apiBaseUrl = `http://localhost:8080`;
 
 const navRoutes = [
     {
@@ -174,7 +175,7 @@ const strategemsDict = {
     barrage_gatling: createItem("Orbital Gatling Barrage", "Orbital Gatling Barrage", "Eagle/Orbital"),
     barrage_napalm: createItem("Orbital Napalm Barrage", "Orbital Napalm Barrage", "Eagle/Orbital"),
     barrage_walking: createItem("Orbital Walking Barrage", "Orbital Walking Barrage", "Eagle/Orbital"),
-    eagle_110mm: createItem("Eagle 110MM Rocket Pods", "Eagle 110MM Rocket Pods", "Eagle/Orbital"),
+    eagle_110mm: createItem("Eagle 110mm Rocket Pods", "Eagle 110mm Rocket Pods", "Eagle/Orbital"),
     eagle_500kg: createItem("Eagle 500KG Bomb", "Eagle 500KG Bomb", "Eagle/Orbital"),
     eagle_airstrike: createItem("Eagle Airstrike", "Eagle Airstrike", "Eagle/Orbital"),
     eagle_cluster: createItem("Eagle Cluster Bomb", "Eagle Cluster Bomb", "Eagle/Orbital"),
@@ -187,10 +188,10 @@ const strategemsDict = {
     exo_emancipator: createItem("Emancipator Exosuit", "EXO-49 Emancipator Exosuit", "Support"),
     exo_patriot: createItem("Patriot Exosuit", "EXO-45 Patriot Exosuit", "Support"),
     frv: createItem("Fast Recon Vehicle", "M-102 Fast Recon Vehicle", "Support"),
-    guard_breath: createItem("Guard Dog Breath", "AX/TX-13 Guard Dog Breath", "Support"),
-    guard_dog: createItem("Guard Dog", "AD-334 Guard Dog", "Support"),
-    guard_rover: createItem("Guard Dog Rover", "AX/LAS-5 Guard Dog Rover", "Support"),
-    guard_arc: createItem("Guard Dog Arc", "AX/ARC-3 Guard Dog K-9", "Support"),
+    guard_breath: createItem("Guard Dog Breath", "AX/TX-13 Dog Breath", "Support"),
+    guard_dog: createItem("Guard Dog", "AX/AR-23 Guard Dog", "Support"),
+    guard_rover: createItem("Guard Dog Rover", "AX/LAS-5 Rover", "Support"),
+    guard_arc: createItem("Guard Dog Arc", "AX/ARC-3 K-9", "Support"),
     mines_at: createItem("Anti-Tank Mines", "MD-17 Anti-Tank Mines", "Defensive"),
     mines_incendiary: createItem("Incendiary Mines", "MD-I4 Incendiary Mines", "Defensive"),
     mines_infantry: createItem("Anti-Personnel Minefield", "MD-6 Anti-Personnel Minefield", "Defensive"),
@@ -234,25 +235,24 @@ const strategemsDict = {
     sup_epoch: createItem("Epoch", "PLAS-45 Epoch", "Support"),
     backpack_warp: createItem("Warp Pack", "LIFT-182 Warp Pack", "Support"),
     sentry_laser: createItem("Laser Sentry", "A/LAS-98 Laser Sentry", "Defensive"),
-    sup_speargun: createItem("Speargun", "One True Flag", "Support"),
-    sup_eat_700: createItem("Expendable Napalm", "One True Flag", "Support"),
-    sup_solo_silo: createItem("Solo Silo", "One True Flag", "Support"),
-
+    sup_speargun: createItem("Speargun", "S-11 Speargun", "Support"),
+    sup_eat_700: createItem("Expendable Napalm", "EAT-700 Expendable Napalm", "Support"),
+    sup_solo_silo: createItem("Solo Silo", "MS-11 Solo Silo", "Support"),
     guard_hot: createItem("Hot Dog", "AX/FLAM-75 Hot Dog", "Support"),
     sup_defoliation_tool: createItem("Defoliation Tool", "CQC-9 Defoliation Tool", "Support"),
     sup_maxigun: createItem("Maxigun", "M-1000 Maxigun", "Support"),
     sup_c4_pack: createItem("C4 Pack", "B/MD C4 Pack", "Support"),
     sup_breaching_hammer: createItem("Breaching Hammer", "CQC-20 Breaching Hammer", "Support"),
     sup_leveller: createItem("Leveller", "EAT-411 Leveller", "Support"),
-    sup_belt_fed_gl: createItem("Belt-fed GL", "GL-28 Belt-fed GL", "Support"),
-    bastion: createItem("Bastion", "TD-220 Bastion", "Support"),
+    sup_belt_fed_gl: createItem("Belt-fed GL", "GL-28 Belt-Fed Grenade Launcher", "Support"),
+    bastion: createItem("Bastion", "TD-220 Bastion MK XVI", "Support"),
 };
 
 const weaponsDict = {
     liberator: createItem("Liberator", "AR-23 Liberator", "Primary", 'webp'),
     liberator_pen: createItem("Liberator Penetrator", "AR-23P Liberator Penetrator", "Primary", 'webp'),
     liberator_conc: createItem("Liberator Concussive", "AR-23C Liberator Concussive", "Primary", 'webp'),
-    liberator_car: createItem("Liberator Carabine", "AR-23A Liberator Carabine", "Primary", 'webp'),
+    liberator_car: createItem("Liberator Carbine", "AR-23A Liberator Carbine", "Primary", 'webp'),
     sta_52: createItem("StA-52", "StA-52 Assault Rifle", "Primary", 'webp'),
     tenderizer: createItem("Tenderizer", "AR-61 Tenderizer", "Primary", 'webp'),
     adjucator: createItem("Adjudicator", "BR-14 Adjudicator", "Primary", 'webp'),
@@ -419,6 +419,7 @@ const itemsChartConfig = {
 
 
 export {
+    version,
     isDev,
     strategemsDict,
     weaponsDict,

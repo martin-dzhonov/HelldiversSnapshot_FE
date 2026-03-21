@@ -14,7 +14,7 @@
     .weapon-title-img {
         padding-left: 5px;
         padding-bottom: 15px;
-        width: 150px;
+        width: 180px;
     }
 }
 
@@ -54,6 +54,12 @@
     padding-left: 10px;
 }
 
+@media only screen and (max-width: 992px) {
+    .weapon-title-wiki{
+        font-size: 14px;
+    }
+}
+
 .weapon-title-text {
     color: white;
     font-size: 32px;
@@ -66,8 +72,6 @@
 @media only screen and (max-width: 992px) {
     .weapon-title-text {
         font-size: 20px;
-        padding-bottom: 12px;
-        margin-left: 10px;
     }
 }
 .weapon-rankings-item{

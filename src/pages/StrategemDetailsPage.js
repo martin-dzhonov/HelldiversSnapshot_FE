@@ -51,7 +51,7 @@ function StrategemDetailsPage() {
     const strategemData = useMemo(() => {
         if (!data) return null;
         return data[filters.faction] || null;
-      }, [data, filters.faction]);    
+    }, [data, filters.faction]);
 
     useEffect(() => {
         if (data) {
@@ -92,7 +92,14 @@ function StrategemDetailsPage() {
                         <div className="strategem-title-img">
                             <img src={strategemsDict[id].image} alt="" />
                         </div>
-                        <div className="strategem-title-text">{strategemsDict[id].nameFull}</div>
+                        <div className="strategem-title-text-wrapper">
+                            <div className="strategem-title-text">
+                                {strategemsDict[id].nameFull}
+                            </div>
+                            <a className="strategem-title-wiki" href={`https://helldivers.wiki.gg/wiki/${encodeURIComponent(strategemsDict[id].nameFull.split(' ').join('_'))}`} target="_blank">
+                                See Wiki
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {isMobile && <div className="strategem-divider"></div>}
@@ -147,7 +154,7 @@ function StrategemDetailsPage() {
 
                         {charts.companions && (
                             <CompanionCharts charts={charts} filters={filters} />
-                        )} 
+                        )}
 
                         {charts.diff && charts.mission && (
                             <ItemMiscCharts charts={charts} filters={filters} />

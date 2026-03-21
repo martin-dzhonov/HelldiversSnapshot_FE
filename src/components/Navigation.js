@@ -45,8 +45,13 @@ const Navigation = () => {
     <div className="nav-container">
       {isMobile && (
         <>
-          <div className="hd-logo hd-logo-mobile" onClick={toggleMenu}>
-            <img src={hdlogo} alt="Logo" />
+          <div className="logos-wrapper hd-logo-mobile" onClick={toggleMenu}>
+            <div className="logo-title">
+              HELLDIVE.LIVE
+            </div>
+            <div className="hd-logo">
+              <img src={hdlogo} alt="Logo" />
+            </div>
           </div>
 
           <AnimatePresence>

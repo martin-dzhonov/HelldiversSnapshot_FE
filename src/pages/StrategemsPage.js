@@ -13,6 +13,7 @@ import {
 } from '../utils/utils';
 import useLegendItems from '../hooks/useLegendItems';
 import { useReports2 } from '../hooks/useReports2';
+import {useVersionCheck}  from '../hooks/useVersionCheck';
 import useFilter from '../hooks/useFilter';
 
 const defaultFilters = {
@@ -27,17 +28,16 @@ const defaultFilters = {
 
 //add hover tooltip for details and games too
 //hover patch tooltip flicker
-
-//BE stress test
-
-//mobile design
-//add wiki links
-
+//fix loader position for mobile
+//reduce patch history for details mobile
+//fix patch dropdown resize for details
+//fix details gaps for details charts
 
  
 const defaultFilterResults = { games: 0, loadouts: 0 };
 
 function StrategemsPage() {
+  useVersionCheck();
   const [filters, setFilters] = useFilter(defaultFilters);
   const [filterResults, setFilterResults] = useState(defaultFilterResults);
   const { data, isLoading } = useReports2(filters);

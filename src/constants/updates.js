@@ -1,6 +1,6 @@
 const updates = [
     {
-        title: "Machinery Of Oppression Update - 3/11/2026",
+        title: "Machinery Of Oppression Update - 3/14/2026",
         items: [
             "Added latest warbonds - Python Commandos, Redacted Regiment, Siege Breakers",
             "Added planet modifiers(subfactions, enemy surges)",

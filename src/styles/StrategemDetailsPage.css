@@ -41,8 +41,8 @@
     font-size: 32px;
     font-family: "CustomFont";
     display: flex;
-    align-items: flex-end;
-    padding: 0px 0px 5px 20px;
+    align-items: center;
+    padding: 0px 0px 5px 10px;
 }
 
 @media only screen and (max-width: 992px) {
@@ -65,7 +65,7 @@
     .strategem-filter-container {
         justify-content: center;
         align-items: flex-start;
-        padding: 0px 0px 10px 0px;
+        padding: 10px 0px 15px 0px;
     }
 }
 
@@ -156,7 +156,7 @@
 
 @media only screen and (max-width: 992px) {
     .strategem-other-graph-wrapper {
-        margin-top: 20px;
+        
     }
 }
 
@@ -211,4 +211,31 @@
 .strategem-section-placeholder {
     width: 100%;
     height: 400px;
+}
+
+.strategem-title-text-wrapper{
+    padding: 15px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:  center;
+}
+
+@media only screen and (max-width: 992px) {
+    .strategem-title-text-wrapper{
+        padding: 4px 0px;
+    }
+}
+
+.strategem-title-wiki{
+    color: white;
+    font-size: 16px;
+    font-family: "CustomFont";
+    padding-left: 15px;
+}
+
+@media only screen and (max-width: 992px) {
+    .strategem-title-wiki{
+        font-size: 14px;
+    }
 }
