@@ -18,6 +18,7 @@ function GamesTable({ data }) {
     const currentPageData = data.slice(startIndex, startIndex + itemsPerPage);
     const INVALID_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
+
     const getPageNumbers = () => {
         const pages = [];
         if (totalPages <= 7) {
@@ -87,106 +88,110 @@ function GamesTable({ data }) {
 
     return (
         <div>
-            <div className="pagination">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
-                {getPageNumbers().map((page, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handlePageChange(page)}
-                        className={currentPage === page ? "active" : ""}
-                        disabled={page === "..."}>
-                        {page}
-                    </button>
-                ))}
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>→</button>
-            </div>
-
-            {!isMobile && (
-                <Table striped bordered hover size="sm" variant="dark">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Planet</th>
-                            <th>Mission</th>
-                            <th>Modifiers</th>
-                            <th>Players</th>
-                            <th>Difficulty</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentPageData.map((game, index) => (
-                            <tr key={index}>
-                                <td className="text-small">{game.id}</td>
-                                <td className="text-small">{game.planet}</td>
-                                <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
-                                <td className="text-small" style={{ width: "180px" }}>
-                                    {game.subfactions?.map((sub, i) => (
-                                        <div key={i}>{sub}</div>
-                                    ))}
-                                </td>                                <td className="text-small">
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, i) => (
-                                            <div key={i} className="table-loadout-wrapper">{renderStrategems(player)}</div>
-                                        ))}
-                                    </div>
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, i) => (
-                                            <div key={i} className="table-loadout-wrapper">{renderWeapons(player)}</div>
-                                        ))}
-                                    </div>
-                                    <ScreenshotToggle id={game.id} />
-                                </td>
-                                <td className="text-small">{game.difficulty}</td>
-                                <td className="text-small">{formatDate(game.createdAt)}</td>
-                            </tr>
+            {data && data.length > 0 && (
+                <>
+                    <div className="pagination">
+                        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
+                        {getPageNumbers().map((page, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handlePageChange(page)}
+                                className={currentPage === page ? "active" : ""}
+                                disabled={page === "..."}>
+                                {page}
+                            </button>
                         ))}
-                    </tbody>
-                </Table>
-            )}
+                        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>→</button>
+                    </div>
 
-            {isMobile && (
-                <Table striped bordered hover size="sm" variant="dark">
-                    <tbody>
-                        {currentPageData.map((game, index) => (
-                            <tr key={index}>
-                                <td className="text-small">
-                                    <div className="table-text-mobile">Planet: {game.planet}</div>
-                                    <div className="table-text-mobile">Mission: {game.mission}</div>
-                                    <div className="table-text-mobile">Difficulty: {game.difficulty}</div>
-                                    {game.subfactions && game.subfactions.length > 0 &&
-                                        <div className="table-text-mobile">Modifiers: {game.subfactions?.join(', ')}</div>
-                                    }
-                                    <div className="table-text-mobile">Recorded: {formatDate(game.createdAt)}</div>
-                                    <div className="table-loadout-row-wrapper">
-                                        {game.players.map((player, i) => (
-                                            <div key={i}>
-                                                <div className="table-loadout-wrapper">{renderStrategems(player)}</div>
-                                                <div className="table-loadout-wrapper">{renderWeapons(player)}</div>
-                                                <div className="table-divider" />
+                    {!isMobile && (
+                        <Table striped bordered hover size="sm" variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Planet</th>
+                                    <th>Mission</th>
+                                    <th>Modifiers</th>
+                                    <th>Players</th>
+                                    <th>Difficulty</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {currentPageData.map((game, index) => (
+                                    <tr key={index}>
+                                        <td className="text-small">{game.id}</td>
+                                        <td className="text-small">{game.planet}</td>
+                                        <td className="text-small" style={{ width: "180px" }}>{game.mission}</td>
+                                        <td className="text-small" style={{ width: "180px" }}>
+                                            {game.subfactions?.map((sub, i) => (
+                                                <div key={i}>{sub}</div>
+                                            ))}
+                                        </td>                                <td className="text-small">
+                                            <div className="table-loadout-row-wrapper">
+                                                {game.players.map((player, i) => (
+                                                    <div key={i} className="table-loadout-wrapper">{renderStrategems(player)}</div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-                                    <ScreenshotToggle id={game.id} />
-                                </td>
-                            </tr>
+                                            <div className="table-loadout-row-wrapper">
+                                                {game.players.map((player, i) => (
+                                                    <div key={i} className="table-loadout-wrapper">{renderWeapons(player)}</div>
+                                                ))}
+                                            </div>
+                                            <ScreenshotToggle id={game.id} />
+                                        </td>
+                                        <td className="text-small">{game.difficulty}</td>
+                                        <td className="text-small">{formatDate(game.createdAt)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    )}
+
+                    {isMobile && (
+                        <Table striped bordered hover size="sm" variant="dark">
+                            <tbody>
+                                {currentPageData.map((game, index) => (
+                                    <tr key={index}>
+                                        <td className="text-small">
+                                            <div className="table-text-mobile">Planet: {game.planet}</div>
+                                            <div className="table-text-mobile">Mission: {game.mission}</div>
+                                            <div className="table-text-mobile">Difficulty: {game.difficulty}</div>
+                                            {game.subfactions && game.subfactions.length > 0 &&
+                                                <div className="table-text-mobile">Modifiers: {game.subfactions?.join(', ')}</div>
+                                            }
+                                            <div className="table-text-mobile">Recorded: {formatDate(game.createdAt)}</div>
+                                            <div className="table-loadout-row-wrapper">
+                                                {game.players.map((player, i) => (
+                                                    <div key={i}>
+                                                        <div className="table-loadout-wrapper">{renderStrategems(player)}</div>
+                                                        <div className="table-loadout-wrapper">{renderWeapons(player)}</div>
+                                                        <div className="table-divider" />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <ScreenshotToggle id={game.id} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    )}
+                    <div className="pagination">
+                        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
+                        {getPageNumbers().map((page, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handlePageChange(page)}
+                                className={currentPage === page ? "active" : ""}
+                                disabled={page === "..."}>
+                                {page}
+                            </button>
                         ))}
-                    </tbody>
-                </Table>
+                        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>→</button>
+                    </div>
+                </>
             )}
-            <div className="pagination">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>←</button>
-                {getPageNumbers().map((page, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handlePageChange(page)}
-                        className={currentPage === page ? "active" : ""}
-                        disabled={page === "..."}>
-                        {page}
-                    </button>
-                ))}
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>→</button>
-            </div>
         </div>
     );
 }

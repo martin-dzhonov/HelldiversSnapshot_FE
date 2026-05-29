@@ -325,17 +325,18 @@ iframe+div {
     height: 100%;
     margin-top: 40px;
     min-width: 260px;
+    min-width: 300px;
 }
 
 .box3 {
-    height: 38%;
+    height: 27%;
     background-color: rgba(24, 24, 24, 0.8);
     box-shadow: 0 0 12px rgba(255, 255, 0, 0.5);
     border-radius: 10px;
     color: white;
     display: flex;
     flex-direction: column;
-    padding: 10px 15px 25px 10px;
+    padding: 10px 10px 5px 10px;
     overflow-y: auto;
     align-items: center;
     position: relative;
@@ -351,7 +352,7 @@ iframe+div {
     font-size: 20px;
     font-family: "CustomFont";
     text-decoration: underline;
-    margin-top: 12px;
+    margin-top: 20px;
 }
 
 
@@ -370,4 +371,8 @@ iframe+div {
 .box1, .box2, .box3 {
     height: auto; /* allow height to fit content */
     min-height: 80px; /* optional: ensures a minimal size */
+}
+
+.box3 {
+    min-height: 300px;
 }

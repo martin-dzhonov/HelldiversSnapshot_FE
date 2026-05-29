@@ -36,6 +36,9 @@ const ImageChart = ({ barData, filters, options, legendItems, limit = 10, showFu
 
     const data = useMemo(() => {
         if (!barData) return null;
+
+        //return Object.fromEntries(Object.entries(barData).slice(0, 5));
+        
         if (limit && !showFull) {
             return Object.fromEntries(Object.entries(barData).slice(0, limit));
         }

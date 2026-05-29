@@ -45,13 +45,15 @@ export const modifierNames = {
         "ALL",
         "RUPTURE STRAIN",
         "PREDATOR STRAIN",
+        "SPORE BURST STRAIN",
+        "DRAGONROACHES",
         "HIVE LORDS",
         "NONE",
     ],
     automaton: [
         "ALL",
         "THE INCENERATION CORPS",
-        "THE JET BRIGADE",
+        "JET BRIGADE FACTORIES",
         "CYBORGS",
         "HEAVY ARMOR SURGE",
         "HULK SURGE",
@@ -59,9 +61,11 @@ export const modifierNames = {
     ],
     illuminate: [
         "ALL",
+        "MINDLESS MASSES",
+        "APPROPRIATORS"
     ]
-
 };
+
 const patchPeriods = [
     { id: 0, name: "Classic", start: "04/01/2024", end: "08/06/2024" },
     { id: 1, name: "Escalation of Freedom", start: "08/06/2024", end: "12/12/2024" },
@@ -73,9 +77,10 @@ const patchPeriods = [
     { id: 7, name: "Control Group", start: "07/17/2025", end: "09/03/2025" },
     { id: 8, name: "Into the Unjust", start: "09/04/2025", end: "10/23/2025" },
     { id: 9, name: "Into the Unjust 4.1", start: "10/23/2025", end: "12/30/2025" },
-    { id: 10, name: "Machinery Of Oppression", start: "02/10/2026", end: "Present" },
+    { id: 10, name: "Machinery Of Oppression", start: "02/10/2026", end: "03/16/2026" },
+    { id: 11, name: "Entrenched Division", start: "03/17/2026", end: "04/27/2026" },
+    { id: 12, name: "Exo Experts", start: "04/27/2026", end: "Present" },
 ];
-
 
 const difficultiesNames = [
     "All",
@@ -146,7 +151,12 @@ const missionNames = [
         "CONDUCT MOBILE E-711 EXTRACTION",
         "RESTART PUMPS",
         "NEUTRALIZE GROUND-TO-ORBIT DEFENSES",
-        "HALT CYBORG PRODUCTION"
+        "HALT CYBORG PRODUCTION",
+        "DESTROY EXOSPIRE",
+        "SABOTAGE ORGO-PLASMA SYNTHESIS",
+        "ANNEX UNTAPPED MINERAL SITES",
+        "SEIZE INDUSTRIAL COMPLEX",
+        "RAPID AQUISITION"
     ],
     [
         "ERADICATE TERMINID SWARM",
@@ -246,6 +256,11 @@ const strategemsDict = {
     sup_leveller: createItem("Leveller", "EAT-411 Leveller", "Support"),
     sup_belt_fed_gl: createItem("Belt-fed GL", "GL-28 Belt-Fed Grenade Launcher", "Support"),
     bastion: createItem("Bastion", "TD-220 Bastion MK XVI", "Support"),
+    sup_cremator: createItem("Cremator", "B/FLAM-80 Cremator", "Support"),
+    sentry_gas: createItem("Gas Mortar", "A/GM-17 Gas Mortar Sentry", "Defensive"),
+    sup_bullet_storm: createItem("Bullet Storm", "MGX-42 Bullet Storm", "Support"),
+    exo_lumberer: createItem("Lumberer Exosuit", "EXO-51 Lumberer Exosuit", "Support"),
+    exo_breakthrough: createItem("Breakthrough Exosuit", "EXO-55 Breakthrough Exosuit", "Support"),
 };
 
 const weaponsDict = {
@@ -296,6 +311,9 @@ const weaponsDict = {
     censor: createItem("Censor", "R-72 Censor", "Primary", 'webp'),
     suppressor: createItem("Suppressor", "AR-59 Suppressor", "Primary", 'webp'),
     trident: createItem("Trident", "LAS-13 Trident", "Primary", 'webp'),
+    stoker: createItem("Stoker", "SMG/FLAM-34 Stoker", "Primary", 'webp'),
+    sweeper: createItem("Sweeper", "SG-97 Sweeper", "Primary", 'webp'),
+    gallant: createItem("Gallant", "SMG-203 Gallant", "Primary", 'webp'),
 
     peacemaker: createItem("Peacemaker", "P-2 Peacemaker", "Secondary", 'webp'),
     redeemer: createItem("Redeemer", "P-19 Redeemer", "Secondary", 'webp'),
@@ -317,6 +335,9 @@ const weaponsDict = {
     m6c: createItem("M6C", "M6C/SOCOM Pistol", "Secondary", 'webp'),
     machete: createItem("Machete", "CQC-42 Machete", "Secondary", 'webp'),
     re_educator: createItem("Re-Educator", "P-35 Re-Educator", "Secondary", 'webp'),
+    entrenchment_tool: createItem("Entrenchment Tool", "CQC-73 Entrenchment Tool", "Secondary", 'webp'),
+    veto: createItem("Veto", "P-69 Veto", "Secondary", 'webp'),
+    missile_pistol: createItem("Missile Pistol", "P-33 Missile Pistol", "Secondary", 'webp'),
 
     grenade_frag: createItem("Frag", "G-6 Frag", "Throwable", 'webp'),
     grenade_he: createItem("High Explosive", "G-12 High Explosive", "Throwable", 'webp'),
@@ -337,6 +358,7 @@ const weaponsDict = {
     lure_mine: createItem("Lure Mine", "TM-1 Lure Mine", "Throwable", 'webp'),
     grenade_smokescreen: createItem("Smokescreen", "G-89 Smokescreen", "Throwable", 'webp'),
     grenade_shield: createItem("Shield", "G/SH-39 Shield", "Throwable", 'webp'),
+    giga_grenade: createItem("Giga Grenade", "G-48 Giga Grenade", "Throwable", 'webp'),
 };
 
 const armorsDict = {
@@ -364,6 +386,10 @@ const armorsDict = {
     'REDUCED SIGNATURE': createItem('Reduced Signature', "", "", 'webp'),
     'SUPPLEMENTARY ADRENALINE': createItem('Supplementary Adrenaline', "", "", 'webp'),
     'ROCK SOLID': createItem('Rock Solid', "", "", 'svg'),
+    'CONCUSSIVE PADDING, GRENADIER': createItem('Concussive Padding, Grenadier', "", "", 'svg'),
+    'CONCUSSIVE PADDING, HAZMAT': createItem('Concussive Padding, Hazmat', "", "", 'svg'),
+    'CONCUSSIVE PADDING, REINFORCED': createItem('Concussive Padding, Reinforced', "", "", 'svg'),
+    'OXYGENATOR': createItem('Oxygenator', "", "", 'svg'),
 };
 
 const itemsDict = { ...strategemsDict, ...weaponsDict, ...armorsDict };

@@ -20,7 +20,7 @@ const useLegendItems = (setChartData, filters) => {
     const getLegendItems = () => [
         !isMobile && { name: "Name", icon: null, check: true },
         showPlayerLvl && { name: "Avg. Level", icon: levelIcon, check: true },
-        showTrends && { name: "Pick Rate Trend", icon: trendUpIcon, iconAlt: trendDownIcon, check: true },
+        showTrends && { name: "Pick Rate Trend", icon: trendUpIcon, iconAlt: trendDownIcon, check: filters.modifier === "ALL" ? true : false },
         { name: "Times played", icon: playedIcon, check: false }
     ]
         .filter(Boolean) // remove null or false

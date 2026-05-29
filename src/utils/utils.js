@@ -178,8 +178,10 @@ function getTrendCharts(data, filters, id, isMobile = false) {
     let patchesValues = data[filters.faction].values;
     let patchesLabels = patchesValues.map((item, i) => patchPeriods[patchPeriods.length - i - 1].name)
 
+    const sectionSize = isMobile ? 6 : 8;
+
     let startIndex = patchesValues.length - filters.patch.id - 1;
-    let endIndex = startIndex + 8;
+    let endIndex = startIndex + sectionSize;
 
     if(patchesValues.length - startIndex < 2){
         startIndex += -1;
@@ -326,7 +328,8 @@ const pickStats = (obj) => {
 const getChartData = (data, filters) => {
     const { faction, patch, category } = filters;
     const itemEntries = Object.entries(data.items);
-    // const patchIndex = patchPeriods.length - patch.id - 1;
+    // const patchIndex = patchPeriods.length - patch.id - 1;  
+
     const entriesFiltered = itemEntries
         .filter(([key]) => category === "All" || itemsDict[key].category === category)
         .sort(([, a], [, b]) => b.loadouts_percentage - a.loadouts_percentage)

@@ -110,8 +110,8 @@ function StrategemDetailsPage() {
             </div>
 
 
-            <Loader loading={isLoading || !strategemData}>
-                <ItemErrorWrapper showErr={strategemData?.total?.loadouts < 5}>
+            <Loader loading={isLoading}>
+                <ItemErrorWrapper showErr={strategemData?.total?.loadouts < 5 || !strategemData}>
                     <div>
                         <div className="row">
                             {strategemData && (

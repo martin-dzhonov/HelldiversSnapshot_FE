@@ -60,22 +60,15 @@ function HomePage() {
                         
                         <Loader loading={isLoading}>
                             <div className="data-collection-subsection-title">Latest Patch</div>
-                            <div className="data-collection-text">Entrenched Division</div>
-
-                            {/* <div className="data-collection-text">{patchPeriods[patchPeriods.length - 1].name}</div> */}
+                            <div className="data-collection-text">{patchPeriods[patchPeriods.length - 1].name}</div>
 
                             <div className="data-collection-subsection-title">Games Collected</div>
                             {data && <div>{factions.map((faction, index) => {
                                 return <div className="data-collection-text">
                                     <span style={{ color: factionColors[index] }}>{faction.toUpperCase()}</span> &nbsp;&nbsp;
-                                    <span style={{ color: getDataCollectionColors(0) }}>0</span>
-
-                                    {/* <span style={{ color: getDataCollectionColors(data[index]) }}>{data[index]}</span> */}
+                                    <span style={{ color: getDataCollectionColors(data[index]) }}>{data[index]}</span>
                                 </div>
                             })}</div>}
-
-                            <div className="data-collection-subsection-title">Current Planet</div>
-                            <div className="data-collection-text" style={{ color: factionColors[2] }}>RIRGA BAY</div>
                         </Loader>
                     </div>
                 </div>
